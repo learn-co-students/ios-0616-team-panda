@@ -1,0 +1,21 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Team-Panda' do
+  use_frameworks!
+
+  # Pods for Team-Panda
+pod 'Alamofire'
+pod 'SwiftyJSON'
+
+  target 'Team-PandaTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'Team-PandaUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

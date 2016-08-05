@@ -1,0 +1,691 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32D9D74CF88456BF2D6B6D55 /* Pods_Team_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */; };
+		47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */; };
+		6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB001D54125E00C12B50 /* AppDelegate.swift */; };
+		6E58FB031D54125E00C12B50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB021D54125E00C12B50 /* ViewController.swift */; };
+		6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB041D54125E00C12B50 /* Main.storyboard */; };
+		6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB071D54125E00C12B50 /* Assets.xcassets */; };
+		6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB091D54125E00C12B50 /* LaunchScreen.storyboard */; };
+		6E58FB161D54125E00C12B50 /* Team_PandaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB151D54125E00C12B50 /* Team_PandaTests.swift */; };
+		6E58FB211D54125E00C12B50 /* Team_PandaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB201D54125E00C12B50 /* Team_PandaUITests.swift */; };
+		6E58FB2F1D54149A00C12B50 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB2E1D54149A00C12B50 /* Secrets.swift */; };
+		7C53B52CD0879530CFD1A48B /* Pods_Team_PandaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6E58FB121D54125E00C12B50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E58FAF51D54125E00C12B50 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E58FAFC1D54125E00C12B50;
+			remoteInfo = "Team-Panda";
+		};
+		6E58FB1D1D54125E00C12B50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E58FAF51D54125E00C12B50 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E58FAFC1D54125E00C12B50;
+			remoteInfo = "Team-Panda";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_PandaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.release.xcconfig"; sourceTree = "<group>"; };
+		203FBBCB38E8EDF5550BEE4A /* Pods-Team-PandaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2103E03BCEF96F99773FC7BE /* Pods-Team-Panda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.debug.xcconfig"; sourceTree = "<group>"; };
+		28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.release.xcconfig"; sourceTree = "<group>"; };
+		59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_Panda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E58FAFD1D54125E00C12B50 /* Team-Panda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team-Panda.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E58FB001D54125E00C12B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6E58FB021D54125E00C12B50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6E58FB051D54125E00C12B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6E58FB071D54125E00C12B50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6E58FB0A1D54125E00C12B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6E58FB0C1D54125E00C12B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E58FB111D54125E00C12B50 /* Team-PandaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Team-PandaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E58FB151D54125E00C12B50 /* Team_PandaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team_PandaTests.swift; sourceTree = "<group>"; };
+		6E58FB171D54125E00C12B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E58FB1C1D54125E00C12B50 /* Team-PandaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Team-PandaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E58FB201D54125E00C12B50 /* Team_PandaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team_PandaUITests.swift; sourceTree = "<group>"; };
+		6E58FB221D54125E00C12B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E58FB2E1D54149A00C12B50 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_PandaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B240344A2319D1380871730E /* Pods-Team-PandaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaUITests/Pods-Team-PandaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BF83AE6FE11D78D52A3B8046 /* Pods-Team-PandaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaUITests/Pods-Team-PandaUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6E58FAFA1D54125E00C12B50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E58FB0E1D54125E00C12B50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C53B52CD0879530CFD1A48B /* Pods_Team_PandaTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E58FB191D54125E00C12B50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32D9D74CF88456BF2D6B6D55 /* Pods_Team_PandaUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E58FAF41D54125E00C12B50 = {
+			isa = PBXGroup;
+			children = (
+				6E58FAFF1D54125E00C12B50 /* Team-Panda */,
+				6E58FB141D54125E00C12B50 /* Team-PandaTests */,
+				6E58FB1F1D54125E00C12B50 /* Team-PandaUITests */,
+				6E58FAFE1D54125E00C12B50 /* Products */,
+				97C8EAEA84023D13C90D80D3 /* Pods */,
+				AD6054B430980E2973EA8543 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6E58FAFE1D54125E00C12B50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E58FAFD1D54125E00C12B50 /* Team-Panda.app */,
+				6E58FB111D54125E00C12B50 /* Team-PandaTests.xctest */,
+				6E58FB1C1D54125E00C12B50 /* Team-PandaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6E58FAFF1D54125E00C12B50 /* Team-Panda */ = {
+			isa = PBXGroup;
+			children = (
+				6E58FB001D54125E00C12B50 /* AppDelegate.swift */,
+				6E58FB2E1D54149A00C12B50 /* Secrets.swift */,
+				6E58FB021D54125E00C12B50 /* ViewController.swift */,
+				6E58FB041D54125E00C12B50 /* Main.storyboard */,
+				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
+				6E58FB091D54125E00C12B50 /* LaunchScreen.storyboard */,
+				6E58FB0C1D54125E00C12B50 /* Info.plist */,
+			);
+			path = "Team-Panda";
+			sourceTree = "<group>";
+		};
+		6E58FB141D54125E00C12B50 /* Team-PandaTests */ = {
+			isa = PBXGroup;
+			children = (
+				6E58FB151D54125E00C12B50 /* Team_PandaTests.swift */,
+				6E58FB171D54125E00C12B50 /* Info.plist */,
+			);
+			path = "Team-PandaTests";
+			sourceTree = "<group>";
+		};
+		6E58FB1F1D54125E00C12B50 /* Team-PandaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6E58FB201D54125E00C12B50 /* Team_PandaUITests.swift */,
+				6E58FB221D54125E00C12B50 /* Info.plist */,
+			);
+			path = "Team-PandaUITests";
+			sourceTree = "<group>";
+		};
+		97C8EAEA84023D13C90D80D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2103E03BCEF96F99773FC7BE /* Pods-Team-Panda.debug.xcconfig */,
+				28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */,
+				203FBBCB38E8EDF5550BEE4A /* Pods-Team-PandaTests.debug.xcconfig */,
+				0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */,
+				B240344A2319D1380871730E /* Pods-Team-PandaUITests.debug.xcconfig */,
+				BF83AE6FE11D78D52A3B8046 /* Pods-Team-PandaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AD6054B430980E2973EA8543 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */,
+				0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */,
+				8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6E58FAFC1D54125E00C12B50 /* Team-Panda */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E58FB251D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-Panda" */;
+			buildPhases = (
+				90675D1DD7CD33060B3DC066 /* [CP] Check Pods Manifest.lock */,
+				6E58FAF91D54125E00C12B50 /* Sources */,
+				6E58FAFA1D54125E00C12B50 /* Frameworks */,
+				6E58FAFB1D54125E00C12B50 /* Resources */,
+				59C1794E5889C4FC54E4111B /* [CP] Embed Pods Frameworks */,
+				7C361CD390836583F3D158DB /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Team-Panda";
+			productName = "Team-Panda";
+			productReference = 6E58FAFD1D54125E00C12B50 /* Team-Panda.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6E58FB101D54125E00C12B50 /* Team-PandaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E58FB281D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-PandaTests" */;
+			buildPhases = (
+				847B16ADD55BD87D2FD41CB0 /* [CP] Check Pods Manifest.lock */,
+				6E58FB0D1D54125E00C12B50 /* Sources */,
+				6E58FB0E1D54125E00C12B50 /* Frameworks */,
+				6E58FB0F1D54125E00C12B50 /* Resources */,
+				4801C32E0C20C2418FFA2CE8 /* [CP] Embed Pods Frameworks */,
+				119EAAC7763666E73AB1554A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E58FB131D54125E00C12B50 /* PBXTargetDependency */,
+			);
+			name = "Team-PandaTests";
+			productName = "Team-PandaTests";
+			productReference = 6E58FB111D54125E00C12B50 /* Team-PandaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6E58FB1B1D54125E00C12B50 /* Team-PandaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E58FB2B1D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-PandaUITests" */;
+			buildPhases = (
+				62D2A039A53BC724B41B3855 /* [CP] Check Pods Manifest.lock */,
+				6E58FB181D54125E00C12B50 /* Sources */,
+				6E58FB191D54125E00C12B50 /* Frameworks */,
+				6E58FB1A1D54125E00C12B50 /* Resources */,
+				DFF17414EFC2715E3AB354CF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E58FB1E1D54125E00C12B50 /* PBXTargetDependency */,
+			);
+			name = "Team-PandaUITests";
+			productName = "Team-PandaUITests";
+			productReference = 6E58FB1C1D54125E00C12B50 /* Team-PandaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6E58FAF51D54125E00C12B50 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Flatiron School";
+				TargetAttributes = {
+					6E58FAFC1D54125E00C12B50 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					6E58FB101D54125E00C12B50 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 6E58FAFC1D54125E00C12B50;
+					};
+					6E58FB1B1D54125E00C12B50 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 6E58FAFC1D54125E00C12B50;
+					};
+				};
+			};
+			buildConfigurationList = 6E58FAF81D54125E00C12B50 /* Build configuration list for PBXProject "Team-Panda" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6E58FAF41D54125E00C12B50;
+			productRefGroup = 6E58FAFE1D54125E00C12B50 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6E58FAFC1D54125E00C12B50 /* Team-Panda */,
+				6E58FB101D54125E00C12B50 /* Team-PandaTests */,
+				6E58FB1B1D54125E00C12B50 /* Team-PandaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6E58FAFB1D54125E00C12B50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */,
+				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,
+				6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E58FB0F1D54125E00C12B50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E58FB1A1D54125E00C12B50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		119EAAC7763666E73AB1554A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4801C32E0C20C2418FFA2CE8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59C1794E5889C4FC54E4111B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62D2A039A53BC724B41B3855 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7C361CD390836583F3D158DB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		847B16ADD55BD87D2FD41CB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		90675D1DD7CD33060B3DC066 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DFF17414EFC2715E3AB354CF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-PandaUITests/Pods-Team-PandaUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E58FAF91D54125E00C12B50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E58FB031D54125E00C12B50 /* ViewController.swift in Sources */,
+				6E58FB2F1D54149A00C12B50 /* Secrets.swift in Sources */,
+				6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E58FB0D1D54125E00C12B50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E58FB161D54125E00C12B50 /* Team_PandaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E58FB181D54125E00C12B50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E58FB211D54125E00C12B50 /* Team_PandaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E58FB131D54125E00C12B50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E58FAFC1D54125E00C12B50 /* Team-Panda */;
+			targetProxy = 6E58FB121D54125E00C12B50 /* PBXContainerItemProxy */;
+		};
+		6E58FB1E1D54125E00C12B50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E58FAFC1D54125E00C12B50 /* Team-Panda */;
+			targetProxy = 6E58FB1D1D54125E00C12B50 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6E58FB041D54125E00C12B50 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E58FB051D54125E00C12B50 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6E58FB091D54125E00C12B50 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E58FB0A1D54125E00C12B50 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6E58FB231D54125E00C12B50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6E58FB241D54125E00C12B50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6E58FB261D54125E00C12B50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2103E03BCEF96F99773FC7BE /* Pods-Team-Panda.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Team-Panda/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-Panda";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6E58FB271D54125E00C12B50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Team-Panda/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-Panda";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6E58FB291D54125E00C12B50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 203FBBCB38E8EDF5550BEE4A /* Pods-Team-PandaTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Team-PandaTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-PandaTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Team-Panda.app/Team-Panda";
+			};
+			name = Debug;
+		};
+		6E58FB2A1D54125E00C12B50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Team-PandaTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-PandaTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Team-Panda.app/Team-Panda";
+			};
+			name = Release;
+		};
+		6E58FB2C1D54125E00C12B50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B240344A2319D1380871730E /* Pods-Team-PandaUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Team-PandaUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-PandaUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Team-Panda";
+			};
+			name = Debug;
+		};
+		6E58FB2D1D54125E00C12B50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF83AE6FE11D78D52A3B8046 /* Pods-Team-PandaUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Team-PandaUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-PandaUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Team-Panda";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6E58FAF81D54125E00C12B50 /* Build configuration list for PBXProject "Team-Panda" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E58FB231D54125E00C12B50 /* Debug */,
+				6E58FB241D54125E00C12B50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E58FB251D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-Panda" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E58FB261D54125E00C12B50 /* Debug */,
+				6E58FB271D54125E00C12B50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E58FB281D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-PandaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E58FB291D54125E00C12B50 /* Debug */,
+				6E58FB2A1D54125E00C12B50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E58FB2B1D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-PandaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E58FB2C1D54125E00C12B50 /* Debug */,
+				6E58FB2D1D54125E00C12B50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6E58FAF51D54125E00C12B50 /* Project object */;
+}
