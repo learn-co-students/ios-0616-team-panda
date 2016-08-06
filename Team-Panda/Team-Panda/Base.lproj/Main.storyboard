@@ -84,7 +84,7 @@
         <!--You-->
         <scene sceneID="VvQ-et-jge">
             <objects>
-                <viewController id="FNx-et-2ht" customClass="YouViewController" sceneMemberID="viewController">
+                <viewController id="FNx-et-2ht" customClass="YouViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WJC-Jy-vAe"/>
                         <viewControllerLayoutGuide type="bottom" id="HUs-zT-cSC"/>
