@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6L7-Os-zvW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hoD-x9-yLt">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkd-R1-Cho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="618" y="367"/>
+            <point key="canvasLocation" x="2242" y="367"/>
         </scene>
         <!--Map-->
         <scene sceneID="JM8-1c-0tI">
@@ -41,7 +41,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRE-tC-UnJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="618" y="1075"/>
+            <point key="canvasLocation" x="1430" y="1075"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="WAf-PJ-p1k">
@@ -81,10 +81,52 @@
             </objects>
             <point key="canvasLocation" x="618" y="2523"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="JFC-C1-lby">
+            <objects>
+                <viewController id="Ldx-Y0-aFl" customClass="LoginViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4E1-mH-5Mq"/>
+                        <viewControllerLayoutGuide type="bottom" id="LMr-Of-Q9k"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ICw-Ld-rpM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5DL-XI-9No">
+                                <rect key="frame" x="252" y="119" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eEq-Ez-Dyu">
+                                <rect key="frame" x="252" y="225" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppr-OS-X64">
+                                <rect key="frame" x="276" y="380" width="49" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButtonTapped:" destination="Ldx-Y0-aFl" eventType="touchUpInside" id="6Lx-9W-f7J"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uJW-VJ-dpP"/>
+                    <connections>
+                        <outlet property="passwordTextField" destination="eEq-Ez-Dyu" id="PR5-JB-gdo"/>
+                        <outlet property="usernameTextField" destination="5DL-XI-9No" id="wYo-eR-qC6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dat-PV-uSP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-417" y="595"/>
+        </scene>
         <!--You-->
         <scene sceneID="VvQ-et-jge">
             <objects>
-                <viewController id="FNx-et-2ht" customClass="YouViewController" sceneMemberID="viewController">
+                <viewController id="FNx-et-2ht" customClass="YouViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WJC-Jy-vAe"/>
                         <viewControllerLayoutGuide type="bottom" id="HUs-zT-cSC"/>
@@ -98,7 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXA-Iv-sLH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="618" y="-358"/>
+            <point key="canvasLocation" x="1430" y="-358"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mho-Al-QK6">
@@ -119,7 +161,25 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfR-6o-vRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-554" y="606"/>
+            <point key="canvasLocation" x="258" y="606"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IDF-f0-JuZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hoD-x9-yLt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hkk-6o-rAu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ldx-Y0-aFl" kind="relationship" relationship="rootViewController" id="lya-lZ-6Fj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j9z-5J-Viy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1229" y="595"/>
         </scene>
     </scenes>
 </document>
