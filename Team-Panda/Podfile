@@ -5,7 +5,11 @@ target 'Team-Panda' do
   use_frameworks!
 
   # Pods for Team-Panda
+pod 'Alamofire'
+pod 'SwiftyJSON'
 pod 'SnapKit'
+pod 'Quick'
+pod 'Nimble'
 
   target 'Team-PandaTests' do
     inherit! :search_paths
