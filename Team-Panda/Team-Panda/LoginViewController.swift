@@ -9,8 +9,10 @@
 import UIKit
 import SnapKit
 import FBSDKLoginKit
+import Google
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -19,7 +21,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.createAndAddViews()
     }
-
+    
     @IBAction func submitTapped(sender: UIButton!) {
         print("Submit Tapped!")
     }
@@ -28,15 +30,16 @@ class LoginViewController: UIViewController {
         
         self.usernameTextField = UITextField()
         self.passwordTextField = UITextField()
-//        self.usernameTextField.becomeFirstResponder()
-//        self.passwordTextField.resignFirstResponder()
+        self.passwordTextField.secureTextEntry = true
+        
         self.usernameTextField.placeholder = "Username"
         self.passwordTextField.placeholder = "Password"
         let submitButton = UIButton()
         submitButton.setTitle("Submit", forState: .Normal)
         submitButton.setTitleColor(.blueColor(), forState: .Normal)
         submitButton.addTarget(self, action: #selector(self.submitTapped), forControlEvents: .TouchUpInside)
-        self.facebookLoginButton()
+        self.facebookLoginButtonSetup()
+        self.googleLoginButtonSetup()
         
         self.view.addSubview(self.usernameTextField)
         self.view.addSubview(self.passwordTextField)
@@ -76,31 +79,55 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func facebookLoginButton() {
-        let facebookLoginButton = UIButton()
-        facebookLoginButton.setTitle("Login with Facebook!", forState: .Normal)
-        facebookLoginButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        facebookLoginButton.addTarget(self, action: #selector(self.fbLoginButtonTapped), forControlEvents: .TouchUpInside)
-        facebookLoginButton.backgroundColor = UIColor.redColor()
+    func facebookLoginButtonSetup() {
+        
+        let facebookLoginButton = FBSDKLoginButton()
+        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
         self.view.addSubview(facebookLoginButton)
         facebookLoginButton.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(50)
+            make.centerY.equalTo(self.view).offset(100)
             make.centerX.equalTo(self.view)
-            make.width.equalTo(200)
-            make.height.equalTo(25)
         }
     }
     
-    func fbLoginButtonTapped() {
-        let facebookLogin = FBSDKLoginManager()
-        facebookLogin.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result, error) in
-            if error != nil {
-                print ("There was a processing error \(error.localizedDescription)")
-            } else if result.isCancelled {
-                print("Cancelled")
-            } else {
-                print("Log in successful!")
-            }
+    // fbLoginButtontapped() is available in case I want to customize the FB button
+    //    func fbLoginButtonTapped() {
+    //        let facebookLogin = FBSDKLoginManager()
+    //        facebookLogin.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result, error) in
+    //            if error != nil {
+    //                print ("There was a processing error \(error.localizedDescription)")
+    //            } else if result.isCancelled {
+    //                print("Cancelled")
+    //            } else {
+    //                print("Log in successful!")
+    //            }
+    //        }
+    //    }
+    
+    func googleLoginButtonSetup() {
+        
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
+        
+        var error: NSError?
+        GGLContext.sharedInstance().configureWithError(&error)
+        if error != nil {
+            print("There was a problem in googleLoginButton: \(error?.localizedDescription)")
         }
+        
+        let googleLoginButton = GIDSignInButton()
+        self.view.addSubview(googleLoginButton)
+        googleLoginButton.snp_makeConstraints { (make) in
+            make.centerY.equalTo(self.view).offset(150)
+            make.centerX.equalTo(self.view)
+        }
+    }
+    
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        if error != nil {
+            print("There was a google signin error!\(error.localizedDescription)")
+            return
+        }
+        print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
     }
 }

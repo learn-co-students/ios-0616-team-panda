@@ -22,6 +22,7 @@
 		6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */; };
 		6E5EE8101D54EF51002671D6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80F1D54EF51002671D6 /* SettingsViewController.swift */; };
 		6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */; };
+		6EB745EB1D57C4E4006C659A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EB745EA1D57C4E4006C659A /* GoogleService-Info.plist */; };
 		7C53B52CD0879530CFD1A48B /* Pods_Team_PandaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6E5EE80F1D54EF51002671D6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6EB745EA1D57C4E4006C659A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EE4CAD11D577C3D0092784D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		6EE4CAD21D577C3D0092784D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		6EE4CAD31D577C3D0092784D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				6E5EE80F1D54EF51002671D6 /* SettingsViewController.swift */,
 				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
 				6E58FB0C1D54125E00C12B50 /* Info.plist */,
+				6EB745EA1D57C4E4006C659A /* GoogleService-Info.plist */,
 			);
 			path = "Team-Panda";
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */,
+				6EB745EB1D57C4E4006C659A /* GoogleService-Info.plist in Resources */,
 				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,
 				6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */,
 			);
