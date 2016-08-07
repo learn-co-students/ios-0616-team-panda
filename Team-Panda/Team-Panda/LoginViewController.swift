@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
@@ -27,8 +28,8 @@ class LoginViewController: UIViewController {
     func createAndAddViews() {
         
         self.usernameTextField = UITextField()
-        self.usernameTextField.placeholder = "Username"
         self.passwordTextField = UITextField()
+        self.usernameTextField.placeholder = "Username"
         self.passwordTextField.placeholder = "Password"
         
         let button = UIButton()
@@ -46,9 +47,10 @@ class LoginViewController: UIViewController {
         self.view.addSubview(self.usernameTextField)
         self.view.addSubview(self.passwordTextField)
         
-        // button.backgroundColor = UIColor.brownColor()
-        // self.usernameTextField.backgroundColor = UIColor.cyanColor()
-        // self.passwordTextField.backgroundColor = UIColor.greenColor()
+        self.view.backgroundColor = UIColor.cyanColor()
+        self.usernameTextField.backgroundColor = UIColor.whiteColor()
+        self.passwordTextField.backgroundColor = UIColor.whiteColor()
+        button.backgroundColor = UIColor.brownColor()
         
     }
     

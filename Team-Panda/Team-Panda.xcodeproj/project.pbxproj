@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32D9D74CF88456BF2D6B6D55 /* Pods_Team_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */; };
-		47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */; };
+		47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB001D54125E00C12B50 /* AppDelegate.swift */; };
 		6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB041D54125E00C12B50 /* Main.storyboard */; };
 		6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB071D54125E00C12B50 /* Assets.xcassets */; };
@@ -68,6 +68,9 @@
 		6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6E5EE80F1D54EF51002671D6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6EE4CAD11D577C3D0092784D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		6EE4CAD21D577C3D0092784D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		6EE4CAD31D577C3D0092784D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_PandaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B240344A2319D1380871730E /* Pods-Team-PandaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaUITests/Pods-Team-PandaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BF83AE6FE11D78D52A3B8046 /* Pods-Team-PandaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaUITests/Pods-Team-PandaUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +179,9 @@
 		AD6054B430980E2973EA8543 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EE4CAD11D577C3D0092784D /* FBSDKCoreKit.framework */,
+				6EE4CAD21D577C3D0092784D /* FBSDKLoginKit.framework */,
+				6EE4CAD31D577C3D0092784D /* FBSDKShareKit.framework */,
 				59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */,
 				0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */,
 				8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */,

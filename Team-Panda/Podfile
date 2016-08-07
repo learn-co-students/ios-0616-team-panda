@@ -8,6 +8,7 @@ target 'Team-Panda' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SnapKit'
+pod 'FBSDKLoginKit'
 
   target 'Team-PandaTests' do
     inherit! :search_paths
