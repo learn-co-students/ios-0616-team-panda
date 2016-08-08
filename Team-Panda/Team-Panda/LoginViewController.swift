@@ -23,6 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createAndAddViews()
+        
     }
     
     @IBAction func submitTapped(sender: UIButton!) {
