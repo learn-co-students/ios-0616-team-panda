@@ -33,9 +33,19 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         self.usernameTextField.placeholder = "Username"
         self.passwordTextField.placeholder = "Password"
+        let label = UILabel()
+        label.text = "OR"
+        label.textAlignment = NSTextAlignment.Center
+        self.view.addSubview(label)
+        label.snp_makeConstraints { (make) in
+            make.width.equalTo(45)
+            make.height.equalTo(45)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view).offset(60)
+        }
         let submitButton = UIButton()
         submitButton.setTitle("Submit", forState: .Normal)
-        submitButton.setTitleColor(.blueColor(), forState: .Normal)
+        submitButton.setTitleColor(.whiteColor(), forState: .Normal)
         submitButton.addTarget(self, action: #selector(self.submitTapped), forControlEvents: .TouchUpInside)
         self.facebookLoginButtonSetup()
         self.googleLoginButtonSetup()
@@ -52,10 +62,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             make.height.equalTo(25)
         }
         
-        self.view.backgroundColor = UIColor.cyanColor()
+        self.view.backgroundColor = UIColor.grayColor()
         self.usernameTextField.backgroundColor = UIColor.whiteColor()
         self.passwordTextField.backgroundColor = UIColor.whiteColor()
-        submitButton.backgroundColor = UIColor.brownColor()
+        submitButton.backgroundColor = UIColor.lightGrayColor()
     }
     
     func textFieldConstraints() {
@@ -76,6 +86,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             make.width.equalTo(300)
             make.height.equalTo(20)
         }
+        
+        
     }
     
     func facebookLoginButtonSetup() {
