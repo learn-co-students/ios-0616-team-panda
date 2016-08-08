@@ -1,18 +1,34 @@
 PODS:
   - Alamofire (3.4.1)
-  - SnapKit (0.21.1)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - PureLayout (3.0.2)
+  - SnapKit (0.22.0)
+  - SwiftFontName (2.0.0)
+  - SwiftyButton (0.4.0):
+    - SwiftyButton/CustomContent (= 0.4.0)
+  - SwiftyButton/CustomContent (0.4.0):
+    - PureLayout (~> 3.0)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
+  - ChameleonFramework/Swift
   - SnapKit
+  - SwiftFontName (~> 2.0.0)
+  - SwiftyButton
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  SnapKit: bbad04cb016c7cead63965f16b00c09318d271ee
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
+  SwiftFontName: 7c3fdb6fc334cd4a8f2953c450a7b40c8d1400e4
+  SwiftyButton: fffcc0d82b2b5f9ec1681f20ee9c67bed0d5c73b
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: bdfe4e6f457c3c7f0eafb4d488bd6fd747507cf8
+PODFILE CHECKSUM: de7bda3c3e3f584865af05cca35d0ac19cd02426
 
 COCOAPODS: 1.0.1
