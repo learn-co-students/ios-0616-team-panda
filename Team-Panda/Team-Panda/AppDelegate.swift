@@ -8,8 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
-import GoogleSignIn
-import Google
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -17,14 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Setting up connection for Facebook sign-in
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        // Connecting to Google services for Sign in...
-        var error: NSError?
-        GGLContext.sharedInstance().configureWithError(&error)
-        if error != nil {
-            print("There was a problem init GGLContext Google Services: \(error?.localizedDescription)")
-        }
+        // Setting up Firebase
+        FIRApp.configure()
+        // Setting up Google sign-in
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
         return true
@@ -38,18 +33,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return facebook || google
     }
     
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+    }
+    
+    
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
-        // Confirms google sign in, perform any actions on signed in user here.
+        // Confirms Google sign in, adds user to Firebase
         if error != nil {
             print("There was a google signin error!\(error.localizedDescription)")
             return
         }
-        print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
+        let googleAuth = user.authentication
+        let googleCredential = FIRGoogleAuthProvider.credentialWithIDToken(googleAuth.idToken, accessToken: googleAuth.accessToken)
+        FIRAuth.auth()?.signInWithCredential(googleCredential, completion: { (googleUser, error) in
+            if let error = error {
+                print("There was an issue with the authorizing the googleCredential for Firebase in AppDelegate: \(error.localizedDescription)")
+            }
+            if let googleUser = googleUser {
+                print("Google user's display name: \(googleUser.displayName)\nGoogle user's email: \(googleUser.email)\nGoogle user's photoURL: \(googleUser.photoURL)")
+            }
+        })
+        // print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
     }
     
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!, withError error: NSError!) {
         // Perform any operations when the user disconnects from app here.
         // ...
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {
+        // Confirms Facebook sign in, adds user to Firebase
+        if let error = error {
+            print("Something wrong with Facebook login button in AppDelegate \(error.localizedDescription)")
+            return
+        }
+        let fbCredential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+        FIRAuth.auth()?.signInWithCredential(fbCredential, completion: { (fbUser, error) in
+            if error != nil {
+                print("There was an error Authorizing Facebook user with Firebase: \(error?.localizedDescription)")
+            }
+            if let fbUser = fbUser {
+                print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
+            }
+        })
     }
     
     func applicationWillResignActive(application: UIApplication) {
