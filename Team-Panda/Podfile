@@ -10,6 +10,8 @@ pod 'SwiftyJSON'
 pod 'SnapKit'
 pod 'FBSDKLoginKit'
 pod 'Google/SignIn'
+pod 'Firebase'
+pod 'Firebase/Auth'
 
   target 'Team-PandaTests' do
     inherit! :search_paths

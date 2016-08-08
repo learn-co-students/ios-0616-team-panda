@@ -69,6 +69,7 @@
 		6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6E5EE80F1D54EF51002671D6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Panda-Bridging-Header.h"; path = "../Panda-Bridging-Header.h"; sourceTree = "<group>"; };
 		6EB745EA1D57C4E4006C659A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EE4CAD11D577C3D0092784D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		6EE4CAD21D577C3D0092784D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -131,10 +132,11 @@
 		6E58FAFF1D54125E00C12B50 /* Team-Panda */ = {
 			isa = PBXGroup;
 			children = (
-				6E58FB001D54125E00C12B50 /* AppDelegate.swift */,
+				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
 				6E58FB2E1D54149A00C12B50 /* Secrets.swift */,
-				6E58FB091D54125E00C12B50 /* LaunchScreen.storyboard */,
+				6E58FB001D54125E00C12B50 /* AppDelegate.swift */,
 				6E58FB041D54125E00C12B50 /* Main.storyboard */,
+				6E58FB091D54125E00C12B50 /* LaunchScreen.storyboard */,
 				6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */,
 				6E5EE8071D54EDD7002671D6 /* YouViewController.swift */,
 				6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */,
@@ -611,6 +613,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-Panda";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
 			name = Debug;
 		};
@@ -623,6 +627,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-Panda";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
 			name = Release;
 		};

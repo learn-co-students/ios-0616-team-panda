@@ -99,7 +99,15 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+## Firebase
+
+Copyright 2016 Google
+
 ## FirebaseAnalytics
+
+Copyright 2016 Google
+
+## FirebaseAuth
 
 Copyright 2016 Google
 
@@ -124,6 +132,10 @@ Copyright 2015 Google Inc.
 Copyright 2015 Google Inc.
 
 ## GoogleNetworkingUtilities
+
+Copyright 2015 Google Inc.
+
+## GoogleParsingUtilities
 
 Copyright 2015 Google Inc.
 

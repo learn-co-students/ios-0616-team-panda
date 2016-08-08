@@ -9,10 +9,9 @@
 import UIKit
 import SnapKit
 import FBSDKLoginKit
-import Google
 import GoogleSignIn
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -91,7 +90,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     }
     
     // fbLoginButtontapped() is available in case I want to customize the FB button
-    //    func fbLoginButtonTapped() {
+    //   func fbLoginButtonTapped() {
     //        let facebookLogin = FBSDKLoginManager()
     //        facebookLogin.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result, error) in
     //            if error != nil {
@@ -102,18 +101,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     //                print("Log in successful!")
     //            }
     //        }
-    //    }
+    //   }
     
     func googleLoginButtonSetup() {
         
-        GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
-        
-        var error: NSError?
-        GGLContext.sharedInstance().configureWithError(&error)
-        if error != nil {
-            print("There was a problem in googleLoginButton: \(error?.localizedDescription)")
-        }
         
         let googleLoginButton = GIDSignInButton()
         self.view.addSubview(googleLoginButton)
@@ -121,13 +113,5 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
             make.centerY.equalTo(self.view).offset(150)
             make.centerX.equalTo(self.view)
         }
-    }
-    
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
-        if error != nil {
-            print("There was a google signin error!\(error.localizedDescription)")
-            return
-        }
-        print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
     }
 }
