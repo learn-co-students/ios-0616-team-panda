@@ -37,12 +37,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         label.text = "OR"
         label.textAlignment = NSTextAlignment.Center
         self.view.addSubview(label)
-        label.snp_makeConstraints { (make) in
-            make.width.equalTo(45)
-            make.height.equalTo(45)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view).offset(60)
-        }
+
         let submitButton = UIButton()
         submitButton.setTitle("Submit", forState: .Normal)
         submitButton.setTitleColor(.whiteColor(), forState: .Normal)
@@ -55,8 +50,14 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         self.view.addSubview(submitButton)
         
         self.textFieldConstraints()
+        label.snp_makeConstraints { (make) in
+            make.width.equalTo(40)
+            make.height.equalTo(45)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view).offset(60)
+        }
         submitButton.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(20)
+            make.centerY.equalTo(self.view).offset(30)
             make.centerX.equalTo(self.view)
             make.width.equalTo(75)
             make.height.equalTo(25)
@@ -86,34 +87,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             make.width.equalTo(300)
             make.height.equalTo(20)
         }
-        
-        
     }
     
     func facebookLoginButtonSetup() {
         
         let facebookLoginButton = FBSDKLoginButton()
-        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        facebookLoginButton.readPermissions = ["public_profile", "email"]
         self.view.addSubview(facebookLoginButton)
         facebookLoginButton.snp_makeConstraints { (make) in
             make.centerY.equalTo(self.view).offset(100)
             make.centerX.equalTo(self.view)
         }
     }
-    
-    // fbLoginButtontapped() is available in case I want to customize the FB button
-    //   func fbLoginButtonTapped() {
-    //        let facebookLogin = FBSDKLoginManager()
-    //        facebookLogin.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result, error) in
-    //            if error != nil {
-    //                print ("There was a processing error \(error.localizedDescription)")
-    //            } else if result.isCancelled {
-    //                print("Cancelled")
-    //            } else {
-    //                print("Log in successful!")
-    //            }
-    //        }
-    //   }
     
     func googleLoginButtonSetup() {
         
