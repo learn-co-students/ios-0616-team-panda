@@ -11,6 +11,11 @@ target 'Team-Panda' do
   pod 'ChameleonFramework/Swift'
   pod 'SwiftFontName', '~> 2.0.0'
   pod 'SwiftyButton'
+  pod 'FBSDKLoginKit'
+  pod 'Google/SignIn'
+  pod 'Firebase'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
   target 'Team-PandaTests' do
     inherit! :search_paths
