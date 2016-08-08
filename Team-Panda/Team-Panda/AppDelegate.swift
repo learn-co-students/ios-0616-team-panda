@@ -26,22 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        
         let google = GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
         let facebook = FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
         
         return facebook || google
     }
     
-    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
-    }
-    
-    
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
-        // Confirms Google sign in, adds user to Firebase
-        if error != nil {
-            print("There was a google signin error!\(error.localizedDescription)")
+        // Confirms Google login, adds Google user to Firebase
+        if let error = error {
+            print(error.localizedDescription)
             return
         }
         let googleAuth = user.authentication
@@ -54,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print("Google user's display name: \(googleUser.displayName)\nGoogle user's email: \(googleUser.email)\nGoogle user's photoURL: \(googleUser.photoURL)")
             }
         })
-        // print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
     }
     
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!, withError error: NSError!) {
@@ -62,22 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // ...
     }
     
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {
-        // Confirms Facebook sign in, adds user to Firebase
-        if let error = error {
-            print("Something wrong with Facebook login button in AppDelegate \(error.localizedDescription)")
-            return
-        }
-        let fbCredential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-        FIRAuth.auth()?.signInWithCredential(fbCredential, completion: { (fbUser, error) in
-            if error != nil {
-                print("There was an error Authorizing Facebook user with Firebase: \(error?.localizedDescription)")
-            }
-            if let fbUser = fbUser {
-                print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
-            }
-        })
-    }
+    // Method Google recommends for iOS 9+
+    //    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+    //        let google =  GIDSignIn.sharedInstance().handleURL(url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+    //
+    //        return google
+    //    }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

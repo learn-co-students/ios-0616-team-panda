@@ -91,12 +91,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
         }
     }
     
-//    func handleLogin() {
-//        g
-//        
-//        FIRAuth.auth()?.signInWithEmail(<#T##email: String##String#>, password: <#T##String#>, completion: <#T##FIRAuthResultCallback?##FIRAuthResultCallback?##(FIRUser?, NSError?) -> Void#>)
-//    }
-    
     func facebookLoginButtonSetup() {
         
         self.facebookLoginButton.delegate = self
@@ -109,8 +103,26 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        // Confirms Facebook login, adds FB user to Firebase users.
         // loginButton didCompleteWithResult + logButtonDidLogOut methods necessary to conform to FBSDKLoginButtonDelegate protocol.
-        print("FB User Logged In!")
+        if let error = error {
+            print("Something wrong with Facebook login button in AppDelegate \(error.localizedDescription)")
+            return
+        }
+        
+        if result.isCancelled {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            let fbCredential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+            FIRAuth.auth()?.signInWithCredential(fbCredential, completion: { (fbUser, error) in
+                if error != nil {
+                    print("There was an error Authorizing Facebook user with Firebase: \(error?.localizedDescription)")
+                }
+                if let fbUser = fbUser {
+                    print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
+                }
+            })
+        }
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
@@ -125,5 +137,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
             make.centerY.equalTo(self.view).offset(150)
             make.centerX.equalTo(self.view)
         }
+    }
+    
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        // This method is necessary to conform to GIDSignInUIDelegate protocol.
+        if error != nil {
+            print("There was a google signin error!\(error.localizedDescription)")
+            return
+        }
+        // print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
     }
 }
