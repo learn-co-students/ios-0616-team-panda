@@ -11,7 +11,7 @@ import SnapKit
 import FBSDKLoginKit
 import Firebase
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate  {
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate  {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -32,14 +32,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
     func createAndAddViews() {
         
         self.usernameTextField = UITextField()
+        self.usernameTextField.delegate = self
         self.passwordTextField = UITextField()
+        self.passwordTextField.delegate = self
         self.passwordTextField.secureTextEntry = true
         
         self.usernameTextField.placeholder = "Username"
         self.passwordTextField.placeholder = "Password"
         self.orLabel.text = "OR"
         self.orLabel.textAlignment = NSTextAlignment.Center
-        self.view.addSubview(self.orLabel)
         
         self.submitButton.setTitle("Submit", forState: .Normal)
         self.submitButton.setTitleColor(.whiteColor(), forState: .Normal)
@@ -50,6 +51,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
         self.view.addSubview(self.usernameTextField)
         self.view.addSubview(self.passwordTextField)
         self.view.addSubview(submitButton)
+        self.view.addSubview(self.orLabel)
         
         self.textFieldConstraints()
         self.orLabel.snp_makeConstraints { (make) in
@@ -69,6 +71,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
         self.usernameTextField.backgroundColor = UIColor.whiteColor()
         self.passwordTextField.backgroundColor = UIColor.whiteColor()
         self.submitButton.backgroundColor = UIColor.lightGrayColor()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // Dismisses keyboard when user taps return in either Username or Password UITextFields
+        self.usernameTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+        return true
     }
     
     func textFieldConstraints() {
@@ -146,5 +155,30 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
             return
         }
         // print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
+    }
+    
+    func createNewUser() {
+        
+        guard let userEmail = self.usernameTextField.text,
+            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
+        
+        FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
+            if error != nil {
+                print("There was a problem creating a new user: \(error?.localizedDescription)")
+            }
+            print("New user created!")
+        })
+    }
+    
+    func loginCurrentUser() {
+        guard let userEmail = self.usernameTextField.text,
+            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
+        
+        FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
+            if error != nil {
+                print("There was a problem logging in a current user: \(error?.localizedDescription)")
+            }
+            print("User logged in successfully!")
+        })
     }
 }

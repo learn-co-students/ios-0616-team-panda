@@ -12,6 +12,7 @@ pod 'FBSDKLoginKit'
 pod 'Google/SignIn'
 pod 'Firebase'
 pod 'Firebase/Auth'
+pod 'Firebase/Database'
 
   target 'Team-PandaTests' do
     inherit! :search_paths

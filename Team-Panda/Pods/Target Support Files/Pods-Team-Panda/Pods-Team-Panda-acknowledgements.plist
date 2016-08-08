@@ -154,6 +154,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			<key>FooterText</key>
 			<string>Copyright 2016 Google</string>
 			<key>Title</key>
+			<string>FirebaseDatabase</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright 2016 Google</string>
+			<key>Title</key>
 			<string>FirebaseInstanceID</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>

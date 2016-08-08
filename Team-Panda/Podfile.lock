@@ -19,6 +19,9 @@ PODS:
     - FirebaseAuth (= 3.0.4)
   - Firebase/Core (3.4.0):
     - Firebase/Analytics
+  - Firebase/Database (3.4.0):
+    - Firebase/Analytics
+    - FirebaseDatabase (= 3.0.2)
   - FirebaseAnalytics (3.3.0):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
@@ -29,6 +32,8 @@ PODS:
     - GoogleNetworkingUtilities (~> 1.2)
     - GoogleParsingUtilities (~> 1.1)
     - GoogleUtilities (~> 1.2)
+  - FirebaseDatabase (3.0.2):
+    - FirebaseAnalytics (~> 3.2)
   - FirebaseInstanceID (1.0.8)
   - Google/Core (3.0.3):
     - FirebaseAnalytics (~> 3.2)
@@ -63,6 +68,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Firebase
   - Firebase/Auth
+  - Firebase/Database
   - Google/SignIn
   - SnapKit
   - SwiftyJSON
@@ -75,6 +81,7 @@ SPEC CHECKSUMS:
   Firebase: 754562547af419cc2f4b15247fee419081924bc2
   FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
   FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
+  FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
   GoogleAppUtilities: f1730f91f67767b453c289577040dd3f425ffdc7
@@ -88,6 +95,6 @@ SPEC CHECKSUMS:
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 62179e90dee39a62520ac11520cb4ea836468f01
+PODFILE CHECKSUM: a53b7aea329235bef1fa1a30930f243660ff79ae
 
 COCOAPODS: 1.0.1
