@@ -11,23 +11,17 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    var settingsOptions = ["Reset Username", "Log Out", "Switch User", "Refresh Questionaire"]
-    
+    var settingsOptions = ["Reset", "Log Out", "Switch User", "Refresh Questionaire"]
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        self.tableView.sectionHeaderHeight = 70
-        
+        self.tableView.sectionHeaderHeight = 60
     }
     
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
         return 2
-        
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,15 +35,12 @@ class SettingsTableViewController: UITableViewController {
             assert(false, "section \(section)")
             return 0
         }
-        
-        //return settingsOptions.count
-    }
+}
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         switch section {
         case 0:
-            
             return "Career Settings"
         case 1:
             return "User Settings"
@@ -57,7 +48,6 @@ class SettingsTableViewController: UITableViewController {
             assert(false, "section \(section)")
             return "Did not work"
         }
-        //return "Section \(section)"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
