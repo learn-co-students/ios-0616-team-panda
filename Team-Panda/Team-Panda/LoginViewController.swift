@@ -10,13 +10,14 @@ import UIKit
 import SnapKit
 import FBSDKLoginKit
 import Firebase
+import SwiftyButton
 
 class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate  {
     
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    var loginButton = UIButton()
-    var signupButton = UIButton()
+    var loginButton = SwiftyButton()
+    var signupButton = SwiftyButton()
     var orLabel = UILabel()
     var googleLoginButton = GIDSignInButton()
     var facebookLoginButton = FBSDKLoginButton()
@@ -33,27 +34,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     @IBAction func loginButtonTapped(sender: UIButton!) {
         print("Submit Tapped!")
+        if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
+            print("User didn't input any text in email / password fields when trying to log in...")
+        } else {
         self.loginCurrentUser()
+        }
     }
     
     @IBAction func signupButtonTapped(sender: UIButton!) {
         print("Signup Tapped!")
+        if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
+            print("User didn't input any text in email / password fields when trying to sign up...")
+        } else {
         self.createNewUser()
         let signUpQuestionVC = SignUpPageViewController()
         self.presentViewController(signUpQuestionVC, animated: true) {
             print("User signed in & moved to signUpQuestionVC")
         }
+        }
     }
     
     func createAndAddViews() {
         
-        self.usernameTextField = UITextField()
-        self.usernameTextField.delegate = self
+        self.emailTextField = UITextField()
+        self.emailTextField.delegate = self
         self.passwordTextField = UITextField()
         self.passwordTextField.delegate = self
         self.passwordTextField.secureTextEntry = true
         
-        self.usernameTextField.placeholder = "E-Mail"
+        self.emailTextField.placeholder = "E-Mail"
         self.passwordTextField.placeholder = "Password"
         self.orLabel.text = "OR"
         self.orLabel.textAlignment = NSTextAlignment.Center
@@ -67,7 +76,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.facebookLoginButtonSetup()
         self.googleLoginButtonSetup()
         
-        self.view.addSubview(self.usernameTextField)
+        self.view.addSubview(self.emailTextField)
         self.view.addSubview(self.passwordTextField)
         self.view.addSubview(self.loginButton)
         self.view.addSubview(self.signupButton)
@@ -94,25 +103,36 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         }
         
         self.view.backgroundColor = UIColor.grayColor()
-        self.usernameTextField.backgroundColor = UIColor.whiteColor()
+        self.emailTextField.backgroundColor = UIColor.whiteColor()
         self.passwordTextField.backgroundColor = UIColor.whiteColor()
-        self.loginButton.backgroundColor = UIColor.lightGrayColor()
-        self.signupButton.backgroundColor = UIColor.lightGrayColor()
+        self.loginButton.buttonColor = UIColor.blueColor()
+        self.loginButton.shadowHeight = 6
+        self.loginButton.shadowColor = UIColor.whiteColor()
+        self.loginButton.buttonPressDepth = 0.5
+        self.loginButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
+        self.signupButton.buttonColor = UIColor.blueColor()
+        self.signupButton.shadowHeight = 6
+        self.signupButton.shadowColor = UIColor.whiteColor()
+        self.signupButton.buttonPressDepth = 0.5
+        self.signupButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
+        
+        //        self.loginButton.backgroundColor = UIColor.lightGrayColor()
+        //        self.signupButton.backgroundColor = UIColor.lightGrayColor()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         // Dismisses keyboard when user taps return in either Username or Password UITextFields
-        self.usernameTextField.resignFirstResponder()
+        self.emailTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
         return true
     }
     
     func textFieldConstraints() {
         
-        self.usernameTextField.textAlignment = NSTextAlignment.Center
+        self.emailTextField.textAlignment = NSTextAlignment.Center
         self.passwordTextField.textAlignment = NSTextAlignment.Center
         
-        self.usernameTextField.snp_makeConstraints { (make) in
+        self.emailTextField.snp_makeConstraints { (make) in
             make.centerY.equalTo(self.view).offset(-50)
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view.widthAnchor).offset(300)
@@ -153,21 +173,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             FIRAuth.auth()?.signInWithCredential(fbCredential, completion: { (fbUser, error) in
                 if error != nil {
                     print("There was an error Authorizing Facebook user with Firebase: \(error?.localizedDescription)")
-                }
-                if let fbUser = fbUser {
-                    print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
-                    if let fbUserEmail = fbUser.email {
-                        let values = ["email": fbUserEmail,
-                        ]
+                } else {
+                    if let fbUser = fbUser {
+                        print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
                         
-                        self.ref = FIRDatabase.database().referenceFromURL("https://career-options.firebaseio.com/")
-                        let usersReference = self.ref.child("users")
-                        usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                            if error != nil {
-                                print("There was an issue with creating a new Facebook user in the Firebase database: \(error?.localizedDescription)")
-                            }
-                            print("Facebook user successfully saved into the Firebase database!")
-                        })
+                        
+                        
+                        if let fbUserEmail = fbUser.email {
+                            let values = ["email": fbUserEmail,
+                            ]
+                            
+                            
+                            self.ref = FIRDatabase.database().referenceFromURL("https://career-options.firebaseio.com/")
+                            let usersReference = self.ref.child("users")
+                            usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                                if error != nil {
+                                    print("There was an issue with creating a new Facebook user in the Firebase database: \(error?.localizedDescription)")
+                                }
+                                print("Facebook user successfully saved into the Firebase database!")
+                                
+                            })
+                        }
                     }
                     self.showTabBarViewForUser()
                 }
@@ -201,7 +227,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     func createNewUser() {
         
-        guard let userEmail = self.usernameTextField.text,
+        guard let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
         
         FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
@@ -209,6 +235,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 print("There was a problem creating a new user: \(error?.localizedDescription)")
                 
                 // Give user alert...
+                
+                let newUserAlertController = UIAlertController(title: "", message: "", preferredStyle: .Alert)
+                let tryAgainAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
+                    
+                })
+                
+                newUserAlertController.addAction(tryAgainAction)
                 
                 
             } else {
@@ -229,13 +262,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func loginCurrentUser() {
-        guard let userEmail = self.usernameTextField.text,
+        guard let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
         FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
             if error != nil {
                 print("There was a problem logging in a current user: \(error?.localizedDescription)")
                 
-                // Alert user ther was a problem logging in
+                // Alert user there was a problem logging in
+                
+                
                 
             }
             print("User logged in successfully!")
