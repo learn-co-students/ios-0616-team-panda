@@ -28,7 +28,7 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
         self.dataSource = self
         self.delegate = self
         self.accessibilityLabel = "Sign Up PVC"
-        self.viewsArray = self.createViewControllers()
+        self.viewsArray = self.createInitialViewController()
         
         self.setViewControllers([viewsArray[0]], direction: .Forward, animated: true) { (completed) in
             print("completed. not sure what this does")
@@ -37,7 +37,30 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
         
     }
     
-    func createViewControllers() -> [UIViewController] {
+    // Transitions to next view controller based on the button that was tapped
+    func nextViewController(style : WouldYouRatherStyle) {
+        
+        let nextVC = WouldYouRatherViewController(withUIStyle: style)
+        
+        self.setViewControllers([nextVC], direction: .Forward, animated: true, completion: { (completed) in
+            
+            if style == .Make { print("Transitioned to Making View Controller") }
+            else { print("Transitioned to Thinking View Controller") }
+        })
+
+    }
+    
+    func nextViewController(style : WhichInterestsStyle) {
+        
+    }
+    
+    
+    
+    /*
+     * PageViewController Implementation Methods
+     */
+    
+    func createInitialViewController() -> [UIViewController] {
         
         let tellUsVC = TellUsAboutYourselfViewController()
         tellUsVC.accessibilityLabel = "Tell Us VC"

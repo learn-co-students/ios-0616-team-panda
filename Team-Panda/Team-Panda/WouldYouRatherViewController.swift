@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import UIKit
 import ChameleonFramework
-import SwiftFontName
 import SwiftyButton
 
 enum WouldYouRatherStyle {
@@ -42,7 +40,20 @@ class WouldYouRatherViewController : UIViewController {
         super.viewDidLoad()
         
         self.createStandardViews()
+        self.createViewsForStyle(self.uiStyle)
     }
+    
+    func topButtonTapped(sender : SwiftyButton) {
+        
+        if sender == topButton {
+            print("Top Botton Pressed")
+        }
+        else {
+            print("Bottom Button Pressed")
+        }
+        
+    }
+    
     
     /* 
      *  Sets up all the UI buttons and labels with formatting and constraints
@@ -110,7 +121,6 @@ class WouldYouRatherViewController : UIViewController {
         self.bottomButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
         self.bottomButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
         
-        self.createViewsForStyle(self.uiStyle)
     }
     
     /*
@@ -118,41 +128,50 @@ class WouldYouRatherViewController : UIViewController {
      */
     private func createViewsForStyle(style : WouldYouRatherStyle) {
         
-        if self.uiStyle == .Make {
-            
-            self.view.backgroundColor = FlatYellow().lightenByPercentage(0.25)
-            self.topButton.setTitle("Solve the problem at hand?", forState: .Normal)
-            self.bottomButton.setTitle("Understand why the problem occured?", forState: .Normal)
-
-        }
-        else { // how people think
-            
-            self.view.backgroundColor = FlatMint()
-            self.topButton.setTitle("Understand how ideas \nare expressed?", forState: .Normal)
-            self.bottomButton.setTitle("Understand how ideas \nare formed?", forState: .Normal)
-        }
-
-        
         // First button setup
-        self.topButton.buttonColor = FlatGreen()
-        self.topButton.titleLabel?.textColor = ContrastColorOf(self.topButton.buttonColor, returnFlat: true)
         self.topButton.titleLabel?.numberOfLines = 2
         self.topButton.titleLabel?.textAlignment = .Center
-        self.topButton.shadowColor = FlatGreenDark()
         self.topButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
         self.topButton.shadowHeight = 5
         self.topButton.buttonPressDepth = 0.65
         self.topButton.cornerRadius = 5
         
         // Second button setup
-        self.bottomButton.buttonColor = FlatSkyBlue()
-        self.bottomButton.titleLabel?.textColor = FlatSkyBlueDark()
         self.bottomButton.titleLabel?.numberOfLines = 2
         self.bottomButton.titleLabel?.textAlignment = .Center
-        self.bottomButton.shadowColor = self.bottomButton.buttonColor.darkenByPercentage(0.2)
         self.bottomButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
         self.bottomButton.shadowHeight = 5
         self.bottomButton.buttonPressDepth = 0.65
         self.bottomButton.cornerRadius = 5
+        
+        if self.uiStyle == .Make {
+            
+            self.view.backgroundColor = FlatMint()
+            self.topButton.setTitle("Solve the problem at hand?", forState: .Normal)
+            self.bottomButton.setTitle("Understand why the problem occured?", forState: .Normal)
+            
+            self.topButton.buttonColor = FlatPowderBlue()
+            self.topButton.shadowColor = FlatPowderBlueDark()
+            self.topButton.titleLabel?.textColor = ContrastColorOf(FlatPowderBlue(), returnFlat: true)
+            
+            self.bottomButton.buttonColor = FlatPowderBlueDark()
+            self.bottomButton.shadowColor = FlatPowderBlueDark().darkenByPercentage(0.2)
+            self.bottomButton.titleLabel?.textColor = ContrastColorOf(FlatPowderBlueDark(), returnFlat: true)
+
+        }
+        else { // how people think
+            
+            self.view.backgroundColor = FlatMintDark()
+            self.topButton.setTitle("Understand how ideas \nare expressed?", forState: .Normal)
+            self.bottomButton.setTitle("Understand how ideas \nare formed?", forState: .Normal)
+            
+            self.topButton.buttonColor = FlatBlue()
+            self.topButton.shadowColor = FlatBlueDark()
+            self.topButton.titleLabel?.textColor = ContrastColorOf(FlatBlue(), returnFlat: true)
+            
+            self.bottomButton.buttonColor = FlatBlueDark()
+            self.bottomButton.shadowColor = FlatBlueDark().darkenByPercentage(0.2)
+            self.bottomButton.titleLabel?.textColor = ContrastColorOf(FlatBlueDark(), returnFlat: true)
+        }
     }
 }

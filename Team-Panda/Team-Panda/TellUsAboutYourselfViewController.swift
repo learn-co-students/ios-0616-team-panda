@@ -26,32 +26,20 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.createViews()
     }
     
-    func makingButtonTapped() {
-        print("Making!!")
-        
-        let makingVC = WouldYouRatherViewController(withUIStyle: .Make)
+    func buttonTapped(sender : SwiftyButton) {
         
         if let signUpVC = self.parentViewController as? SignUpPageViewController {
             
-            signUpVC.setViewControllers([makingVC], direction: .Forward, animated: true, completion: { (completed) in
-                print("transitioned to next page")
-            })
-        }
-    }
-    
-    func thinkingButtonTapped() {
-        print("Thinking!!")
-        
-        let thinkingVC = WouldYouRatherViewController(withUIStyle: .Think)
-        
-        if let signUpVC = self.parentViewController as? SignUpPageViewController {
+            if sender == self.makingButton {
             
-            signUpVC.setViewControllers([thinkingVC], direction: .Forward, animated: true, completion: { (completed) in
-                print("transitioned to next page")
-            })
+                signUpVC.nextViewController(.Make)
+            }
+            else { // thinking button called function
+                signUpVC.nextViewController(.Think)
+            }
         }
     }
-    
+        
     private func createViews() {
         
         self.titleTextLabel = UILabel()
@@ -102,7 +90,7 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.makingButton.buttonPressDepth = 0.65
         self.makingButton.cornerRadius = 5
         
-        self.makingButton.addTarget(self, action: #selector(makingButtonTapped), forControlEvents: .TouchUpInside)
+        self.makingButton.addTarget(self, action: #selector(buttonTapped(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(self.makingButton)
         
         self.makingButton.translatesAutoresizingMaskIntoConstraints = false
@@ -124,7 +112,7 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.thinkingButton.buttonPressDepth = 0.65
         self.thinkingButton.cornerRadius = 5
         
-        self.thinkingButton.addTarget(self, action: #selector(thinkingButtonTapped), forControlEvents: .TouchUpInside)
+        self.thinkingButton.addTarget(self, action: #selector(buttonTapped(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(self.thinkingButton)
         
         self.thinkingButton.translatesAutoresizingMaskIntoConstraints = false
