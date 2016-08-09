@@ -45,6 +45,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print("There was an issue with the authorizing the googleCredential for Firebase in AppDelegate: \(error.localizedDescription)")
             }
             if let googleUser = googleUser {
+                print("Google user's email: \(googleUser.email), Google user's Display Name: \(googleUser.displayName), Google user's photoURL: \(googleUser.photoURL)")
+                if let googleUserEmail = googleUser.email {
+                    let values = ["email": googleUserEmail,
+                    ]
+                    let loginViewController = LoginViewController()
+                    loginViewController.ref = FIRDatabase.database().referenceFromURL("https://career-options.firebaseio.com/")
+                    let usersReference = loginViewController.ref.child("users")
+                    usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                        if error != nil {
+                            print("There was an issue with creating a new Google user in the Firebase database: \(error?.localizedDescription)")
+                        }
+                        loginViewController.showTabBarViewForUser()
+                        print("Google user successfully saved into the Firebase database!")
+                    })
+                }
                 print("Google user's display name: \(googleUser.displayName)\nGoogle user's email: \(googleUser.email)\nGoogle user's photoURL: \(googleUser.photoURL)")
             }
         })

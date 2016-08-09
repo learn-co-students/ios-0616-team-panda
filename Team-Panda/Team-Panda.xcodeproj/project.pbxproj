@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B269C9F1D59020500738953 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B269C9E1D59020500738953 /* SettingsTableViewController.swift */; };
+		1BCB69321D5A28BE00160B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */; };
 		32D9D74CF88456BF2D6B6D55 /* Pods_Team_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */; };
 		47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB001D54125E00C12B50 /* AppDelegate.swift */; };
@@ -20,13 +20,12 @@
 		6E5EE80A1D54EEB8002671D6 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */; };
 		6E5EE80C1D54EEE0002671D6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */; };
 		6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */; };
-		6E5EE8101D54EF51002671D6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80F1D54EF51002671D6 /* SettingsViewController.swift */; };
 		6E62A0F01D59426600D71011 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E62A0EF1D59426600D71011 /* GoogleService-Info.plist */; };
 		6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */; };
 		7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */; };
 		7B3CB3601D59400D00A11E7E /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */; };
 		7B48980A1D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */; };
-		7B6C7E3B1D5A1A8000462368 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7E3A1D5A1A8000462368 /* Secrets.swift */; };
+		7B5930E31D5A87D5009D9EBA /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5930E21D5A87D5009D9EBA /* Secrets.swift */; };
 		7B6C7E3D1D5A1E4600462368 /* WhichInterestsYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7E3C1D5A1E4600462368 /* WhichInterestsYouViewController.swift */; };
 		7B90EBB71D58D89C00EE475A /* WouldYouRatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B90EBB61D58D89C00EE475A /* WouldYouRatherViewController.swift */; };
 		7B90EBB91D592DFB00EE475A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B90EBB81D592DFB00EE475A /* Constants.swift */; };
@@ -53,7 +52,7 @@
 /* Begin PBXFileReference section */
 		0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_PandaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.release.xcconfig"; sourceTree = "<group>"; };
-		1B269C9E1D59020500738953 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		203FBBCB38E8EDF5550BEE4A /* Pods-Team-PandaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2103E03BCEF96F99773FC7BE /* Pods-Team-Panda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.debug.xcconfig"; sourceTree = "<group>"; };
 		28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.release.xcconfig"; sourceTree = "<group>"; };
@@ -74,7 +73,6 @@
 		6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		6E5EE80F1D54EF51002671D6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6E62A0EF1D59426600D71011 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Panda-Bridging-Header.h"; path = "../Panda-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -84,7 +82,7 @@
 		7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestsTableViewCell.swift; sourceTree = "<group>"; };
 		7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 		7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TellUsAboutYourselfViewController.swift; sourceTree = "<group>"; };
-		7B6C7E3A1D5A1A8000462368 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		7B5930E21D5A87D5009D9EBA /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		7B6C7E3C1D5A1E4600462368 /* WhichInterestsYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhichInterestsYouViewController.swift; sourceTree = "<group>"; };
 		7B90EBB61D58D89C00EE475A /* WouldYouRatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WouldYouRatherViewController.swift; sourceTree = "<group>"; };
 		7B90EBB81D592DFB00EE475A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -146,13 +144,12 @@
 		6E58FAFF1D54125E00C12B50 /* Team-Panda */ = {
 			isa = PBXGroup;
 			children = (
-				1B269C9E1D59020500738953 /* SettingsTableViewController.swift */,
-				7B6C7E3A1D5A1A8000462368 /* Secrets.swift */,
 				7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */,
 				7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */,
 				7B90EBB61D58D89C00EE475A /* WouldYouRatherViewController.swift */,
 				7B6C7E3C1D5A1E4600462368 /* WhichInterestsYouViewController.swift */,
 				7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */,
+				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
 				7B90EBB81D592DFB00EE475A /* Constants.swift */,
 				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
 				6E58FB001D54125E00C12B50 /* AppDelegate.swift */,
@@ -162,6 +159,7 @@
 				6E5EE8071D54EDD7002671D6 /* YouViewController.swift */,
 				6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */,
 				6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */,
+				1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */,
 				6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */,
 				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
 				6E58FB0C1D54125E00C12B50 /* Info.plist */,
@@ -478,7 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */,
-				6E5EE8101D54EF51002671D6 /* SettingsViewController.swift in Sources */,
+				7B5930E31D5A87D5009D9EBA /* Secrets.swift in Sources */,
 				6E5EE80A1D54EEB8002671D6 /* DiscoverViewController.swift in Sources */,
 				7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */,
 				6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */,
@@ -489,9 +487,8 @@
 				7B90EBB71D58D89C00EE475A /* WouldYouRatherViewController.swift in Sources */,
 				7B3CB3601D59400D00A11E7E /* SignUpPageViewController.swift in Sources */,
 				6E5EE8081D54EDD7002671D6 /* YouViewController.swift in Sources */,
-				7B6C7E3B1D5A1A8000462368 /* Secrets.swift in Sources */,
 				7B6C7E3D1D5A1E4600462368 /* WhichInterestsYouViewController.swift in Sources */,
-				1B269C9F1D59020500738953 /* SettingsTableViewController.swift in Sources */,
+				1BCB69321D5A28BE00160B5A /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
