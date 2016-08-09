@@ -14,15 +14,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
+        self.view.backgroundColor = UIColor.blueColor()
+    }
+    
+    func setUpTableView() {
         tableView.frame = CGRectMake(0, 50, 320, 200);
         tableView.delegate      =   self
         tableView.dataSource    =   self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "settingsCell")
         self.view.addSubview(self.tableView)
-        self.view.backgroundColor = UIColor.blueColor()
         tableView.center = self.view.center
         tableView.layer.cornerRadius = 10
-        
     }
     
     var settingsOptions = ["Update Profile Info", "Log Out", "Switch User", "Refresh Questionaire"]
