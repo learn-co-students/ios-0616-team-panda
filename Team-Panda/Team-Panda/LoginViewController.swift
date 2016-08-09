@@ -19,6 +19,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     var orLabel = UILabel()
     var googleLoginButton = GIDSignInButton()
     var facebookLoginButton = FBSDKLoginButton()
+  //  let ref = FIRDatabase.database().referenceFromURL("https://career-options.firebaseio.com/")
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     @IBAction func submitTapped(sender: UIButton!) {
         print("Submit Tapped!")
+        
+     //   self.createNewUser()
+        
     }
     
     func createAndAddViews() {
@@ -158,28 +163,43 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         // print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
     }
     
-    func createNewUser() {
-        
-        guard let userEmail = self.usernameTextField.text,
-            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
-        
-        FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
-            if error != nil {
-                print("There was a problem creating a new user: \(error?.localizedDescription)")
-            }
-            print("New user created!")
-        })
-    }
-    
-    func loginCurrentUser() {
-        guard let userEmail = self.usernameTextField.text,
-            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
-        
-        FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
-            if error != nil {
-                print("There was a problem logging in a current user: \(error?.localizedDescription)")
-            }
-            print("User logged in successfully!")
-        })
-    }
+//    func createNewUser() {
+//        
+//        guard let userEmail = self.usernameTextField.text,
+//            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
+//        
+//        FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
+//            if error != nil {
+//                print("There was a problem creating a new user: \(error?.localizedDescription)")
+//            }
+//            print("New user created!")
+//            let values = ["email": userEmail,
+//            ]
+//            let usersReference = self.ref.child("users")
+//            usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
+//                if error != nil {
+//                    print("There was an issue with creating a new user in the Firebase database: \(error?.localizedDescription)")
+//                }
+//                print("User successfully saved into the Firebase database!")
+//            })
+//        })
+//    }
+//    
+//    func loginCurrentUser() {
+//        guard let userEmail = self.usernameTextField.text,
+//            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
+//        
+//        FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
+//            if error != nil {
+//                print("There was a problem logging in a current user: \(error?.localizedDescription)")
+//            }
+//            print("User logged in successfully!")
+//        })
+//    }
+//    
+//    func userAlreadyLoggedIn() {
+//        if FIRAuth.auth()?.currentUser != nil {
+//            
+//        }
+//    }
 }

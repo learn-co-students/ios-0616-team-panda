@@ -43,6 +43,35 @@
             </objects>
             <point key="canvasLocation" x="1430" y="1075"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="tyB-IH-kja">
+            <objects>
+                <tableViewController id="DDa-S6-lH0" customClass="SettingsTableViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wiQ-oH-zgm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="pnU-hh-LwI">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pnU-hh-LwI" id="DK4-ng-y0m">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="DDa-S6-lH0" id="j6X-bR-coi"/>
+                            <outlet property="delegate" destination="DDa-S6-lH0" id="17c-s3-s3Y"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Settings" id="C9e-To-0fm"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="608-iK-J2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-965" y="568"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="WAf-PJ-p1k">
             <objects>
@@ -65,7 +94,7 @@
         <!--Settings-->
         <scene sceneID="tln-Kx-Kon">
             <objects>
-                <viewController id="yit-N1-gPD" customClass="SettingsViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yit-N1-gPD" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rc9-NT-Szr"/>
                         <viewControllerLayoutGuide type="bottom" id="y9o-1A-L5e"/>
@@ -119,6 +148,14 @@
             </objects>
             <point key="canvasLocation" x="1430" y="-358"/>
         </scene>
+        <!--Sign Up Page View Controller-->
+        <scene sceneID="wCo-tV-X9R">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="wMD-lz-fbk" customClass="SignUpPageViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cmV-Z6-jvr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-558" y="-307"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mho-Al-QK6">
             <objects>
@@ -133,7 +170,7 @@
                         <segue destination="p9K-HN-wSz" kind="relationship" relationship="viewControllers" id="OKv-Pg-5X8"/>
                         <segue destination="NNI-PM-jE3" kind="relationship" relationship="viewControllers" id="1IU-cI-xU0"/>
                         <segue destination="Yuw-dt-TfA" kind="relationship" relationship="viewControllers" id="Za0-YH-nIK"/>
-                        <segue destination="yit-N1-gPD" kind="relationship" relationship="viewControllers" id="sDd-SC-qtk"/>
+                        <segue destination="DDa-S6-lH0" kind="relationship" relationship="viewControllers" id="pXU-Rj-D8x"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfR-6o-vRi" userLabel="First Responder" sceneMemberID="firstResponder"/>

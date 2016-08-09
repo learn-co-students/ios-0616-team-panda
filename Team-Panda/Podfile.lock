@@ -6,6 +6,9 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - FBSDKCoreKit (4.14.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.14.0):
@@ -60,22 +63,32 @@ PODS:
   - GoogleSymbolUtilities (1.1.1)
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
+  - PureLayout (3.0.2)
   - SnapKit (0.22.0)
+  - SwiftFontName (2.0.0)
+  - SwiftyButton (0.4.0):
+    - SwiftyButton/CustomContent (= 0.4.0)
+  - SwiftyButton/CustomContent (0.4.0):
+    - PureLayout (~> 3.0)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
+  - ChameleonFramework/Swift
   - FBSDKLoginKit
   - Firebase
   - Firebase/Auth
   - Firebase/Database
   - Google/SignIn
   - SnapKit
+  - SwiftFontName (~> 2.0.0)
+  - SwiftyButton
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
   FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
   Firebase: 754562547af419cc2f4b15247fee419081924bc2
@@ -92,9 +105,12 @@ SPEC CHECKSUMS:
   GoogleSignIn: 09036ed61f8e75f1424100d63f7719480b2428c3
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
+  SwiftFontName: 7c3fdb6fc334cd4a8f2953c450a7b40c8d1400e4
+  SwiftyButton: fffcc0d82b2b5f9ec1681f20ee9c67bed0d5c73b
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: a53b7aea329235bef1fa1a30930f243660ff79ae
+PODFILE CHECKSUM: d2943b9430fa6eb6a87b2739a032a7d3e2789247
 
 COCOAPODS: 1.0.1
