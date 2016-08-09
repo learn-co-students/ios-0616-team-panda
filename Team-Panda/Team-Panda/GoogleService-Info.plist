@@ -34,6 +34,8 @@
 	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:623743933121:ios:3fbe406dd54d816f</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 	<key>DATABASE_URL</key>
 	<string>https://career-options.firebaseio.com</string>
 </dict>
