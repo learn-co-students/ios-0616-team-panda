@@ -23,6 +23,7 @@
 		6E5EE8101D54EF51002671D6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80F1D54EF51002671D6 /* SettingsViewController.swift */; };
 		6E62A0F01D59426600D71011 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E62A0EF1D59426600D71011 /* GoogleService-Info.plist */; };
 		6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */; };
+		7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */; };
 		7B3CB3601D59400D00A11E7E /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */; };
 		7B48980A1D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */; };
 		7B6C7E3B1D5A1A8000462368 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7E3A1D5A1A8000462368 /* Secrets.swift */; };
@@ -80,6 +81,7 @@
 		6EE4CAD11D577C3D0092784D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		6EE4CAD21D577C3D0092784D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		6EE4CAD31D577C3D0092784D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestsTableViewCell.swift; sourceTree = "<group>"; };
 		7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 		7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TellUsAboutYourselfViewController.swift; sourceTree = "<group>"; };
 		7B6C7E3A1D5A1A8000462368 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */,
 				7B90EBB61D58D89C00EE475A /* WouldYouRatherViewController.swift */,
 				7B6C7E3C1D5A1E4600462368 /* WhichInterestsYouViewController.swift */,
+				7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */,
 				7B90EBB81D592DFB00EE475A /* Constants.swift */,
 				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
 				6E58FB001D54125E00C12B50 /* AppDelegate.swift */,
@@ -477,6 +480,7 @@
 				6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */,
 				6E5EE8101D54EF51002671D6 /* SettingsViewController.swift in Sources */,
 				6E5EE80A1D54EEB8002671D6 /* DiscoverViewController.swift in Sources */,
+				7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */,
 				6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */,
 				6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */,
 				7B90EBB91D592DFB00EE475A /* Constants.swift in Sources */,

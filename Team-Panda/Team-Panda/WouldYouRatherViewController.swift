@@ -43,13 +43,17 @@ class WouldYouRatherViewController : UIViewController {
         self.createViewsForStyle(self.uiStyle)
     }
     
-    func topButtonTapped(sender : SwiftyButton) {
+    func buttonTapped(sender : SwiftyButton) {
+        
+        guard let signUpVC = self.parentViewController as? SignUpPageViewController else { return }
         
         if sender == topButton {
             print("Top Botton Pressed")
+            signUpVC.nextViewController(.SolveProblem)
         }
         else {
             print("Bottom Button Pressed")
+            signUpVC.nextViewController(.UnderstandProblem)
         }
         
     }
@@ -107,7 +111,8 @@ class WouldYouRatherViewController : UIViewController {
         self.topButton.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant: self.view.bounds.height/6).active = true
         self.topButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
         self.topButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
-
+        
+        self.topButton.addTarget(self, action: #selector(buttonTapped(_:)), forControlEvents: .TouchUpInside)
         
         
         self.bottomButton = SwiftyButton()
@@ -121,6 +126,7 @@ class WouldYouRatherViewController : UIViewController {
         self.bottomButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
         self.bottomButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
         
+        self.bottomButton.addTarget(self, action: #selector(buttonTapped(_:)), forControlEvents: .TouchUpInside)
     }
     
     /*

@@ -9,6 +9,7 @@
 import Foundation
 import ChameleonFramework
 import SwiftyButton
+import Former
 
 enum WhichInterestsStyle {
     case SolveProblem
@@ -24,9 +25,11 @@ class WhichInterestsYouViewController : UIViewController {
     let uiStyle : WhichInterestsStyle
     
     var titleTextLabel : UILabel!
-//    var curiosityTextLabel : UILabel!
     var topButton : SwiftyButton!
     var bottomButton : SwiftyButton!
+    
+    var tableView : UITableView!
+    let interestsIdentifier = "interestsCell"
     
     init(withUIStyle uiStyle : WhichInterestsStyle) {
         self.uiStyle = uiStyle
@@ -41,9 +44,17 @@ class WhichInterestsYouViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView = UITableView()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        self.tableView.registerClass(InterestsTableViewCell.self, forCellReuseIdentifier: interestsIdentifier)
+        
         self.createViews()
     }
     
+
     func createViews() {
         
         self.titleTextLabel = UILabel()
@@ -63,6 +74,32 @@ class WhichInterestsYouViewController : UIViewController {
         self.titleTextLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
         self.titleTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.15).active = true
         
+        self.view.addSubview(self.tableView)
+        
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.topAnchor.constraintEqualToAnchor(self.titleTextLabel.bottomAnchor).active = true
+        self.tableView.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor).active = true
+        self.tableView.bottomAnchor.constraintEqualToAnchor(self.view.bottomAnchor).active = true
+    }
+    
+}
+
+
+/*
+ *  FormViewController implementation
+ */
+extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(interestsIdentifier, forIndexPath: indexPath) as! InterestsTableViewCell
+        
+        cell.button.titleLabel?.text = "testing"
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
     }
     
     

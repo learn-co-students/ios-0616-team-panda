@@ -51,7 +51,11 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
     }
     
     func nextViewController(style : WhichInterestsStyle) {
+        let nextVC = WhichInterestsYouViewController(withUIStyle: style)
         
+        self.setViewControllers([nextVC], direction: .Forward, animated: true) { (completed) in
+            print("Third VC")
+        }
     }
     
     
