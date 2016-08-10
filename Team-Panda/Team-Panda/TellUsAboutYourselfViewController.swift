@@ -26,6 +26,8 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.createViews()
     }
     
+    override func shouldAutorotate() -> Bool { return false }
+    
     func buttonTapped(sender : SwiftyButton) {
         
         if let signUpVC = self.parentViewController as? SignUpPageViewController {
@@ -57,7 +59,7 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.titleTextLabel.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
         self.titleTextLabel.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
         self.titleTextLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
-        self.titleTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.5).active = true
+        self.titleTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.25).active = true
         
         
         self.curiousityTextLabel = UILabel()

@@ -58,6 +58,7 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
         }
     }
     
+    override func prefersStatusBarHidden() -> Bool { return true }
     
     
     /*

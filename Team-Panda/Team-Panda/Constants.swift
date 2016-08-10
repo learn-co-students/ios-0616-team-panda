@@ -22,3 +22,5 @@ extension UIFont {
         return UIFont(name: FontName.HelveticaNeueLight, size: size)!
     }
 }
+
+let checkMarkImage = UIImage(named: "checkmark")!

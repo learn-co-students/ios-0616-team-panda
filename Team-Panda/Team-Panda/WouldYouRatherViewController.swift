@@ -66,7 +66,7 @@ class WouldYouRatherViewController : UIViewController {
         
         self.titleTextLabel = UILabel()
 
-        self.titleTextLabel.text = "Tell us a little about yourself"
+        self.titleTextLabel.text = "Tell us a little bit more about yourself"
         self.titleTextLabel.font = UIFont.pandaFontLight(withSize: 72.0)
         self.titleTextLabel.adjustsFontSizeToFitWidth = true
         self.titleTextLabel.numberOfLines = 2
@@ -79,7 +79,7 @@ class WouldYouRatherViewController : UIViewController {
         self.titleTextLabel.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
         self.titleTextLabel.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
         self.titleTextLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
-        self.titleTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.5).active = true
+        self.titleTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.25).active = true
         
         
         

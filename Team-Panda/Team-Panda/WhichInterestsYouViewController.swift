@@ -30,6 +30,7 @@ class WhichInterestsYouViewController : UIViewController {
     
     var tableView : UITableView!
     let interestsIdentifier = "interestsCell"
+    let submitIdentifier = "submitCell"
     
     init(withUIStyle uiStyle : WhichInterestsStyle) {
         self.uiStyle = uiStyle
@@ -50,7 +51,9 @@ class WhichInterestsYouViewController : UIViewController {
         self.tableView.dataSource = self
         
         self.tableView.registerClass(InterestsTableViewCell.self, forCellReuseIdentifier: interestsIdentifier)
+        self.tableView.registerClass(SubmitTableViewCell.self, forCellReuseIdentifier: submitIdentifier)
         
+        self.view.backgroundColor = FlatRed()
         self.createViews()
     }
     
@@ -91,16 +94,35 @@ class WhichInterestsYouViewController : UIViewController {
 extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(interestsIdentifier, forIndexPath: indexPath) as! InterestsTableViewCell
         
-        cell.button.titleLabel?.text = "testing"
+        if indexPath.row == 9 { // equal to last cell 
         
-        return cell
+           let cell = self.tableView.dequeueReusableCellWithIdentifier(submitIdentifier, forIndexPath: indexPath) as! SubmitTableViewCell
+            return cell
+        }
+        else {
+            
+            let cell = self.tableView.dequeueReusableCellWithIdentifier(interestsIdentifier, forIndexPath: indexPath) as! InterestsTableViewCell
+            
+            cell.button.buttonColor = FlatRed()
+            cell.button.shadowColor = FlatRedDark()
+            
+            cell.button.titleLabel?.textColor = FlatWhite()
+            cell.button.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
+            cell.button.setTitle("Testing", forState: .Normal)
+            return cell
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 10
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70.0
+    }
     
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
 }

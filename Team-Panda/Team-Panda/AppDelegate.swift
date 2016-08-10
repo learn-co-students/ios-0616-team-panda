@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                         if error != nil {
                             print("There was an issue with creating a new Google user in the Firebase database: \(error?.localizedDescription)")
                         }
-                        loginViewController.showTabBarViewForUser()
+//                        loginViewController.showTabBarViewForUser()
                         print("Google user successfully saved into the Firebase database!")
                     })
                 }
