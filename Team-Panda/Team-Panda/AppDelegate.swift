@@ -55,7 +55,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
                         if error != nil {
                             print("There was an issue with creating a new Google user in the Firebase database: \(error?.localizedDescription)")
+                        // Alert user there was an issue
+                            
+                            
+                        
                         }
+                        
+                        // Has to go to SignUpPageViewContrlller
+                        
+                        
+                        
                         loginViewController.showTabBarViewForUser()
                         print("Google user successfully saved into the Firebase database!")
                     })

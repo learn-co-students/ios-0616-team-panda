@@ -25,7 +25,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.showTabBarViewForUser()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -33,16 +32,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         self.showTabBarViewForUser()
     }
-    //    override func viewWillAppear(animated: Bool) {
-    //        self.showTabBarViewForUser()
-    //    }
     
     @IBAction func loginButtonTapped(sender: UIButton!) {
         print("Submit Tapped!")
         if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
             print("User didn't input any text in email / password fields when trying to log in...")
+            self.validEmailPasswordAlert()
         } else {
-        self.loginCurrentUser()
+            self.loginCurrentUser()
         }
     }
     
@@ -50,12 +47,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         print("Signup Tapped!")
         if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
             print("User didn't input any text in email / password fields when trying to sign up...")
+            self.validEmailPasswordAlert()
         } else {
-        self.createNewUser()
-        let signUpQuestionVC = SignUpPageViewController()
-        self.presentViewController(signUpQuestionVC, animated: true) {
-            print("User signed in & moved to signUpQuestionVC")
-        }
+            self.createNewUser()
+            let signUpQuestionVC = SignUpPageViewController()
+            self.presentViewController(signUpQuestionVC, animated: true) {
+                print("User signed in & moved to signUpQuestionVC")
+            }
         }
     }
     
@@ -87,7 +85,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.view.addSubview(self.signupButton)
         self.view.addSubview(self.orLabel)
         
-        self.textFieldConstraints()
+        self.viewsConstraints()
+        
+        self.view.backgroundColor = UIColor.grayColor()
+        self.emailTextField.backgroundColor = UIColor.whiteColor()
+        self.passwordTextField.backgroundColor = UIColor.whiteColor()
+        self.loginButton.buttonColor = UIColor.blueColor()
+        self.loginButton.shadowHeight = 6
+        self.loginButton.shadowColor = UIColor.whiteColor()
+        self.loginButton.buttonPressDepth = 0.5
+        self.loginButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
+        self.signupButton.buttonColor = UIColor.blueColor()
+        self.signupButton.shadowHeight = 6
+        self.signupButton.shadowColor = UIColor.whiteColor()
+        self.signupButton.buttonPressDepth = 0.5
+        self.signupButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // Dismisses keyboard when user taps return in either Username or Password UITextFields
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+        return true
+    }
+    
+    func viewsConstraints() {
+        
+        self.emailTextField.textAlignment = NSTextAlignment.Center
+        self.passwordTextField.textAlignment = NSTextAlignment.Center
+        
+        self.emailTextField.snp_makeConstraints { (make) in
+            make.centerY.equalTo(self.view).offset(-50)
+            make.centerX.equalTo(self.view)
+            make.width.equalTo(self.view.widthAnchor).offset(300)
+            make.height.equalTo(self.view.heightAnchor).offset(20)
+        }
+        
+        self.passwordTextField.snp_makeConstraints { (make) in
+            make.centerY.equalTo(self.view).offset(-15)
+            make.centerX.equalTo(self.view)
+            make.width.equalTo(self.view.widthAnchor).offset(300)
+            make.height.equalTo(self.view.heightAnchor).offset(20)
+        }
+        
         self.orLabel.snp_makeConstraints { (make) in
             make.width.equalTo(self.view.widthAnchor).offset(40)
             make.height.equalTo(self.view.heightAnchor).offset(45)
@@ -106,128 +147,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             make.width.equalTo(self.view.widthAnchor).offset(75)
             make.height.equalTo(self.view.heightAnchor).offset(25)
         }
-        
-        self.view.backgroundColor = UIColor.grayColor()
-        self.emailTextField.backgroundColor = UIColor.whiteColor()
-        self.passwordTextField.backgroundColor = UIColor.whiteColor()
-        self.loginButton.buttonColor = UIColor.blueColor()
-        self.loginButton.shadowHeight = 6
-        self.loginButton.shadowColor = UIColor.whiteColor()
-        self.loginButton.buttonPressDepth = 0.5
-        self.loginButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
-        self.signupButton.buttonColor = UIColor.blueColor()
-        self.signupButton.shadowHeight = 6
-        self.signupButton.shadowColor = UIColor.whiteColor()
-        self.signupButton.buttonPressDepth = 0.5
-        self.signupButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
-        
-        //        self.loginButton.backgroundColor = UIColor.lightGrayColor()
-        //        self.signupButton.backgroundColor = UIColor.lightGrayColor()
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        // Dismisses keyboard when user taps return in either Username or Password UITextFields
-        self.emailTextField.resignFirstResponder()
-        self.passwordTextField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldConstraints() {
-        
-        self.emailTextField.textAlignment = NSTextAlignment.Center
-        self.passwordTextField.textAlignment = NSTextAlignment.Center
-        
-        self.emailTextField.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(-50)
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view.widthAnchor).offset(300)
-            make.height.equalTo(self.view.heightAnchor).offset(20)
-        }
-        
-        self.passwordTextField.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(-15)
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view.widthAnchor).offset(300)
-            make.height.equalTo(self.view.heightAnchor).offset(20)
-        }
-    }
-    
-    func facebookLoginButtonSetup() {
-        
-        self.facebookLoginButton.delegate = self
-        self.facebookLoginButton.readPermissions = ["public_profile", "email"]
-        self.view.addSubview(self.facebookLoginButton)
-        self.facebookLoginButton.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(100)
-            make.centerX.equalTo(self.view)
-        }
-    }
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        // Confirms Facebook login, adds FB user to Firebase users.
-        // loginButton didCompleteWithResult + logButtonDidLogOut methods necessary to conform to FBSDKLoginButtonDelegate protocol.
-        if let error = error {
-            print("Something wrong with Facebook login button in AppDelegate \(error.localizedDescription)")
-            return
-        }
-        
-        if result.isCancelled {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        } else {
-            let fbCredential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-            FIRAuth.auth()?.signInWithCredential(fbCredential, completion: { (fbUser, error) in
-                if error != nil {
-                    print("There was an error Authorizing Facebook user with Firebase: \(error?.localizedDescription)")
-                } else {
-                    if let fbUser = fbUser {
-                        print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
-                        
-                        
-                        
-                        if let fbUserEmail = fbUser.email {
-                            let values = ["email": fbUserEmail,
-                            ]
-                            
-                            
-                            self.ref = FIRDatabase.database().referenceFromURL("https://career-options.firebaseio.com/")
-                            let usersReference = self.ref.child("users")
-                            usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                                if error != nil {
-                                    print("There was an issue with creating a new Facebook user in the Firebase database: \(error?.localizedDescription)")
-                                }
-                                print("Facebook user successfully saved into the Firebase database!")
-                                
-                            })
-                        }
-                    }
-                    self.showTabBarViewForUser()
-                }
-            })
-        }
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print("FB User Logged Out!")
-    }
-    
-    func googleLoginButtonSetup() {
-        
-        GIDSignIn.sharedInstance().uiDelegate = self
-        self.view.addSubview(self.googleLoginButton)
-        self.googleLoginButton.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(150)
-            make.centerX.equalTo(self.view)
-        }
-    }
-    
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
-        // This method is necessary to conform to GIDSignInUIDelegate protocol.
-        if error != nil {
-            print("There was a google signin error!\(error.localizedDescription)")
-            return
-        }
-        
-        // print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
     }
     
     func createNewUser() {
@@ -241,13 +160,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 
                 // Give user alert...
                 
-                let newUserAlertController = UIAlertController(title: "", message: "", preferredStyle: .Alert)
-                let tryAgainAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
+                let newUserAlertController = UIAlertController(title: "Uh oh...", message: "We already have that email address in our system", preferredStyle: .Alert)
+                let tryAgainAction = UIAlertAction(title: "Try Again / Log In", style: .Cancel, handler: { (action) in
                     
                 })
                 
                 newUserAlertController.addAction(tryAgainAction)
-                
+                self.presentViewController(newUserAlertController, animated: true, completion: {
+                    print("User shown email exists alert!")
+                })
                 
             } else {
                 print("New user created!")
@@ -299,5 +220,86 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         } else {
             self.createAndAddViews()
         }
+    }
+    
+    func validEmailPasswordAlert() {
+        let noTextAlertController = UIAlertController(title: "More info needed...", message: "Please enter a valid email address & password", preferredStyle: .Alert)
+        let noTextAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
+            
+        })
+        noTextAlertController.addAction(noTextAction)
+        self.presentViewController(noTextAlertController, animated: true, completion: nil)
+    }
+    
+    func facebookLoginButtonSetup() {
+        
+        self.facebookLoginButton.delegate = self
+        self.facebookLoginButton.readPermissions = ["public_profile", "email"]
+        self.view.addSubview(self.facebookLoginButton)
+        self.facebookLoginButton.snp_makeConstraints { (make) in
+            make.centerY.equalTo(self.view).offset(100)
+            make.centerX.equalTo(self.view)
+        }
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        // Confirms Facebook login, adds FB user to Firebase users.
+        // loginButton didCompleteWithResult + logButtonDidLogOut methods necessary to conform to FBSDKLoginButtonDelegate protocol.
+        if let error = error {
+            print("Something wrong with Facebook login button in AppDelegate \(error.localizedDescription)")
+            return
+        }
+        
+        if result.isCancelled {
+            // Ensures if user taps done without logging in with FB it takes the user back to the login screen.
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            let fbCredential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+            FIRAuth.auth()?.signInWithCredential(fbCredential, completion: { (fbUser, error) in
+                if error != nil {
+                    print("There was an error Authorizing Facebook user with Firebase: \(error?.localizedDescription)")
+                } else {
+                    if let fbUser = fbUser {
+                        print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
+                        if let fbUserEmail = fbUser.email {
+                            let values = ["email": fbUserEmail,
+                            ]
+                            self.ref = FIRDatabase.database().referenceFromURL("https://career-options.firebaseio.com/")
+                            let usersReference = self.ref.child("users")
+                            usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                                if error != nil {
+                                    print("There was an issue with creating a new Facebook user in the Firebase database: \(error?.localizedDescription)")
+                                }
+                                print("Facebook user successfully saved into the Firebase database!")
+                            })
+                        }
+                    }
+                    self.showTabBarViewForUser()
+                }
+            })
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("FB User Logged Out!")
+    }
+    
+    func googleLoginButtonSetup() {
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        self.view.addSubview(self.googleLoginButton)
+        self.googleLoginButton.snp_makeConstraints { (make) in
+            make.centerY.equalTo(self.view).offset(150)
+            make.centerX.equalTo(self.view)
+        }
+    }
+    
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        // This method is necessary to conform to GIDSignInUIDelegate protocol.
+        if error != nil {
+            print("There was a google signin error!\(error.localizedDescription)")
+            return
+        }
+        // print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
     }
 }
