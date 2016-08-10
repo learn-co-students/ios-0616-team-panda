@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import ChameleonFramework
+import SwiftFontName
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -16,11 +18,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        self.view.backgroundColor = UIColor.blueColor()
+        self.view.backgroundColor = UIColor.flatSkyBlueColor()
     }
     
     func setUpTableView() {
-        tableView.frame = CGRectMake(0, 50, 320, 150);
+        tableView.frame = CGRectMake(0, 50, 320, 135);
+        tableView.backgroundColor = UIColor.flatWhiteColor()
         tableView.delegate      =   self
         tableView.dataSource    =   self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "settingsCell")
@@ -46,6 +49,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.textLabel?.text = settingsOptions[indexPath.row]
         
+        cell.textLabel?.font = UIFont.pandaFontLight(withSize: 20)
+        
+        cell.layer.cornerRadius = 5
+
         return cell
     }
     

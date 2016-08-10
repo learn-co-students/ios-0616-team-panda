@@ -20,6 +20,7 @@ class UserProfileViewController: UIViewController {
     
     var saveChangesButton = SwiftyButton()
     var cancelButton = SwiftyButton()
+    var resetPasswordButton = SwiftyButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,24 +31,30 @@ class UserProfileViewController: UIViewController {
     
     @IBAction func saveChangesButtonTapped(sender: UIButton!) {
         
-//        let email = FIRAuth.auth()!.currentUser!.email
-//        
-//        FIRAuth.auth()?.sendPasswordResetWithEmail(email!, completion: { (error) in
-//            if let error = error {
-//                print("Password setting error: \(error)")
-//            } else {
-//                print("Password and email have been reset")
-//            }
-//        })
+        //let user = FIRAuth.auth()!.currentUser
+        
         print("Save Changes Button Tapped")
         
     }
     
+//    @IBAction func resetPasswordButtonTapped(sender: UIButton!) {
+//        print("Sent User Email")
+//
+//                let email = FIRAuth.auth()!.currentUser!.email
+//        
+//                FIRAuth.auth()?.sendPasswordResetWithEmail(email!, completion: { (error) in
+//                    if let error = error {
+//                        print("Password setting error: \(error)")
+//                    } else {
+//                        print("Password and email have been reset")
+//                    }
+//                })
+//    }
+    
+    
     @IBAction func cancelButtonTapped(sender: UIButton!) {
-        
         print("Cancel Button Tapped")
         self.presentViewController(SettingsViewController(), animated: true, completion: nil)
-        
     }
 
     func createViews() {
@@ -61,12 +68,14 @@ class UserProfileViewController: UIViewController {
         self.view.addSubview(password)
         self.view.addSubview(saveChangesButton)
         self.view.addSubview(updateYourInfo)
+        //self.view.addSubview(resetPasswordButton)
         
         self.password.translatesAutoresizingMaskIntoConstraints=false
         self.email.translatesAutoresizingMaskIntoConstraints=false
         self.cancelButton.translatesAutoresizingMaskIntoConstraints=false
         self.saveChangesButton.translatesAutoresizingMaskIntoConstraints=false
         self.updateYourInfo.translatesAutoresizingMaskIntoConstraints = false
+        //self.resetPasswordButton.translatesAutoresizingMaskIntoConstraints=false
         
         self.updateYourInfo.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
         self.updateYourInfo.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
