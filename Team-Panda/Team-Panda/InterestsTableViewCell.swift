@@ -79,12 +79,17 @@ class InterestsTableViewCell : UITableViewCell {
 
 }
 
+protocol SubmitTableViewCellDelegate {
+    func submitTapped(sender : AnyObject)
+}
+
 /*
  *  Custom Table View Cell for Submit Button
  */
 class SubmitTableViewCell : UITableViewCell {
     
     var button : SwiftyButton
+    var delegate : SubmitTableViewCellDelegate?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
@@ -128,6 +133,10 @@ class SubmitTableViewCell : UITableViewCell {
     func submitButtonTapped(sender : SwiftyButton) {
         
         print("This should finish the questionaire!")
+        
+        if let delegate = self.delegate {
+            delegate.submitTapped(sender)
+        }
         
     }
 }

@@ -47,14 +47,23 @@ class WouldYouRatherViewController : UIViewController {
         
         guard let signUpVC = self.parentViewController as? SignUpPageViewController else { return }
         
-        if sender == topButton {
-            print("Top Botton Pressed")
-            signUpVC.nextViewController(.SolveProblem)
+        let nextVCStyle : WhichInterestsStyle
+        
+        if self.uiStyle == .Make && sender == topButton {
+            print("UIStyle: Make.  Solve Problem tapped")
+            nextVCStyle = .SolveProblem
+        } else if self.uiStyle == .Make && sender == bottomButton {
+            print("UIStyle: Make.  Understand Problem tapped")
+            nextVCStyle = .UnderstandProblem
+        } else if self.uiStyle == .Think && sender == topButton {
+            print("UIStyle: Think.  Ideas Expressed tapped")
+            nextVCStyle = .IdeaExpressed
+        } else {
+            print("UIStyle: Think.  Ideas Formed tapped")
+            nextVCStyle = .IdeasFormed
         }
-        else {
-            print("Bottom Button Pressed")
-            signUpVC.nextViewController(.UnderstandProblem)
-        }
+        
+        signUpVC.nextViewController(nextVCStyle)
         
     }
     

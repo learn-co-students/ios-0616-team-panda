@@ -32,6 +32,17 @@ class WhichInterestsYouViewController : UIViewController {
     let interestsIdentifier = "interestsCell"
     let submitIdentifier = "submitCell"
     
+    var interestsArray : [String] {
+        if uiStyle == .SolveProblem || uiStyle == .UnderstandProblem {
+            return ["Human Body", "Environment", "Transportation", "Architecture", "Teaching"]
+        }
+        else if uiStyle == .IdeaExpressed || uiStyle == .IdeasFormed {
+            return ["Law", "Written Communication", "Art", "Sports", "Teaching", "Health"]
+        }
+        else { return ["Try again"] }
+
+    }
+    
     init(withUIStyle uiStyle : WhichInterestsStyle) {
         self.uiStyle = uiStyle
         super.init(nibName: nil, bundle: nil)
@@ -89,15 +100,17 @@ class WhichInterestsYouViewController : UIViewController {
 
 
 /*
- *  FormViewController implementation
+ *  TableView and Cell Delegate Functions
  */
-extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewDataSource {
+extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewDataSource, SubmitTableViewCellDelegate {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if indexPath.row == 9 { // equal to last cell 
+        if indexPath.row == self.interestsArray.count { // add submit button
         
            let cell = self.tableView.dequeueReusableCellWithIdentifier(submitIdentifier, forIndexPath: indexPath) as! SubmitTableViewCell
+            
+            cell.delegate = self
             return cell
         }
         else {
@@ -109,20 +122,30 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
             
             cell.button.titleLabel?.textColor = FlatWhite()
             cell.button.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
-            cell.button.setTitle("Testing", forState: .Normal)
+            cell.button.setTitle(self.interestsArray[indexPath.row], forState: .Normal)
             return cell
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.interestsArray.count + 1
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70.0
+        return 65.0
     }
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
+    }
+    
+    func submitTapped(sender: AnyObject) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
+        
+        self.showViewController(tabBarVC, sender: sender)
+
     }
 }

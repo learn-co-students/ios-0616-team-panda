@@ -24,3 +24,17 @@ extension UIFont {
 }
 
 let checkMarkImage = UIImage(named: "checkmark")!
+
+let databaseRefURL = "https://career-options.firebaseio.com/"
+
+//let jobDictionary : [WouldYouRatherStyle : AnyObject]
+//    
+//        = [ WouldYouRatherStyle.Make : [WhichInterestsStyle.SolveProblem : "",
+//                                        WhichInterestsStyle.UnderstandProblem : ""],
+//            
+//            WouldYouRatherStyle.Think : [WhichInterestsStyle.IdeaExpressed : "",
+//                                         WhichInterestsStyle.IdeasFormed : ""]
+//          ]
+//
+//let interestsDictionary = [WhichInterestsStyle.SolveProblem : "",
+//    WhichInterestsStyle.UnderstandProblem : ""]
