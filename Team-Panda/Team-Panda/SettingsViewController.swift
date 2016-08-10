@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import ChameleonFramework
+import SwiftFontName
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,11 +18,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        self.view.backgroundColor = UIColor.blueColor()
+        self.view.backgroundColor = UIColor.flatSkyBlueColor()
     }
     
     func setUpTableView() {
-        tableView.frame = CGRectMake(0, 50, 320, 200);
+        tableView.frame = CGRectMake(0, 50, 320, 135);
+        tableView.backgroundColor = UIColor.flatWhiteColor()
         tableView.delegate      =   self
         tableView.dataSource    =   self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "settingsCell")
@@ -28,7 +32,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.layer.cornerRadius = 10
     }
     
-    var settingsOptions = ["Update Profile Info", "Log Out", "Switch User", "Refresh Questionaire"]
+    var settingsOptions = ["Update Profile Info", "Refresh Questionnaire", "Log Out"]
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -45,6 +49,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.textLabel?.text = settingsOptions[indexPath.row]
         
+        cell.textLabel?.font = UIFont.pandaFontLight(withSize: 20)
+        
+        cell.layer.cornerRadius = 5
+
         return cell
     }
     
@@ -53,15 +61,24 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         switch indexPath.row {
         case 0:
             print("Update Profile Info")
+            self.presentViewController(UserProfileViewController(), animated: true, completion: nil)
+            
         case 1:
-            print("Log Out")
-        case 2:
-            print("Switch User")
-        case 3:
             print("Refresh Questionaire")
+            self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)
+            //Add logic to empty saved data
+            
+        case 2:
+            print("Log Out")
+            do{
+                try FIRAuth.auth()?.signOut()
+            }  catch {fatalError("Unable to log user out")}
+            self.presentViewController(LoginViewController(), animated: true, completion: nil)
+            
         default:
             print("Opps. Not Available")
         }
     }
+    
     
 }

@@ -22,41 +22,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     var googleLoginButton = GIDSignInButton()
     var facebookLoginButton = FBSDKLoginButton()
     var ref: FIRDatabaseReference!
+    // let store = DataStore.store
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.showTabBarViewForUser()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         self.showTabBarViewForUser()
     }
-    //    override func viewWillAppear(animated: Bool) {
-    //        self.showTabBarViewForUser()
-    //    }
     
     @IBAction func loginButtonTapped(sender: UIButton!) {
         print("Submit Tapped!")
         if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
             print("User didn't input any text in email / password fields when trying to log in...")
+            self.validEmailPasswordAlert()
         } else {
-        self.loginCurrentUser()
+            self.loginCurrentUser()
         }
     }
     
     @IBAction func signupButtonTapped(sender: UIButton!) {
         print("Signup Tapped!")
-        if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
-            print("User didn't input any text in email / password fields when trying to sign up...")
-        } else {
         self.createNewUser()
-        let signUpQuestionVC = SignUpPageViewController()
-        self.presentViewController(signUpQuestionVC, animated: true) {
-            print("User signed in & moved to signUpQuestionVC")
-        }
-        }
     }
     
     func createAndAddViews() {
@@ -71,6 +60,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.passwordTextField.placeholder = "Password"
         self.orLabel.text = "OR"
         self.orLabel.textAlignment = NSTextAlignment.Center
+        self.orLabel.hidden = true
         
         self.loginButton.setTitle("Login", forState: .Normal)
         self.loginButton.setTitleColor(.whiteColor(), forState: .Normal)
@@ -87,7 +77,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.view.addSubview(self.signupButton)
         self.view.addSubview(self.orLabel)
         
-        self.textFieldConstraints()
+        self.viewsConstraints()
+        
+        self.view.backgroundColor = UIColor.grayColor()
+        self.emailTextField.backgroundColor = UIColor.whiteColor()
+        self.passwordTextField.backgroundColor = UIColor.whiteColor()
+        self.loginButton.buttonColor = UIColor.blueColor()
+        self.loginButton.shadowHeight = 6
+        self.loginButton.shadowColor = UIColor.whiteColor()
+        self.loginButton.buttonPressDepth = 0.5
+        self.loginButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
+        self.signupButton.buttonColor = UIColor.blueColor()
+        self.signupButton.shadowHeight = 6
+        self.signupButton.shadowColor = UIColor.whiteColor()
+        self.signupButton.buttonPressDepth = 0.5
+        self.signupButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // Dismisses keyboard when user taps return in either Username or Password UITextFields
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+        return true
+    }
+    
+    func viewsConstraints() {
+        
+        self.emailTextField.textAlignment = NSTextAlignment.Center
+        self.passwordTextField.textAlignment = NSTextAlignment.Center
+        
+        self.emailTextField.snp_makeConstraints { (make) in
+            make.centerY.equalTo(self.view).offset(-50)
+            make.centerX.equalTo(self.view)
+            make.width.equalTo(self.view.widthAnchor).offset(300)
+            make.height.equalTo(self.view.heightAnchor).offset(20)
+        }
+        
+        self.passwordTextField.snp_makeConstraints { (make) in
+            make.centerY.equalTo(self.view).offset(-15)
+            make.centerX.equalTo(self.view)
+            make.width.equalTo(self.view.widthAnchor).offset(300)
+            make.height.equalTo(self.view.heightAnchor).offset(20)
+        }
+        
         self.orLabel.snp_makeConstraints { (make) in
             make.width.equalTo(self.view.widthAnchor).offset(40)
             make.height.equalTo(self.view.heightAnchor).offset(45)
@@ -106,50 +139,76 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             make.width.equalTo(self.view.widthAnchor).offset(75)
             make.height.equalTo(self.view.heightAnchor).offset(25)
         }
-        
-        self.view.backgroundColor = UIColor.grayColor()
-        self.emailTextField.backgroundColor = UIColor.whiteColor()
-        self.passwordTextField.backgroundColor = UIColor.whiteColor()
-        self.loginButton.buttonColor = UIColor.blueColor()
-        self.loginButton.shadowHeight = 6
-        self.loginButton.shadowColor = UIColor.whiteColor()
-        self.loginButton.buttonPressDepth = 0.5
-        self.loginButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
-        self.signupButton.buttonColor = UIColor.blueColor()
-        self.signupButton.shadowHeight = 6
-        self.signupButton.shadowColor = UIColor.whiteColor()
-        self.signupButton.buttonPressDepth = 0.5
-        self.signupButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
-        
-        //        self.loginButton.backgroundColor = UIColor.lightGrayColor()
-        //        self.signupButton.backgroundColor = UIColor.lightGrayColor()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        // Dismisses keyboard when user taps return in either Username or Password UITextFields
-        self.emailTextField.resignFirstResponder()
-        self.passwordTextField.resignFirstResponder()
-        return true
+    func createNewUser() {
+        
+        let userEmail = self.emailTextField!.text!
+        let userPassword = self.passwordTextField!.text!
+        
+        FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
+            if error != nil {
+                print("There was a problem creating a new user: \(error?.localizedDescription)")
+                // Don't create user
+                let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: (error?.localizedDescription)!)
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)
+                print("User successfully saved into the Firebase database! \(user?.uid) + \(user?.email)")
+                
+                // let pandaUser: TPUser = TPUser(email: user?.email, uid: user?.uid)
+                // pandaUser.updateDatabase()
+                // store.tpUser = pandaUser
+            }
+        })
     }
     
-    func textFieldConstraints() {
-        
-        self.emailTextField.textAlignment = NSTextAlignment.Center
-        self.passwordTextField.textAlignment = NSTextAlignment.Center
-        
-        self.emailTextField.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(-50)
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view.widthAnchor).offset(300)
-            make.height.equalTo(self.view.heightAnchor).offset(20)
+    func loginCurrentUser() {
+        guard let userEmail = self.emailTextField.text,
+            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
+        FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
+            if error != nil {
+                if let error = error {
+                    print("There was a problem logging in a current user: \(error.localizedDescription)")
+                    // Alert user there was a problem logging in
+                    let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            } else {
+                print("User logged in successfully!")
+                self.showTabBarViewForUser()
+            }
+            // let currentPanda = TPUser(email: user?.email, uid: user?.uid)
+            
+        })
+    }
+    
+    func userAlreadyLoggedIn() -> Bool {
+        if FIRAuth.auth()?.currentUser != nil {
+            return true
         }
-        
-        self.passwordTextField.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(-15)
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view.widthAnchor).offset(300)
-            make.height.equalTo(self.view.heightAnchor).offset(20)
+        return false
+    }
+    
+    func showTabBarViewForUser() {
+        if self.userAlreadyLoggedIn() {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
+            self.presentViewController(tabBarVC, animated: true, completion: {
+                print("User logged in & moved to tab bar controller!")
+            })
+        } else {
+            self.createAndAddViews()
         }
+    }
+    
+    func validEmailPasswordAlert() {
+        let noTextAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid email address & password", preferredStyle: .Alert)
+        let noTextAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
+            
+        })
+        noTextAlertController.addAction(noTextAction)
+        self.presentViewController(noTextAlertController, animated: true, completion: nil)
     }
     
     func facebookLoginButtonSetup() {
@@ -161,6 +220,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             make.centerY.equalTo(self.view).offset(100)
             make.centerX.equalTo(self.view)
         }
+        self.facebookLoginButton.hidden = true
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -172,6 +232,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         }
         
         if result.isCancelled {
+            // Ensures if user taps done without logging in with FB it takes the user back to the login screen.
             self.dismissViewControllerAnimated(true, completion: nil)
         } else {
             let fbCredential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
@@ -181,14 +242,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 } else {
                     if let fbUser = fbUser {
                         print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
-                        
-                        
-                        
                         if let fbUserEmail = fbUser.email {
                             let values = ["email": fbUserEmail,
                             ]
-                            
-                            
                             self.ref = FIRDatabase.database().referenceFromURL("https://career-options.firebaseio.com/")
                             let usersReference = self.ref.child("users")
                             usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
@@ -196,7 +252,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                                     print("There was an issue with creating a new Facebook user in the Firebase database: \(error?.localizedDescription)")
                                 }
                                 print("Facebook user successfully saved into the Firebase database!")
-                                
                             })
                         }
                     }
@@ -218,6 +273,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             make.centerY.equalTo(self.view).offset(150)
             make.centerX.equalTo(self.view)
         }
+        self.googleLoginButton.hidden = true
     }
     
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
@@ -226,78 +282,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             print("There was a google signin error!\(error.localizedDescription)")
             return
         }
-        
         // print("User Email: \(user.profile.email), Profile Picture: \(user.profile.imageURLWithDimension(400))")
-    }
-    
-    func createNewUser() {
-        
-        guard let userEmail = self.emailTextField.text,
-            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
-        
-        FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
-            if error != nil {
-                print("There was a problem creating a new user: \(error?.localizedDescription)")
-                
-                // Give user alert...
-                
-                let newUserAlertController = UIAlertController(title: "", message: "", preferredStyle: .Alert)
-                let tryAgainAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
-                    
-                })
-                
-                newUserAlertController.addAction(tryAgainAction)
-                
-                
-            } else {
-                print("New user created!")
-                guard let uid = user?.uid else {fatalError("Create new user unsuccessful!")}
-                let values = ["email": userEmail,
-                ]
-                self.ref = FIRDatabase.database().referenceFromURL("https://career-options.firebaseio.com/")
-                let usersReference = self.ref.child("users").child(uid)
-                usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                    if error != nil {
-                        print("There was an issue with creating a new user in the Firebase database: \(error?.localizedDescription)")
-                    }
-                    print("User successfully saved into the Firebase database!")
-                })
-            }
-        })
-    }
-    
-    func loginCurrentUser() {
-        guard let userEmail = self.emailTextField.text,
-            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
-        FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
-            if error != nil {
-                print("There was a problem logging in a current user: \(error?.localizedDescription)")
-                
-                // Alert user there was a problem logging in
-                
-                
-                
-            }
-            print("User logged in successfully!")
-            self.showTabBarViewForUser()
-        })
-    }
-    
-    func userAlreadyLoggedIn() -> Bool {
-        if FIRAuth.auth()?.currentUser != nil {
-            return true
-        }
-        return false
-    }
-    
-    func showTabBarViewForUser() {
-        if self.userAlreadyLoggedIn() {
-            guard let tabBarVC = self.storyboard?.instantiateViewControllerWithIdentifier("tabBarController") else {fatalError("Couldn't go from User Sign In to Tab Bar View Controller.")}
-            self.presentViewController(tabBarVC, animated: true, completion: {
-                print("User logged in & moved to tab bar controller!")
-            })
-        } else {
-            self.createAndAddViews()
-        }
     }
 }

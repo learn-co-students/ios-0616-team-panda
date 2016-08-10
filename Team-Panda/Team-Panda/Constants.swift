@@ -9,6 +9,17 @@
 import Foundation
 import SwiftFontName
 
+class Constants {
+    
+    class func displayAlertWithTryAgain(title: String, message: String) -> UIAlertController {
+        
+        let userAlertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let newUserCancelAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: nil)
+        userAlertController.addAction(newUserCancelAction)
+        return userAlertController
+    }
+}
+
 extension UIFont {
     class func pandaFontBold(withSize size : CGFloat) -> UIFont {
         return UIFont(name: FontName.HelveticaNeueBold, size: size)!
@@ -38,3 +49,4 @@ let databaseRefURL = "https://career-options.firebaseio.com/"
 //
 //let interestsDictionary = [WhichInterestsStyle.SolveProblem : "",
 //    WhichInterestsStyle.UnderstandProblem : ""]
+
