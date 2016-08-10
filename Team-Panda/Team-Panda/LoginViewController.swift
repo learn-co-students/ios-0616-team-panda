@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     var googleLoginButton = GIDSignInButton()
     var facebookLoginButton = FBSDKLoginButton()
     var ref: FIRDatabaseReference!
+    // let store = DataStore.store
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,31 +45,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     @IBAction func signupButtonTapped(sender: UIButton!) {
         print("Signup Tapped!")
-        if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
-            print("User email / password not valid or already in system...")
-            let newUserAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid email address & password.", preferredStyle: .Alert)
-            let newUserCancelAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: nil)
-            newUserAlertController.addAction(newUserCancelAction)
-            self.presentViewController(newUserAlertController, animated: true, completion: nil)
-        } else if self.passwordTextField.text?.characters.count < 6 {
-            print("User password not valid...")
-            let newUserAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid password with at least 6 characters.", preferredStyle: .Alert)
-            let newUserCancelAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: nil)
-            newUserAlertController.addAction(newUserCancelAction)
-            self.presentViewController(newUserAlertController, animated: true, completion: nil)
-        } else if !self.newUserVerified() {
-            print("User didn't input any text in email / password fields when trying to sign up...")
-            let newUserAlertController = UIAlertController(title: "Uh oh...", message: "We already have that email in our records. Please try again or login.", preferredStyle: .Alert)
-            let newUserCancelAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: nil)
-            newUserAlertController.addAction(newUserCancelAction)
-            self.presentViewController(newUserAlertController, animated: true, completion: nil)
-        } else{
-            self.createNewUser()
-            let signUpQuestionVC = SignUpPageViewController()
-            self.presentViewController(signUpQuestionVC, animated: true) {
-                print("User signed in & moved to signUpQuestionVC")
-            }
-        }
+        self.createNewUser()
     }
     
     func createAndAddViews() {
@@ -166,44 +143,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     func createNewUser() {
         
-        guard
-            let userEmail = self.emailTextField.text,
-            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
+        let userEmail = self.emailTextField!.text!
+        let userPassword = self.passwordTextField!.text!
         
         FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
             if error != nil {
                 print("There was a problem creating a new user: \(error?.localizedDescription)")
+                // Don't create user
+                let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: (error?.localizedDescription)!)
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)
+                print("User successfully saved into the Firebase database! \(user?.uid) + \(user?.email)")
                 
-            } else {
-                print("New user created!")
-                guard let uid = user?.uid else {fatalError("Create new user unsuccessful!")}
-                let values = ["email": userEmail,
-                ]
-                self.ref = FIRDatabase.database().referenceFromURL("https://career-options.firebaseio.com/")
-                let usersReference = self.ref.child("users").child(uid)
-                usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                    if error != nil {
-                        print("There was an issue with creating a new user in the Firebase database: \(error?.localizedDescription)")
-                    }
-                    print("User successfully saved into the Firebase database!")
-                })
+                // let pandaUser: TPUser = TPUser(email: user?.email, uid: user?.uid)
+                // pandaUser.updateDatabase()
+                // store.tpUser = pandaUser
             }
         })
-    }
-    
-    func newUserVerified() -> Bool {
-        var userVerified = false
-        guard
-            let userEmail = self.emailTextField.text,
-            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
-        FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
-            if error != nil {
-                userVerified = false
-            } else {
-                userVerified = true
-            }
-        })
-        return userVerified
     }
     
     func loginCurrentUser() {
@@ -214,16 +171,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 if let error = error {
                     print("There was a problem logging in a current user: \(error.localizedDescription)")
                     // Alert user there was a problem logging in
-                    let noTextAlertController = UIAlertController(title: "Uh oh...", message: error.localizedDescription, preferredStyle: .Alert)
-                    let noTextAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
-                        
-                    })
-                    noTextAlertController.addAction(noTextAction)
-                    self.presentViewController(noTextAlertController, animated: true, completion: nil)
+                    let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             }
             print("User logged in successfully!")
             self.showTabBarViewForUser()
+            
+            // let currentPanda = TPUser(email: user?.email, uid: user?.uid)
+            
         })
     }
     
