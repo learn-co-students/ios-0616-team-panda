@@ -32,7 +32,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.layer.cornerRadius = 10
     }
     
-    var settingsOptions = ["Update Profile Info", "Refresh Questionaire", "Log Out"]
+    var settingsOptions = ["Update Profile Info", "Refresh Questionnaire", "Log Out"]
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -79,5 +79,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             print("Opps. Not Available")
         }
     }
+    
     
 }
