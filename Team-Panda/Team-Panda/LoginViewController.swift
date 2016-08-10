@@ -174,10 +174,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
+            } else {
+                print("User logged in successfully!")
+                self.showTabBarViewForUser()
             }
-            print("User logged in successfully!")
-            self.showTabBarViewForUser()
-            
             // let currentPanda = TPUser(email: user?.email, uid: user?.uid)
             
         })
@@ -192,7 +192,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     func showTabBarViewForUser() {
         if self.userAlreadyLoggedIn() {
-            guard let tabBarVC = self.storyboard?.instantiateViewControllerWithIdentifier("tabBarController") else {fatalError("Couldn't go from User Sign In to Tab Bar View Controller.")}
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
             self.presentViewController(tabBarVC, animated: true, completion: {
                 print("User logged in & moved to tab bar controller!")
             })
