@@ -29,7 +29,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         self.showTabBarViewForUser()
     }
     
@@ -46,9 +45,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     @IBAction func signupButtonTapped(sender: UIButton!) {
         print("Signup Tapped!")
         if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
+            print("User email / password not valid or already in system...")
+            let newUserAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid email address & password.", preferredStyle: .Alert)
+            let newUserCancelAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: nil)
+            newUserAlertController.addAction(newUserCancelAction)
+            self.presentViewController(newUserAlertController, animated: true, completion: nil)
+        } else if self.passwordTextField.text?.characters.count < 6 {
+            print("User password not valid...")
+            let newUserAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid password with at least 6 characters.", preferredStyle: .Alert)
+            let newUserCancelAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: nil)
+            newUserAlertController.addAction(newUserCancelAction)
+            self.presentViewController(newUserAlertController, animated: true, completion: nil)
+        } else if !self.newUserVerified() {
             print("User didn't input any text in email / password fields when trying to sign up...")
-            self.validEmailPasswordAlert()
-        } else {
+            let newUserAlertController = UIAlertController(title: "Uh oh...", message: "We already have that email in our records. Please try again or login.", preferredStyle: .Alert)
+            let newUserCancelAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: nil)
+            newUserAlertController.addAction(newUserCancelAction)
+            self.presentViewController(newUserAlertController, animated: true, completion: nil)
+        } else{
             self.createNewUser()
             let signUpQuestionVC = SignUpPageViewController()
             self.presentViewController(signUpQuestionVC, animated: true) {
@@ -69,6 +83,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.passwordTextField.placeholder = "Password"
         self.orLabel.text = "OR"
         self.orLabel.textAlignment = NSTextAlignment.Center
+        self.orLabel.hidden = true
         
         self.loginButton.setTitle("Login", forState: .Normal)
         self.loginButton.setTitleColor(.whiteColor(), forState: .Normal)
@@ -151,24 +166,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     func createNewUser() {
         
-        guard let userEmail = self.emailTextField.text,
+        guard
+            let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
         
         FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
             if error != nil {
                 print("There was a problem creating a new user: \(error?.localizedDescription)")
-                
-                // Give user alert...
-                
-                let newUserAlertController = UIAlertController(title: "Uh oh...", message: "We already have that email address in our system", preferredStyle: .Alert)
-                let tryAgainAction = UIAlertAction(title: "Try Again / Log In", style: .Cancel, handler: { (action) in
-                    
-                })
-                
-                newUserAlertController.addAction(tryAgainAction)
-                self.presentViewController(newUserAlertController, animated: true, completion: {
-                    print("User shown email exists alert!")
-                })
                 
             } else {
                 print("New user created!")
@@ -187,17 +191,36 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         })
     }
     
+    func newUserVerified() -> Bool {
+        var userVerified = false
+        guard
+            let userEmail = self.emailTextField.text,
+            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
+        FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
+            if error != nil {
+                userVerified = false
+            } else {
+                userVerified = true
+            }
+        })
+        return userVerified
+    }
+    
     func loginCurrentUser() {
         guard let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
         FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
             if error != nil {
-                print("There was a problem logging in a current user: \(error?.localizedDescription)")
-                
-                // Alert user there was a problem logging in
-                
-                
-                
+                if let error = error {
+                    print("There was a problem logging in a current user: \(error.localizedDescription)")
+                    // Alert user there was a problem logging in
+                    let noTextAlertController = UIAlertController(title: "Uh oh...", message: error.localizedDescription, preferredStyle: .Alert)
+                    let noTextAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
+                        
+                    })
+                    noTextAlertController.addAction(noTextAction)
+                    self.presentViewController(noTextAlertController, animated: true, completion: nil)
+                }
             }
             print("User logged in successfully!")
             self.showTabBarViewForUser()
@@ -223,7 +246,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func validEmailPasswordAlert() {
-        let noTextAlertController = UIAlertController(title: "More info needed...", message: "Please enter a valid email address & password", preferredStyle: .Alert)
+        let noTextAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid email address & password", preferredStyle: .Alert)
         let noTextAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
             
         })
@@ -240,6 +263,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             make.centerY.equalTo(self.view).offset(100)
             make.centerX.equalTo(self.view)
         }
+        self.facebookLoginButton.hidden = true
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -292,6 +316,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             make.centerY.equalTo(self.view).offset(150)
             make.centerX.equalTo(self.view)
         }
+        self.googleLoginButton.hidden = true
     }
     
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
