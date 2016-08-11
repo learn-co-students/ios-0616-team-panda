@@ -17,6 +17,7 @@ class UserProfileViewController: UIViewController {
     var email = UITextField()
     var password = UITextField()
     var updateYourInfo = UILabel()
+    //var userAvatarImage = UIImageView()
     
     var saveChangesButton = SwiftyButton()
     var cancelButton = SwiftyButton()
@@ -31,26 +32,10 @@ class UserProfileViewController: UIViewController {
     
     @IBAction func saveChangesButtonTapped(sender: UIButton!) {
         
-        //let user = FIRAuth.auth()!.currentUser
-        
         print("Save Changes Button Tapped")
         
     }
-    
-//    @IBAction func resetPasswordButtonTapped(sender: UIButton!) {
-//        print("Sent User Email")
-//
-//                let email = FIRAuth.auth()!.currentUser!.email
-//        
-//                FIRAuth.auth()?.sendPasswordResetWithEmail(email!, completion: { (error) in
-//                    if let error = error {
-//                        print("Password setting error: \(error)")
-//                    } else {
-//                        print("Password and email have been reset")
-//                    }
-//                })
-//    }
-    
+
     
     @IBAction func cancelButtonTapped(sender: UIButton!) {
         print("Cancel Button Tapped")
@@ -62,12 +47,14 @@ class UserProfileViewController: UIViewController {
         self.saveChangesButton.setTitle("Save Changes", forState: .Normal)
         self.saveChangesButton.addTarget(self, action: #selector(saveChangesButtonTapped), forControlEvents: .TouchUpInside)
         
+        
         //Add SubViews
         self.view.addSubview(cancelButton)
         self.view.addSubview(email)
         self.view.addSubview(password)
         self.view.addSubview(saveChangesButton)
         self.view.addSubview(updateYourInfo)
+        //self.view.addSubview(userAvatarImage)
         //self.view.addSubview(resetPasswordButton)
         
         self.password.translatesAutoresizingMaskIntoConstraints=false
@@ -75,7 +62,13 @@ class UserProfileViewController: UIViewController {
         self.cancelButton.translatesAutoresizingMaskIntoConstraints=false
         self.saveChangesButton.translatesAutoresizingMaskIntoConstraints=false
         self.updateYourInfo.translatesAutoresizingMaskIntoConstraints = false
+        //self.userAvatarImage.translatesAutoresizingMaskIntoConstraints = false
         //self.resetPasswordButton.translatesAutoresizingMaskIntoConstraints=false
+        
+//        self.userAvatarImage.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active=true
+//        self.userAvatarImage.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+//        self.userAvatarImage.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant: self.view.bounds.height/18).active = true
+        
         
         self.updateYourInfo.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
         self.updateYourInfo.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
@@ -109,6 +102,9 @@ class UserProfileViewController: UIViewController {
     func styleUserProfileViews() {
         
         self.view.backgroundColor = FlatWhite()
+        
+        self.userAvatarImage.layer.cornerRadius = 50
+        self.userAvatarImage.backgroundColor = UIColor.flatOrangeColor()
         
         //Styling for Update Your Info UILabel
         self.updateYourInfo.text = "Update your email and password"
