@@ -31,7 +31,6 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
         self.viewsArray = self.createInitialViewController()
         
         self.setViewControllers([viewsArray[0]], direction: .Forward, animated: true) { (completed) in
-            print("completed. not sure what this does")
             print(self.viewControllers?.first?.accessibilityLabel)
         }
         

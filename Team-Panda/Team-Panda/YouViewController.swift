@@ -15,7 +15,5 @@ class YouViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.flatMintColor()
     }
-    
-    
 
 }
