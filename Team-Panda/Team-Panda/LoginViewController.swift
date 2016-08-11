@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     var googleLoginButton = GIDSignInButton()
     var facebookLoginButton = FBSDKLoginButton()
     var ref: FIRDatabaseReference!
-    // let store = DataStore.store
+    let store = DataStore.store
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,13 +133,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         self.loginButton.translatesAutoresizingMaskIntoConstraints = false
         self.loginButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-        self.loginButton.centerYAnchor.constraintEqualToAnchor(self.view.bottomAnchor, constant:  -self.view.bounds.height/6).active = true
+        self.loginButton.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant:  self.view.bounds.height/6).active = true
         self.loginButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
         self.loginButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
         
         self.signupButton.translatesAutoresizingMaskIntoConstraints = false
         self.signupButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-        self.signupButton.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant: self.view.bounds.height/6).active = true
+        self.signupButton.centerYAnchor.constraintEqualToAnchor(self.view.bottomAnchor, constant: -self.view.bounds.height/6).active = true
         self.signupButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier:  0.75).active = true
         self.signupButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier:  0.125).active = true
         
@@ -160,9 +160,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)
                 print("User successfully saved into the Firebase database! \(user?.uid) + \(user?.email)")
                 
-                // let pandaUser: TPUser = TPUser(email: user?.email, uid: user?.uid)
-                // pandaUser.updateDatabase()
-                // store.tpUser = pandaUser
+                let pandaUser: TPUser = TPUser(withEmail: (user?.email)!, uid: (user?.uid)!)
+                pandaUser.updateDatabase()
+                self.store.tpUser = pandaUser
             }
         })
     }
@@ -171,24 +171,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         guard let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
         FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
-            if error != nil {
-                if let error = error {
-                    print("There was a problem logging in a current user: \(error.localizedDescription)")
-                    // Alert user there was a problem logging in
-                    let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
-                    self.presentViewController(alert, animated: true, completion: nil)
-                }
-            } else {
+            if let error = error {
+                print("There was a problem logging in a current user: \(error.localizedDescription)")
+                // Alert user there was a problem logging in
+                let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            } else if let user = user {
+                
                 print("User logged in successfully!")
+                
+                TPUser.getUserFromFirebase(user.uid, completion: { (pandaUser) in
+                    self.store.tpUser = pandaUser
+                    print("This is the TPUser dictionary from loginCurrentUser saved to the DataStore: \(self.store.tpUser?.dictionary)")
+                })
+                
                 self.showTabBarViewForUser()
-            }
-            // let currentPanda = TPUser(email: user?.email, uid: user?.uid)
+                
+            } else { print("Couldn't get user.") }
             
         })
     }
     
     func userAlreadyLoggedIn() -> Bool {
-        if FIRAuth.auth()?.currentUser != nil {
+        
+        if let currentPandauser = FIRAuth.auth()?.currentUser {
+            TPUser.getUserFromFirebase(currentPandauser.uid, completion: { (pandaUser) in
+                self.store.tpUser = pandaUser
+                print("Auto logged in TPUser dictionary from loginCurrentUser saved to the DataStore: \(self.store.tpUser?.dictionary)")
+            })
             return true
         }
         return false
