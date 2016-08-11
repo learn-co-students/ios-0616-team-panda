@@ -11,12 +11,12 @@ import ChameleonFramework
 import SwiftyButton
 import Former
 
-enum WhichInterestsStyle {
-    case SolveProblem
-    case UnderstandProblem
-    case IdeaExpressed
-    case IdeasFormed
-    case Unknown
+enum WhichInterestsStyle : String {
+    case SolveProblem = "Solve Problem"
+    case UnderstandProblem = "Understand Problem"
+    case IdeaExpressed = "Idea Expressed"
+    case IdeasFormed = "Ideas Formed"
+    case Unknown = "Unknown"
 }
 
 class WhichInterestsYouViewController : UIViewController {
@@ -66,7 +66,6 @@ class WhichInterestsYouViewController : UIViewController {
         self.createViews()
     }
     
-
     func createViews() {
         
         self.titleTextLabel = UILabel()
@@ -101,7 +100,7 @@ class WhichInterestsYouViewController : UIViewController {
  *  TableView and Cell Delegate Functions
  */
 extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewDataSource, SubmitTableViewCellDelegate {
-
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.row == self.interestsArray.count { // add submit button
@@ -137,11 +136,54 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         return false
     }
     
+    /*********
+        BUG: SUBMIT TAPPED ACTION DOESN'T ALWAYS CALL FUNCTION.
+    **********/
     func submitTapped(sender: AnyObject) {
         
-        /*
-         *  Need to update current pandaUser's data with questionaire.
-         */
+        if let currentPanda = DataStore.store.tpUser {
+        
+            currentPanda.interestsAnswer.removeAll()
+            
+            var i = 0
+            while i < self.interestsArray.count {
+                guard let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? InterestsTableViewCell else { return }
+                if cell.isChecked {
+                    currentPanda.interestsAnswer.append(self.interestsArray[i])
+                }
+                i += 1
+            }
+            
+            switch self.uiStyle {
+            case .SolveProblem:
+                currentPanda.tellUsAnswer = WouldYouRatherStyle.Make.rawValue
+                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.SolveProblem.rawValue
+
+            case .UnderstandProblem:
+                currentPanda.tellUsAnswer = WouldYouRatherStyle.Make.rawValue
+                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.UnderstandProblem.rawValue
+            
+            case .IdeaExpressed:
+                currentPanda.tellUsAnswer = WouldYouRatherStyle.Think.rawValue
+                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.IdeaExpressed.rawValue
+            case .IdeasFormed:
+                currentPanda.tellUsAnswer = WouldYouRatherStyle.Think.rawValue
+                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.IdeasFormed.rawValue
+                
+            default: // Unknown answer
+                currentPanda.tellUsAnswer = WouldYouRatherStyle.Unknown.rawValue
+                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.Unknown.rawValue
+            }
+            
+            print("Tell us think or make: \(currentPanda.tellUsAnswer)")
+            print("Would you rather style: \(currentPanda.wouldYouRatherAnswer)")
+            print("Interests Answer: \(currentPanda.interestsAnswer)")
+            
+            currentPanda.updateDatabase()
+        } else {
+            print("Unable to get current panda user.")
+        }
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")

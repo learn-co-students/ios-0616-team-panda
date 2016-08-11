@@ -10,10 +10,10 @@ import Foundation
 import ChameleonFramework
 import SwiftyButton
 
-enum WouldYouRatherStyle {
-    case Make
-    case Think
-    case Unknown
+enum WouldYouRatherStyle : String {
+    case Make = "Make"
+    case Think = "Think"
+    case Unknown = "Unknown"
 }
 
 class WouldYouRatherViewController : UIViewController {
@@ -49,19 +49,39 @@ class WouldYouRatherViewController : UIViewController {
         
         let nextVCStyle : WhichInterestsStyle
         
-        if self.uiStyle == .Make && sender == topButton {
-            print("UIStyle: Make.  Solve Problem tapped")
-            nextVCStyle = .SolveProblem
-        } else if self.uiStyle == .Make && sender == bottomButton {
-            print("UIStyle: Make.  Understand Problem tapped")
-            nextVCStyle = .UnderstandProblem
-        } else if self.uiStyle == .Think && sender == topButton {
-            print("UIStyle: Think.  Ideas Expressed tapped")
-            nextVCStyle = .IdeaExpressed
-        } else {
-            print("UIStyle: Think.  Ideas Formed tapped")
-            nextVCStyle = .IdeasFormed
+        switch sender {
+        case topButton:
+            
+            switch self.uiStyle {
+            case .Make:
+                nextVCStyle = .SolveProblem
+            default: // .Think
+                nextVCStyle = .IdeaExpressed
+            }
+            
+        default: // bottom button
+            switch self.uiStyle {
+            case .Make:
+                nextVCStyle = .UnderstandProblem
+            default: // .Think
+                nextVCStyle = .IdeasFormed
+
+            }
         }
+        
+//        if self.uiStyle == .Make && sender == topButton {
+//            print("UIStyle: Make.  Solve Problem tapped")
+//            nextVCStyle = .SolveProblem
+//        } else if self.uiStyle == .Make && sender == bottomButton {
+//            print("UIStyle: Make.  Understand Problem tapped")
+//            nextVCStyle = .UnderstandProblem
+//        } else if self.uiStyle == .Think && sender == topButton {
+//            print("UIStyle: Think.  Ideas Expressed tapped")
+//            nextVCStyle = .IdeaExpressed
+//        } else {
+//            print("UIStyle: Think.  Ideas Formed tapped")
+//            nextVCStyle = .IdeasFormed
+//        }
         
         signUpVC.nextViewController(nextVCStyle)
         
