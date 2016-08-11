@@ -32,15 +32,21 @@ class TPUser {
         
         self.tellUsAnswer = ""
         self.wouldYouRatherAnswer = ""
-        self.interestsAnswer = []
+        self.interestsAnswer = [""]
     }
     
     func updateDatabase() {
         
-        let ref = FIRDatabase.database().reference()
+        let ref = FIRDatabase.database().referenceFromURL(databaseRefURL)
         
-        ref.setValue(self.dictionary, forKeyPath: "users/\(self.uid)")
-        
+        ref.child("users/\(self.uid)").updateChildValues(self.dictionary) { (error, dbRef) in
+            if let error = error {
+                print("Error error error: \(error.localizedDescription)")
+            } else {
+                print("This is the database reference description: \(dbRef.description())")
+                print("This is the new user's Dictionary: \(self.dictionary)")
+            }
+        }
     }
     
     func updateUserProfile() {
@@ -52,6 +58,7 @@ class TPUser {
                 print(error.localizedDescription)
             }
         }
+        self.updateDatabase()
     }
     
     class func userFromDictionary(dictionary : [String : AnyObject], uid : String) -> TPUser? {
@@ -79,13 +86,15 @@ class TPUser {
     
     class func getUserFromFirebase(uid : String, completion: (TPUser?)->()) {
         
-        let ref = FIRDatabase.database().reference()
+        let ref = FIRDatabase.database().referenceFromURL(databaseRefURL)
         
         ref.child("users/\(uid)").observeSingleEventOfType(.Value, withBlock: { (userSnapshot) in
             
             if let userSnapshot = userSnapshot.value as? [String : AnyObject] {
                 
                 completion(TPUser.userFromDictionary(userSnapshot, uid: uid))
+            } else {
+                print("This is the user snapshot: \(userSnapshot)")
             }
             
         })

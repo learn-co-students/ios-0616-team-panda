@@ -11,6 +11,7 @@ import SnapKit
 import FBSDKLoginKit
 import Firebase
 import SwiftyButton
+import ChameleonFramework
 
 class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate  {
     
@@ -22,7 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     var googleLoginButton = GIDSignInButton()
     var facebookLoginButton = FBSDKLoginButton()
     var ref: FIRDatabaseReference!
-    // let store = DataStore.store
+    let store = DataStore.store
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,19 +80,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         self.viewsConstraints()
         
-        self.view.backgroundColor = UIColor.grayColor()
-        self.emailTextField.backgroundColor = UIColor.whiteColor()
-        self.passwordTextField.backgroundColor = UIColor.whiteColor()
-        self.loginButton.buttonColor = UIColor.blueColor()
-        self.loginButton.shadowHeight = 6
-        self.loginButton.shadowColor = UIColor.whiteColor()
-        self.loginButton.buttonPressDepth = 0.5
-        self.loginButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
-        self.signupButton.buttonColor = UIColor.blueColor()
-        self.signupButton.shadowHeight = 6
-        self.signupButton.shadowColor = UIColor.whiteColor()
-        self.signupButton.buttonPressDepth = 0.5
-        self.signupButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
+        self.view.backgroundColor = FlatBlueDark()
+        self.emailTextField.backgroundColor = FlatWhite()
+        self.passwordTextField.backgroundColor = FlatWhite()
+        self.loginButton.buttonColor = FlatMintDark().darkenByPercentage(0.1)
+        self.loginButton.highlightedColor = FlatMintDark().darkenByPercentage(0.2)
+        self.loginButton.shadowHeight = 5
+        self.loginButton.shadowColor = FlatMintDark().darkenByPercentage(0.2)
+        self.loginButton.buttonPressDepth = 0.65
+        self.loginButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
+        self.signupButton.buttonColor = FlatMintDark().darkenByPercentage(0.1)
+        self.signupButton.highlightedColor = FlatMintDark().darkenByPercentage(0.2)
+        self.signupButton.shadowHeight = 5
+        self.signupButton.shadowColor = FlatMintDark().darkenByPercentage(0.2)
+        self.signupButton.buttonPressDepth = 0.65
+        self.signupButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
         
     }
     
@@ -127,18 +130,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             make.centerX.equalTo(self.view)
             make.centerY.equalTo(self.view).offset(60)
         }
-        self.loginButton.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(30)
-            make.centerX.equalTo(self.view).offset(50)
-            make.width.equalTo(self.view.widthAnchor).offset(75)
-            make.height.equalTo(self.view.heightAnchor).offset(25)
-        }
-        self.signupButton.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(30)
-            make.centerX.equalTo(self.view).offset(-50)
-            make.width.equalTo(self.view.widthAnchor).offset(75)
-            make.height.equalTo(self.view.heightAnchor).offset(25)
-        }
+        
+        self.loginButton.translatesAutoresizingMaskIntoConstraints = false
+        self.loginButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.loginButton.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant:  self.view.bounds.height/6).active = true
+        self.loginButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
+        self.loginButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
+        
+        self.signupButton.translatesAutoresizingMaskIntoConstraints = false
+        self.signupButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.signupButton.centerYAnchor.constraintEqualToAnchor(self.view.bottomAnchor, constant: -self.view.bounds.height/6).active = true
+        self.signupButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier:  0.75).active = true
+        self.signupButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier:  0.125).active = true
+        
     }
     
     func createNewUser() {
@@ -156,9 +160,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)
                 print("User successfully saved into the Firebase database! \(user?.uid) + \(user?.email)")
                 
-                // let pandaUser: TPUser = TPUser(email: user?.email, uid: user?.uid)
-                // pandaUser.updateDatabase()
-                // store.tpUser = pandaUser
+                let pandaUser: TPUser = TPUser(withEmail: (user?.email)!, uid: (user?.uid)!)
+                pandaUser.updateDatabase()
+                self.store.tpUser = pandaUser
             }
         })
     }
@@ -167,24 +171,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         guard let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
         FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
-            if error != nil {
-                if let error = error {
-                    print("There was a problem logging in a current user: \(error.localizedDescription)")
-                    // Alert user there was a problem logging in
-                    let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
-                    self.presentViewController(alert, animated: true, completion: nil)
-                }
-            } else {
+            if let error = error {
+                print("There was a problem logging in a current user: \(error.localizedDescription)")
+                // Alert user there was a problem logging in
+                let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            } else if let user = user {
+                
                 print("User logged in successfully!")
+                
+                TPUser.getUserFromFirebase(user.uid, completion: { (pandaUser) in
+                    self.store.tpUser = pandaUser
+                    print("This is the TPUser dictionary from loginCurrentUser saved to the DataStore: \(self.store.tpUser?.dictionary)")
+                })
+                
                 self.showTabBarViewForUser()
-            }
-            // let currentPanda = TPUser(email: user?.email, uid: user?.uid)
+                
+            } else { print("Couldn't get user.") }
             
         })
     }
     
     func userAlreadyLoggedIn() -> Bool {
-        if FIRAuth.auth()?.currentUser != nil {
+        
+        if let currentPandauser = FIRAuth.auth()?.currentUser {
+            TPUser.getUserFromFirebase(currentPandauser.uid, completion: { (pandaUser) in
+                self.store.tpUser = pandaUser
+                print("Auto logged in TPUser dictionary from loginCurrentUser saved to the DataStore: \(self.store.tpUser?.dictionary)")
+            })
             return true
         }
         return false
@@ -241,7 +256,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     print("There was an error Authorizing Facebook user with Firebase: \(error?.localizedDescription)")
                 } else {
                     if let fbUser = fbUser {
-                        print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
+                        print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL), Facebook user's UID: \(fbUser.uid)")
                         if let fbUserEmail = fbUser.email {
                             let values = ["email": fbUserEmail,
                             ]
