@@ -154,28 +154,7 @@
 		6E58FAFF1D54125E00C12B50 /* Team-Panda */ = {
 			isa = PBXGroup;
 			children = (
-				7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */,
-				7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */,
-				7B90EBB61D58D89C00EE475A /* WouldYouRatherViewController.swift */,
-				7B6C7E3C1D5A1E4600462368 /* WhichInterestsYouViewController.swift */,
-				7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */,
-				7BC6A0091D5BABBF00BFD0D3 /* DataStore.swift */,
-				7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */,
-				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
-				6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */,
-				7B90EBB81D592DFB00EE475A /* Constants.swift */,
-				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
 				6E58FB001D54125E00C12B50 /* AppDelegate.swift */,
-				6E58FB041D54125E00C12B50 /* Main.storyboard */,
-				6E58FB091D54125E00C12B50 /* LaunchScreen.storyboard */,
-				6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */,
-				6E5EE8071D54EDD7002671D6 /* YouViewController.swift */,
-				1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */,
-				6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */,
-				6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */,
-				1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */,
-				1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */,
-				6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */,
 				7BC289241D5CF36B0066440B /* UI */,
 				7BC289231D5CF3640066440B /* Models */,
 				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
@@ -204,14 +183,24 @@
 			path = "Team-PandaUITests";
 			sourceTree = "<group>";
 		};
+		7BADA28E1D5D2BAD00D7A9F3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */,
+				1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		7BC289231D5CF3640066440B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7B90EBB81D592DFB00EE475A /* Constants.swift */,
+				6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */,
 				7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */,
 				7BC6A0091D5BABBF00BFD0D3 /* DataStore.swift */,
 				7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */,
 				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
+				7B90EBB81D592DFB00EE475A /* Constants.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -229,11 +218,11 @@
 		7BC289251D5CF3850066440B /* Login and Signup */ = {
 			isa = PBXGroup;
 			children = (
+				6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */,
 				7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */,
 				7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */,
 				7B90EBB61D58D89C00EE475A /* WouldYouRatherViewController.swift */,
 				7B6C7E3C1D5A1E4600462368 /* WhichInterestsYouViewController.swift */,
-				6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */,
 			);
 			name = "Login and Signup";
 			sourceTree = "<group>";
@@ -241,11 +230,11 @@
 		7BC289261D5CF3A30066440B /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
+				1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */,
 				6E5EE8071D54EDD7002671D6 /* YouViewController.swift */,
 				6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */,
 				6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */,
-				1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */,
-				1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */,
+				7BADA28E1D5D2BAD00D7A9F3 /* Settings */,
 				6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */,
 			);
 			name = "Tab Bar";
