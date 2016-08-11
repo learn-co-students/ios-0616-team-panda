@@ -38,6 +38,9 @@ let checkMarkImage = UIImage(named: "checkmark")!
 
 let databaseRefURL = "https://career-options.firebaseio.com/"
 
+//Panda Blue Hex = 394D82
+
+
 //let jobDictionary : [WouldYouRatherStyle : AnyObject]
 //    
 //        = [ WouldYouRatherStyle.Make : [WhichInterestsStyle.SolveProblem : "",
@@ -49,4 +52,5 @@ let databaseRefURL = "https://career-options.firebaseio.com/"
 //
 //let interestsDictionary = [WhichInterestsStyle.SolveProblem : "",
 //    WhichInterestsStyle.UnderstandProblem : ""]
+
 

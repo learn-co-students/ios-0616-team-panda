@@ -69,7 +69,9 @@ class TPUser {
         let wouldYouRatherAnswer = dictionary["would you rather"] as? String
         let interests = dictionary["interests"] as? [String]
         
-        if let email = email, let tellUs = tellUsAnswer, let wouldYouRather = wouldYouRatherAnswer, let interests = interests {
+        if let email = email,
+            let tellUs = tellUsAnswer, let wouldYouRather = wouldYouRatherAnswer, let interests = interests
+        {
             
             let pandaUser = TPUser(withEmail: email, uid: uid)
             pandaUser.tellUsAnswer = tellUs

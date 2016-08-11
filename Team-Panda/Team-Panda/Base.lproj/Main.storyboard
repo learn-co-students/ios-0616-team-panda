@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ldx-Y0-aFl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ldx-Y0-aFl">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Discover" id="3As-xW-NbH"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="idea" id="3As-xW-NbH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkd-R1-Cho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -37,13 +37,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="DhU-1J-Myo"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="DhU-1J-Myo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRE-tC-UnJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1430" y="1075"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Search-->
         <scene sceneID="WAf-PJ-p1k">
             <objects>
                 <viewController id="Yuw-dt-TfA" customClass="SearchViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="y76-pF-FSv"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="Search" id="y76-pF-FSv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOn-Gd-Qb9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -75,7 +75,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="Vri-12-dgq"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="Vri-12-dgq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cei-Ne-oNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,7 +113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="You" id="UV1-g1-6br"/>
+                    <tabBarItem key="tabBarItem" title="You" image="You" selectedImage="You" id="UV1-g1-6br"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXA-Iv-sLH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -149,4 +149,11 @@
             <point key="canvasLocation" x="258" y="606"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Map" width="25" height="25"/>
+        <image name="Search" width="25" height="25"/>
+        <image name="You" width="25" height="25"/>
+        <image name="idea" width="25" height="25"/>
+        <image name="settings" width="20" height="20"/>
+    </resources>
 </document>
