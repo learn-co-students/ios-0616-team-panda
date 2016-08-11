@@ -11,6 +11,7 @@ import SnapKit
 import FBSDKLoginKit
 import Firebase
 import SwiftyButton
+import ChameleonFramework
 
 class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate  {
     
@@ -79,19 +80,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         self.viewsConstraints()
         
-        self.view.backgroundColor = UIColor.grayColor()
-        self.emailTextField.backgroundColor = UIColor.whiteColor()
-        self.passwordTextField.backgroundColor = UIColor.whiteColor()
-        self.loginButton.buttonColor = UIColor.blueColor()
-        self.loginButton.shadowHeight = 6
-        self.loginButton.shadowColor = UIColor.whiteColor()
-        self.loginButton.buttonPressDepth = 0.5
-        self.loginButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
-        self.signupButton.buttonColor = UIColor.blueColor()
-        self.signupButton.shadowHeight = 6
-        self.signupButton.shadowColor = UIColor.whiteColor()
-        self.signupButton.buttonPressDepth = 0.5
-        self.signupButton.titleLabel?.font = UIFont.pandaFontMedium(withSize: 17)
+        self.view.backgroundColor = FlatBlueDark()
+        self.emailTextField.backgroundColor = FlatWhite()
+        self.passwordTextField.backgroundColor = FlatWhite()
+        self.loginButton.buttonColor = FlatMintDark().darkenByPercentage(0.1)
+        self.loginButton.highlightedColor = FlatMintDark().darkenByPercentage(0.2)
+        self.loginButton.shadowHeight = 5
+        self.loginButton.shadowColor = FlatMintDark().darkenByPercentage(0.2)
+        self.loginButton.buttonPressDepth = 0.65
+        self.loginButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
+        self.signupButton.buttonColor = FlatMintDark().darkenByPercentage(0.1)
+        self.signupButton.highlightedColor = FlatMintDark().darkenByPercentage(0.2)
+        self.signupButton.shadowHeight = 5
+        self.signupButton.shadowColor = FlatMintDark().darkenByPercentage(0.2)
+        self.signupButton.buttonPressDepth = 0.65
+        self.signupButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
         
     }
     
@@ -127,18 +130,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             make.centerX.equalTo(self.view)
             make.centerY.equalTo(self.view).offset(60)
         }
-        self.loginButton.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(30)
-            make.centerX.equalTo(self.view).offset(50)
-            make.width.equalTo(self.view.widthAnchor).offset(75)
-            make.height.equalTo(self.view.heightAnchor).offset(25)
-        }
-        self.signupButton.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(30)
-            make.centerX.equalTo(self.view).offset(-50)
-            make.width.equalTo(self.view.widthAnchor).offset(75)
-            make.height.equalTo(self.view.heightAnchor).offset(25)
-        }
+        
+        self.loginButton.translatesAutoresizingMaskIntoConstraints = false
+        self.loginButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.loginButton.centerYAnchor.constraintEqualToAnchor(self.view.bottomAnchor, constant:  -self.view.bounds.height/6).active = true
+        self.loginButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
+        self.loginButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
+        
+        self.signupButton.translatesAutoresizingMaskIntoConstraints = false
+        self.signupButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.signupButton.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant: self.view.bounds.height/6).active = true
+        self.signupButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier:  0.75).active = true
+        self.signupButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier:  0.125).active = true
+        
     }
     
     func createNewUser() {
@@ -241,7 +245,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     print("There was an error Authorizing Facebook user with Firebase: \(error?.localizedDescription)")
                 } else {
                     if let fbUser = fbUser {
-                        print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL)")
+                        print("Facebook user's email: \(fbUser.email), Facebook user's Display Name: \(fbUser.displayName), Facebook user's photoURL: \(fbUser.photoURL), Facebook user's UID: \(fbUser.uid)")
                         if let fbUserEmail = fbUser.email {
                             let values = ["email": fbUserEmail,
                             ]
