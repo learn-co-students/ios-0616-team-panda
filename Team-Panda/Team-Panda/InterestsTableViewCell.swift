@@ -51,7 +51,7 @@ class InterestsTableViewCell : UITableViewCell {
         self.button.translatesAutoresizingMaskIntoConstraints = false
         
         self.button.heightAnchor.constraintEqualToAnchor(self.contentView.heightAnchor, multiplier: 0.8).active = true
-        self.button.widthAnchor.constraintEqualToAnchor(self.contentView.widthAnchor, multiplier: 0.75).active = true
+        self.button.widthAnchor.constraintEqualToAnchor(self.contentView.widthAnchor, multiplier: 0.6).active = true
         self.button.centerYAnchor.constraintEqualToAnchor(self.contentView.centerYAnchor).active = true
         self.button.centerXAnchor.constraintEqualToAnchor(self.contentView.centerXAnchor).active = true
         self.button.addTarget(self, action: #selector(didPressButton(_:)), forControlEvents: .TouchUpInside)
@@ -131,12 +131,11 @@ class SubmitTableViewCell : UITableViewCell {
     }
     
     func submitButtonTapped(sender : SwiftyButton) {
-        
-        print("This should finish the questionaire!")
-        
         if let delegate = self.delegate {
             delegate.submitTapped(sender)
         }
-        
+        else {
+            print("There is no functionality associated with the button. Did you set the delegate and implement submitButtonTapped?")
+        }
     }
 }

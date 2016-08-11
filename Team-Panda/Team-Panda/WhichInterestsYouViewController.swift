@@ -33,12 +33,10 @@ class WhichInterestsYouViewController : UIViewController {
     let submitIdentifier = "submitCell"
     
     var interestsArray : [String] {
-        if uiStyle == .SolveProblem || uiStyle == .UnderstandProblem {
-            return ["Human Body", "Environment", "Transportation", "Architecture", "Teaching"]
-        }
-        else if uiStyle == .IdeaExpressed || uiStyle == .IdeasFormed {
-            return ["Law", "Written Communication", "Art", "Sports", "Teaching", "Health"]
-        }
+        if uiStyle == .SolveProblem || uiStyle == .UnderstandProblem { return solveProblemArray }
+        else if uiStyle == .UnderstandProblem { return underStandProblemArray }
+        else if uiStyle == .IdeaExpressed { return ideaExpressedArray }
+        else if uiStyle == .IdeasFormed { return ideaFormedArray }
         else { return ["Try again"] }
 
     }
@@ -132,7 +130,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 65.0
+        return self.tableView.bounds.size.height / CGFloat(self.interestsArray.count)
     }
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -141,11 +139,14 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
     
     func submitTapped(sender: AnyObject) {
         
+        /*
+         *  Need to update current pandaUser's data with questionaire.
+         */
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
         
         self.showViewController(tabBarVC, sender: sender)
-
+        
     }
 }
