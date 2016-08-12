@@ -22,9 +22,7 @@ class JobDetailViewController: UIViewController {
     var locationQuotientLabel = UILabel()
     var locationQuotientUnitedStatesMapUIImageView = UIImageView()
     var backButton = UIButton()
-    
-    let placeHolderState = "Idaho"
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         createViews()
