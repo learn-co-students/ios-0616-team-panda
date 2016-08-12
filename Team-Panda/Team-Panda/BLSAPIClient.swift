@@ -8,9 +8,9 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class BLSAPIClient {
-    
     
     class func getMultipleOccupationsWithCompletion(completion: (NSDictionary) -> ()) {
         
@@ -29,29 +29,15 @@ class BLSAPIClient {
         ]
         
         Alamofire.request(.POST, Secrets().apiURL, parameters: params, encoding: .JSON, headers: header).responseJSON { (blsResponse) in
-            if let JSON = blsResponse.result.value {
+            if let json = blsResponse.result.value {
                 guard
-                    let careerResults = JSON as? NSDictionary
+                    let careerResults = json as? NSDictionary
                     else {
                         print("There was a problem pulling the Career Results from BLS.")
                         return
                 }
-                
-                guard
-                    let seriesValue = careerResults["series"] as? [NSDictionary] else {
-                        return
-                }
-                let specificCareerInfo = seriesValue[0]
-                guard
-                    let specificCareerDictionary = specificCareerInfo["catalog"] as? NSDictionary,
-                    let careerName = specificCareerDictionary["occupation"] else {
-                        return
-                }
-                
-                print("This is my career name: \(careerName)")
                 completion(careerResults)
             }
         }
-        
     }
 }
