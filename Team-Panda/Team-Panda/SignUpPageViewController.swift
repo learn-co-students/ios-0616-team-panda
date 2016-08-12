@@ -96,6 +96,7 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
             return nil
         } else {
             return self.viewsArray[index + 1]
-        }    }
+        }
+    }
     
 }
