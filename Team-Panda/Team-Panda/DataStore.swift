@@ -21,7 +21,10 @@ class DataStore {
     
     func getMultipleOccupationsWithCompletion(completion: () -> ()) {
         
+        self.careerResultsArray.removeAll()
+        
         BLSAPIClient.getMultipleOccupationsWithCompletion { (careerResults) in
+            
             guard
                 let resultsValue = careerResults["Results"] as? NSDictionary,
                 let seriesValue = resultsValue["series"] as? [NSDictionary] else {
