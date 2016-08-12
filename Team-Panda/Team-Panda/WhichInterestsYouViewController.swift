@@ -147,7 +147,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         
             currentPanda.interestsAnswer.removeAll()
             
-            var i = 0
+            var i = 1
             while i < self.interestsArray.count {
                 guard let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? InterestsTableViewCell else { return }
                 if cell.isChecked {
