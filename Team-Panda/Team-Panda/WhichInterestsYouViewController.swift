@@ -141,6 +141,8 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
     **********/
     func submitTapped(sender: AnyObject) {
         
+        print("Submit tapped in Interests!")
+        
         if let currentPanda = DataStore.store.tpUser {
         
             currentPanda.interestsAnswer.removeAll()
