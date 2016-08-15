@@ -184,9 +184,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 TPUser.getUserFromFirebase(user.uid, completion: { (pandaUser) in
                     self.store.tpUser = pandaUser
                     print("This is the TPUser dictionary from loginCurrentUser saved to the DataStore: \(self.store.tpUser?.dictionary)")
+                    self.showTabBarViewForUser()
                 })
-                
-                self.showTabBarViewForUser()
                 
             } else { print("Couldn't get user.") }
             

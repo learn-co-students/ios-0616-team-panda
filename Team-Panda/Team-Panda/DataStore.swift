@@ -19,11 +19,11 @@ class DataStore {
     
     private init() { }
     
-    func getMultipleOccupationsWithCompletion(completion: () -> ()) {
+    func getMultipleOccupationsWithCompletion(params : [String : AnyObject], completion: () -> ()) {
         
         self.careerResultsArray.removeAll()
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion { (careerResults) in
+        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults) in
             
             guard
                 let resultsValue = careerResults["Results"] as? NSDictionary,
@@ -44,15 +44,15 @@ class DataStore {
                 print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
             }
             
-            let specificCareerInfo = seriesValue[0]
-            guard
-                let specificCareerDictionary = specificCareerInfo["catalog"] as? NSDictionary,
-                let careerName = specificCareerDictionary["occupation"] as? String else {
-                    return
-            }
-            
-            self.careerNameCellText = careerName
-            print("Career name from API call: \(self.careerNameCellText)")
+          //  let specificCareerInfo = seriesValue[0]
+//            guard
+//                let specificCareerDictionary = specificCareerInfo["catalog"] as? NSDictionary,
+//                let careerName = specificCareerDictionary["occupation"] as? String else {
+//                    return
+//            }
+//            
+//            self.careerNameCellText = careerName
+//            print("Career name from API call: \(self.careerNameCellText)")
             completion()
         }
     }
