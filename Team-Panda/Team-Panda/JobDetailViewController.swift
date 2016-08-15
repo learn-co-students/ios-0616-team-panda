@@ -9,8 +9,9 @@ import UIKit
 import ChameleonFramework
 import SnapKit
 import SwiftFontName
+import USStatesColorMap
 
-class JobDetailViewController: UIViewController {
+class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     var scrollView = UIScrollView()
     var careerHeaderLabel = UILabel()
@@ -32,9 +33,16 @@ class JobDetailViewController: UIViewController {
     
     func createViews() {
         
-        scrollView.frame = self.view.frame
+        scrollView = UIScrollView(frame: view.bounds)
+        self.scrollView.delegate = self
+        
+        scrollView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
+        scrollView.contentSize = CGSizeMake(view.bounds.width, view.bounds.height + 500)
+        
+        scrollView.userInteractionEnabled = true
         scrollView.scrollEnabled = true
-        self.view.addSubview(scrollView)
+        
+        //i need function to calculate the total height of the contents and then use those ints and set them to scrollView.contentSize
         
         let mapImage = UIImage(named: "DummyUSAMap")
         locationQuotientUnitedStatesMapUIImageView = UIImageView(image: mapImage)
@@ -52,18 +60,31 @@ class JobDetailViewController: UIViewController {
         scrollView.addSubview(locationQuotientLabel)
         scrollView.addSubview(locationQuotientUnitedStatesMapUIImageView)
         
+        self.view.addSubview(scrollView)
+        
+        print(scrollView.subviews)
+//        scrollView.snp_makeConstraints { (make) in
+//            //make.centerX.equalTo(self.view)
+//            make.top.equalTo(self.view)
+//            make.width.equalTo(self.view)
+//        }
+        
         self.careerHeaderLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.top.equalTo(self.view).offset(40)
             make.width.equalTo(self.view).multipliedBy(0.9)
             make.height.equalTo(self.view).multipliedBy(0.1)
         }
-
+        self.careerHeaderLabel.sizeToFit()
+        self.careerHeaderLabel.adjustsFontSizeToFitWidth = true
+        
         self.careerDescriptionLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.top.equalTo(self.careerHeaderLabel.bottomAnchor).offset(120)
             make.width.equalTo(self.view).multipliedBy(0.9)
         }
+        
+        self.careerDescriptionLabel.allowsEditingTextAttributes = false
         
         self.careerDescriptionLabel.sizeToFit()
         self.careerDescriptionLabel.scrollEnabled = false
@@ -148,14 +169,14 @@ class JobDetailViewController: UIViewController {
     
     func setTextForUILabels() {
         
-        minEduReqsHeaderLabel.text = "Minimum Education Requirements"
-        salaryHeaderLabel.text = "Average Salary"
+        minEduReqsHeaderLabel.text = "Typical Entry-Level Education"
+        salaryHeaderLabel.text = "Median Pay"
         locationQuotientLabel.text = "Demand for this role across the US"
         
-        let careerHeaderPlaceholder = "Mobile Developer"
-        let placeholderSalaryInt = 70000
-        let placeholderEdReq = "Flatiron School"
-        let placeholderCareerDescription = "Mobile App Developers are essentially the rock stars of the IT world. They are a fresh generation of techies. The profession is new – so the majority of people in the field are recent grads who taught themselves smartphone platforms in their university dorm. There is also a growing demographic of software developers who are applying their core development skills to transition into mobile application development."
+        let careerHeaderPlaceholder = "Aerospace Engineering and Operations Technicians"
+        let placeholderSalaryInt = 	66180
+        let placeholderEdReq = "Associate's degree"
+        let placeholderCareerDescription = "Aerospace engineering and operations technicians operate and maintain equipment used in developing, testing, and producing new aircraft and spacecraft. Increasingly, these workers are using computer-based modeling and simulation tools and processes in their work."
         
         careerHeaderLabel.text = careerHeaderPlaceholder.uppercaseString
         careerDescriptionLabel.text = placeholderCareerDescription
