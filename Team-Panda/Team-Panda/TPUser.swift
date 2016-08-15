@@ -18,11 +18,14 @@ class TPUser {
     var wouldYouRatherAnswer : String
     var interestsAnswer : [String]
     
+    var socCodes : [Int]
+    
     var dictionary : [String : AnyObject] {
         return ["email"             : self.email,
                 "tell us"           : self.tellUsAnswer,
                 "would you rather"  : self.wouldYouRatherAnswer,
-                "interests"         : self.interestsAnswer]
+                "interests"         : self.interestsAnswer,
+                "soc codes"         : self.socCodes]
     }
     
     init(withEmail email : String, uid : String) {
@@ -33,6 +36,7 @@ class TPUser {
         self.tellUsAnswer = ""
         self.wouldYouRatherAnswer = ""
         self.interestsAnswer = [""]
+        self.socCodes = [0]
     }
     
     func updateDatabase() {
@@ -47,6 +51,8 @@ class TPUser {
                 print("This is the new user's Dictionary: \(self.dictionary)")
             }
         }
+        
+        DataStore.store.tpUser = self
     }
     
     func updateUserProfile() {
@@ -68,15 +74,20 @@ class TPUser {
         let tellUsAnswer = dictionary["tell us"] as? String
         let wouldYouRatherAnswer = dictionary["would you rather"] as? String
         let interests = dictionary["interests"] as? [String]
+        let codes = dictionary["soc codes"] as? [Int]
         
-        if let email = email,
-            let tellUs = tellUsAnswer, let wouldYouRather = wouldYouRatherAnswer, let interests = interests
+        if  let email = email,
+            let tellUs = tellUsAnswer,
+            let wouldYouRather = wouldYouRatherAnswer,
+            let interests = interests,
+            let codes = codes
         {
             
             let pandaUser = TPUser(withEmail: email, uid: uid)
             pandaUser.tellUsAnswer = tellUs
             pandaUser.wouldYouRatherAnswer = wouldYouRather
             pandaUser.interestsAnswer = interests
+            pandaUser.socCodes = codes
             
             return pandaUser
         }
@@ -95,6 +106,7 @@ class TPUser {
             if let userSnapshot = userSnapshot.value as? [String : AnyObject] {
                 
                 completion(TPUser.userFromDictionary(userSnapshot, uid: uid))
+                
             } else {
                 print("This is the user snapshot: \(userSnapshot)")
             }

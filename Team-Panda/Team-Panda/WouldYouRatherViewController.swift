@@ -69,20 +69,6 @@ class WouldYouRatherViewController : UIViewController {
             }
         }
         
-//        if self.uiStyle == .Make && sender == topButton {
-//            print("UIStyle: Make.  Solve Problem tapped")
-//            nextVCStyle = .SolveProblem
-//        } else if self.uiStyle == .Make && sender == bottomButton {
-//            print("UIStyle: Make.  Understand Problem tapped")
-//            nextVCStyle = .UnderstandProblem
-//        } else if self.uiStyle == .Think && sender == topButton {
-//            print("UIStyle: Think.  Ideas Expressed tapped")
-//            nextVCStyle = .IdeaExpressed
-//        } else {
-//            print("UIStyle: Think.  Ideas Formed tapped")
-//            nextVCStyle = .IdeasFormed
-//        }
-        
         signUpVC.nextViewController(nextVCStyle)
         
     }

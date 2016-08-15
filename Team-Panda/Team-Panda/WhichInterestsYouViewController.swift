@@ -32,6 +32,8 @@ class WhichInterestsYouViewController : UIViewController {
     let interestsIdentifier = "interestsCell"
     let submitIdentifier = "submitCell"
     
+    let maxCodes : Int = 50
+    
     var interestsArray : [String] {
         if uiStyle == .SolveProblem || uiStyle == .UnderstandProblem { return solveProblemArray }
         else if uiStyle == .UnderstandProblem { return underStandProblemArray }
@@ -143,54 +145,121 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         
         print("Submit tapped in Interests!")
         
-        if let currentPanda = DataStore.store.tpUser {
+        var params : [String : AnyObject] = [:]
         
-            currentPanda.interestsAnswer.removeAll()
+        if let currentPanda = DataStore.store.tpUser {
             
-            var i = 1
-            while i < self.interestsArray.count {
-                guard let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? InterestsTableViewCell else { return }
-                if cell.isChecked {
-                    currentPanda.interestsAnswer.append(self.interestsArray[i])
-                }
-                i += 1
-            }
+            self.setUserAnswers(forUser: currentPanda)
+            let SOCcodesArray = self.getNewJobs(forUser: currentPanda)
             
-            switch self.uiStyle {
-            case .SolveProblem:
-                currentPanda.tellUsAnswer = WouldYouRatherStyle.Make.rawValue
-                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.SolveProblem.rawValue
-
-            case .UnderstandProblem:
-                currentPanda.tellUsAnswer = WouldYouRatherStyle.Make.rawValue
-                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.UnderstandProblem.rawValue
+            currentPanda.socCodes.removeAll()
+            currentPanda.socCodes = self.parseSOCCodes(SOCcodesArray)
             
-            case .IdeaExpressed:
-                currentPanda.tellUsAnswer = WouldYouRatherStyle.Think.rawValue
-                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.IdeaExpressed.rawValue
-            case .IdeasFormed:
-                currentPanda.tellUsAnswer = WouldYouRatherStyle.Think.rawValue
-                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.IdeasFormed.rawValue
-                
-            default: // Unknown answer
-                currentPanda.tellUsAnswer = WouldYouRatherStyle.Unknown.rawValue
-                currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.Unknown.rawValue
-            }
-            
-            print("Tell us think or make: \(currentPanda.tellUsAnswer)")
-            print("Would you rather style: \(currentPanda.wouldYouRatherAnswer)")
-            print("Interests Answer: \(currentPanda.interestsAnswer)")
+            params = JobsSeries.createSeriesIDsFromSOC(currentPanda.socCodes, withDataType: JobsSeries.employment)
             
             currentPanda.updateDatabase()
-        } else {
-            print("Unable to get current panda user.")
         }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
         
+        if let youVC = tabBarVC.childViewControllers.first as? YouTableViewController {
+            youVC.params = params
+        }
+        
         self.showViewController(tabBarVC, sender: sender)
         
+    }
+    
+    func setUserAnswers(forUser currentPanda : TPUser) {
+        
+        currentPanda.interestsAnswer.removeAll()
+        
+        var i = 0
+        while i < self.interestsArray.count {
+            if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? InterestsTableViewCell  {
+                if cell.isChecked {
+                    currentPanda.interestsAnswer.append(self.interestsArray[i])
+                }
+            }
+            i += 1
+        }
+        
+        switch self.uiStyle {
+            
+        case .SolveProblem:
+            
+            currentPanda.tellUsAnswer = WouldYouRatherStyle.Make.rawValue
+            currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.SolveProblem.rawValue
+            
+        case .UnderstandProblem:
+            
+            currentPanda.tellUsAnswer = WouldYouRatherStyle.Make.rawValue
+            currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.UnderstandProblem.rawValue
+            
+        case .IdeaExpressed:
+            
+            currentPanda.tellUsAnswer = WouldYouRatherStyle.Think.rawValue
+            currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.IdeaExpressed.rawValue
+            
+        case .IdeasFormed:
+            
+            currentPanda.tellUsAnswer = WouldYouRatherStyle.Think.rawValue
+            currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.IdeasFormed.rawValue
+            
+        default: // Unknown answer
+            
+            currentPanda.tellUsAnswer = WouldYouRatherStyle.Unknown.rawValue
+            currentPanda.wouldYouRatherAnswer = WhichInterestsStyle.Unknown.rawValue
+        }
+        
+        print("User: \(currentPanda.email) updated answers to questionaire: ")
+        print("Tell us think or make: \(currentPanda.tellUsAnswer)")
+        print("Would you rather style: \(currentPanda.wouldYouRatherAnswer)")
+        print("Interests Answer: \(currentPanda.interestsAnswer)")
+
+    }
+    
+    func getNewJobs(forUser currentPanda : TPUser) -> [[Int]] {
+        
+        var interestsCodes : [[Int]] = []
+        
+        if let interestsStyle = jobsDictionary[self.uiStyle] as? [String : [Int]] {
+            
+            for interest in currentPanda.interestsAnswer {
+                
+                if let interestCodeArray = interestsStyle[interest] {
+                
+                    interestsCodes.append(interestCodeArray)
+                }
+            }
+        }
+        
+        return interestsCodes
+    }
+    
+    func parseSOCCodes(interestsCodes : [[Int]]) -> [Int] {
+        
+        let numberOfCodePerInterest = self.maxCodes/interestsCodes.count
+        
+        var codes : [Int] = []
+        
+        for interests in interestsCodes {
+            
+            if interests.count <= numberOfCodePerInterest {
+                codes.appendContentsOf(interests)
+            }
+            else {
+                var i = 0
+                
+                while i < numberOfCodePerInterest {
+                    codes.append(interests[i])
+                    i += 1
+                }
+            }
+        }
+        
+        return codes
     }
 }
