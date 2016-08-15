@@ -33,6 +33,7 @@ class JobDetailViewController: UIViewController {
     func createViews() {
         
         scrollView.frame = self.view.frame
+        scrollView.scrollEnabled = true
         self.view.addSubview(scrollView)
         
         let mapImage = UIImage(named: "DummyUSAMap")

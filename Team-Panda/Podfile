@@ -17,6 +17,7 @@ target 'Team-Panda' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod "Former"
+  pod 'USStatesColorMap', '1.0.0'
 
   target 'Team-PandaTests' do
     inherit! :search_paths
