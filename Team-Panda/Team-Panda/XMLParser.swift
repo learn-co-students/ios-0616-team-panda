@@ -24,28 +24,27 @@ class XMLParser: NSObject, NSXMLParserDelegate {
         
         var i = 0
         while i < xml["ooh"]["occupation"].all.count {
+            
             let occupationIndex = xml["ooh"]["occupation"][i]
             guard
                 let occupationTitle = occupationIndex["title"].element?.text,
                 let occupationDescription = occupationIndex["description"].element?.text,
-                let howToBecomeOne = occupationIndex["how_to_become_one"]["section_body"].element?.text
-                else {
+                let howToBecomeOne = occupationIndex["how_to_become_one"]["section_body"].element?.text else {
                     return
             }
+            
+            let dataForOccupation = ["Title": occupationTitle,
+                                     "Description" : occupationDescription,
+                                     "How to Become One": howToBecomeOne,
+                                     ]
             
             var j = 0
             while j < occupationIndex["soc_coverage"]["soc_code"].all.count {
                 
                 if let code = occupationIndex["soc_coverage"]["soc_code"][j].element?.text {
                     
-                    let dataForOccupation = ["Title": occupationTitle,
-                                             "Description" : occupationDescription,
-                                             "How to Become One": howToBecomeOne,
-                                             ]
-                    
                     self.occupationalData[code] = dataForOccupation
-                    
-                    print("Occupational Data Dictionary: \(dataForOccupation)")
+                    print("Occupational data dictionary: \(self.occupationalData)")
                 } else {
                     print("There was an error unwrapping soc code at index J: \(j)")
                 }

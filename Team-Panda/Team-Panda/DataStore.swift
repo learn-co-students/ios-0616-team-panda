@@ -40,7 +40,7 @@ class DataStore {
                 }
                 self.careerResultsArray.append(careerName)
             }
-            XMLParser().parsingXML()
+           // XMLParser().parsingXML()
             print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
             completion()
         }
