@@ -22,20 +22,31 @@ class XMLParser: NSObject, NSXMLParserDelegate {
     }
     
     class func playingWithSWMXMLHash() {
+        guard
+            let xmlURL = NSURL(string: "http://www.bls.gov/ooh/xml-compilation.xml"),
+            let xmlData = NSData(contentsOfURL: xmlURL) else {
+                return
+        }
+        
         let xml = SWXMLHash.config {
             config in
             config.shouldProcessLazily = true
-            }.parse((NSBundle.mainBundle().resourcePath?.stringByAppendingString("xml-compilation.xml"))!)
+            }.parse(xmlData)
         
-        guard let occupationName = xml["ooh"]["occupation"]["title"].element?.text else {
-            return
+        
+        for occupation in xml["ooh"]["occupation"] {
+            guard
+                let occupationTitle = occupation["title"].element?.text,
+                let occupationDescription = occupation["description"].element?.text,
+                let howToBecomeOne = occupation["how_to_become_one"]["section_body"].element?.text else {
+                    return
+            }
+            
+            print("This is the occupation data: \(occupationTitle), \(occupationDescription), \(howToBecomeOne)")
         }
         
-        if occupationName == "Accountants and Auditors" {
-            
-            print("Value for XML file in XMLParser: \(xml["ooh"]["occupation"]["how_to_become_one"].element?.text)")
-            
-        }
+        
+        // print("Value for XML file in XMLParser: \(xml["ooh"]["occupation"]["how_to_become_one"].element?.text)")
         
     }
     

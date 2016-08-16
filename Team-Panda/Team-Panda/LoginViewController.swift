@@ -165,7 +165,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     func loginCurrentUser() {
         guard let userEmail = self.emailTextField.text,
-            let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
+            let userPassword = self.passwordTextField.text else {
+                print("There's no text in username / password fields!")
+                return
+        }
+        
         FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
             if let error = error {
                 // Alert user there was a problem logging in

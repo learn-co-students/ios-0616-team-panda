@@ -40,6 +40,7 @@ class DataStore {
                 }
                 self.careerResultsArray.append(careerName)
             }
+            XMLParser.playingWithSWMXMLHash()
             print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
             completion()
         }
