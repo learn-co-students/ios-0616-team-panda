@@ -40,14 +40,13 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView = UIScrollView(frame: view.bounds)
         self.scrollView.delegate = self
+//        self.edgesForExtendedLayout = UIRectEdge.None
+//        self.extendedLayoutIncludesOpaqueBars = false
         
         scrollView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
-        scrollView.contentSize = CGSizeMake(view.bounds.width, view.bounds.height + 800)
         
         scrollView.userInteractionEnabled = true
         scrollView.scrollEnabled = true
-        
-        //i need function to calculate the total height of the contents and then use those ints and set them to scrollView.contentSize
         
         scrollView.addSubview(careerHeaderLabel)
         scrollView.addSubview(careerDescriptionLabel)
@@ -66,6 +65,12 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.usaColorMapView = USStatesColorMap(frame: CGRectMake(0, 0, self.scrollView.frame.width - 20, self.scrollView.frame.width - 20))
         self.usaColorMapView.setColorForAllStates(UIColor.flatRedColor())
         self.usaColorMapView.backgroundColor = UIColor.clearColor()
+        
+        self.usaColorMapView.performUpdates {
+            self.usaColorMapView.setColor(UIColor.flatRedColor(), forState: Alabama)
+            self.usaColorMapView.setColor(UIColor.flatBlueColor(), forState: Alaska)
+            self.usaColorMapView.setColor(UIColor.flatGreenColor(), forState: California)
+        }
         
         scrollView.addSubview(self.usaColorMapView)
         
@@ -128,7 +133,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.payInfoButton.setTitle("?", forState: .Normal)
         self.payInfoButton.addTarget(self, action: #selector(payInfoButtonTapped), forControlEvents: .TouchUpInside)
-            
+        
         self.locationQuotientLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view).multipliedBy(0.9)
@@ -143,12 +148,15 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         self.locationQuotientInfoButton.snp_makeConstraints { (make) in
-            make.left.equalTo(self.salaryHeaderLabel.snp_rightMargin).offset(-60)
-            make.centerY.equalTo(self.salaryHeaderLabel.centerYAnchor)
+            make.left.equalTo(self.salaryHeaderLabel.snp_rightMargin).offset(-40)
+            make.centerY.equalTo(self.locationQuotientLabel.centerYAnchor)
         }
         
         self.locationQuotientInfoButton.setTitle("?", forState: .Normal)
         self.locationQuotientInfoButton.addTarget(self, action: #selector(locationQuotientButtonTapped), forControlEvents: .TouchUpInside)
+    
+        scrollView.contentSize = CGSizeMake(view.bounds.width, view.bounds.height + (self.careerDescriptionLabel.frame.height + self.usaColorMapView.frame.height + self.locationQuotientLabel.frame.height + self.careerHeaderLabel.frame.height + self.careerDescriptionLabel.frame.height))
+
     }
     
     func setStylingForViews() {
@@ -221,15 +229,14 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func setTextForUILabels() {
         
-        minEduReqsHeaderLabel.text = "Typical Entry-Level Education"
-        salaryHeaderLabel.text = "Median Pay"
-        locationQuotientLabel.text = "Demand for this role across the US"
-        
         let careerHeaderPlaceholder = "Aerospace Engineering and Operations Technicians"
         let placeholderSalaryInt = 	66180
         let placeholderEdReq = "Associate's degree"
         let placeholderCareerDescription = "Aerospace engineering and operations technicians operate and maintain equipment used in developing, testing, and producing new aircraft and spacecraft. Increasingly, these workers are using computer-based modeling and simulation tools and processes in their work."
         
+        minEduReqsHeaderLabel.text = "Typical Entry-Level Education"
+        salaryHeaderLabel.text = "Median Pay"
+        locationQuotientLabel.text = "Location Quotient"
         careerHeaderLabel.text = careerHeaderPlaceholder.uppercaseString
         careerDescriptionLabel.text = placeholderCareerDescription
         minEduReqsDescriptionLabel.text = placeholderEdReq
