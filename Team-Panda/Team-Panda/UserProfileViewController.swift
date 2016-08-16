@@ -28,17 +28,16 @@ class UserProfileViewController: UIViewController {
         super.viewDidLoad()
         createViews()
         styleUserProfileViews()
-        
     }
     
     @IBAction func saveChangesButtonTapped(sender: UIButton!) {
-    let newEmail = self.email.text!
-    DataStore.store.tpUser?.email = newEmail
-    DataStore.store.tpUser?.updateUserProfile()
-    print("TPUser email was updated to \(DataStore.store.tpUser?.email)")
-    let alert = Constants.displayAlertWithTryAgain("Your email was saved as", message: "\(newEmail)")
-    self.presentViewController(alert, animated: true, completion: nil)
-    self.presentViewController(SettingsViewController(), animated: true, completion: nil)
+        let newEmail = self.email.text!
+        DataStore.store.tpUser?.email = newEmail
+        DataStore.store.tpUser?.updateUserProfile()
+        print("TPUser email was updated to \(DataStore.store.tpUser?.email)")
+        let alert = Constants.displayAlertWithTryAgain("Your email was saved as", message: "\(newEmail)")
+        self.presentViewController(alert, animated: true, completion: nil)
+        self.presentViewController(SettingsViewController(), animated: true, completion: nil)
     }
 
     @IBAction func cancelButtonTapped(sender: UIButton!) {
@@ -51,8 +50,6 @@ class UserProfileViewController: UIViewController {
         self.saveChangesButton.setTitle("Save Changes", forState: .Normal)
         self.saveChangesButton.addTarget(self, action: #selector(saveChangesButtonTapped), forControlEvents: .TouchUpInside)
         
-        
-        //Add SubViews
         self.view.addSubview(cancelButton)
         self.view.addSubview(email)
         self.view.addSubview(password)

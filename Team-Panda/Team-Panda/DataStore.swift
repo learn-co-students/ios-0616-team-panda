@@ -12,8 +12,10 @@ import SwiftyJSON
 class DataStore {
     
     static let store = DataStore()
+    
     var careerNameCellText: String!
     var careerResultsArray: [String] = []
+    var jobsResultsArray : [Job] = []
     
     var tpUser : TPUser?
     
@@ -22,26 +24,33 @@ class DataStore {
     func getMultipleOccupationsWithCompletion(params : [String : AnyObject], completion: () -> ()) {
         
         self.careerResultsArray.removeAll()
+        self.jobsResultsArray.removeAll()
         
         BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults) in
             
             guard
                 let resultsValue = careerResults["Results"] as? NSDictionary,
-                let seriesValue = resultsValue["series"] as? [NSDictionary] else {
+            let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
                     return
             }
             
+            print("Results Value: \(resultsValue)")
+            
             for seriesID in seriesValue {
-                
+                let job = Job(withDictionary: seriesID)
+                print(job)
                 guard
                     let specificCareerDictionary = seriesID["catalog"] as? NSDictionary,
                     let careerName = specificCareerDictionary["occupation"] as? String else {
                         return
                 }
                 self.careerResultsArray.append(careerName)
-            }
+
            // XMLParser().parsingXML()
-            print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
+                self.jobsResultsArray.append(job)
+                print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
+            }
+
             completion()
         }
     }

@@ -155,7 +155,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
             currentPanda.socCodes.removeAll()
             currentPanda.socCodes = self.parseSOCCodes(SOCcodesArray)
             
-            params = JobsSeries.createSeriesIDsFromSOC(currentPanda.socCodes, withDataType: JobsSeries.employment)
+            params = JobsSeries.createSeriesIDsFromSOC(currentPanda.socCodes, withDataType: JobsSeries.annualMeanWage)
             
             currentPanda.updateDatabase()
         }
