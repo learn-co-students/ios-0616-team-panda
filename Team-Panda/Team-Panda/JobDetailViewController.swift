@@ -10,6 +10,7 @@ import ChameleonFramework
 import SnapKit
 import SwiftFontName
 import USStatesColorMap
+import SwiftyButton
 
 class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
@@ -22,7 +23,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     var salaryDescriptionLabel = UILabel() //Should be "$\(Int) to \(Int)"
     var locationQuotientLabel = UILabel()
     var locationQuotientUnitedStatesMapUIImageView = UIImageView()
-    var backButton = UIButton()
+    //var backButton = UIButton()
+    var entryLevelInfoButton = SwiftyButton()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +87,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         self.careerDescriptionLabel.allowsEditingTextAttributes = false
-        
         self.careerDescriptionLabel.sizeToFit()
         self.careerDescriptionLabel.scrollEnabled = false
         
@@ -100,6 +101,13 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.width.equalTo(self.view).multipliedBy(0.9)
             make.top.equalTo(self.careerDescriptionLabel.bottomAnchor).offset(360)
         }
+        
+        self.entryLevelInfoButton.snp_makeConstraints { (make) in
+            make.leftMargin.equalTo(self.minEduReqsHeaderLabel.snp_right)
+        }
+        
+        self.entryLevelInfoButton.setTitle("?", forState: .Normal)
+        self.entryLevelInfoButton.addTarget(self, action: #selector(entryLevelInfoButtonTapped), forControlEvents: .TouchUpInside)
         
         self.salaryHeaderLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
@@ -124,14 +132,12 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.width.equalTo(self.view).multipliedBy(0.9)
             make.top.equalTo(self.careerDescriptionLabel.bottomAnchor).offset(510)
         }
-
     }
     
     func setStylingForViews() {
         
         scrollView.backgroundColor = UIColor.flatGrayColor().lightenByPercentage(0.5)
         
-
         self.careerHeaderLabel.backgroundColor = UIColor.flatBlueColorDark()
         self.careerHeaderLabel.textAlignment = .Center
         self.careerHeaderLabel.font = UIFont.pandaFontBold(withSize: 24.0)
@@ -145,10 +151,19 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.careerDescriptionLabel.layer.masksToBounds = true
         self.careerDescriptionLabel.layer.cornerRadius = 10
         
-        
         self.minEduReqsHeaderLabel.textAlignment = .Center
         self.minEduReqsHeaderLabel.font = UIFont.pandaFontBold(withSize: 18)
         self.minEduReqsHeaderLabel.textColor = UIColor.flatBlueColorDark()
+        
+        self.entryLevelInfoButton.titleLabel?.numberOfLines = 1
+        self.entryLevelInfoButton.titleLabel?.textAlignment = .Center
+        self.entryLevelInfoButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
+        self.entryLevelInfoButton.shadowHeight = 1
+        self.entryLevelInfoButton.buttonPressDepth = 0.1
+        self.entryLevelInfoButton.cornerRadius = 5
+        self.entryLevelInfoButton.titleLabel?.textColor = FlatWhite()
+        self.entryLevelInfoButton.buttonColor = FlatBlue()
+        self.entryLevelInfoButton.shadowColor = FlatBlue().darkenByPercentage(0.2)
         
         self.minEduReqsDescriptionLabel.textAlignment = .Center
         self.minEduReqsDescriptionLabel.font = UIFont.pandaFontLight(withSize: 20)
@@ -182,8 +197,19 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         careerDescriptionLabel.text = placeholderCareerDescription
         minEduReqsDescriptionLabel.text = placeholderEdReq
         salaryDescriptionLabel.text = "$\(placeholderSalaryInt)"
-        
     }
     
+    @IBAction func showEntryLevelAlert() {
+        let alertController = UIAlertController(title: "Typical Entry-Level Education", message: "Typical level of education that most workers need to enter this occupation.", preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func entryLevelInfoButtonTapped(sender: UIButton!) {
+        showEntryLevelAlert()
+    }
     
 }
