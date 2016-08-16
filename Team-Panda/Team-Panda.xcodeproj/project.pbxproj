@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B41B4C11D6384D500A0D0B3 /* TestStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B41B4C01D6384D500A0D0B3 /* TestStoryboard.storyboard */; };
+		1B41B4C31D6384E900A0D0B3 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B41B4C21D6384E900A0D0B3 /* TestController.swift */; };
+		1B41B4C61D63870000A0D0B3 /* TestControllerObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B41B4C51D63870000A0D0B3 /* TestControllerObjc.m */; };
+		1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B41B5091D639A7000A0D0B3 /* stately.ttf */; };
 		1BCB69321D5A28BE00160B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */; };
 		1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */; };
 		1BCB69381D5BCAEB00160B5A /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */; };
@@ -59,6 +63,11 @@
 /* Begin PBXFileReference section */
 		0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_PandaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.release.xcconfig"; sourceTree = "<group>"; };
+		1B41B4C01D6384D500A0D0B3 /* TestStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TestStoryboard.storyboard; sourceTree = "<group>"; };
+		1B41B4C21D6384E900A0D0B3 /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
+		1B41B4C41D63870000A0D0B3 /* TestControllerObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestControllerObjc.h; sourceTree = "<group>"; };
+		1B41B4C51D63870000A0D0B3 /* TestControllerObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestControllerObjc.m; sourceTree = "<group>"; };
+		1B41B5091D639A7000A0D0B3 /* stately.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = stately.ttf; sourceTree = "<group>"; };
 		1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +142,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B41B4BF1D6384C600A0D0B3 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				1B41B4C01D6384D500A0D0B3 /* TestStoryboard.storyboard */,
+				1B41B4C21D6384E900A0D0B3 /* TestController.swift */,
+				1B41B4C41D63870000A0D0B3 /* TestControllerObjc.h */,
+				1B41B4C51D63870000A0D0B3 /* TestControllerObjc.m */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
 		6E58FAF41D54125E00C12B50 = {
 			isa = PBXGroup;
 			children = (
@@ -159,10 +179,12 @@
 			isa = PBXGroup;
 			children = (
 				6E58FB001D54125E00C12B50 /* AppDelegate.swift */,
+				1B41B4BF1D6384C600A0D0B3 /* Test */,
 				7BC289241D5CF36B0066440B /* UI */,
 				7BC289231D5CF3640066440B /* Models */,
 				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
 				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
+				1B41B5091D639A7000A0D0B3 /* stately.ttf */,
 				6E58FB0C1D54125E00C12B50 /* Info.plist */,
 				6E62A0EF1D59426600D71011 /* GoogleService-Info.plist */,
 			);
@@ -238,7 +260,6 @@
 				6EADF8971D5E2C0E00BFE71B /* YouTableViewController.swift */,
 				1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */,
 				1BCB69391D5E32BC00160B5A /* DummyUSAMap.png */,
-				6E5EE8071D54EDD7002671D6 /* YouViewController.swift */,
 				6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */,
 				6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */,
 				7BADA28E1D5D2BAD00D7A9F3 /* Settings */,
@@ -395,8 +416,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */,
+				1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */,
 				1BCB693A1D5E32BC00160B5A /* DummyUSAMap.png in Resources */,
 				6E62A0F01D59426600D71011 /* GoogleService-Info.plist in Resources */,
+				1B41B4C11D6384D500A0D0B3 /* TestStoryboard.storyboard in Resources */,
 				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,
 				6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */,
 			);
@@ -552,6 +575,8 @@
 				6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */,
 				7B5930E31D5A87D5009D9EBA /* Secrets.swift in Sources */,
 				6E5EE80A1D54EEB8002671D6 /* DiscoverViewController.swift in Sources */,
+				1B41B4C31D6384E900A0D0B3 /* TestController.swift in Sources */,
+				1B41B4C61D63870000A0D0B3 /* TestControllerObjc.m in Sources */,
 				7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */,
 				7B2AEC3F1D5E4E8F00FC1090 /* JobsDictionary.swift in Sources */,
 				6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */,

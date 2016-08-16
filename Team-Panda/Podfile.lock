@@ -87,7 +87,7 @@ DEPENDENCIES:
   - SwiftFontName (~> 2.0.0)
   - SwiftyButton
   - SwiftyJSON
-  - USStatesColorMap (= 1.0.0)
+  - USStatesColorMap
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
@@ -117,6 +117,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   USStatesColorMap: 8f62f36ed692590d5c33fac313dd7dca429e167d
 
-PODFILE CHECKSUM: 963e0f541d6bf538ab1084d686bae45269ce2069
+PODFILE CHECKSUM: b5cbe4b4b710ca7799bdd6839aaae9a2e1d6b78b
 
 COCOAPODS: 1.0.1
