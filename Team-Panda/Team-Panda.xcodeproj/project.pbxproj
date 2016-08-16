@@ -29,6 +29,7 @@
 		7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */; };
 		7B2AEC3F1D5E4E8F00FC1090 /* JobsDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */; };
 		7B3CB3601D59400D00A11E7E /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */; };
+		7B416BD11D635631003894DE /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B416BD01D635631003894DE /* Job.swift */; };
 		7B48980A1D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */; };
 		7B5930E31D5A87D5009D9EBA /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5930E21D5A87D5009D9EBA /* Secrets.swift */; };
 		7B6C7E3D1D5A1E4600462368 /* WhichInterestsYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7E3C1D5A1E4600462368 /* WhichInterestsYouViewController.swift */; };
@@ -92,6 +93,7 @@
 		6EE4CAD31D577C3D0092784D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestsTableViewCell.swift; sourceTree = "<group>"; };
 		7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobsDictionary.swift; sourceTree = "<group>"; };
+		7B416BD01D635631003894DE /* Job.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 		7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TellUsAboutYourselfViewController.swift; sourceTree = "<group>"; };
 		7B5930E21D5A87D5009D9EBA /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */,
 				7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */,
 				7BC6A0091D5BABBF00BFD0D3 /* DataStore.swift */,
+				7B416BD01D635631003894DE /* Job.swift */,
 				7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */,
 				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
 				7B90EBB81D592DFB00EE475A /* Constants.swift */,
@@ -238,7 +241,6 @@
 				6EADF8971D5E2C0E00BFE71B /* YouTableViewController.swift */,
 				1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */,
 				1BCB69391D5E32BC00160B5A /* DummyUSAMap.png */,
-				6E5EE8071D54EDD7002671D6 /* YouViewController.swift */,
 				6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */,
 				6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */,
 				7BADA28E1D5D2BAD00D7A9F3 /* Settings */,
@@ -549,6 +551,7 @@
 				6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */,
 				7BC6A00A1D5BABBF00BFD0D3 /* DataStore.swift in Sources */,
 				1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */,
+				7B416BD11D635631003894DE /* Job.swift in Sources */,
 				6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */,
 				7B5930E31D5A87D5009D9EBA /* Secrets.swift in Sources */,
 				6E5EE80A1D54EEB8002671D6 /* DiscoverViewController.swift in Sources */,
