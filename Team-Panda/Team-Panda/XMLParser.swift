@@ -11,73 +11,47 @@ import SWXMLHash
 
 class XMLParser: NSObject, NSXMLParserDelegate {
     
+    var occupationalData: [String: [String : String]] = [:]
     
-    var delegate: NSXMLParserDelegate!
-    var parser: NSXMLParser!
-    var dataItems = []
-    
-    
-    override init() {
-        
-    }
-    
-    class func playingWithSWMXMLHash() {
+    func parsingXML() {
         guard
             let xmlURL = NSURL(string: "http://www.bls.gov/ooh/xml-compilation.xml"),
             let xmlData = NSData(contentsOfURL: xmlURL) else {
                 return
         }
         
-        let xml = SWXMLHash.config {
-            config in
-            config.shouldProcessLazily = true
-            }.parse(xmlData)
+        let xml = SWXMLHash.parse(xmlData)
         
-        
-        for occupation in xml["ooh"]["occupation"] {
+        var i = 0
+        while i < xml["ooh"]["occupation"].all.count {
+            let occupationIndex = xml["ooh"]["occupation"][i]
             guard
-                let occupationTitle = occupation["title"].element?.text,
-                let occupationDescription = occupation["description"].element?.text,
-                let howToBecomeOne = occupation["how_to_become_one"]["section_body"].element?.text else {
+                let occupationTitle = occupationIndex["title"].element?.text,
+                let occupationDescription = occupationIndex["description"].element?.text,
+                let howToBecomeOne = occupationIndex["how_to_become_one"]["section_body"].element?.text
+                else {
                     return
             }
             
-            print("This is the occupation data: \(occupationTitle), \(occupationDescription), \(howToBecomeOne)")
+            var j = 0
+            while j < occupationIndex["soc_coverage"]["soc_code"].all.count {
+                
+                if let code = occupationIndex["soc_coverage"]["soc_code"][j].element?.text {
+                    
+                    let dataForOccupation = ["Title": occupationTitle,
+                                             "Description" : occupationDescription,
+                                             "How to Become One": howToBecomeOne,
+                                             ]
+                    
+                    self.occupationalData[code] = dataForOccupation
+                    
+                    print("Occupational Data Dictionary: \(dataForOccupation)")
+                } else {
+                    print("There was an error unwrapping soc code at index J: \(j)")
+                }
+                j += 1
+            }
+            i += 1
         }
-        
-        
-        // print("Value for XML file in XMLParser: \(xml["ooh"]["occupation"]["how_to_become_one"].element?.text)")
-        
-    }
-    
-    
-    func returnedDataItems(data: [AnyObject]) {
-        
-    }
-    
-    func getDataItemsFromXML(filename: String) {
-        
-        
-    }
-    
-    func parseXML(filename: String) {
-        
-    }
-    
-    
-    /*
-     SETTING UP XML FILE TO BE PARSED
-     */
-    
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        
-    }
-    
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
-        
-    }
-    
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        
     }
 }
