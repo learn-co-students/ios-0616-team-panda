@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B41B5091D639A7000A0D0B3 /* stately.ttf */; };
 		1BCB69321D5A28BE00160B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */; };
 		1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */; };
 		1BCB69381D5BCAEB00160B5A /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_PandaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.release.xcconfig"; sourceTree = "<group>"; };
+		1B41B5091D639A7000A0D0B3 /* stately.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = stately.ttf; sourceTree = "<group>"; };
 		1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				7BC289231D5CF3640066440B /* Models */,
 				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
 				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
+				1B41B5091D639A7000A0D0B3 /* stately.ttf */,
 				6E58FB0C1D54125E00C12B50 /* Info.plist */,
 				6E62A0EF1D59426600D71011 /* GoogleService-Info.plist */,
 			);
@@ -397,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */,
+				1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */,
 				1BCB693A1D5E32BC00160B5A /* DummyUSAMap.png in Resources */,
 				6E62A0F01D59426600D71011 /* GoogleService-Info.plist in Resources */,
 				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,

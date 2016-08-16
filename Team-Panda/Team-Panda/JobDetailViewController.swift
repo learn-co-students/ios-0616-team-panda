@@ -10,6 +10,8 @@ import ChameleonFramework
 import SnapKit
 import SwiftFontName
 import USStatesColorMap
+import SwiftyButton
+import CoreText
 
 class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
@@ -19,10 +21,13 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     var minEduReqsHeaderLabel = UILabel()
     var minEduReqsDescriptionLabel = UILabel()
     var salaryHeaderLabel = UILabel()
-    var salaryDescriptionLabel = UILabel() //Should be "$\(Int) to \(Int)"
+    var salaryDescriptionLabel = UILabel()
     var locationQuotientLabel = UILabel()
     var locationQuotientUnitedStatesMapUIImageView = UIImageView()
-    var backButton = UIButton()
+    var entryLevelInfoButton = SwiftyButton()
+    var payInfoButton = SwiftyButton()
+    var locationQuotientInfoButton = SwiftyButton()
+    var usaColorMapView: USStatesColorMap!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,21 +40,13 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView = UIScrollView(frame: view.bounds)
         self.scrollView.delegate = self
+//        self.edgesForExtendedLayout = UIRectEdge.None
+//        self.extendedLayoutIncludesOpaqueBars = false
         
         scrollView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
-        scrollView.contentSize = CGSizeMake(view.bounds.width, view.bounds.height + 500)
         
         scrollView.userInteractionEnabled = true
         scrollView.scrollEnabled = true
-        
-        //i need function to calculate the total height of the contents and then use those ints and set them to scrollView.contentSize
-        
-        let mapImage = UIImage(named: "DummyUSAMap")
-        locationQuotientUnitedStatesMapUIImageView = UIImageView(image: mapImage)
-        locationQuotientUnitedStatesMapUIImageView.backgroundColor = UIColor.cyanColor()
-        //self.locationQuotientUnitedStatesMapUIImageView.sizeThatFits()
-        self.locationQuotientUnitedStatesMapUIImageView.layer.masksToBounds = true
-        self.locationQuotientUnitedStatesMapUIImageView.layer.cornerRadius = 10
         
         scrollView.addSubview(careerHeaderLabel)
         scrollView.addSubview(careerDescriptionLabel)
@@ -59,22 +56,31 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(salaryDescriptionLabel)
         scrollView.addSubview(locationQuotientLabel)
         scrollView.addSubview(locationQuotientUnitedStatesMapUIImageView)
+        scrollView.addSubview(entryLevelInfoButton)
+        scrollView.addSubview(payInfoButton)
+        scrollView.addSubview(locationQuotientInfoButton)
         
         self.view.addSubview(scrollView)
         
-        print(scrollView.subviews)
-//        scrollView.snp_makeConstraints { (make) in
-//            //make.centerX.equalTo(self.view)
-//            make.top.equalTo(self.view)
-//            make.width.equalTo(self.view)
-//        }
+        self.usaColorMapView = USStatesColorMap(frame: CGRectMake(0, 0, self.scrollView.frame.width - 20, self.scrollView.frame.width - 20))
+        self.usaColorMapView.setColorForAllStates(UIColor.flatRedColor())
+        self.usaColorMapView.backgroundColor = UIColor.clearColor()
+        
+        self.usaColorMapView.performUpdates {
+            self.usaColorMapView.setColor(UIColor.flatRedColor(), forState: Alabama)
+            self.usaColorMapView.setColor(UIColor.flatBlueColor(), forState: Alaska)
+            self.usaColorMapView.setColor(UIColor.flatGreenColor(), forState: California)
+        }
+        
+        scrollView.addSubview(self.usaColorMapView)
         
         self.careerHeaderLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
-            make.top.equalTo(self.view).offset(40)
+            make.top.equalTo(self.scrollView).offset(40)
             make.width.equalTo(self.view).multipliedBy(0.9)
             make.height.equalTo(self.view).multipliedBy(0.1)
         }
+        
         self.careerHeaderLabel.sizeToFit()
         self.careerHeaderLabel.adjustsFontSizeToFitWidth = true
         
@@ -85,7 +91,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         self.careerDescriptionLabel.allowsEditingTextAttributes = false
-        
         self.careerDescriptionLabel.sizeToFit()
         self.careerDescriptionLabel.scrollEnabled = false
         
@@ -101,6 +106,14 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalTo(self.careerDescriptionLabel.bottomAnchor).offset(360)
         }
         
+        self.entryLevelInfoButton.snp_makeConstraints { (make) in
+            make.left.equalTo(self.minEduReqsHeaderLabel.snp_rightMargin)
+            make.centerY.equalTo(self.minEduReqsHeaderLabel.centerYAnchor)
+        }
+        
+        self.entryLevelInfoButton.setTitle("?", forState: .Normal)
+        self.entryLevelInfoButton.addTarget(self, action: #selector(entryLevelInfoButtonTapped), forControlEvents: .TouchUpInside)
+        
         self.salaryHeaderLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view).multipliedBy(0.9)
@@ -113,17 +126,36 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalTo(self.careerDescriptionLabel.bottomAnchor).offset(430)
         }
         
+        self.payInfoButton.snp_makeConstraints { (make) in
+            make.left.equalTo(self.salaryHeaderLabel.snp_rightMargin).offset(-20)
+            make.centerY.equalTo(self.salaryHeaderLabel.centerYAnchor)
+        }
+        
+        self.payInfoButton.setTitle("?", forState: .Normal)
+        self.payInfoButton.addTarget(self, action: #selector(payInfoButtonTapped), forControlEvents: .TouchUpInside)
+        
         self.locationQuotientLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view).multipliedBy(0.9)
             make.top.equalTo(self.careerDescriptionLabel.bottomAnchor).offset(470)
         }
-
-        self.locationQuotientUnitedStatesMapUIImageView.snp_makeConstraints { (make) in
+        
+        self.usaColorMapView.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-            make.top.equalTo(self.careerDescriptionLabel.bottomAnchor).offset(510)
+            make.top.equalTo(self.careerDescriptionLabel.bottomAnchor).offset(410)
+            make.width.equalTo(self.view.snp_width)
+            make.height.equalTo(self.view.snp_width)
         }
+        
+        self.locationQuotientInfoButton.snp_makeConstraints { (make) in
+            make.left.equalTo(self.salaryHeaderLabel.snp_rightMargin).offset(-40)
+            make.centerY.equalTo(self.locationQuotientLabel.centerYAnchor)
+        }
+        
+        self.locationQuotientInfoButton.setTitle("?", forState: .Normal)
+        self.locationQuotientInfoButton.addTarget(self, action: #selector(locationQuotientButtonTapped), forControlEvents: .TouchUpInside)
+    
+        scrollView.contentSize = CGSizeMake(view.bounds.width, view.bounds.height + (self.careerDescriptionLabel.frame.height + self.usaColorMapView.frame.height + self.locationQuotientLabel.frame.height + self.careerHeaderLabel.frame.height + self.careerDescriptionLabel.frame.height))
 
     }
     
@@ -131,7 +163,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.backgroundColor = UIColor.flatGrayColor().lightenByPercentage(0.5)
         
-
         self.careerHeaderLabel.backgroundColor = UIColor.flatBlueColorDark()
         self.careerHeaderLabel.textAlignment = .Center
         self.careerHeaderLabel.font = UIFont.pandaFontBold(withSize: 24.0)
@@ -145,10 +176,19 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.careerDescriptionLabel.layer.masksToBounds = true
         self.careerDescriptionLabel.layer.cornerRadius = 10
         
-        
         self.minEduReqsHeaderLabel.textAlignment = .Center
         self.minEduReqsHeaderLabel.font = UIFont.pandaFontBold(withSize: 18)
         self.minEduReqsHeaderLabel.textColor = UIColor.flatBlueColorDark()
+        
+        self.entryLevelInfoButton.titleLabel?.numberOfLines = 1
+        self.entryLevelInfoButton.titleLabel?.textAlignment = .Center
+        self.entryLevelInfoButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
+        self.entryLevelInfoButton.shadowHeight = 1
+        self.entryLevelInfoButton.buttonPressDepth = 0.3
+        self.entryLevelInfoButton.cornerRadius = 10
+        self.entryLevelInfoButton.titleLabel?.textColor = FlatWhite()
+        self.entryLevelInfoButton.buttonColor = FlatTeal()
+        self.entryLevelInfoButton.shadowColor = FlatTeal().darkenByPercentage(0.2)
         
         self.minEduReqsDescriptionLabel.textAlignment = .Center
         self.minEduReqsDescriptionLabel.font = UIFont.pandaFontLight(withSize: 20)
@@ -162,28 +202,85 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.salaryDescriptionLabel.font = UIFont.pandaFontLight(withSize: 20)
         self.salaryDescriptionLabel.textColor = UIColor.flatTealColor().lightenByPercentage(0.2)
         
+        self.payInfoButton.titleLabel?.numberOfLines = 1
+        self.payInfoButton.titleLabel?.textAlignment = .Center
+        self.payInfoButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
+        self.payInfoButton.shadowHeight = 1
+        self.payInfoButton.buttonPressDepth = 0.3
+        self.payInfoButton.cornerRadius = 10
+        self.payInfoButton.titleLabel?.textColor = FlatWhite()
+        self.payInfoButton.buttonColor = FlatTeal()
+        self.payInfoButton.shadowColor = FlatTeal().darkenByPercentage(0.2)
+        
         self.locationQuotientLabel.textAlignment = .Center
         self.locationQuotientLabel.font = UIFont.pandaFontBold(withSize: 18)
         self.locationQuotientLabel.textColor = UIColor.flatBlueColorDark()
+        
+        self.locationQuotientInfoButton.titleLabel?.numberOfLines = 1
+        self.locationQuotientInfoButton.titleLabel?.textAlignment = .Center
+        self.locationQuotientInfoButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
+        self.locationQuotientInfoButton.shadowHeight = 1
+        self.locationQuotientInfoButton.buttonPressDepth = 0.3
+        self.locationQuotientInfoButton.cornerRadius = 10
+        self.locationQuotientInfoButton.titleLabel?.textColor = FlatWhite()
+        self.locationQuotientInfoButton.buttonColor = FlatTeal()
+        self.locationQuotientInfoButton.shadowColor = FlatTeal().darkenByPercentage(0.2)
     }
     
     func setTextForUILabels() {
-        
-        minEduReqsHeaderLabel.text = "Typical Entry-Level Education"
-        salaryHeaderLabel.text = "Median Pay"
-        locationQuotientLabel.text = "Demand for this role across the US"
         
         let careerHeaderPlaceholder = "Aerospace Engineering and Operations Technicians"
         let placeholderSalaryInt = 	66180
         let placeholderEdReq = "Associate's degree"
         let placeholderCareerDescription = "Aerospace engineering and operations technicians operate and maintain equipment used in developing, testing, and producing new aircraft and spacecraft. Increasingly, these workers are using computer-based modeling and simulation tools and processes in their work."
         
+        minEduReqsHeaderLabel.text = "Typical Entry-Level Education"
+        salaryHeaderLabel.text = "Median Pay"
+        locationQuotientLabel.text = "Location Quotient"
         careerHeaderLabel.text = careerHeaderPlaceholder.uppercaseString
         careerDescriptionLabel.text = placeholderCareerDescription
         minEduReqsDescriptionLabel.text = placeholderEdReq
         salaryDescriptionLabel.text = "$\(placeholderSalaryInt)"
+    }
+    
+    @IBAction func showEntryLevelAlert() {
+        let alertController = UIAlertController(title: "Typical Entry-Level Education", message: "Typical level of education that most workers need to enter this occupation.", preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
         
     }
     
+    @IBAction func entryLevelInfoButtonTapped(sender: UIButton!) {
+        showEntryLevelAlert()
+    }
+    
+    @IBAction func showPayAlert() {
+        let alertController = UIAlertController(title: "Median Pay", message: "The wage at which half of the workers in the occupation earned more than that amount and half earned less. Median wage data are from the BLS Occupational Employment Statistics survey. In May 2015, the median annual wage for all workers was $36,200.", preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func payInfoButtonTapped(sender: UIButton!) {
+        showPayAlert()
+    }
+    
+    @IBAction func locationQuotientButtonAlert() {
+        let alertController = UIAlertController(title: "Job Outlook", message: "The projected percent change in employment from 2014 to 2024. The average growth rate for all occupations is 7 percent.", preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func locationQuotientButtonTapped(sender: UIButton!) {
+        locationQuotientButtonAlert()
+    }
     
 }

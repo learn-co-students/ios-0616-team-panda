@@ -72,7 +72,7 @@ PODS:
   - SwiftyButton/CustomContent (0.4.0):
     - PureLayout (~> 3.0)
   - SwiftyJSON (2.3.2)
-  - USStatesColorMap (1.0.0)
+  - USStatesColorMap (1.0.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -87,7 +87,7 @@ DEPENDENCIES:
   - SwiftFontName (~> 2.0.0)
   - SwiftyButton
   - SwiftyJSON
-  - USStatesColorMap (= 1.0.0)
+  - USStatesColorMap
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
@@ -115,8 +115,8 @@ SPEC CHECKSUMS:
   SwiftFontName: 7c3fdb6fc334cd4a8f2953c450a7b40c8d1400e4
   SwiftyButton: fffcc0d82b2b5f9ec1681f20ee9c67bed0d5c73b
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  USStatesColorMap: 8f62f36ed692590d5c33fac313dd7dca429e167d
+  USStatesColorMap: 701dbd4f4590359918854049eb890eb6ac8b01ed
 
-PODFILE CHECKSUM: 963e0f541d6bf538ab1084d686bae45269ce2069
+PODFILE CHECKSUM: b5cbe4b4b710ca7799bdd6839aaae9a2e1d6b78b
 
 COCOAPODS: 1.0.1
