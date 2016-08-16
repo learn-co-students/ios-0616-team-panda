@@ -22,7 +22,7 @@ class YouTableViewController: UITableViewController {
         self.tableView.accessibilityIdentifier = "tableView"
         self.tableView.backgroundColor = UIColor.flatMintColor()
         
-        
+        XMLParser.playingWithSWMXMLHash()
     }
     
     override func viewDidAppear(animated: Bool) {

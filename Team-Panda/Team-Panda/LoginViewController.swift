@@ -35,9 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     @IBAction func loginButtonTapped(sender: UIButton!) {
-        print("Submit Tapped!")
         if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
-            print("User didn't input any text in email / password fields when trying to log in...")
             self.validEmailPasswordAlert()
         } else {
             self.loginCurrentUser()
@@ -45,7 +43,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     @IBAction func signupButtonTapped(sender: UIButton!) {
-        print("Signup Tapped!")
         self.createNewUser()
     }
     
@@ -152,7 +149,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
             if error != nil {
-                print("There was a problem creating a new user: \(error?.localizedDescription)")
                 // Don't create user
                 let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: (error?.localizedDescription)!)
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -172,23 +168,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             let userPassword = self.passwordTextField.text else { fatalError("There's no text in username / password fields!") }
         FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
             if let error = error {
-                print("There was a problem logging in a current user: \(error.localizedDescription)")
                 // Alert user there was a problem logging in
                 let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
                 self.presentViewController(alert, animated: true, completion: nil)
                 
             } else if let user = user {
                 
-                print("User logged in successfully!")
-                
                 TPUser.getUserFromFirebase(user.uid, completion: { (pandaUser) in
                     self.store.tpUser = pandaUser
-                    print("This is the TPUser dictionary from loginCurrentUser saved to the DataStore: \(self.store.tpUser?.dictionary)")
                     self.showTabBarViewForUser()
                 })
                 
-            } else { print("Couldn't get user.") }
-            
+            } else {
+                print("Couldn't get user.")
+                return
+            }
         })
     }
     
@@ -197,7 +191,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         if let currentPandauser = FIRAuth.auth()?.currentUser {
             TPUser.getUserFromFirebase(currentPandauser.uid, completion: { (pandaUser) in
                 self.store.tpUser = pandaUser
-                print("Auto logged in TPUser dictionary from loginCurrentUser saved to the DataStore: \(self.store.tpUser?.dictionary)")
             })
             return true
         }
@@ -209,7 +202,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
             self.presentViewController(tabBarVC, animated: true, completion: {
-                print("User logged in & moved to tab bar controller!")
             })
         } else {
             self.createAndAddViews()

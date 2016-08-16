@@ -38,21 +38,9 @@ class DataStore {
                     let careerName = specificCareerDictionary["occupation"] as? String else {
                         return
                 }
-                
                 self.careerResultsArray.append(careerName)
-                //self.careerResultsArray.append(seriesID)
-                print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
             }
-            
-          //  let specificCareerInfo = seriesValue[0]
-//            guard
-//                let specificCareerDictionary = specificCareerInfo["catalog"] as? NSDictionary,
-//                let careerName = specificCareerDictionary["occupation"] as? String else {
-//                    return
-//            }
-//            
-//            self.careerNameCellText = careerName
-//            print("Career name from API call: \(self.careerNameCellText)")
+            print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
             completion()
         }
     }

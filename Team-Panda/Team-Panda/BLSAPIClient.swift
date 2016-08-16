@@ -23,7 +23,6 @@ class BLSAPIClient {
                 guard
                     let careerResults = json as? NSDictionary
                     else {
-                        print("There was a problem pulling the Career Results from BLS.")
                         return
                 }
                 completion(careerResults)
