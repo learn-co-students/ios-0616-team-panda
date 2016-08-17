@@ -11,7 +11,6 @@
 		1BCB69321D5A28BE00160B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */; };
 		1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */; };
 		1BCB69381D5BCAEB00160B5A /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */; };
-		1BCB693A1D5E32BC00160B5A /* DummyUSAMap.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BCB69391D5E32BC00160B5A /* DummyUSAMap.png */; };
 		32D9D74CF88456BF2D6B6D55 /* Pods_Team_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */; };
 		47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */; };
@@ -66,7 +65,6 @@
 		1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
-		1BCB69391D5E32BC00160B5A /* DummyUSAMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DummyUSAMap.png; sourceTree = "<group>"; };
 		203FBBCB38E8EDF5550BEE4A /* Pods-Team-PandaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2103E03BCEF96F99773FC7BE /* Pods-Team-Panda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.debug.xcconfig"; sourceTree = "<group>"; };
 		28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.release.xcconfig"; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 			children = (
 				6EADF8971D5E2C0E00BFE71B /* YouTableViewController.swift */,
 				1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */,
-				1BCB69391D5E32BC00160B5A /* DummyUSAMap.png */,
 				6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */,
 				6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */,
 				7BADA28E1D5D2BAD00D7A9F3 /* Settings */,
@@ -405,7 +402,6 @@
 			files = (
 				6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */,
 				1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */,
-				1BCB693A1D5E32BC00160B5A /* DummyUSAMap.png in Resources */,
 				6E62A0F01D59426600D71011 /* GoogleService-Info.plist in Resources */,
 				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,
 				6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */,

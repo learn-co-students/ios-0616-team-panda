@@ -22,14 +22,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setUpTableView() {
-        tableView.frame = CGRectMake(0, 50, 320, 135);
-        tableView.backgroundColor = UIColor.flatWhiteColor()
-        tableView.delegate      =   self
-        tableView.dataSource    =   self
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "settingsCell")
+        self.tableView.frame = CGRectMake(0, 50, 320, 135);
+        self.tableView.backgroundColor = UIColor.flatWhiteColor()
+        self.tableView.delegate      =   self
+        self.tableView.dataSource    =   self
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "settingsCell")
         self.view.addSubview(self.tableView)
-        tableView.center = self.view.center
-        tableView.layer.cornerRadius = 10
+        self.tableView.center = self.view.center
+        self.tableView.layer.cornerRadius = 10
+        self.tableView.scrollEnabled = false
     }
     
     var settingsOptions = ["Update Profile Info", "Refresh Questionnaire", "Log Out"]
