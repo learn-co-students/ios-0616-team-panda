@@ -20,7 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         setInitialLocation()
     }
     
-    let regionRadius: CLLocationDistance = 1000
+    let regionRadius: CLLocationDistance = 100000
     
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
@@ -38,5 +38,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.frame = view.frame
         mapView.delegate = self
     }
+    
+    
     
 }

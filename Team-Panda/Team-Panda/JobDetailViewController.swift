@@ -28,6 +28,9 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     var salaryInfoButton = SwiftyButton()
     var locationQuotientInfoButton = SwiftyButton()
     var usaColorMapView: USStatesColorMap!
+    var howToBecomeOneLabel = UILabel()
+    var howToBecomeOneDescription = UITextView()
+    var howToBecomeOneView = UIView()
     
     var dummyDictionaryLocationQuotient = ["District of Columbia" : 1.81,
                                            "Colorado" : 1.55,
@@ -111,6 +114,10 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(minEduReqsInfoButton)
         scrollView.addSubview(salaryInfoButton)
         scrollView.addSubview(locationQuotientInfoButton)
+        scrollView.addSubview(howToBecomeOneView)
+        
+        self.howToBecomeOneView.addSubview(howToBecomeOneLabel)
+        self.howToBecomeOneView.addSubview(howToBecomeOneDescription)
         
         self.view.addSubview(scrollView)
         
@@ -195,6 +202,28 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.left.equalTo(self.locationQuotientLabel.snp_right).offset(-100)
             make.top.equalTo(self.salaryDescriptionLabel.snp_bottom).offset(20)
         }
+        
+        self.howToBecomeOneView.snp_makeConstraints { (make) in
+            make.top.equalTo(usaColorMapView.snp_bottomMargin).offset(20)
+            make.width.equalTo(self.view.snp_width)
+            make.height.equalTo(self.view.snp_width)
+        }
+        
+        self.howToBecomeOneLabel.snp_makeConstraints { (make) in
+            make.top.equalTo(self.howToBecomeOneView.snp_topMargin).offset(20)
+            make.centerX.equalTo(self.view)
+            make.width.equalTo(self.view).multipliedBy(0.9)
+        }
+        
+        self.howToBecomeOneDescription.snp_makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(self.howToBecomeOneLabel.snp_bottomMargin).offset(10)
+            make.width.equalTo(self.view).multipliedBy(0.9)
+        }
+        
+        self.howToBecomeOneDescription.allowsEditingTextAttributes = false
+        self.howToBecomeOneDescription.sizeToFit()
+        self.howToBecomeOneDescription.scrollEnabled = false
         
         self.locationQuotientInfoButton.setTitle("?", forState: .Normal)
         self.locationQuotientInfoButton.addTarget(self, action: #selector(locationQuotientButtonTapped), forControlEvents: .TouchUpInside)
@@ -303,6 +332,17 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.locationQuotientInfoButton.titleLabel?.textColor = FlatWhite()
         self.locationQuotientInfoButton.buttonColor = FlatMint()
         self.locationQuotientInfoButton.shadowColor = FlatMint().darkenByPercentage(0.2)
+        
+        self.howToBecomeOneView.backgroundColor = UIColor.flatPlumColor()
+        
+        self.howToBecomeOneLabel.textAlignment = .Center
+        self.howToBecomeOneLabel.font = UIFont.pandaFontBold(withSize: 24.0)
+        self.howToBecomeOneLabel.textColor = UIColor.flatWhiteColor()
+        
+        self.howToBecomeOneDescription.font = UIFont.pandaFontMedium(withSize: 18.0)
+        self.howToBecomeOneDescription.textColor = UIColor.flatWhiteColor()
+        self.howToBecomeOneDescription.backgroundColor = UIColor.flatPlumColor()
+
     }
     
     func setTextForUILabels() {
@@ -319,6 +359,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         careerDescriptionLabel.text = placeholderCareerDescription
         minEduReqsDescriptionLabel.text = placeholderEdReq
         salaryDescriptionLabel.text = "$\(placeholderSalaryInt)"
+        howToBecomeOneLabel.text = "How to Become One".uppercaseString
+        howToBecomeOneDescription.text = "Although employers prefer to hire applicants with a master’s degree or Ph.D., entry-level positions are available for those with a bachelor’s degree. Analysts typically have a degree in operations research, management science, analytics, math, engineering, computer science, or another technical or quantitative field."
     }
     
     @IBAction func showMinEduReqsAlert() {

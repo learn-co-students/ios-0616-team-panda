@@ -37,9 +37,6 @@ extension UIFont {
 let checkMarkImage = UIImage(named: "checkmark")!
 
 let databaseRefURL = "https://career-options.firebaseio.com/"
-
-//Panda Blue Hex = 394D82
-
 let solveProblemArray = ["Human Body", "Environment", "Transportation", "Architecture", "Teaching"]
 let underStandProblemArray = solveProblemArray
 let ideaExpressedArray = ["History & Society", "Art", "Sports", "Teaching", "Health"]
