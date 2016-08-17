@@ -30,27 +30,26 @@ class DataStore {
             
             guard
                 let resultsValue = careerResults["Results"] as? NSDictionary,
-            let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
                     return
             }
             
-            print("Results Value: \(resultsValue)")
+          //  print("Results Value: \(resultsValue)")
             
             for seriesID in seriesValue {
                 let job = Job(withDictionary: seriesID)
-                print(job)
+           //     print(job)
                 guard
                     let specificCareerDictionary = seriesID["catalog"] as? NSDictionary,
                     let careerName = specificCareerDictionary["occupation"] as? String else {
                         return
                 }
                 self.careerResultsArray.append(careerName)
-
-           // XMLParser().parsingXML()
+                
                 self.jobsResultsArray.append(job)
-                print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
+           //     print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
             }
-
+            
             completion()
         }
     }
