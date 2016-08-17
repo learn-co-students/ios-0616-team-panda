@@ -45,8 +45,11 @@ class XMLParser: NSObject, NSXMLParserDelegate {
                     
                     self.occupationalData[code] = dataForOccupation
                     print("Occupational data dictionary: \(self.occupationalData)")
+                    
                 } else {
-                    print("There was an error unwrapping soc code at index J: \(j)")
+                    
+                    print("There was an error unwrapping soc code at: \(j)")
+                    
                 }
                 j += 1
             }
