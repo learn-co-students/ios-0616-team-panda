@@ -30,6 +30,7 @@
 		6EADF8981D5E2C0E00BFE71B /* YouTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EADF8971D5E2C0E00BFE71B /* YouTableViewController.swift */; };
 		7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */; };
 		7B2AEC3F1D5E4E8F00FC1090 /* JobsDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */; };
+		7B3CAAB31D64F348006322ED /* LocationQuotient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3CAAB21D64F348006322ED /* LocationQuotient.swift */; };
 		7B3CB3601D59400D00A11E7E /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */; };
 		7B416BD11D635631003894DE /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B416BD01D635631003894DE /* Job.swift */; };
 		7B48980A1D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */; };
@@ -97,6 +98,7 @@
 		6EE4CAD31D577C3D0092784D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestsTableViewCell.swift; sourceTree = "<group>"; };
 		7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobsDictionary.swift; sourceTree = "<group>"; };
+		7B3CAAB21D64F348006322ED /* LocationQuotient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationQuotient.swift; sourceTree = "<group>"; };
 		7B416BD01D635631003894DE /* Job.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 		7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TellUsAboutYourselfViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
 				7B90EBB81D592DFB00EE475A /* Constants.swift */,
 				7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */,
+				7B3CAAB21D64F348006322ED /* LocationQuotient.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 			files = (
 				6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */,
 				7BC6A00A1D5BABBF00BFD0D3 /* DataStore.swift in Sources */,
+				7B3CAAB31D64F348006322ED /* LocationQuotient.swift in Sources */,
 				1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */,
 				7B416BD11D635631003894DE /* Job.swift in Sources */,
 				6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */,

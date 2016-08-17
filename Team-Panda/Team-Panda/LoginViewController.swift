@@ -27,11 +27,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showTabBarViewForUser()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.showTabBarViewForUser()
+//        self.showTabBarViewForUser()
     }
     
     @IBAction func loginButtonTapped(sender: UIButton!) {
@@ -50,9 +51,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         self.emailTextField = UITextField()
         self.emailTextField.delegate = self
+        self.emailTextField.layer.cornerRadius = 5
         self.passwordTextField = UITextField()
         self.passwordTextField.delegate = self
         self.passwordTextField.secureTextEntry = true
+        self.passwordTextField.layer.cornerRadius = 5
         
         self.emailTextField.placeholder = "E-Mail"
         self.passwordTextField.placeholder = "Password"
@@ -108,17 +111,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.passwordTextField.textAlignment = NSTextAlignment.Center
         
         self.emailTextField.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(-50)
             make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view.widthAnchor).offset(300)
-            make.height.equalTo(self.view.heightAnchor).offset(20)
+            make.width.equalTo(self.view).multipliedBy(0.75)
+            make.height.equalTo(self.view).multipliedBy(0.1)
+            make.centerY.equalTo(self.view).offset(-self.view.bounds.height*0.09)
         }
         
         self.passwordTextField.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.view).offset(-15)
             make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view.widthAnchor).offset(300)
-            make.height.equalTo(self.view.heightAnchor).offset(20)
+            make.width.equalTo(self.view).multipliedBy(0.75)
+            make.height.equalTo(self.view).multipliedBy(0.1)
+            make.centerY.equalTo(self.view)
         }
         
         self.orLabel.snp_makeConstraints { (make) in
@@ -190,24 +193,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         })
     }
     
-    func userAlreadyLoggedIn() -> Bool {
-        
-        if let currentPandauser = FIRAuth.auth()?.currentUser {
-            TPUser.getUserFromFirebase(currentPandauser.uid, completion: { (pandaUser) in
-                self.store.tpUser = pandaUser
-            })
-            return true
-        }
-        return false
-    }
-    
     func showTabBarViewForUser() {
-        if self.userAlreadyLoggedIn() {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
-            self.presentViewController(tabBarVC, animated: true, completion: {
+        print("showTabBarViewForUser called.")
+        if let currentPanda = FIRAuth.auth()?.currentUser {
+            TPUser.getUserFromFirebase(currentPanda.uid, completion: { (pandaUser) in
+                
+                if let pandaUser = pandaUser {
+                    
+                    self.store.tpUser = pandaUser
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
+                    self.presentViewController(tabBarVC, animated: true, completion: {
+                        print("Panda Logged! Loaded Tab Bar VC")
+                    })
+                }
+                else {
+                    print("Couldn't unwrap panda user from store. Asking them to re-login.")
+                    self.createAndAddViews()
+                }
             })
-        } else {
+        }
+        else { // no user
+            print("Showing login / signup buttons. No Panda")
             self.createAndAddViews()
         }
     }
