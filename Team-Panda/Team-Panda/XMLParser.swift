@@ -34,15 +34,18 @@ class XMLParser: NSObject, NSXMLParserDelegate {
             guard
                 let occupationTitle = occupationIndex["title"].element?.text,
                 let occupationDescription = occupationIndex["description"].element?.text,
-                let howToBecomeOne = occupationIndex["how_to_become_one"]["section_body"].element?.text else {
-                    print("There was a problem unwrapping one of the elements in the XML: \(occupationIndex["title"].element?.text), \(occupationIndex["description"].element?.text), \(occupationIndex["how_to_become_one"]["section_body"].element?.text)")
+                let howToBecomeOne = occupationIndex["how_to_become_one"]["section_body"].element?.text,
+                let minEducation = occupationIndex["quick_facts"]["qf_entry_level_education"]["value"].element?.text else {
+                    print("There was a problem unwrapping one of the elements in the XML: \(occupationIndex["title"].element?.text), \(occupationIndex["description"].element?.text), \(occupationIndex["how_to_become_one"]["section_body"].element?.text), \(occupationIndex["quick_facts"]["qf_entry_level_education"]["value"].element?.text)")
                     return
             }
-            
-            let dataForOccupation = ["Title": occupationTitle,
-                                     "Description" : occupationDescription,
-                                     "How to Become One": howToBecomeOne,
-                                     ]
+            print("These are the minimum educational requirements by occupation:  \(minEducation)")
+            let dataForOccupation = [
+                "Title"                          : occupationTitle      ,
+                "Description"                    : occupationDescription,
+                "Minimum Education Requirements" : minEducation         ,
+                "How to Become One"              : howToBecomeOne       ,
+                ]
             
             var j = 0
             
@@ -60,7 +63,7 @@ class XMLParser: NSObject, NSXMLParserDelegate {
                 j += 1
             }
             i += 1
+        //        print("This is my occupationalData dictionary sorted by SOC Code: \(self.occupationalData)")
         }
-        print("This is my occupationalData dictionary sorted by SOC Code: \(self.occupationalData)")
     }
 }

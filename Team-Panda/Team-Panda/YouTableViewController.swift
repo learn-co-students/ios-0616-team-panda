@@ -36,7 +36,7 @@ class YouTableViewController: UITableViewController {
         self.navigationController?.hidesBarsOnSwipe = true
         
 //        self.view.clipsToBounds = true
-        // XMLParser().parsingXML()
+     //    XMLParser().parsingXML()
     }
 
     override func viewDidAppear(animated: Bool) {
