@@ -42,7 +42,7 @@ class YouTableViewController: UITableViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        let string = ""
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
