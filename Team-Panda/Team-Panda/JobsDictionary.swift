@@ -65,7 +65,6 @@ let stateCodes : [String : String] =
     "0800000" : "Colorado",
     "0900000" : "Connecticut",
     "1000000" : "Delaware",
-    "1100000" : "District of Columbia",
     "1200000" : "Florida",
     "1300000" : "Georgia",
     "1500000" : "Hawaii",

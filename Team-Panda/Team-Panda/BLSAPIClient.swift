@@ -15,7 +15,7 @@ class BLSAPIClient {
     static let headers = [ "Content-Type" : "application/json" ]
     
     class func getMultipleOccupationsWithCompletion(params: [String: AnyObject], completion: (NSDictionary) -> ()) {
-        
+
         Alamofire.request(.POST, Secrets.apiURL, parameters: params, encoding: .JSON, headers: headers).responseJSON { (blsResponse) in
             if let json = blsResponse.result.value {
                 guard

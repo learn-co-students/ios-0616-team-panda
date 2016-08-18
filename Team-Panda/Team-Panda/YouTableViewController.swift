@@ -37,6 +37,7 @@ class YouTableViewController: UITableViewController {
         self.getSavedJobChoices {
             SwiftSpinner.hide()
         }
+        JSONParser().parsingJSON()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -64,12 +65,14 @@ class YouTableViewController: UITableViewController {
         
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
-        let selectedCode = store.jobsResultsArray[indexPath.row].SOCcode
+        jobDetail.job = store.jobsResultsArray[indexPath.row]
         
-        store.getLocationQuotientforSOCCodeWithCompletion(selectedCode) { (lqDictionaryByState) in
-            print(lqDictionaryByState)
-            print("Completed.")
-        }
+//        let selectedCode = store.jobsResultsArray[indexPath.row].SOCcode
+        
+//        store.getLocationQuotientforSOCCodeWithCompletion(selectedCode) { (lqDictionaryByState) in
+//            print(lqDictionaryByState)
+//            print("Completed.")
+//        }
         
         self.navigationController?.showViewController(jobDetail, sender: "")
 
