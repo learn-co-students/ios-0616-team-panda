@@ -14,6 +14,7 @@
 		32D9D74CF88456BF2D6B6D55 /* Pods_Team_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */; };
 		47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */; };
+		6E4AB73B1D6533A200276884 /* Occupation Dictionary.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AB73A1D6533A200276884 /* Occupation Dictionary.xml */; };
 		6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB001D54125E00C12B50 /* AppDelegate.swift */; };
 		6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB041D54125E00C12B50 /* Main.storyboard */; };
 		6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB071D54125E00C12B50 /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.release.xcconfig"; sourceTree = "<group>"; };
 		59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_Panda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLSAPIClient.swift; sourceTree = "<group>"; };
+		6E4AB73A1D6533A200276884 /* Occupation Dictionary.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Occupation Dictionary.xml"; sourceTree = "<group>"; };
 		6E58FAFD1D54125E00C12B50 /* Team-Panda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team-Panda.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E58FB001D54125E00C12B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E58FB051D54125E00C12B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
 				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
 				1B41B5091D639A7000A0D0B3 /* stately.ttf */,
+				6E4AB73A1D6533A200276884 /* Occupation Dictionary.xml */,
 				6E58FB0C1D54125E00C12B50 /* Info.plist */,
 				6E62A0EF1D59426600D71011 /* GoogleService-Info.plist */,
 			);
@@ -408,6 +411,7 @@
 				6E62A0F01D59426600D71011 /* GoogleService-Info.plist in Resources */,
 				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,
 				6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */,
+				6E4AB73B1D6533A200276884 /* Occupation Dictionary.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
