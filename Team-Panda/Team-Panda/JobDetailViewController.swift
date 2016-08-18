@@ -15,6 +15,8 @@ import CoreText
 
 class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
+    var store = DataStore.store
+    var job : Job?
     var scrollView = UIScrollView()
     var careerHeaderLabel = UILabel()
     var careerDescriptionLabel = UITextView()
@@ -24,9 +26,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     var salaryDescriptionLabel = UILabel()
     var locationQuotientLabel = UILabel()
     var locationQuotientUnitedStatesMapUIImageView = UIImageView()
-    //var minEduReqsInfoButton = SwiftyButton()
-    //var salaryInfoButton = SwiftyButton()
-    //var locationQuotientInfoButton = SwiftyButton()
     var usaColorMapView: USStatesColorMap!
     var howToBecomeOneLabel = UILabel()
     var howToBecomeOneDescription = UITextView()
@@ -84,12 +83,17 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                                            "Mississippi" : 0.55,
                                            "Arkansas" : 0.54]
     
-    //get location of the label and add alert to the label touches began
     override func viewDidLoad() {
         super.viewDidLoad()
         createViews()
         setStylingForViews()
         setTextForUILabels()
+        store.getLocationQuotientforSOCCodeWithCompletion(job!.SOCcode) { (lqDictionaryByState) in
+            self.setLocationQuotientMap(lqDictionaryByState)
+            print(lqDictionaryByState)
+            print("Completed.")
+        }
+        
     }
     
     func createViews() {
@@ -112,9 +116,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(salaryHeaderLabel)
         scrollView.addSubview(salaryDescriptionLabel)
         scrollView.addSubview(locationQuotientLabel)
-        //scrollView.addSubview(minEduReqsInfoButton)
-        //scrollView.addSubview(salaryInfoButton)
-        //scrollView.addSubview(locationQuotientInfoButton)
         scrollView.addSubview(howToBecomeOneView)
         
         self.howToBecomeOneView.addSubview(howToBecomeOneLabel)
@@ -157,14 +158,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalTo(self.minEduReqsHeaderLabel.snp_bottom).offset(10)
         }
         
-//        self.minEduReqsInfoButton.snp_makeConstraints { (make) in
-//            make.left.equalTo(self.minEduReqsHeaderLabel.snp_right).offset(-50)
-//            make.top.equalTo(self.careerDescriptionLabel.snp_bottom).offset(30)
-//        }
-//        
-//        self.minEduReqsInfoButton.setTitle("?", forState: .Normal)
-//        self.minEduReqsInfoButton.addTarget(self, action: #selector(minEduReqsInfoButtonTapped), forControlEvents: .TouchUpInside)
-        
         self.salaryHeaderLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view).multipliedBy(0.9)
@@ -176,15 +169,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.width.equalTo(self.view).multipliedBy(0.9)
             make.top.equalTo(self.salaryHeaderLabel.snp_bottom).offset(10)
         }
-        
-//        self.salaryInfoButton.snp_makeConstraints { (make) in
-//            make.centerX.equalTo(self.salaryHeaderLabel).offset(70)
-//            make.top.equalTo(self.minEduReqsDescriptionLabel.snp_bottom).offset(20)
-//        }
-        
-//        self.salaryInfoButton.setTitle("?", forState: .Normal)
-//        self.salaryInfoButton.addTarget(self, action: #selector(payInfoButtonTapped), forControlEvents: .TouchUpInside)
-        
+
         self.locationQuotientLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view).multipliedBy(0.9)
@@ -193,18 +178,13 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.usaColorMapView.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
-            make.top.equalTo(self.locationQuotientLabel.snp_bottom).offset(-80)
+            make.top.equalTo(self.locationQuotientLabel.snp_bottom).offset(-70)
             make.width.equalTo(self.view.snp_width).multipliedBy(0.9)
             make.height.equalTo(self.view.snp_width)
         }
         
-//        self.locationQuotientInfoButton.snp_makeConstraints { (make) in
-//            make.left.equalTo(self.locationQuotientLabel.snp_right).offset(-100)
-//            make.top.equalTo(self.salaryDescriptionLabel.snp_bottom).offset(self.careerHeaderLabel.frame.height * 5)
-//        }
-        
         self.howToBecomeOneView.snp_makeConstraints { (make) in
-            make.top.equalTo(usaColorMapView.snp_bottomMargin).offset(20)
+            make.top.equalTo(usaColorMapView.snp_bottomMargin).offset(10)
             make.width.equalTo(self.view.snp_width)
             make.height.equalTo(self.view.snp_width)
         }
@@ -225,12 +205,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.howToBecomeOneDescription.sizeToFit()
         self.howToBecomeOneDescription.scrollEnabled = false
         
-//        self.locationQuotientInfoButton.setTitle("?", forState: .Normal)
-//        self.locationQuotientInfoButton.addTarget(self, action: #selector(locationQuotientButtonTapped), forControlEvents: .TouchUpInside)
-        
         scrollView.contentSize = CGSizeMake(view.bounds.width, (view.bounds.height * 1.2) + (self.careerDescriptionLabel.frame.height + self.usaColorMapView.frame.height))
         
-        setLocationQuotientMap(dummyDictionaryLocationQuotient)
     }
     
     func setLocationQuotientMap(dictionary: [String : Double]) {
@@ -290,16 +266,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         let gestureRecognizerMinEdu = UITapGestureRecognizer(target: self, action: #selector(JobDetailViewController.showMinEduReqsAlert))
         self.minEduReqsHeaderLabel.addGestureRecognizer(gestureRecognizerMinEdu)
         
-//        self.minEduReqsInfoButton.titleLabel?.numberOfLines = 1
-//        self.minEduReqsInfoButton.titleLabel?.textAlignment = .Center
-//        self.minEduReqsInfoButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
-//        self.minEduReqsInfoButton.shadowHeight = 1
-//        self.minEduReqsInfoButton.buttonPressDepth = 0.3
-//        self.minEduReqsInfoButton.cornerRadius = 10
-//        self.minEduReqsInfoButton.titleLabel?.textColor = FlatWhite()
-//        self.minEduReqsInfoButton.buttonColor = FlatTeal()
-//        self.minEduReqsInfoButton.shadowColor = FlatTeal().darkenByPercentage(0.2)
-        
         self.minEduReqsDescriptionLabel.textAlignment = .Center
         self.minEduReqsDescriptionLabel.font = UIFont.pandaFontLight(withSize: 20)
         self.minEduReqsDescriptionLabel.textColor = UIColor.flatTealColor().lightenByPercentage(0.2)
@@ -316,16 +282,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.salaryDescriptionLabel.font = UIFont.pandaFontLight(withSize: 20)
         self.salaryDescriptionLabel.textColor = UIColor.flatTealColor().lightenByPercentage(0.2)
         
-//        self.salaryInfoButton.titleLabel?.numberOfLines = 1
-//        self.salaryInfoButton.titleLabel?.textAlignment = .Center
-//        self.salaryInfoButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
-//        self.salaryInfoButton.shadowHeight = 1
-//        self.salaryInfoButton.buttonPressDepth = 0.3
-//        self.salaryInfoButton.cornerRadius = 10
-//        self.salaryInfoButton.titleLabel?.textColor = FlatWhite()
-//        self.salaryInfoButton.buttonColor = FlatTeal()
-//        self.salaryInfoButton.shadowColor = FlatTeal().darkenByPercentage(0.2)
-        
         self.locationQuotientLabel.textAlignment = .Center
         self.locationQuotientLabel.font = UIFont.pandaFontBold(withSize: 18)
         self.locationQuotientLabel.textColor = UIColor.flatBlueColorDark()
@@ -333,17 +289,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(JobDetailViewController.locationQuotientButtonAlert))
         self.locationQuotientLabel.addGestureRecognizer(gestureRecognizer)
-        
-        
-//        self.locationQuotientInfoButton.titleLabel?.numberOfLines = 1
-//        self.locationQuotientInfoButton.titleLabel?.textAlignment = .Center
-//        self.locationQuotientInfoButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
-//        self.locationQuotientInfoButton.shadowHeight = 1
-//        self.locationQuotientInfoButton.buttonPressDepth = 0.3
-//        self.locationQuotientInfoButton.cornerRadius = 10
-//        self.locationQuotientInfoButton.titleLabel?.textColor = FlatWhite()
-//        self.locationQuotientInfoButton.buttonColor = FlatTeal()
-//        self.locationQuotientInfoButton.shadowColor = FlatTeal().darkenByPercentage(0.2)
         
         self.howToBecomeOneView.backgroundColor = UIColor.flatPlumColor()
         
@@ -354,17 +299,16 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.howToBecomeOneDescription.font = UIFont.pandaFontMedium(withSize: 18.0)
         self.howToBecomeOneDescription.textColor = UIColor.flatWhiteColor()
         self.howToBecomeOneDescription.backgroundColor = UIColor.flatPlumColor()
-
     }
     
     func setTextForUILabels() {
-        self.careerHeaderLabel.text = "Operations Technicians".uppercaseString
+        self.careerHeaderLabel.text = job?.occupation.uppercaseString
         self.careerDescriptionLabel.text = "Aerospace engineering and operations technicians operate and maintain equipment used in developing, testing, and producing new aircraft and spacecraft. Increasingly, these workers are using computer-based modeling and simulation tools and processes in their work."
         self.minEduReqsHeaderLabel.text = "Typical Entry-Level Education  ▸"
         self.locationQuotientLabel.text = "Location Quotient  ▸"
         self.minEduReqsDescriptionLabel.text = "Associate's degree"
         self.salaryHeaderLabel.text = "Median Pay  ▸"
-        self.salaryDescriptionLabel.text = "$66,180"
+        self.salaryDescriptionLabel.text = "$\(job!.annualMeanSalary)"
         self.howToBecomeOneLabel.text = "How to Become One".uppercaseString
         self.howToBecomeOneDescription.text = "Although employers prefer to hire applicants with a master’s degree or Ph.D., entry-level positions are available for those with a bachelor’s degree. Analysts typically have a degree in operations research, management science, analytics, math, engineering, computer science, or another technical or quantitative field."
     }
@@ -376,12 +320,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         alertController.addAction(defaultAction)
         
         presentViewController(alertController, animated: true, completion: nil)
-        
     }
-    
-//    @IBAction func minEduReqsInfoButtonTapped(sender: UIButton!) {
-//        showMinEduReqsAlert()
-//    }
     
     @IBAction func showSalaryAlert() {
         let alertController = UIAlertController(title: "Median Pay", message: "The wage at which half of the workers in the occupation earned more than that amount and half earned less. Median wage data are from the BLS Occupational Employment Statistics survey. In May 2015, the median annual wage for all workers was $36,200.", preferredStyle: .Alert)
@@ -392,12 +331,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
-//    @IBAction func payInfoButtonTapped(sender: UIButton!) {
-//        showPayAlert()
-//    }
-    
-    
-    
     @IBAction func locationQuotientButtonAlert() {
         let alertController = UIAlertController(title: "Location Quotient", message: "The location quotient is the ratio of the area concentration of occupational employment to the national average concentration. A location quotient greater than one indicates the occupation has a higher share of employment than average, and a location quotient less than one indicates the occupation is less prevalent in the area than average.", preferredStyle: .Alert)
         
@@ -406,10 +339,5 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         presentViewController(alertController, animated: true, completion: nil)
     }
-    
-//    @IBAction func locationQuotientButtonTapped(sender: UIButton!) {
-//        locationQuotientButtonAlert()
-//    }
-    
 
 }
