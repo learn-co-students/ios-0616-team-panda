@@ -37,12 +37,18 @@ class UserProfileViewController: UIViewController {
         print("TPUser email was updated to \(DataStore.store.tpUser?.email)")
         let alert = Constants.displayAlertWithTryAgain("Your email was saved as", message: "\(newEmail)")
         self.presentViewController(alert, animated: true, completion: nil)
-        self.presentViewController(SettingsViewController(), animated: true, completion: nil)
+        self.dismissViewControllerAnimated(true) { 
+            print("Dismissed User Profile View VC")
+        }
+//        self.presentViewController(SettingsViewController(), animated: true, completion: nil)
     }
 
     @IBAction func cancelButtonTapped(sender: UIButton!) {
         print("Cancel Button Tapped")
-        self.presentViewController(SettingsViewController(), animated: true, completion: nil)
+        self.dismissViewControllerAnimated(true) { 
+            print("Dismissed User Profile View VC")
+        }
+//        self.presentViewController(SettingsViewController(), animated: true, completion: nil)
     }
     
 

@@ -14,6 +14,8 @@
 		32D9D74CF88456BF2D6B6D55 /* Pods_Team_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */; };
 		47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */; };
+		6E57F4861D65F6AD00DF362D /* Occupation-Dictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E57F4851D65F6AD00DF362D /* Occupation-Dictionary.json */; };
+		6E57F4881D6606C000DF362D /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57F4871D6606C000DF362D /* JSONParser.swift */; };
 		6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB001D54125E00C12B50 /* AppDelegate.swift */; };
 		6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB041D54125E00C12B50 /* Main.storyboard */; };
 		6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB071D54125E00C12B50 /* Assets.xcassets */; };
@@ -29,6 +31,7 @@
 		6EADF8981D5E2C0E00BFE71B /* YouTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EADF8971D5E2C0E00BFE71B /* YouTableViewController.swift */; };
 		7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */; };
 		7B2AEC3F1D5E4E8F00FC1090 /* JobsDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */; };
+		7B3CAAB31D64F348006322ED /* LocationQuotient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3CAAB21D64F348006322ED /* LocationQuotient.swift */; };
 		7B3CB3601D59400D00A11E7E /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */; };
 		7B416BD11D635631003894DE /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B416BD01D635631003894DE /* Job.swift */; };
 		7B48980A1D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */; };
@@ -70,6 +73,8 @@
 		28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.release.xcconfig"; sourceTree = "<group>"; };
 		59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_Panda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLSAPIClient.swift; sourceTree = "<group>"; };
+		6E57F4851D65F6AD00DF362D /* Occupation-Dictionary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Occupation-Dictionary.json"; sourceTree = "<group>"; };
+		6E57F4871D6606C000DF362D /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		6E58FAFD1D54125E00C12B50 /* Team-Panda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team-Panda.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E58FB001D54125E00C12B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E58FB051D54125E00C12B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +100,7 @@
 		6EE4CAD31D577C3D0092784D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestsTableViewCell.swift; sourceTree = "<group>"; };
 		7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobsDictionary.swift; sourceTree = "<group>"; };
+		7B3CAAB21D64F348006322ED /* LocationQuotient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationQuotient.swift; sourceTree = "<group>"; };
 		7B416BD01D635631003894DE /* Job.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 		7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TellUsAboutYourselfViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
 				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
 				1B41B5091D639A7000A0D0B3 /* stately.ttf */,
+				6E57F4851D65F6AD00DF362D /* Occupation-Dictionary.json */,
 				6E58FB0C1D54125E00C12B50 /* Info.plist */,
 				6E62A0EF1D59426600D71011 /* GoogleService-Info.plist */,
 			);
@@ -205,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				6E9E600B1D62720E008AE46F /* XMLParser.swift */,
+				6E57F4871D6606C000DF362D /* JSONParser.swift */,
 				6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */,
 				7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */,
 				7BC6A0091D5BABBF00BFD0D3 /* DataStore.swift */,
@@ -213,6 +221,7 @@
 				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
 				7B90EBB81D592DFB00EE475A /* Constants.swift */,
 				7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */,
+				7B3CAAB21D64F348006322ED /* LocationQuotient.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -404,6 +413,7 @@
 				1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */,
 				6E62A0F01D59426600D71011 /* GoogleService-Info.plist in Resources */,
 				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,
+				6E57F4861D65F6AD00DF362D /* Occupation-Dictionary.json in Resources */,
 				6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,6 +564,8 @@
 			files = (
 				6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */,
 				7BC6A00A1D5BABBF00BFD0D3 /* DataStore.swift in Sources */,
+				6E57F4881D6606C000DF362D /* JSONParser.swift in Sources */,
+				7B3CAAB31D64F348006322ED /* LocationQuotient.swift in Sources */,
 				1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */,
 				7B416BD11D635631003894DE /* Job.swift in Sources */,
 				6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */,

@@ -21,6 +21,8 @@ class XMLParser: NSObject, NSXMLParserDelegate {
                 return
         }
         
+  //      let xmlLocal = NSBundle.mainBundle().resourcePath.
+        
         let xml = SWXMLHash.parse(xmlData)
         
         print(xml["ooh"]["occupation"].all.count)

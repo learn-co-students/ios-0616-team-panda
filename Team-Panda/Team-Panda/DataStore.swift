@@ -34,11 +34,9 @@ class DataStore {
                     return
             }
             
-          //  print("Results Value: \(resultsValue)")
-            
             for seriesID in seriesValue {
                 let job = Job(withDictionary: seriesID)
-           //     print(job)
+                
                 guard
                     let specificCareerDictionary = seriesID["catalog"] as? NSDictionary,
                     let careerName = specificCareerDictionary["occupation"] as? String else {
@@ -47,10 +45,40 @@ class DataStore {
                 self.careerResultsArray.append(careerName)
                 
                 self.jobsResultsArray.append(job)
-           //     print("This is the count of my careerResultsArray: \(self.careerResultsArray.count)")
             }
             
             completion()
+        }
+    }
+    
+    func getLocationQuotientforSOCCodeWithCompletion(SOCcode : String, completion : ([String : Double]) -> ()) {
+        
+        var lqByState : [String : Double] = [:]
+        
+        let stateParams = DataSeries.createStateSeriesIDsWith(SOCcode, withDataType: DataSeries.locationQuotient)
+        
+        BLSAPIClient.getLocationQuotientforJobWithCompletion(stateParams) { (lqResults) in
+            
+            guard
+                let resultsValue = lqResults["Results"] as? NSDictionary,
+                let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                    return
+            }
+            
+            for state in seriesValue {
+                
+                guard
+                    let stateSeriesInfo = state["catalog"] as? NSDictionary,
+                    let stateName = stateSeriesInfo["area"] as? String,
+                    let stateData = state["data"] as? [[String : AnyObject]],
+                    let lqValue = stateData[0]["value"] as? String
+                    else { return }
+                
+                if let locQuotientFloat = Double(lqValue) {
+                    lqByState.updateValue(locQuotientFloat, forKey: stateName)
+                }
+            }
+            completion(lqByState)
         }
     }
 }

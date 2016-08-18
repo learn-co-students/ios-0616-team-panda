@@ -107,11 +107,26 @@ class TPUser {
                 
                 completion(TPUser.userFromDictionary(userSnapshot, uid: uid))
                 
-            } else {
-                print("This is the user snapshot: \(userSnapshot)")
             }
             
-        })
+            }) { (error) in
+                
+                print("Error in getting snapshot for UID \(uid)")
+                print(error.localizedDescription)
+                completion(nil)
+        }
+        
+//        ref.child("users/\(uid)").observeSingleEventOfType(.Value, withBlock: { (userSnapshot) in
+//            
+//            if let userSnapshot = userSnapshot.value as? [String : AnyObject] {
+//                
+//                completion(TPUser.userFromDictionary(userSnapshot, uid: uid))
+//                
+//            } else {
+//                print("This is the user snapshot: \(userSnapshot)")
+//            }
+//            
+//        })
         
     }
 }

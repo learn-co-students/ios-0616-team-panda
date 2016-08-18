@@ -8,18 +8,18 @@
 
 import Foundation
 
-class JobsSeries {
+class DataSeries {
     
-    static var params = [ "seriesid"          : [""],
-                          "startyear"         : "2015",
-                          "endyear"           : "2015",
-                          "catalog"           : true,
-                          "calculations"      : true,
-                          "annualaverage"     : true,
-                          "registrationKey"   : "0f531a05be854c279b9476729a303269" ]
+    static var params : [String : AnyObject] = [ "seriesid"          : [""],
+                                                 "startyear"         : "2015",
+                                                 "endyear"           : "2015",
+                                                 "catalog"           : true,
+                                                 "calculations"      : true,
+                                                 "annualaverage"     : true,
+                                                 "registrationKey"   : Secrets.apiKey ]
     
-    static let seriesID = "OEUN0000000000000"
-    
+    static let jobSeriesID = "OEUN0000000000000"
+    static let lqSeriesID = "OEUS"
     static let employment = "01"
     static let annualMeanWage = "04"
     static let locationQuotient = "17"
@@ -30,17 +30,84 @@ class JobsSeries {
     // 17	Location Quotient
     
     class func createSeriesIDsFromSOC(codes : [Int], withDataType type : String) -> [String : AnyObject] {
+        
         // ie: OEUN000000000000013201104
         var seriesIDs : [String] = []
         for code in codes {
-            seriesIDs.append(seriesID + "\(code)" + type)
+            seriesIDs.append(jobSeriesID + "\(code)" + type)
         }
      
         params["seriesid"] = seriesIDs
         return params
     }
+    
+    class func createStateSeriesIDsWith(SOCcode: String, withDataType type : String) -> [String : AnyObject] {
+        
+        var seriesIDs : [String] = []
+        
+        for code in stateCodes.keys {
+            seriesIDs.append(lqSeriesID + "\(code)000000\(SOCcode)" + type)
+            print("\(stateCodes[code]!): " + lqSeriesID + "\(code)000000\(SOCcode)" + type)
+        }
+        
+        params["seriesid"] = seriesIDs
+        return params
+    }
 
 }
+
+let stateCodes : [String : String] =
+   ["0100000" : "Alabama",
+    "0200000" : "Alaska",
+    "0400000" : "Arizona",
+    "0500000" : "Arkansas",
+    "0600000" : "California",
+    "0800000" : "Colorado",
+    "0900000" : "Connecticut",
+    "1000000" : "Delaware",
+    "1100000" : "District of Columbia",
+    "1200000" : "Florida",
+    "1300000" : "Georgia",
+    "1500000" : "Hawaii",
+    "1600000" : "Idaho",
+    "1700000" : "Illinois",
+    "1800000" : "Indiana",
+    "1900000" : "Iowa",
+    "2000000" : "Kansas",
+    "2100000" : "Kentucky",
+    "2200000" : "Louisiana",
+    "2300000" : "Maine",
+    "2400000" : "Maryland",
+    "2500000" : "Massachusetts",
+    "2600000" : "Michigan",
+    "2700000" : "Minnesota",
+    "2800000" : "Mississippi",
+    "2900000" : "Missouri",
+    "3000000" : "Montana",
+    "3100000" : "Nebraska",
+    "3200000" : "Nevada",
+    "3300000" : "New Hampshire",
+    "3400000" : "New Jersey",
+    "3500000" : "New Mexico",
+    "3600000" : "New York",
+    "3700000" : "North Carolina",
+    "3800000" : "North Dakota",
+    "3900000" : "Ohio",
+    "4000000" : "Oklahoma",
+    "4100000" : "Oregon",
+    "4200000" : "Pennsylvania",
+    "4400000" : "Rhode Island",
+    "4500000" : "South Carolina",
+    "4600000" : "South Dakota",
+    "4700000" : "Tennessee",
+    "4800000" : "Texas",
+    "4900000" : "Utah",
+    "5000000" : "Vermont",
+    "5100000" : "Virginia",
+    "5300000" : "Washington",
+    "5400000" : "West Virginia",
+    "5500000" : "Wisconsin",
+    "5600000" : "Wyoming"]
 
 let jobsDictionary : [WhichInterestsStyle : AnyObject] =
     
