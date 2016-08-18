@@ -31,16 +31,33 @@ class UserProfileViewController: UIViewController {
     }
     
     @IBAction func saveChangesButtonTapped(sender: UIButton!) {
-        let newEmail = self.email.text!
-        DataStore.store.tpUser?.email = newEmail
-        DataStore.store.tpUser?.updateUserProfile()
-        print("TPUser email was updated to \(DataStore.store.tpUser?.email)")
-        let alert = Constants.displayAlertWithTryAgain("Your email was saved as", message: "\(newEmail)")
-        self.presentViewController(alert, animated: true, completion: nil)
-        self.dismissViewControllerAnimated(true) { 
-            print("Dismissed User Profile View VC")
-        }
-//        self.presentViewController(SettingsViewController(), animated: true, completion: nil)
+        
+        DataStore.store.tpUser?.updateUserProfile(withEmail : self.email.text!, completion: { (alert, message) in
+            
+            if message == "Error" {
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            }
+            else { // successs
+//                
+//                alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action) in
+//                    
+//                    self.dismissViewControllerAnimated(true) { }
+//                    
+//                }))
+                
+                self.presentViewController(alert, animated: true, completion: {
+                    
+                    self.styleUserProfileViews()
+                    
+                })
+                
+//                self.dismissViewControllerAnimated(true) { print("Dismissed User Profile View VC") }
+//                self.dismissViewControllerAnimated(true) { print("Second call to save.") }
+            }
+            
+        })
     }
 
     @IBAction func cancelButtonTapped(sender: UIButton!) {
@@ -48,7 +65,6 @@ class UserProfileViewController: UIViewController {
         self.dismissViewControllerAnimated(true) { 
             print("Dismissed User Profile View VC")
         }
-//        self.presentViewController(SettingsViewController(), animated: true, completion: nil)
     }
     
 
@@ -125,7 +141,8 @@ class UserProfileViewController: UIViewController {
         self.email.layer.cornerRadius = 5
         
         //Format Placeholder Text in Email/Password UITextFields
-        self.password.placeholder = "PASSWORD"
+        self.password.placeholder = "Password"
+        self.password.secureTextEntry = true
         self.email.placeholder = FIRAuth.auth()!.currentUser!.email?.uppercaseString
         self.email.textAlignment = .Center
         self.password.textAlignment = .Center

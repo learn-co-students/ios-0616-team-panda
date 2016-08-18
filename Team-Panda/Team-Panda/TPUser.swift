@@ -55,16 +55,31 @@ class TPUser {
         DataStore.store.tpUser = self
     }
     
-    func updateUserProfile() {
+    func updateUserProfile(withEmail newEmail : String, completion: (UIAlertController, String)->()) {
         
         guard let user = FIRAuth.auth()?.currentUser else {fatalError("Couldn't get current user.") }
         
+        DataStore.store.tpUser?.email = newEmail
+        self.email = newEmail
+        
         user.updateEmail(self.email) { (error) in
             if let error = error {
+                
                 print(error.localizedDescription)
+                
+                let errorAlert = Constants.displayAlertWithVerify("Something Went Wrong!", message: error.localizedDescription)
+                
+                completion(errorAlert, "Error")
+                
+            }
+            else {
+                let alert = Constants.displayAlertWith("Success!", message: "Your email was saved as \(self.email)", actionLabel: "Done", style: .Default, actionHandler: { })
+                
+                self.updateDatabase()
+                
+                completion(alert, "Success")
             }
         }
-        self.updateDatabase()
     }
     
     class func userFromDictionary(dictionary : [String : AnyObject], uid : String) -> TPUser? {

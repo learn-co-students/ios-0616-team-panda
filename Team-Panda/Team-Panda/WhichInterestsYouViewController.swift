@@ -72,7 +72,7 @@ class WhichInterestsYouViewController : UIViewController {
         
         self.titleTextLabel = UILabel()
         
-        self.titleTextLabel.text = "Which of these interests you the most?"
+        self.titleTextLabel.text = "Which of these interests you the most? (Select all that apply)"
         self.titleTextLabel.font = UIFont.pandaFontLight(withSize: 72.0)
         self.titleTextLabel.adjustsFontSizeToFitWidth = true
         self.titleTextLabel.numberOfLines = 2
@@ -131,7 +131,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return self.tableView.bounds.size.height / CGFloat(self.interestsArray.count)
+        return self.tableView.bounds.size.height / CGFloat(self.interestsArray.count + 1)
     }
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -241,22 +241,32 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
     
     func parseSOCCodes(interestsCodes : [[Int]]) -> [Int] {
         
-        let numberOfCodePerInterest = self.maxCodes/interestsCodes.count
+        let numberOfCodesPerInterest = self.maxCodes/interestsCodes.count
         
         var codes : [Int] = []
         
         for interests in interestsCodes {
             
-            if interests.count <= numberOfCodePerInterest {
+            if interests.count <= numberOfCodesPerInterest {
                 codes.appendContentsOf(interests)
             }
             else {
                 var i = 0
                 
-                while i < numberOfCodePerInterest {
-                    codes.append(interests[i])
-                    i += 1
+                var chosenIndexes : [Int] = []
+                
+                while i < numberOfCodesPerInterest {
+                    
+                    let randomIndex = Int(arc4random_uniform(UInt32(numberOfCodesPerInterest)))
+                    
+                    if !chosenIndexes.contains(randomIndex) {
+                        chosenIndexes.append(randomIndex)
+                        codes.append(interests[randomIndex])
+                        i += 1
+                    }
                 }
+                
+                print("The chosen indices for the codes array \(interests) are \(chosenIndexes)")
             }
         }
         

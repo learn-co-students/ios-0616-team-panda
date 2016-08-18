@@ -16,16 +16,14 @@ class YouTableViewController: UITableViewController {
     let store = DataStore.store
     var params : [String : AnyObject] = [:]
     
+    lazy var statusBarView : UIView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let top = self.parentViewController?.topLayoutGuide.length
-                
         self.edgesForExtendedLayout = UIRectEdge.None
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = true
-        
-        self.tableView.contentInset.top = top!
         
         self.tableView.accessibilityLabel = "tableView"
         self.tableView.accessibilityIdentifier = "tableView"
@@ -33,7 +31,8 @@ class YouTableViewController: UITableViewController {
         
         self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
         self.navigationController?.hidesBarsOnSwipe = true
-        
+        self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"        
+            
         SwiftSpinner.show("Loading your personalized results")
         self.getSavedJobChoices {
             SwiftSpinner.hide()
@@ -42,11 +41,9 @@ class YouTableViewController: UITableViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        let string = ""
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return store.jobsResultsArray.count
     }
     
