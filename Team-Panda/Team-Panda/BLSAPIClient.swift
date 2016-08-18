@@ -18,7 +18,7 @@ class BLSAPIClient {
             "Content-Type" : "application/json",
             ]
         
-        Alamofire.request(.POST, Secrets().apiURL, parameters: params, encoding: .JSON, headers: header).responseJSON { (blsResponse) in
+        Alamofire.request(.POST, Secrets.apiURL, parameters: params, encoding: .JSON, headers: header).responseJSON { (blsResponse) in
             if let json = blsResponse.result.value {
                 guard
                     let careerResults = json as? NSDictionary
