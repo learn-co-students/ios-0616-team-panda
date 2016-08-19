@@ -24,7 +24,6 @@
 		6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB091D54125E00C12B50 /* LaunchScreen.storyboard */; };
 		6E58FB161D54125E00C12B50 /* Team_PandaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB151D54125E00C12B50 /* Team_PandaTests.swift */; };
 		6E58FB211D54125E00C12B50 /* Team_PandaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB201D54125E00C12B50 /* Team_PandaUITests.swift */; };
-		6E5EE80A1D54EEB8002671D6 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */; };
 		6E5EE80C1D54EEE0002671D6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */; };
 		6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */; };
 		6E62A0F01D59426600D71011 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E62A0EF1D59426600D71011 /* GoogleService-Info.plist */; };
@@ -41,6 +40,7 @@
 		7B6C7E3D1D5A1E4600462368 /* WhichInterestsYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C7E3C1D5A1E4600462368 /* WhichInterestsYouViewController.swift */; };
 		7B90EBB71D58D89C00EE475A /* WouldYouRatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B90EBB61D58D89C00EE475A /* WouldYouRatherViewController.swift */; };
 		7B90EBB91D592DFB00EE475A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B90EBB81D592DFB00EE475A /* Constants.swift */; };
+		7BBB9DB01D67509700841023 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB9DAF1D67509700841023 /* DiscoverViewController.m */; };
 		7BC6A0081D5B99B000BFD0D3 /* TPUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */; };
 		7BC6A00A1D5BABBF00BFD0D3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6A0091D5BABBF00BFD0D3 /* DataStore.swift */; };
 		7C53B52CD0879530CFD1A48B /* Pods_Team_PandaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */; };
@@ -91,7 +91,6 @@
 		6E58FB1C1D54125E00C12B50 /* Team-PandaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Team-PandaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E58FB201D54125E00C12B50 /* Team_PandaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team_PandaUITests.swift; sourceTree = "<group>"; };
 		6E58FB221D54125E00C12B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6E62A0EF1D59426600D71011 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -112,6 +111,8 @@
 		7B6C7E3C1D5A1E4600462368 /* WhichInterestsYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhichInterestsYouViewController.swift; sourceTree = "<group>"; };
 		7B90EBB61D58D89C00EE475A /* WouldYouRatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WouldYouRatherViewController.swift; sourceTree = "<group>"; };
 		7B90EBB81D592DFB00EE475A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7BBB9DAE1D67509700841023 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		7BBB9DAF1D67509700841023 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPUser.swift; sourceTree = "<group>"; };
 		7BC6A0091D5BABBF00BFD0D3 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_PandaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,7 +259,8 @@
 			children = (
 				6EADF8971D5E2C0E00BFE71B /* YouTableViewController.swift */,
 				1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */,
-				6E5EE8091D54EEB8002671D6 /* DiscoverViewController.swift */,
+				7BBB9DAE1D67509700841023 /* DiscoverViewController.h */,
+				7BBB9DAF1D67509700841023 /* DiscoverViewController.m */,
 				6E2AD2821D6740A30072FA68 /* FavoritesViewController.swift */,
 				6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */,
 				7BADA28E1D5D2BAD00D7A9F3 /* Settings */,
@@ -578,7 +580,6 @@
 				6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */,
 				7B5930E31D5A87D5009D9EBA /* Secrets.swift in Sources */,
 				6E2AD2831D6740A30072FA68 /* FavoritesViewController.swift in Sources */,
-				6E5EE80A1D54EEB8002671D6 /* DiscoverViewController.swift in Sources */,
 				7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */,
 				7B2AEC3F1D5E4E8F00FC1090 /* JobsDictionary.swift in Sources */,
 				6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */,
@@ -586,6 +587,7 @@
 				6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */,
 				7B90EBB91D592DFB00EE475A /* Constants.swift in Sources */,
 				6EADF8981D5E2C0E00BFE71B /* YouTableViewController.swift in Sources */,
+				7BBB9DB01D67509700841023 /* DiscoverViewController.m in Sources */,
 				6E5EE80C1D54EEE0002671D6 /* MapViewController.swift in Sources */,
 				6E9E600C1D62720E008AE46F /* XMLParser.swift in Sources */,
 				7BC6A0081D5B99B000BFD0D3 /* TPUser.swift in Sources */,
