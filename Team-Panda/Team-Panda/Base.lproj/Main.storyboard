@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ldx-Y0-aFl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ldx-Y0-aFl">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,7 +8,7 @@
         <!--Discover-->
         <scene sceneID="hYl-ZS-W72">
             <objects>
-                <viewController storyboardIdentifier="jobDetail" id="p9K-HN-wSz" customClass="JobDetailViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="p9K-HN-wSz" customClass="DiscoverViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HYL-z0-O5Q"/>
                         <viewControllerLayoutGuide type="bottom" id="uBJ-7w-c1q"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Discover" image="idea" id="3As-xW-NbH"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="search-1" id="3As-xW-NbH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkd-R1-Cho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorites" id="ImR-Qn-FK3"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="heartIcon" id="ImR-Qn-FK3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9TC-C6-YVX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -173,7 +173,8 @@
     </scenes>
     <resources>
         <image name="You" width="25" height="25"/>
-        <image name="idea" width="25" height="25"/>
+        <image name="heartIcon" width="20" height="19"/>
+        <image name="search-1" width="25" height="25"/>
         <image name="settings" width="20" height="20"/>
     </resources>
 </document>

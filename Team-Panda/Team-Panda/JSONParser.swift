@@ -47,12 +47,14 @@ class JSONParser {
             
         }
         
-        let occupation = self.sortingOccupationBySOCCode("19-1012")
-        print("Printing occupation data from parsingJSON function: \(occupation)")
-        
+//        let occupation = self.sortingOccupationBySOCCode("19-1012")
+//        print("Printing occupation data from parsingJSON function: \(occupation)")
+//        
     }
     
     func sortingOccupationBySOCCode(socCode: String) -> [String: JSON] {
+        
+        self.parsingJSON()
         
         var occupationData: [String: JSON] = [:]
         

@@ -17,6 +17,7 @@ class DataStore {
     var careerResultsArray: [String] = []
     var jobsResultsArray : [Job] = []
     
+    
     var tpUser : TPUser?
     
     private init() { }
