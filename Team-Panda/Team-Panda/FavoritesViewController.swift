@@ -10,16 +10,14 @@ import UIKit
 import SnapKit
 
 class FavoritesViewController: UIViewController {
+//
+//    var favoritesTableView = UITableView()
+//    
+//    func makeConstraints() {
+//        
 
-    var favoritesTableView = UITableView()
-    
-    func makeConstraints() {
-        
-//        self.favoritesTableView.snp_makeConstraints { (make) in
-//            <#code#>
-//        }
-        
-    }
+//        
+//    }
     
     
 }

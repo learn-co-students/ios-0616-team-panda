@@ -8,7 +8,7 @@
         <!--Discover-->
         <scene sceneID="hYl-ZS-W72">
             <objects>
-                <viewController storyboardIdentifier="jobDetail" id="p9K-HN-wSz" customClass="JobDetailViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="jobDetail" id="p9K-HN-wSz" customClass="discoverViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HYL-z0-O5Q"/>
                         <viewControllerLayoutGuide type="bottom" id="uBJ-7w-c1q"/>

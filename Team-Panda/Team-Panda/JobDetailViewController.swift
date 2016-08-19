@@ -138,11 +138,12 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.careerDescriptionLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
-            make.top.equalTo(self.careerHeaderLabel.snp_bottom).offset(self.careerHeaderLabel.frame.height * 5)
+            make.top.equalTo(self.careerHeaderLabel.snp_bottom).offset(self.careerHeaderLabel.frame.height * 6)
             make.width.equalTo(self.view).multipliedBy(0.9)
         }
         
-        self.careerDescriptionLabel.allowsEditingTextAttributes = false
+        self.careerDescriptionLabel.editable = false
+        self.careerDescriptionLabel.selectable = false
         self.careerDescriptionLabel.sizeToFit()
         self.careerDescriptionLabel.scrollEnabled = false
         
@@ -183,12 +184,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.height.equalTo(self.view.snp_width)
         }
         
-        self.howToBecomeOneView.snp_makeConstraints { (make) in
-            make.top.equalTo(usaColorMapView.snp_bottomMargin).offset(10)
-            make.width.equalTo(self.view.snp_width)
-            make.height.equalTo(self.view.snp_width)
-        }
-        
         self.howToBecomeOneLabel.snp_makeConstraints { (make) in
             make.top.equalTo(self.howToBecomeOneView.snp_topMargin).offset(20)
             make.centerX.equalTo(self.view)
@@ -201,11 +196,25 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.width.equalTo(self.view).multipliedBy(0.9)
         }
         
-        self.howToBecomeOneDescription.allowsEditingTextAttributes = false
+        self.howToBecomeOneView.snp_makeConstraints { (make) in
+            make.top.equalTo(usaColorMapView.snp_bottomMargin).offset(10)
+            make.width.equalTo(self.view.snp_width)
+            make.height.equalTo(self.howToBecomeOneDescription.snp_height)
+        }
+        
+        self.howToBecomeOneDescription.editable = false
+        self.howToBecomeOneDescription.selectable = false
         self.howToBecomeOneDescription.sizeToFit()
         self.howToBecomeOneDescription.scrollEnabled = false
         
-        scrollView.contentSize = CGSizeMake(view.bounds.width, (view.bounds.height * 1.2) + (self.careerDescriptionLabel.frame.height + self.usaColorMapView.frame.height))
+        scrollView.snp_makeConstraints { (make) in
+            make.top.equalTo(self.topLayoutGuide)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+            make.bottom.equalTo(self.bottomLayoutGuide)
+        }
+        
+        scrollView.contentSize = CGSizeMake(view.bounds.width, (view.bounds.height * 1.2) + (self.careerDescriptionLabel.frame.height + self.usaColorMapView.frame.height + self.howToBecomeOneDescription.frame.height))
         
     }
     
@@ -299,19 +308,35 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.howToBecomeOneDescription.font = UIFont.pandaFontMedium(withSize: 18.0)
         self.howToBecomeOneDescription.textColor = UIColor.flatWhiteColor()
         self.howToBecomeOneDescription.backgroundColor = UIColor.flatPlumColor()
+        
+        
     }
     
     func setTextForUILabels() {
         
+        let jobDictionary = JSONParser().sortingOccupationBySOCCode((self.job?.dashSOCcode)!)
+        
         if let jobOccupation = job?.occupation {
-            self.careerHeaderLabel.text = jobOccupation
+            self.careerHeaderLabel.text = jobOccupation.uppercaseString
         }
-        self.careerDescriptionLabel.text = "Aerospace engineering and operations technicians operate and maintain equipment used in developing, testing, and producing new aircraft and spacecraft. Increasingly, these workers are using computer-based modeling and simulation tools and processes in their work."
+        //self.careerDescriptionLabel.text = "Aerospace engineering and operations technicians operate and maintain equipment used in developing, testing, and producing new aircraft and spacecraft. Increasingly, these workers are using computer-based modeling and simulation tools and processes in their work."
+        
+        self.careerDescriptionLabel.text = jobDictionary[JSONParser.occupationDescription]?.stringValue
+        
+        
         
         self.minEduReqsHeaderLabel.text = "Typical Entry-Level Education  ▸"
         self.locationQuotientLabel.text = "Location Quotient  ▸"
         
-        self.minEduReqsDescriptionLabel.text = "Associate's degree"
+        //self.minEduReqsDescriptionLabel.text = "Associate's degree"
+        
+        
+        
+        self.minEduReqsDescriptionLabel.text = jobDictionary[JSONParser.occupationEdu]?.stringValue
+        
+        print("Job SOC Code:\(self.job?.dashSOCcode)")
+        print("jobDictionary[JSONParser.occupationEdu]?.stringValue:\(jobDictionary[JSONParser.occupationEdu]?.stringValue)")
+        
         self.salaryHeaderLabel.text = "Median Pay  ▸"
         
         if let jobSalary = job?.annualMeanSalary {
@@ -320,7 +345,9 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.howToBecomeOneLabel.text = "How to Become One".uppercaseString
         
-        self.howToBecomeOneDescription.text = "Although employers prefer to hire applicants with a master’s degree or Ph.D., entry-level positions are available for those with a bachelor’s degree. Analysts typically have a degree in operations research, management science, analytics, math, engineering, computer science, or another technical or quantitative field."
+        self.howToBecomeOneDescription.text = jobDictionary[JSONParser.occupationBecomeOne]?.stringValue
+        
+        //self.howToBecomeOneDescription.text = "Although employers prefer to hire applicants with a master’s degree or Ph.D., entry-level positions are available for those with a bachelor’s degree. Analysts typically have a degree in operations research, management science, analytics, math, engineering, computer science, or another technical or quantitative field."
     }
     
     @IBAction func showMinEduReqsAlert() {
