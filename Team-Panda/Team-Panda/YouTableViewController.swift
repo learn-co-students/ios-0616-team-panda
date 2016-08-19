@@ -31,13 +31,13 @@ class YouTableViewController: UITableViewController {
         
         self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
         self.navigationController?.hidesBarsOnSwipe = true
-        self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"        
+        self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = "⭐︎"
             
         SwiftSpinner.show("Loading your personalized results")
         self.getSavedJobChoices {
             SwiftSpinner.hide()
         }
-        //JSONParser().parsingJSON()
     }
 
     override func viewDidAppear(animated: Bool) {

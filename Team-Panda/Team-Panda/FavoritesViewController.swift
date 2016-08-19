@@ -7,7 +7,18 @@
 //
 
 import UIKit
+import SnapKit
 
 class FavoritesViewController: UIViewController {
+//
+//    var favoritesTableView = UITableView()
+//    
+//    func makeConstraints() {
+//        
 
+//        
+//    }
+    
+    
 }
+
