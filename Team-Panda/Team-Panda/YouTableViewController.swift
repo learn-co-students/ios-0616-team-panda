@@ -38,6 +38,7 @@ class YouTableViewController: UITableViewController {
             SwiftSpinner.hide()
         }
         JSONParser().parsingJSON()
+      //  ComparingCodes().sortingOccupationBySOCCode()
     }
 
     override func viewDidAppear(animated: Bool) {

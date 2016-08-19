@@ -63,20 +63,14 @@ class JSONParser {
             
             if occupationDict.keys.first == socCode {
                 
-                
-                
                 if let occupationDatabase = occupationDict[socCode] {
                     
                     occupationData = occupationDatabase.dictionaryValue
-                    
-//                    let specificData = occupationDatabase[dataForOccupation]
-//                    occupationData = specificData.stringValue
+                    print("These are the educational requirements: \(occupationData[JSONParser.occupationEdu]?.stringValue)")
                     
                 } else {
                     
-//                    occupationData = "There was a problem getting the occupationDatabase by SOC Code!"
-//                    print(occupationData)
-                    
+                    print("There was an issue pulling the data for the Occupation by SOC Code in the JSON Parser.")
                 }
             }
             
@@ -86,4 +80,16 @@ class JSONParser {
         return occupationData
         
     }
+    
+    
+    func dashCode(code: Int) -> String {
+        
+        var codeString = String(code)
+        
+        codeString.insert("-", atIndex: codeString.startIndex.advancedBy(2))
+        
+        return codeString
+        
+    }
+    
 }
