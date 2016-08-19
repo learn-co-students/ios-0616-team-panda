@@ -47,14 +47,14 @@ class JSONParser {
             
         }
         
-        let occupation = self.sortingOccupationBySOCCode("19-1012", dataForOccupation: JSONParser.occupationBecomeOne)
+        let occupation = self.sortingOccupationBySOCCode("19-1012")
         print("Printing occupation data from parsingJSON function: \(occupation)")
         
     }
     
-    func sortingOccupationBySOCCode(socCode: String, dataForOccupation: String) -> String {
+    func sortingOccupationBySOCCode(socCode: String) -> [String: JSON] {
         
-        var occupationData = ""
+        var occupationData: [String: JSON] = [:]
         
         var i = 0
         while i < self.occupationJSON.arrayValue.count {
@@ -63,15 +63,19 @@ class JSONParser {
             
             if occupationDict.keys.first == socCode {
                 
+                
+                
                 if let occupationDatabase = occupationDict[socCode] {
                     
-                    let specificData = occupationDatabase[dataForOccupation]
-                    occupationData = specificData.stringValue
+                    occupationData = occupationDatabase.dictionaryValue
+                    
+//                    let specificData = occupationDatabase[dataForOccupation]
+//                    occupationData = specificData.stringValue
                     
                 } else {
                     
-                    occupationData = "There was a problem getting the occupationDatabase by SOC Code!"
-                    print(occupationData)
+//                    occupationData = "There was a problem getting the occupationDatabase by SOC Code!"
+//                    print(occupationData)
                     
                 }
             }
