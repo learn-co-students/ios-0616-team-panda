@@ -48,8 +48,8 @@ class JSONParser {
             
         }
         
-        //        let occupation = self.occupationJSON[0]["19-1012"].dictionaryValue
-        //        print("Inside JSON Parser: \(occupation)")
+                let occupation = self.occupationJSON[0]["19-1012"].dictionaryValue
+                print("Inside JSON Parser: \(occupation)")
         // self.sortingOccupationBySOCCode("19-1012")
     }
     
