@@ -30,16 +30,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.showTabBarViewForUser()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-//        self.showTabBarViewForUser()
-    }
-    
     @IBAction func loginButtonTapped(sender: UIButton!) {
-        if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
-            self.validEmailPasswordAlert()
-        } else {
+        if !self.emptyTextFields() {
             self.loginCurrentUser()
+        } else {
+            self.blankEmailPasswordAlert()
         }
     }
     
@@ -47,7 +42,36 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.createNewUser()
     }
     
-    func createAndAddViews() {
+    func showTabBarViewForUser() {
+        print("showTabBarViewForUser called.")
+        if let currentPanda = FIRAuth.auth()?.currentUser {
+            
+            TPUser.getUserFromFirebase(currentPanda.uid, completion: { (pandaUser) in
+                
+                if let pandaUser = pandaUser {
+                    
+                    self.store.tpUser = pandaUser
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
+                    self.presentViewController(tabBarVC, animated: true, completion: {
+                        print("Panda Logged! Loaded Tab Bar VC")
+                    })
+                    
+                } else {
+                    
+                    print("Couldn't unwrap panda user from store. Asking them to re-login.")
+                    self.displayLoginView()
+                }
+            })
+            
+        } else { // no user
+            
+            print("Showing login / signup buttons. No Panda")
+            self.displayLoginView()
+        }
+    }
+    
+    func displayLoginView() {
         
         self.emailTextField = UITextField()
         self.emailTextField.delegate = self
@@ -88,7 +112,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.loginButton.shadowHeight = 5
         self.loginButton.shadowColor = FlatMintDark().darkenByPercentage(0.2)
         self.loginButton.buttonPressDepth = 0.65
-        self.loginButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
+        self.loginButton.titleLabel!.font = UIFont.pandaFontLight(withSize: 20)
         self.signupButton.buttonColor = FlatMintDark().darkenByPercentage(0.1)
         self.signupButton.highlightedColor = FlatMintDark().darkenByPercentage(0.2)
         self.signupButton.shadowHeight = 5
@@ -96,13 +120,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.signupButton.buttonPressDepth = 0.65
         self.signupButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
         
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        // Dismisses keyboard when user taps return in either Username or Password UITextFields
-        self.emailTextField.resignFirstResponder()
-        self.passwordTextField.resignFirstResponder()
-        return true
     }
     
     func viewsConstraints() {
@@ -145,28 +162,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
     }
     
-    func createNewUser() {
+    func emptyTextFields() -> Bool {
         
-        let userEmail = self.emailTextField!.text!
-        let userPassword = self.passwordTextField!.text!
-        
-        FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
-            if error != nil {
-                // Don't create user
-                let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: (error?.localizedDescription)!)
-                self.presentViewController(alert, animated: true, completion: nil)
-            } else {
-                self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)
-                print("User successfully saved into the Firebase database! \(user?.uid) + \(user?.email)")
-                
-                let pandaUser: TPUser = TPUser(withEmail: (user?.email)!, uid: (user?.uid)!)
-                pandaUser.updateDatabase()
-                self.store.tpUser = pandaUser
-            }
+        if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func blankEmailPasswordAlert() {
+        let noTextAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid email address & password", preferredStyle: .Alert)
+        let noTextAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
+            
         })
+        noTextAlertController.addAction(noTextAction)
+        self.presentViewController(noTextAlertController, animated: true, completion: nil)
     }
     
     func loginCurrentUser() {
+        
         guard let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else {
                 print("There's no text in username / password fields!")
@@ -193,39 +208,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         })
     }
     
-    func showTabBarViewForUser() {
-        print("showTabBarViewForUser called.")
-        if let currentPanda = FIRAuth.auth()?.currentUser {
-            TPUser.getUserFromFirebase(currentPanda.uid, completion: { (pandaUser) in
+    func createNewUser() {
+        
+        let userEmail = self.emailTextField!.text!
+        let userPassword = self.passwordTextField!.text!
+        
+        FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
+            if error != nil {
+                // Don't create user
+                let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: (error?.localizedDescription)!)
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)
+                print("User successfully saved into the Firebase database! \(user?.uid) + \(user?.email)")
                 
-                if let pandaUser = pandaUser {
-                    
-                    self.store.tpUser = pandaUser
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
-                    self.presentViewController(tabBarVC, animated: true, completion: {
-                        print("Panda Logged! Loaded Tab Bar VC")
-                    })
-                }
-                else {
-                    print("Couldn't unwrap panda user from store. Asking them to re-login.")
-                    self.createAndAddViews()
-                }
-            })
-        }
-        else { // no user
-            print("Showing login / signup buttons. No Panda")
-            self.createAndAddViews()
-        }
+                let pandaUser: TPUser = TPUser(withEmail: (user?.email)!, uid: (user?.uid)!)
+                pandaUser.updateDatabase()
+                self.store.tpUser = pandaUser
+            }
+        })
     }
     
-    func validEmailPasswordAlert() {
-        let noTextAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid email address & password", preferredStyle: .Alert)
-        let noTextAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
-            
-        })
-        noTextAlertController.addAction(noTextAction)
-        self.presentViewController(noTextAlertController, animated: true, completion: nil)
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // Dismisses keyboard when user taps return in either Username or Password UITextFields
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+        return true
     }
     
     func facebookLoginButtonSetup() {

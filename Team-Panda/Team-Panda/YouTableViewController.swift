@@ -38,7 +38,7 @@ class YouTableViewController: UITableViewController {
         self.getSavedJobChoices {
             SwiftSpinner.hide()
         }
-        //JSONParser().parsingJSON()
+        JSONParser().parsingJSON()
     }
 
     override func viewDidAppear(animated: Bool) {
