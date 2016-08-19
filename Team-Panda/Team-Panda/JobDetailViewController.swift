@@ -302,14 +302,24 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setTextForUILabels() {
-        self.careerHeaderLabel.text = job?.occupation.uppercaseString
+        
+        if let jobOccupation = job?.occupation {
+            self.careerHeaderLabel.text = jobOccupation
+        }
         self.careerDescriptionLabel.text = "Aerospace engineering and operations technicians operate and maintain equipment used in developing, testing, and producing new aircraft and spacecraft. Increasingly, these workers are using computer-based modeling and simulation tools and processes in their work."
+        
         self.minEduReqsHeaderLabel.text = "Typical Entry-Level Education  ▸"
         self.locationQuotientLabel.text = "Location Quotient  ▸"
+        
         self.minEduReqsDescriptionLabel.text = "Associate's degree"
         self.salaryHeaderLabel.text = "Median Pay  ▸"
-        self.salaryDescriptionLabel.text = "$\(job!.annualMeanSalary)"
+        
+        if let jobSalary = job?.annualMeanSalary {
+           self.salaryDescriptionLabel.text = "$\(jobSalary)"
+        }
+        
         self.howToBecomeOneLabel.text = "How to Become One".uppercaseString
+        
         self.howToBecomeOneDescription.text = "Although employers prefer to hire applicants with a master’s degree or Ph.D., entry-level positions are available for those with a bachelor’s degree. Analysts typically have a degree in operations research, management science, analytics, math, engineering, computer science, or another technical or quantitative field."
     }
     
