@@ -17,6 +17,7 @@ class TPUser {
     var tellUsAnswer : String
     var wouldYouRatherAnswer : String
     var interestsAnswer : [String]
+    var favoritesArray : [String]
     
     var socCodes : [Int]
     
@@ -25,7 +26,8 @@ class TPUser {
                 "tell us"           : self.tellUsAnswer,
                 "would you rather"  : self.wouldYouRatherAnswer,
                 "interests"         : self.interestsAnswer,
-                "soc codes"         : self.socCodes]
+                "soc codes"         : self.socCodes,
+                "favorites"         : self.favoritesArray]
     }
     
     init(withEmail email : String, uid : String) {
@@ -37,6 +39,7 @@ class TPUser {
         self.wouldYouRatherAnswer = ""
         self.interestsAnswer = [""]
         self.socCodes = [0]
+        self.favoritesArray = [""]
     }
     
     func updateDatabase() {
@@ -90,12 +93,14 @@ class TPUser {
         let wouldYouRatherAnswer = dictionary["would you rather"] as? String
         let interests = dictionary["interests"] as? [String]
         let codes = dictionary["soc codes"] as? [Int]
+        let favoritesArray = dictionary["favorites"] as? [String]
         
         if  let email = email,
             let tellUs = tellUsAnswer,
             let wouldYouRather = wouldYouRatherAnswer,
             let interests = interests,
-            let codes = codes
+            let codes = codes,
+            let favoritesArray = favoritesArray
         {
             
             let pandaUser = TPUser(withEmail: email, uid: uid)
@@ -103,6 +108,7 @@ class TPUser {
             pandaUser.wouldYouRatherAnswer = wouldYouRather
             pandaUser.interestsAnswer = interests
             pandaUser.socCodes = codes
+            pandaUser.favoritesArray = favoritesArray
             
             return pandaUser
         }

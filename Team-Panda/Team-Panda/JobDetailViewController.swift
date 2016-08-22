@@ -31,70 +31,30 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     var howToBecomeOneDescription = UITextView()
     var howToBecomeOneView = UIView()
     
-    var dummyDictionaryLocationQuotient = ["District of Columbia" : 1.81,
-                                           "Colorado" : 1.55,
-                                           "Delaware" : 1.44,
-                                           "New York" : 1.27,
-                                           "Virginia" : 1.21,
-                                           "Maryland" : 1.18,
-                                           "South Dakota" : 1.18,
-                                           "Massachusetts" : 1.16,
-                                           "Texas" : 1.14,
-                                           "Minnesota" : 1.08,
-                                           "New Jersey" : 1.08,
-                                           "Pennsylvania" : 1.08,
-                                           "Florida" : 1.07,
-                                           "Nebraska" : 1.07,
-                                           "Vermont" : 1.07,
-                                           "Oklahoma" : 1.06,
-                                           "Rhode Island" : 1.06,
-                                           "California" : 1.05,
-                                           "Connecticut" : 1.05,
-                                           "Georgia" : 1.03,
-                                           "North Dakota" : 0.98,
-                                           "Washington" : 0.98,
-                                           "Kansas" : 0.95,
-                                           "Illinois" : 0.94,
-                                           "Missouri" : 0.94,
-                                           "New Mexico" : 0.9,
-                                           "Alabama" : 0.89,
-                                           "Hawaii" : 0.89,
-                                           "Utah" : 0.89,
-                                           "Arizona" : 0.87,
-                                           "Ohio" : 0.87,
-                                           "South Carolina" : 0.84,
-                                           "North Carolina" : 0.83,
-                                           "Wisconsin" : 0.82,
-                                           "Alaska" : 0.81,
-                                           "Maine" : 0.81,
-                                           "New Hampshire" : 0.79,
-                                           "Indiana" : 0.78,
-                                           "Montana" : 0.77,
-                                           "Oregon" : 0.76,
-                                           "Michigan" : 0.75,
-                                           "Wyoming" : 0.73,
-                                           "Iowa" : 0.71,
-                                           "Kentucky" : 0.71,
-                                           "Nevada" : 0.71,
-                                           "Idaho" : 0.68,
-                                           "Louisiana" : 0.67,
-                                           "Tennessee" : 0.67,
-                                           "West Virginia" : 0.64,
-                                           "Mississippi" : 0.55,
-                                           "Arkansas" : 0.54]
+    var tempArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createViews()
         setStylingForViews()
         setTextForUILabels()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "✭", style: .Plain, target: self, action: #selector(self.saveToFavorites))
+        
         store.getLocationQuotientforSOCCodeWithCompletion(job!.SOCcode) { (lqDictionaryByState) in
             self.setLocationQuotientMap(lqDictionaryByState)
             print(lqDictionaryByState)
             print("Completed.")
         }
-        
     }
+    
+    func saveToFavorites() {
+        
+        store.tpUser?.favoritesArray.append((self.job?.SOCcode)!)
+        store.tpUser?.updateDatabase()
+        print("Added this job!")
+    }
+    
     
     func createViews() {
         

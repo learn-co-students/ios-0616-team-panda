@@ -10,46 +10,65 @@ import UIKit
 import CoreData
 import SnapKit
 
-class FavoritesViewController: UIViewController{
+class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let store = DataStore.store
-    var favorites: [Job] = []
     
     var favoritesTableView : UITableView = UITableView()
     var favCell = "favCell"
     
-    //In DataStore --> Need a function to fetchData, to saveContext, and managedObjectContext
-    
-    //Add Constraints and add to View
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        createTableViewConstraints()
         
+        self.favoritesTableView.delegate = self
+        self.favoritesTableView.dataSource = self
+        createTableViewConstraints()
+        self.favoritesTableView.reloadData()
+        self.favoritesTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "basicCell")
+       
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        
-        //store.fetchData()
-        
+        self.checkAndRemoveEmptyArrayFromFirebaseArray()
+        self.favoritesTableView.reloadData()
     }
     
-    //Creates number of cells
+    func checkAndRemoveEmptyArrayFromFirebaseArray() {
+        if store.tpUser!.favoritesArray[0] == "" {
+            store.tpUser!.favoritesArray.removeAtIndex(0)
+            store.tpUser?.updateDatabase()
+        }
+        print("Favorites Array is: \(store.tpUser!.favoritesArray)")
+    }
+
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return store.favoritesArray.count
+        return store.tpUser!.favoritesArray.count
     }
     
-    //Assigns a saved job to each cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = self.favoritesTableView.dequeueReusableCellWithIdentifier("favCell", forIndexPath: indexPath)
+        let cell1 = UITableViewCell(style: .Default, reuseIdentifier: "basicCell")
         
-        cell.textLabel?.text = store.favoritesArray[indexPath.row].occupation
-        cell.backgroundColor = UIColor.flatYellowColor()
-        cell.textLabel?.adjustsFontSizeToFitWidth = false
+        //if store.tpUser!.favoritesArray[indexPath.row] != "" {
+        cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
+        cell1.textLabel?.adjustsFontSizeToFitWidth = false
+        //}
+        cell1.backgroundColor = UIColor.flatYellowColorDark()
+
+        return cell1
+    }
+    
+    func getJobNameForSOCCode(SOCCode: String) -> String {
         
-        return cell
+        let prefix = SOCCode.substringToIndex(SOCCode.startIndex.advancedBy(2)) + "0000"
+        var socJobName = String()
+        
+        if let unwrappedSocName = allSOCCodes[prefix]![SOCCode] {
+            socJobName = unwrappedSocName
+        }
+        return socJobName
     }
     
     //shows Job Detail View Controller for selected job at indexpath
@@ -57,7 +76,7 @@ class FavoritesViewController: UIViewController{
         
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
-        jobDetail.job = store.favoritesArray[indexPath.row]
+        //jobDetail.job! = store.tpUser?.favoritesArray[indexPath.row]
         
         self.navigationController?.showViewController(jobDetail, sender: "")
         
@@ -71,17 +90,10 @@ class FavoritesViewController: UIViewController{
     //Remove Jobs from saved job TableView
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            
-            let favoriteToDelete = self.favorites.removeAtIndex(indexPath.row)
-            
-            //self.store.managedObjectContext.deleteObject(favoriteToDelete)
-            
-            //store.saveContext()
-            
+            let favoriteToDelete = self.store.tpUser?.favoritesArray.removeAtIndex(indexPath.row)
             self.favoritesTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            
             self.favoritesTableView.reloadData()
-            
+            store.tpUser?.updateDatabase()
         } else if editingStyle == .Insert {
         }
     }
@@ -95,6 +107,8 @@ class FavoritesViewController: UIViewController{
             make.height.equalTo(self.view.snp_height)
             make.width.equalTo(self.view.snp_width)
         }
+        
+        self.favoritesTableView.backgroundColor = UIColor.flatYellowColorDark()
     }
     
 }
