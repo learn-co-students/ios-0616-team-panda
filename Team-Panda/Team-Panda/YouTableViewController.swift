@@ -30,7 +30,9 @@ class YouTableViewController: UITableViewController {
         self.tableView.backgroundColor = UIColor.flatMintColor()
         
         self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
-        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.hidesBarsOnSwipe = false
+        self.navigationController?.navigationBar.opaque = false
+//        self.navigationController?.navigationBar.alpha = 0.5
         self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = "⭐︎"
             

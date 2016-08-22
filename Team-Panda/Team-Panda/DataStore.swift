@@ -52,6 +52,34 @@ class DataStore {
         }
     }
     
+    func getSingleOccupationWithCompletion(params : [String : AnyObject], completion: () -> ()) {
+        
+        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults) in
+            
+            guard
+                let resultsValue = careerResults["Results"] as? NSDictionary,
+                let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                    return
+            }
+            
+            for seriesID in seriesValue {
+                let job = Job(withDictionary: seriesID)
+                
+                guard
+                    let specificCareerDictionary = seriesID["catalog"] as? NSDictionary,
+                    let careerName = specificCareerDictionary["occupation"] as? String else {
+                        return
+                }
+                self.careerResultsArray.append(careerName)
+                
+                self.jobsResultsArray.append(job)
+            }
+            
+            completion()
+        }
+        
+    }
+    
     func getLocationQuotientforSOCCodeWithCompletion(SOCcode : String, completion : ([String : Double]) -> ()) {
         
         var lqByState : [String : Double] = [:]
