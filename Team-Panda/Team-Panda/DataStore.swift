@@ -16,7 +16,7 @@ class DataStore {
     var careerNameCellText: String!
     var careerResultsArray: [String] = []
     var jobsResultsArray : [Job] = []
-    
+    var favoritesArray : [Job] = []
     
     var tpUser : TPUser?
     

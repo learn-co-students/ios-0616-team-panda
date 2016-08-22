@@ -309,7 +309,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.howToBecomeOneDescription.textColor = UIColor.flatWhiteColor()
         self.howToBecomeOneDescription.backgroundColor = UIColor.flatPlumColor()
         
-        
     }
     
     func setTextForUILabels() {
@@ -319,35 +318,19 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         if let jobOccupation = job?.occupation {
             self.careerHeaderLabel.text = jobOccupation.uppercaseString
         }
-        //self.careerDescriptionLabel.text = "Aerospace engineering and operations technicians operate and maintain equipment used in developing, testing, and producing new aircraft and spacecraft. Increasingly, these workers are using computer-based modeling and simulation tools and processes in their work."
-        
-        self.careerDescriptionLabel.text = jobDictionary[JSONParser.occupationDescription]?.stringValue
-        
-        
         
         self.minEduReqsHeaderLabel.text = "Typical Entry-Level Education  ▸"
         self.locationQuotientLabel.text = "Location Quotient  ▸"
-        
-        //self.minEduReqsDescriptionLabel.text = "Associate's degree"
-        
-        
-        
-        self.minEduReqsDescriptionLabel.text = jobDictionary[JSONParser.occupationEdu]?.stringValue
-        
-        print("Job SOC Code:\(self.job?.dashSOCcode)")
-        print("jobDictionary[JSONParser.occupationEdu]?.stringValue:\(jobDictionary[JSONParser.occupationEdu]?.stringValue)")
-        
         self.salaryHeaderLabel.text = "Median Pay  ▸"
+        self.howToBecomeOneLabel.text = "How to Become One".uppercaseString
         
+        self.careerDescriptionLabel.text = jobDictionary[JSONParser.occupationDescription]?.stringValue
+        self.minEduReqsDescriptionLabel.text = jobDictionary[JSONParser.occupationEdu]?.stringValue
         if let jobSalary = job?.annualMeanSalary {
            self.salaryDescriptionLabel.text = "$\(jobSalary)"
         }
-        
-        self.howToBecomeOneLabel.text = "How to Become One".uppercaseString
-        
         self.howToBecomeOneDescription.text = jobDictionary[JSONParser.occupationBecomeOne]?.stringValue
-        
-        //self.howToBecomeOneDescription.text = "Although employers prefer to hire applicants with a master’s degree or Ph.D., entry-level positions are available for those with a bachelor’s degree. Analysts typically have a degree in operations research, management science, analytics, math, engineering, computer science, or another technical or quantitative field."
+
     }
     
     @IBAction func showMinEduReqsAlert() {
