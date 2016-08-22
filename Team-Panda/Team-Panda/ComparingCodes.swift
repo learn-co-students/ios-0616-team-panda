@@ -49,13 +49,27 @@ class ComparingCodes {
         let formedLeadership = whichInterestIdeaFormed!["Leadership"]?.map({ dashCode($0) })
         let formedFinance = whichInterestIdeaFormed!["Finance"]?.map({ dashCode($0) })
         
+        let allSoc = allSOCCodes
+        
+        var dummyArray: [String] = []
+        
+        for majorOccupation in allSoc.values {
+            
+            for codes in majorOccupation.keys {
+                
+                let codesDash = dashCode(Int(codes)!)
+                codesFromJobsDictionary.append(codesDash)
+                dummyArray.append(codes)
+            }
+        }
+        
         // codesFromJobsDictionary = formedFinance.flatMap{ $0 }!
         
         let interestsArray =  [solveHuman, solveEnvironment, solveTranspo, solveArc, solveTeach, understandHuman, understandEnvironment, understandTranspo, understandArc, understandTeach, expressedHistory, expressedArt, expressedSports, expressedTeaching, expressedHealth, formedLaw, formedHistory, formedTeach, formedHealth, formedLeadership, formedFinance]
         
         let interests2 = interestsArray.flatMap { $0 }
-        codesFromJobsDictionary = interests2.flatMap { $0 }
-        codesFromJobsDictionary = Array(Set(codesFromJobsDictionary))
+        //        codesFromJobsDictionary = interests2.flatMap { $0 }
+        //        codesFromJobsDictionary = Array(Set(codesFromJobsDictionary))
         
         return codesFromJobsDictionary
         

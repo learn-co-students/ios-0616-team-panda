@@ -38,7 +38,6 @@ class YouTableViewController: UITableViewController {
         self.getSavedJobChoices {
             SwiftSpinner.hide()
         }
-
     }
 
     override func viewDidAppear(animated: Bool) {
