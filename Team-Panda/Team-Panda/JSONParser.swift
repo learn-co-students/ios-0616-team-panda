@@ -30,26 +30,15 @@ class JSONParser {
                     
                     
                 } else {
-                    
                     print("could not get json from file, make sure that file contains valid json.")
-                    
                 }
                 
             } catch let error as NSError {
-                
-                print(error.localizedDescription)
-                
+                print("There was a problem retrieving the JSON object \(error.localizedDescription)")
             }
-            
         } else {
-            
             print("Invalid filename/path.")
-            
         }
-        
-//        let occupation = self.sortingOccupationBySOCCode("19-1012")
-//        print("Printing occupation data from parsingJSON function: \(occupation)")
-//        
     }
     
     func sortingOccupationBySOCCode(socCode: String) -> [String: JSON] {
@@ -60,27 +49,19 @@ class JSONParser {
         
         var i = 0
         while i < self.occupationJSON.arrayValue.count {
-            
             let occupationDict = self.occupationJSON[i].dictionaryValue
             
             if occupationDict.keys.first == socCode {
-                
                 if let occupationDatabase = occupationDict[socCode] {
-                    
                     occupationData = occupationDatabase.dictionaryValue
                     print("These are the educational requirements: \(occupationData[JSONParser.occupationEdu]?.stringValue)")
-                    
                 } else {
-                    
                     print("There was an issue pulling the data for the Occupation by SOC Code in the JSON Parser.")
                 }
             }
-            
             i += 1
         }
-        
         return occupationData
-        
     }
     
     
@@ -94,4 +75,31 @@ class JSONParser {
         
     }
     
+    
+    func matchingUpTheCodes() -> [String] {
+        
+        self.parsingJSON()
+        
+        let apiCodesArray = ComparingCodes().sortingOccupationBySOCCode()
+        
+        var matchingCodes: [String] = []
+        
+        var i = 0
+        while i < self.occupationJSON.arrayValue.count {
+            
+            let occupationDict = self.occupationJSON[i].dictionaryValue
+            
+            for code in apiCodesArray {
+                
+                if occupationDict.keys.first == code {
+                    
+                    matchingCodes.append(code)
+                    
+                }
+            }
+            i += 1
+        }
+        
+        return matchingCodes
+    }
 }

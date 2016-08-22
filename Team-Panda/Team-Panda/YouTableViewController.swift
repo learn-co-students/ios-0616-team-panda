@@ -38,9 +38,6 @@ class YouTableViewController: UITableViewController {
         self.getSavedJobChoices {
             SwiftSpinner.hide()
         }
-        
-        JSONParser().parsingJSON()
-      //  ComparingCodes().sortingOccupationBySOCCode()
 
     }
 
@@ -98,5 +95,4 @@ class YouTableViewController: UITableViewController {
             completion()
         }
     }
-    
 }
