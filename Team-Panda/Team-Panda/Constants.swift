@@ -50,7 +50,7 @@ class Constants {
         
         let logInAction = UIAlertAction(title: "Log In", style: .Default) { (action) in
             
-            SwiftSpinner.show("Logging in")
+            SwiftSpinner.show("Authenticating")
             
             FIRAuth.auth()?.signInWithEmail(alertController.textFields![0].text!, password: alertController.textFields![1].text!, completion: { (user, error) in
                 
@@ -96,4 +96,4 @@ let databaseRefURL = "https://career-options.firebaseio.com/"
 let solveProblemArray = ["Human Body", "Environment", "Transportation", "Architecture", "Teaching"]
 let underStandProblemArray = solveProblemArray
 let ideaExpressedArray = ["History & Society", "Art", "Sports", "Teaching", "Health"]
-let ideaFormedArray = ["Law", "History & Society", "Leadership", "Finance", "Teaching", "Health"]
+let ideaFormedArray = ["Law", "History & Society", "Leadership", "Teaching", "Health"]

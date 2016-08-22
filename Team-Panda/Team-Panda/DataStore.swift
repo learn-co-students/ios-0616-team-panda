@@ -52,7 +52,7 @@ class DataStore {
         }
     }
     
-    func getSingleOccupationWithCompletion(params : [String : AnyObject], completion: () -> ()) {
+    func getSingleOccupationWithCompletion(params : [String : AnyObject], completion: (Job) -> ()) {
         
         BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults) in
             
@@ -61,21 +61,8 @@ class DataStore {
                 let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
                     return
             }
-            
-            for seriesID in seriesValue {
-                let job = Job(withDictionary: seriesID)
-                
-                guard
-                    let specificCareerDictionary = seriesID["catalog"] as? NSDictionary,
-                    let careerName = specificCareerDictionary["occupation"] as? String else {
-                        return
-                }
-                self.careerResultsArray.append(careerName)
-                
-                self.jobsResultsArray.append(job)
-            }
-            
-            completion()
+        
+            completion(Job(withDictionary: seriesValue.first!))
         }
         
     }

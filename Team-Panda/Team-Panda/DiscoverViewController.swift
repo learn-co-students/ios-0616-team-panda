@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import SwiftSpinner
 
 class DiscoverViewController: UIViewController {
 
     lazy var tableView : UITableView = UITableView()
     lazy var detail : Bool = false
     lazy var sectionHeaders : [String] = ["110000", "130000", "150000", "170000", "190000", "210000", "230000", "250000", "270000", "290000", "310000", "330000", "350000", "370000", "390000", "410000", "430000", "450000", "470000", "490000", "510000", "530000"]
+    
+    lazy var jobData : [[Job]] = []
     
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, detail : Bool) {
         super.init(nibName: nil, bundle: nil)
@@ -26,6 +29,8 @@ class DiscoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.getValuesArray()
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.registerClass(DiscoverTableViewCell.self, forCellReuseIdentifier: "discoverCell")
@@ -52,6 +57,23 @@ class DiscoverViewController: UIViewController {
         self.tableView.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
     }
 
+    private func getValuesArray() {
+        
+        for section in sectionHeaders {
+            
+            var jobArray : [Job] = []
+            
+            let occupations = allSOCCodes[section]!
+            
+            for (socCode, occupation) in occupations {
+                
+                let job = Job(withSOCCode: socCode, occupation: occupation)
+                jobArray.append(job)
+            }
+            
+            jobData.append(jobArray)
+        }
+    }
 }
 
 extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
@@ -60,10 +82,8 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("discoverCell", forIndexPath: indexPath) as! DiscoverTableViewCell
 
-        let sectionHeader = sectionHeaders[indexPath.section]
-        let occupations = allSOCCodes[sectionHeader]!
-        let occupationsArray = Array(occupations.values)
-        let occupationTitle = occupationsArray[indexPath.row]
+        let jobSection = self.jobData[indexPath.section]
+        let occupationTitle = jobSection[indexPath.row].occupation
         
         cell.setProperties(occupationTitle)
         cell.createViews()
@@ -72,11 +92,11 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allSOCCodes[sectionHeaders[section]]!.count
+        return self.jobData[section].count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sectionHeaders.count
+        return self.jobData.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -87,13 +107,18 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
         
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
-//        let socCode : Int = allSOCCodes[sectionHeaders[indexPath.section]]
+        let job = self.jobData[indexPath.section][indexPath.row]
         
-        let params = DataSeries.createSeriesIDsFromSOC([251021], withDataType: DataSeries.annualMeanWage)
+        SwiftSpinner.show("Getting data for\n\(job.occupation)")
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (jobDictionary) in
-            jobDetail.job = Job(withDictionary: jobDictionary as! [String : AnyObject])
+        let socCode = Int(job.SOCcode)!
+        
+        let params = DataSeries.createSeriesIDsFromSOC([socCode], withDataType: DataSeries.annualMeanWage)
+        
+        DataStore.store.getSingleOccupationWithCompletion(params) { (job) in
+            jobDetail.job = job
             self.navigationController?.showViewController(jobDetail, sender: "")
+            SwiftSpinner.hide()
         }
     }
 }
