@@ -34,8 +34,8 @@ class YouTableViewController: UITableViewController {
         self.navigationController?.navigationBar.opaque = false
 //        self.navigationController?.navigationBar.alpha = 0.5
         self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = "⭐︎"
-            
+
+        
         SwiftSpinner.show("Loading your personalized results")
         self.getSavedJobChoices {
             SwiftSpinner.hide()
