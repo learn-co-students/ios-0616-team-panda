@@ -33,6 +33,7 @@ class DiscoverViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.backgroundColor = UIColor.flatForestGreenColor()
         self.tableView.registerClass(DiscoverTableViewCell.self, forCellReuseIdentifier: "discoverCell")
         
         self.navigationController?.navigationBar.topItem?.title = "Discover"

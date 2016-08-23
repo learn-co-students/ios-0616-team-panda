@@ -33,7 +33,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.navigationBar.topItem?.title = "Favorites"
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.opaque = false
-        print("Favorites Array: \(store.tpUser?.favoritesArray)")
+       // print("Favorites Array: \(store.tpUser?.favoritesArray)")
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -45,7 +45,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         store.getLocationQuotientforSOCCodeWithCompletion(job!.SOCcode) { (lqDictionaryByState) in
             self.setLocationQuotientMap(lqDictionaryByState)
-            print(lqDictionaryByState)
+           // print(lqDictionaryByState)
             print("Completed.")
         }
     }
