@@ -11,10 +11,10 @@ import ChameleonFramework
 import SnapKit
 import SwiftSpinner
 
-class YouTableViewController: UITableViewController {
+class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
+    var youTableView = UITableView()
+    let reuseIdentifier = "youCell"
     let store = DataStore.store
     var params : [String : AnyObject] = [:]
     
@@ -27,9 +27,7 @@ class YouTableViewController: UITableViewController {
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = true
         
-        self.tableView.accessibilityLabel = "tableView"
-        self.tableView.accessibilityIdentifier = "tableView"
-        self.tableView.backgroundColor = UIColor.flatMintColor()
+        self.settingUpTableView()
         
         self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
@@ -37,25 +35,39 @@ class YouTableViewController: UITableViewController {
         self.navigationController?.navigationBar.opaque = false
         self.navigationController?.navigationBar.alpha = 0.5
         self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"
-
         
         SwiftSpinner.show("Loading your personalized results")
         self.getSavedJobChoices {
             SwiftSpinner.hide()
         }
     }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    
+    func settingUpTableView() {
+        
+        self.youTableView.delegate = self
+        self.youTableView.dataSource = self
+        self.youTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.reuseIdentifier)
+        
+        self.youTableView.accessibilityLabel = "tableView"
+        self.youTableView.accessibilityIdentifier = "tableView"
+        self.youTableView.backgroundColor = UIColor.flatMintColor()
+        
+        self.view.addSubview(self.youTableView)
+        self.youTableView.snp_makeConstraints { (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view)
+        }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.jobsResultsArray.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("youCell", forIndexPath: indexPath)
+        let cell = self.youTableView.dequeueReusableCellWithIdentifier(self.reuseIdentifier, forIndexPath: indexPath)
         
         let job = store.jobsResultsArray[indexPath.row]
         
@@ -67,22 +79,23 @@ class YouTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
         jobDetail.job = store.jobsResultsArray[indexPath.row]
         
-//        let selectedCode = store.jobsResultsArray[indexPath.row].SOCcode
+        //        let selectedCode = store.jobsResultsArray[indexPath.row].SOCcode
         
-//        store.getLocationQuotientforSOCCodeWithCompletion(selectedCode) { (lqDictionaryByState) in
-//            print(lqDictionaryByState)
-//            print("Completed.")
-//        }
+        //        store.getLocationQuotientforSOCCodeWithCompletion(selectedCode) { (lqDictionaryByState) in
+        //            print(lqDictionaryByState)
+        //            print("Completed.")
+        //        }
         
         self.navigationController?.showViewController(jobDetail, sender: "")
-
+        
     }
+    
     
     private func getSavedJobChoices(completion : () -> ()) {
         if let currentPanda = store.tpUser {
@@ -92,11 +105,11 @@ class YouTableViewController: UITableViewController {
         } else { print("Current user is nil when loading You from auto login.") }
         
         print("Parameters for API Call: \(self.params)")
-                
+        
         self.store.getMultipleOccupationsWithCompletion(self.params) {
             
             print("Finished API call. Updating table view.")
-            self.tableView.reloadData()
+            self.youTableView.reloadData()
             completion()
         }
     }
