@@ -6,7 +6,6 @@
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
-import Foundation
 import SwiftyJSON
 
 class JSONParser {
@@ -18,7 +17,6 @@ class JSONParser {
     static let occupationDescription = "Description"
     static let occupationBecomeOne = "How to Become One"
     
-    
     func parsingJSON() {
         
         if let path = NSBundle.mainBundle().pathForResource("Occupation-Dictionary2", ofType: "json") {
@@ -28,11 +26,9 @@ class JSONParser {
                 
                 if self.occupationJSON != JSON.null {
                     
-                    
                 } else {
                     print("could not get json from file, make sure that file contains valid json.")
                 }
-                
             } catch let error as NSError {
                 print("There was a problem retrieving the JSON object \(error.localizedDescription)")
             }
@@ -44,7 +40,6 @@ class JSONParser {
     func sortingOccupationBySOCCode(socCode: String) -> [String: JSON] {
         
         self.parsingJSON()
-        
         var occupationData: [String: JSON] = [:]
         
         var i = 0
@@ -64,24 +59,19 @@ class JSONParser {
         return occupationData
     }
     
-    
     func dashCode(code: Int) -> String {
         
         var codeString = String(code)
-        
         codeString.insert("-", atIndex: codeString.startIndex.advancedBy(2))
         
         return codeString
         
     }
     
-    
     func matchingUpTheCodes() -> [String] {
         
         self.parsingJSON()
-        
         let apiCodesArray = ComparingCodes().sortingOccupationBySOCCode()
-        
         var matchingCodes: [String] = []
         
         var i = 0
@@ -90,16 +80,12 @@ class JSONParser {
             let occupationDict = self.occupationJSON[i].dictionaryValue
             
             for code in apiCodesArray {
-                
                 if occupationDict.keys.first == code {
-                    
                     matchingCodes.append(code)
-                    
                 }
             }
             i += 1
         }
-        
         return matchingCodes
     }
 }

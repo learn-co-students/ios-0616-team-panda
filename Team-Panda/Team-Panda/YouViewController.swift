@@ -89,13 +89,12 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     private func getSavedJobChoices(completion : () -> ()) {
-        if let currentPanda = store.tpUser {
-            
-            self.params = DataSeries.createSeriesIDsFromSOC(currentPanda.socCodes, withDataType: DataSeries.annualMeanWage)
-            
-        } else { print("Current user is nil when loading You from auto login.") }
         
-        print("Parameters for API Call: \(self.params)")
+        if let currentPanda = store.tpUser {
+            self.params = DataSeries.createSeriesIDsFromSOC(currentPanda.socCodes, withDataType: DataSeries.annualMeanWage)
+        } else {
+            print("Current user is nil when loading You from auto login.")
+        }
         
         self.store.getMultipleOccupationsWithCompletion(self.params) {
             
@@ -104,5 +103,4 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             completion()
         }
     }
-    
 }

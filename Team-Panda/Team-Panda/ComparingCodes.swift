@@ -6,7 +6,6 @@
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
-import Foundation
 import SwiftyJSON
 
 class ComparingCodes {
@@ -62,14 +61,12 @@ class ComparingCodes {
                 dummyArray.append(codes)
             }
         }
-        
         // codesFromJobsDictionary = formedFinance.flatMap{ $0 }!
         
         let interestsArray =  [solveHuman, solveEnvironment, solveTranspo, solveArc, solveTeach, understandHuman, understandEnvironment, understandTranspo, understandArc, understandTeach, expressedHistory, expressedArt, expressedSports, expressedTeaching, expressedHealth, formedLaw, formedHistory, formedTeach, formedHealth, formedLeadership, formedFinance]
-        
         let interests2 = interestsArray.flatMap { $0 }
-        //        codesFromJobsDictionary = interests2.flatMap { $0 }
-        //        codesFromJobsDictionary = Array(Set(codesFromJobsDictionary))
+        codesFromJobsDictionary = interests2.flatMap { $0 }
+        codesFromJobsDictionary = Array(Set(codesFromJobsDictionary))
         
         return codesFromJobsDictionary
         
@@ -78,7 +75,6 @@ class ComparingCodes {
     func dashCode(code: Int) -> String {
         
         var codeString = String(code)
-        
         codeString.insert("-", atIndex: codeString.startIndex.advancedBy(2))
         
         return codeString
