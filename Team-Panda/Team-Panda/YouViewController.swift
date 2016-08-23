@@ -1,8 +1,8 @@
 //
-//  YouTableViewController.swift
+//  YouViewController.swift
 //  Team-Panda
 //
-//  Created by Lloyd W. Sykes on 8/12/16.
+//  Created by Lloyd W. Sykes on 8/23/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
@@ -17,24 +17,12 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     let reuseIdentifier = "youCell"
     let store = DataStore.store
     var params : [String : AnyObject] = [:]
-    
     lazy var statusBarView : UIView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.edgesForExtendedLayout = UIRectEdge.None
-        self.extendedLayoutIncludesOpaqueBars = false
-        self.automaticallyAdjustsScrollViewInsets = true
-        
-        self.settingUpTableView()
-        
-        self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
-        self.navigationController?.hidesBarsOnSwipe = false
-        self.navigationController?.navigationBar.opaque = false
-        self.navigationController?.navigationBar.alpha = 0.5
-        self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"
+        self.settingUpTableViewAndNavBar()
         
         SwiftSpinner.show("Loading your personalized results")
         self.getSavedJobChoices {
@@ -42,15 +30,13 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    func settingUpTableView() {
+    func settingUpTableViewAndNavBar() {
         
         self.youTableView.delegate = self
         self.youTableView.dataSource = self
         self.youTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.reuseIdentifier)
-        
         self.youTableView.accessibilityLabel = "tableView"
         self.youTableView.accessibilityIdentifier = "tableView"
-        self.youTableView.backgroundColor = UIColor.flatMintColor()
         
         self.view.addSubview(self.youTableView)
         self.youTableView.snp_makeConstraints { (make) in
@@ -59,6 +45,13 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             make.centerX.equalTo(self.view)
             make.centerY.equalTo(self.view)
         }
+        
+        self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
+        self.navigationController?.hidesBarsOnSwipe = false
+        self.navigationController?.navigationBar.opaque = false
+        self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,7 +61,6 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = self.youTableView.dequeueReusableCellWithIdentifier(self.reuseIdentifier, forIndexPath: indexPath)
-        
         let job = store.jobsResultsArray[indexPath.row]
         
         cell.textLabel?.text = job.occupation
@@ -96,7 +88,6 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    
     private func getSavedJobChoices(completion : () -> ()) {
         if let currentPanda = store.tpUser {
             
@@ -113,4 +104,5 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             completion()
         }
     }
+    
 }
