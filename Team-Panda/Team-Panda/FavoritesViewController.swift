@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SnapKit
+import SwiftSpinner
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -16,6 +17,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var favoritesTableView : UITableView = UITableView()
     var favCell = "favCell"
+    
+    //
+    lazy var jobData : [[Job]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         self.favoritesTableView.reloadData()
         self.favoritesTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "basicCell")
        
+        self.navigationController?.navigationBar.topItem?.title = "Favorites"
+        self.navigationController?.hidesBarsOnSwipe = false
+        self.navigationController?.navigationBar.opaque = false
         print("Favorites Array: \(store.tpUser?.favoritesArray)")
     }
     
@@ -63,15 +70,34 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //shows Job Detail View Controller for selected job at indexpath
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
-        
-        //jobDetail.job! = store.tpUser?.favoritesArray[indexPath.row]
-        
-        self.navigationController?.showViewController(jobDetail, sender: "")
-        
-    }
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
+//        
+//        //jobDetail.job! = store.tpUser?.favoritesArray[indexPath.row]
+//        
+//        self.navigationController?.showViewController(jobDetail, sender: "")
+//        
+//    }
+    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
+//        
+//        let job = self.jobData[indexPath][indexPath.row]
+//        
+//        SwiftSpinner.show("Getting data for\n\(job.occupation)")
+//        
+//        let socCode = Int(job.SOCcode)!
+//        
+//        let params = DataSeries.createSeriesIDsFromSOC([socCode], withDataType: DataSeries.annualMeanWage)
+//        
+//        DataStore.store.getSingleOccupationWithCompletion(params) { (job) in
+//            jobDetail.job = job
+//            self.navigationController?.showViewController(jobDetail, sender: "")
+//            SwiftSpinner.hide()
+//        }
+//    }
     
     //Allows editing
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

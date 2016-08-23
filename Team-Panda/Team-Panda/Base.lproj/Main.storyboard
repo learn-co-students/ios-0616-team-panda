@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="2857" y="572"/>
         </scene>
-        <!--Favorites-->
+        <!--Favorites View Controller-->
         <scene sceneID="tFr-8f-tV4">
             <objects>
                 <viewController id="Inj-NC-nHY" customClass="FavoritesViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,11 +37,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorites" image="heartIcon" id="ImR-Qn-FK3"/>
+                    <navigationItem key="navigationItem" id="pOb-UB-aXc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9TC-C6-YVX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2731" y="-171"/>
+            <point key="canvasLocation" x="3543" y="-171"/>
         </scene>
         <!--Settings-->
         <scene sceneID="tln-Kx-Kon">
@@ -143,7 +143,7 @@
                     <connections>
                         <segue destination="x3Q-Ht-dGM" kind="relationship" relationship="viewControllers" id="1B9-cX-9G9"/>
                         <segue destination="cyg-mC-rfh" kind="relationship" relationship="viewControllers" id="OKv-Pg-5X8"/>
-                        <segue destination="Inj-NC-nHY" kind="relationship" relationship="viewControllers" id="e3Z-qz-7iF"/>
+                        <segue destination="F4V-qw-Eav" kind="relationship" relationship="viewControllers" id="e3Z-qz-7iF"/>
                         <segue destination="yit-N1-gPD" kind="relationship" relationship="viewControllers" id="Z3m-aR-oCJ"/>
                     </connections>
                 </tabBarController>
@@ -188,6 +188,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHx-7E-hq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2045" y="572"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="Gtg-Vr-mOg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F4V-qw-Eav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorites" image="heartIcon" id="ImR-Qn-FK3"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KQD-3I-pq8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Inj-NC-nHY" kind="relationship" relationship="rootViewController" id="Lj2-XG-VGX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lms-7Z-c45" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2731" y="-171"/>
         </scene>
     </scenes>
     <resources>
