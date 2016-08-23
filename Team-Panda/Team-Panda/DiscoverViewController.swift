@@ -36,6 +36,7 @@ class DiscoverViewController: UIViewController {
         self.tableView.registerClass(DiscoverTableViewCell.self, forCellReuseIdentifier: "discoverCell")
         
         self.navigationController?.navigationBar.topItem?.title = "Discover"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.opaque = false
         // Do any additional setup after loading the view.

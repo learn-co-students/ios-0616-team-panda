@@ -30,6 +30,7 @@ class YouTableViewController: UITableViewController {
         self.tableView.backgroundColor = UIColor.flatMintColor()
         
         self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.opaque = false
 //        self.navigationController?.navigationBar.alpha = 0.5
@@ -57,6 +58,7 @@ class YouTableViewController: UITableViewController {
         let job = store.jobsResultsArray[indexPath.row]
         
         cell.textLabel?.text = job.occupation
+        cell.textLabel?.font = UIFont.pandaFontLight(withSize: 16)
         cell.backgroundColor = UIColor.flatMintColor()
         cell.textLabel?.adjustsFontSizeToFitWidth = false
         
