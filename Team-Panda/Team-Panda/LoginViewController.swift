@@ -27,45 +27,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
         self.showTabBarViewForUser()
     }
     
-    @IBAction func loginButtonTapped(sender: UIButton!) {
-        if !self.emptyTextFields() {
-            self.loginCurrentUser()
-        } else {
-            self.blankEmailPasswordAlert()
-        }
-    }
-    
-    @IBAction func signupButtonTapped(sender: UIButton!) {
-        self.createNewUser()
+    func dismissKeyboard() {
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
     }
     
     func showTabBarViewForUser() {
         print("showTabBarViewForUser called.")
         if let currentPanda = FIRAuth.auth()?.currentUser {
-            
             TPUser.getUserFromFirebase(currentPanda.uid, completion: { (pandaUser) in
-                
                 if let pandaUser = pandaUser {
-                    
                     self.store.tpUser = pandaUser
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
                     self.presentViewController(tabBarVC, animated: true, completion: {
                         print("Panda Logged! Loaded Tab Bar VC")
                     })
-                    
                 } else {
-                    
                     print("Couldn't unwrap panda user from store. Asking them to re-login.")
                     self.displayLoginView()
                 }
             })
-            
         } else { // no user
-            
             print("Showing login / signup buttons. No Panda")
             self.displayLoginView()
         }
@@ -120,6 +108,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.signupButton.buttonPressDepth = 0.65
         self.signupButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
         
+    }
+    
+    @IBAction func loginButtonTapped(sender: UIButton!) {
+        if !self.emptyTextFields() {
+            self.loginCurrentUser()
+        } else {
+            self.blankEmailPasswordAlert()
+        }
+    }
+    
+    @IBAction func signupButtonTapped(sender: UIButton!) {
+        self.createNewUser()
     }
     
     func viewsConstraints() {
@@ -182,7 +182,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     func loginCurrentUser() {
         
-        guard let userEmail = self.emailTextField.text,
+        guard
+            let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else {
                 print("There's no text in username / password fields!")
                 return
@@ -193,14 +194,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 // Alert user there was a problem logging in
                 let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
                 self.presentViewController(alert, animated: true, completion: nil)
-                
             } else if let user = user {
-                
                 TPUser.getUserFromFirebase(user.uid, completion: { (pandaUser) in
                     self.store.tpUser = pandaUser
                     self.showTabBarViewForUser()
                 })
-                
             } else {
                 print("Couldn't get user.")
                 return
@@ -220,8 +218,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)
-                print("User successfully saved into the Firebase database! \(user?.uid) + \(user?.email)")
-                
                 let pandaUser: TPUser = TPUser(withEmail: (user?.email)!, uid: (user?.uid)!)
                 pandaUser.updateDatabase()
                 self.store.tpUser = pandaUser

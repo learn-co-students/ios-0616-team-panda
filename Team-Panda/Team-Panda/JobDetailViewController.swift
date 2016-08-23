@@ -40,8 +40,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         setTextForUILabels()
         
         self.usaColorMapView.backgroundColor = UIColor.clearColor()
-        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
-
+        self.navigationController?.navigationBar.topItem?.title = "Back"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "✭", style: .Plain, target: self, action: #selector(self.saveToFavorites))
         
         store.getLocationQuotientforSOCCodeWithCompletion(job!.SOCcode) { (lqDictionaryByState) in
@@ -280,7 +279,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         let jobDictionary = JSONParser().sortingOccupationBySOCCode((self.job?.dashSOCcode)!)
         
-        
         if let jobOccupation = job?.occupation {
             self.careerHeaderLabel.text = jobOccupation.uppercaseString
         }
@@ -297,7 +295,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         } else {
         self.minEduReqsDescriptionLabel.text = jobDictionary[JSONParser.occupationEdu]?.stringValue
         }
-
         
         if let jobSalary = job?.annualMeanSalary {
            self.salaryDescriptionLabel.text = "$\(addCommaToSalary(jobSalary))"
@@ -348,5 +345,4 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         presentViewController(alertController, animated: true, completion: nil)
     }
-
 }

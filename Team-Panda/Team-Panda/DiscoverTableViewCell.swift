@@ -48,7 +48,7 @@ class DiscoverTableViewCell: UITableViewCell {
         
         self.title.text = title
         self.title.textColor = UIColor.whiteColor()
-        self.title.font = UIFont.pandaFontMedium(withSize: 16.0)
+        self.title.font = UIFont.pandaFontLight(withSize: 16.0)
         self.title.textAlignment = .Left
     }
 
