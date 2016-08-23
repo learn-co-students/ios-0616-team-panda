@@ -29,42 +29,47 @@ class DataStore {
         self.careerResultsArray.removeAll()
         self.jobsResultsArray.removeAll()
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults) in
+        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
             
-            guard
-                let resultsValue = careerResults["Results"] as? NSDictionary,
-                let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
-                    return
-            }
-            
-            for seriesID in seriesValue {
-                let job = Job(withDictionary: seriesID)
-                
+            if let careerResults = careerResults {
                 guard
-                    let specificCareerDictionary = seriesID["catalog"] as? NSDictionary,
-                    let careerName = specificCareerDictionary["occupation"] as? String else {
+                    let resultsValue = careerResults["Results"] as? NSDictionary,
+                    let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
                         return
                 }
-                self.careerResultsArray.append(careerName)
                 
-                self.jobsResultsArray.append(job)
+                
+                for seriesID in seriesValue {
+                    let job = Job(withDictionary: seriesID)
+                    
+                    guard
+                        let specificCareerDictionary = seriesID["catalog"] as? NSDictionary,
+                        let careerName = specificCareerDictionary["occupation"] as? String else {
+                            return
+                    }
+                    self.careerResultsArray.append(careerName)
+                    
+                    self.jobsResultsArray.append(job)
+                }
+                
+                completion()
             }
-            
-            completion()
         }
     }
     
     func getSingleOccupationWithCompletion(params : [String : AnyObject], completion: (Job) -> ()) {
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults) in
+        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
             
-            guard
-                let resultsValue = careerResults["Results"] as? NSDictionary,
-                let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
-                    return
+            if let careerResults = careerResults {
+                guard
+                    let resultsValue = careerResults["Results"] as? NSDictionary,
+                    let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                        return
+                }
+                
+                completion(Job(withDictionary: seriesValue.first!))
             }
-        
-            completion(Job(withDictionary: seriesValue.first!))
         }
         
     }
@@ -75,28 +80,30 @@ class DataStore {
         
         let stateParams = DataSeries.createStateSeriesIDsWith(SOCcode, withDataType: DataSeries.locationQuotient)
         
-        BLSAPIClient.getLocationQuotientforJobWithCompletion(stateParams) { (lqResults) in
+        BLSAPIClient.getLocationQuotientforJobWithCompletion(stateParams) { (lqResults, error) in
             
-            guard
-                let resultsValue = lqResults["Results"] as? NSDictionary,
-                let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
-                    return
-            }
-            
-            for state in seriesValue {
-                
+            if let lqResults = lqResults {
                 guard
-                    let stateSeriesInfo = state["catalog"] as? NSDictionary,
-                    let stateName = stateSeriesInfo["area"] as? String,
-                    let stateData = state["data"] as? [[String : AnyObject]],
-                    let lqValue = stateData[0]["value"] as? String
-                    else { return }
-                
-                if let locQuotientFloat = Double(lqValue) {
-                    lqByState.updateValue(locQuotientFloat, forKey: stateName)
+                    let resultsValue = lqResults["Results"] as? NSDictionary,
+                    let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                        return
                 }
+                
+                for state in seriesValue {
+                    
+                    guard
+                        let stateSeriesInfo = state["catalog"] as? NSDictionary,
+                        let stateName = stateSeriesInfo["area"] as? String,
+                        let stateData = state["data"] as? [[String : AnyObject]],
+                        let lqValue = stateData[0]["value"] as? String
+                        else { return }
+                    
+                    if let locQuotientFloat = Double(lqValue) {
+                        lqByState.updateValue(locQuotientFloat, forKey: stateName)
+                    }
+                }
+                completion(lqByState)
             }
-            completion(lqByState)
         }
     }
     

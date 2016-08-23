@@ -12,31 +12,34 @@ class BLSAPIClient {
     
     static let headers = [ "Content-Type" : "application/json" ]
     
-    class func getMultipleOccupationsWithCompletion(params: [String: AnyObject], completion: (NSDictionary) -> ()) {
+    class func getMultipleOccupationsWithCompletion(params: [String: AnyObject], completion: (NSDictionary?, NSError?) -> ()) {
         
         Alamofire.request(.POST, Secrets.apiURL, parameters: params, encoding: .JSON, headers: headers).responseJSON { (blsResponse) in
-            
+
             if let error = blsResponse.result.error {
-                print("Alamofire Error: \(error.localizedDescription)")
+                completion(nil, error)
             }
             
             if let json = blsResponse.result.value {
                 guard let careerResults = json as? NSDictionary else {
                     return
                 }
-                completion(careerResults)
+                completion(careerResults, nil)
             }
         }
     }
     
-    class func getLocationQuotientforJobWithCompletion(params: [String : AnyObject], completion: (NSDictionary)->()) {
+    class func getLocationQuotientforJobWithCompletion(params: [String : AnyObject], completion: (NSDictionary?, NSError?)->()) {
         
         Alamofire.request(.POST, Secrets.apiURL, parameters: params, encoding: .JSON, headers: headers).responseJSON { (blsLQresponse) in
+            if let error = blsLQresponse.result.error {
+                completion(nil, error)
+            }
             if let json = blsLQresponse.result.value {
                 guard let lqResults = json as? NSDictionary else {
                     return
                 }
-                completion(lqResults)
+                completion(lqResults, nil)
             }
         }
     }
