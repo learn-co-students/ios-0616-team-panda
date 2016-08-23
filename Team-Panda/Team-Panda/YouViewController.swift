@@ -23,7 +23,6 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
         
         self.settingUpTableViewAndNavBar()
-        
         SwiftSpinner.show("Loading your personalized results")
         self.getSavedJobChoices {
             SwiftSpinner.hide()
