@@ -47,7 +47,7 @@ class DataSeries {
         
         for code in stateCodes.keys {
             seriesIDs.append(lqSeriesID + "\(code)000000\(SOCcode)" + type)
-            print("\(stateCodes[code]!): " + lqSeriesID + "\(code)000000\(SOCcode)" + type)
+//            print("\(stateCodes[code]!): " + lqSeriesID + "\(code)000000\(SOCcode)" + type)
         }
         
         params["seriesid"] = seriesIDs

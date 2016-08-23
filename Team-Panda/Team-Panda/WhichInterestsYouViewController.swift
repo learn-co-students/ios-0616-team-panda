@@ -266,7 +266,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
                     }
                 }
                 
-                print("The chosen indices for the codes array \(interests) are \(chosenIndexes)")
+//                print("The chosen indices for the codes array \(interests) are \(chosenIndexes)")
             }
         }
         

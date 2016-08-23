@@ -67,7 +67,7 @@ class YouTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        SwiftSpinner.show("Loading Details", animated: true)
+//        SwiftSpinner.show("Loading Details", animated: true)
         
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
@@ -75,7 +75,7 @@ class YouTableViewController: UITableViewController {
         
         self.navigationController?.showViewController(jobDetail, sender: "")
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        SwiftSpinner.hide()
+//        SwiftSpinner.hide()
     }
     
     private func getSavedJobChoices(completion : () -> ()) {

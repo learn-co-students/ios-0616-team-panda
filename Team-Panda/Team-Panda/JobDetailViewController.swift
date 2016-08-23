@@ -10,7 +10,6 @@ import ChameleonFramework
 import SnapKit
 import SwiftFontName
 import USStatesColorMap
-import SwiftyButton
 import CoreText
 import Font_Awesome_Swift
 
@@ -44,6 +43,24 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.setupNavBar()
         
+//        if let job = self.job {
+//            
+//            if job.locationQuotient.isEmpty {
+//                
+//                store.getLocationQuotientforSOCCodeWithCompletion(job.SOCcode) { (lqDictionaryByState) in
+//                    self.setLocationQuotientMap(lqDictionaryByState)
+//                    job.locationQuotient = lqDictionaryByState
+//                    print(lqDictionaryByState)
+//                    print("Completed.")
+//                }
+//            }
+//            else {
+//                self.setLocationQuotientMap(job.locationQuotient)
+//            }
+//        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         if let job = self.job {
             
             if job.locationQuotient.isEmpty {
@@ -229,8 +246,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func setLocationQuotientMap(dictionary: [String : Double]) {
         
-        self.usaColorMapView.backgroundColor = UIColor.clearColor()
-        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
+//        self.usaColorMapView.backgroundColor = UIColor.clearColor()
+//        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
         self.usaColorMapView.performUpdates {
             
             self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forState: DistrictOfColumbia)
