@@ -42,6 +42,13 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        let favorites = store.tpUser!.favoritesArray
+        
+        store.tpUser!.favoritesArray = favorites.filter({ (string) -> Bool in
+            return string != "" ? true : false
+        })
+        
         return store.tpUser!.favoritesArray.count
     }
     

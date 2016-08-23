@@ -12,6 +12,7 @@ import SwiftFontName
 import USStatesColorMap
 import SwiftyButton
 import CoreText
+import Font_Awesome_Swift
 
 class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
@@ -41,24 +42,68 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.usaColorMapView.backgroundColor = UIColor.clearColor()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "✭", style: .Plain, target: self, action: #selector(self.saveToFavorites))
+        self.setupNavBar()
         
-        store.getLocationQuotientforSOCCodeWithCompletion(job!.SOCcode) { (lqDictionaryByState) in
-            self.setLocationQuotientMap(lqDictionaryByState)
-            print(lqDictionaryByState)
-            print("Completed.")
+        if let job = self.job {
+            
+            if job.locationQuotient.isEmpty {
+                
+                store.getLocationQuotientforSOCCodeWithCompletion(job.SOCcode) { (lqDictionaryByState) in
+                    self.setLocationQuotientMap(lqDictionaryByState)
+                    job.locationQuotient = lqDictionaryByState
+                    print(lqDictionaryByState)
+                    print("Completed.")
+                }
+            }
+            else {
+                self.setLocationQuotientMap(job.locationQuotient)
+            }
+        }
+    }
+    
+    func setupNavBar() {
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: faveStar, style: .Plain, target: self, action: #selector(saveToFavorites))
+
+        if favoritedJob().0 == true {
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.yellowColor()
+        }
+        else {
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue()
         }
     }
     
     func saveToFavorites() {
-        if (store.tpUser?.favoritesArray)!.contains((self.job?.SOCcode)!) {
-           print("Already saved!")
+        
+        let favoriteInfo = favoritedJob()
+        
+        if favoriteInfo.0 == true {
+            
+            print("Already saved! Removing from favorites")
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue()
+            store.tpUser!.favoritesArray.removeAtIndex(favoriteInfo.1!)
+            
+            
         } else {
+            print("Saving to favorites!")
             store.tpUser!.favoritesArray.append((self.job?.SOCcode)!)
-            store.tpUser!.updateDatabase()
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.yellowColor()
         }
+        
+        store.tpUser!.updateDatabase()
     }
     
+    func favoritedJob() -> (Bool, Int?) {
+        
+        if store.tpUser!.favoritesArray.contains((self.job?.SOCcode)!) {
+            
+            let index = store.tpUser!.favoritesArray.indexOf(self.job!.SOCcode)
+            return (true, index)
+        }
+        else {
+            return (false, nil)
+        }
+    }
     
     func createViews() {
         

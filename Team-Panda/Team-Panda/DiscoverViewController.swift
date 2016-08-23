@@ -13,9 +13,8 @@ class DiscoverViewController: UIViewController {
 
     lazy var tableView : UITableView = UITableView()
     lazy var detail : Bool = false
-    lazy var sectionHeaders : [String] = ["110000", "130000", "150000", "170000", "190000", "210000", "230000", "250000", "270000", "290000", "310000", "330000", "350000", "370000", "390000", "410000", "430000", "450000", "470000", "490000", "510000", "530000"]
     
-    lazy var jobData : [[Job]] = []
+    let store = DataStore.store
     
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, detail : Bool) {
         super.init(nibName: nil, bundle: nil)
@@ -29,7 +28,7 @@ class DiscoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.getValuesArray()
+        store.getJobDiscoverArray()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -58,23 +57,6 @@ class DiscoverViewController: UIViewController {
         self.tableView.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
     }
 
-    private func getValuesArray() {
-        
-        for section in sectionHeaders {
-            
-            var jobArray : [Job] = []
-            
-            let occupations = allSOCCodes[section]!
-            
-            for (socCode, occupation) in occupations {
-                
-                let job = Job(withSOCCode: socCode, occupation: occupation)
-                jobArray.append(job)
-            }
-            
-            jobData.append(jobArray)
-        }
-    }
 }
 
 extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
@@ -83,7 +65,7 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("discoverCell", forIndexPath: indexPath) as! DiscoverTableViewCell
 
-        let jobSection = self.jobData[indexPath.section]
+        let jobSection =  store.jobDiscoverData[indexPath.section]
         let occupationTitle = jobSection[indexPath.row].occupation
         
         cell.setProperties(occupationTitle)
@@ -93,24 +75,24 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.jobData[section].count
+        return store.jobDiscoverData[section].count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.jobData.count
+        return store.jobDiscoverData.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return majorSOCcodes[sectionHeaders[section]]
+        return majorSOCcodes[store.sectionHeaders[section]]
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
-        let job = self.jobData[indexPath.section][indexPath.row]
+        let job = store.jobDiscoverData[indexPath.section][indexPath.row]
         
-        SwiftSpinner.show("Getting data for\n\(job.occupation)")
+        SwiftSpinner.show("Loading Details")
         
         let socCode = Int(job.SOCcode)!
         
@@ -120,6 +102,7 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
             jobDetail.job = job
             self.navigationController?.showViewController(jobDetail, sender: "")
             SwiftSpinner.hide()
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
         }
     }
 }

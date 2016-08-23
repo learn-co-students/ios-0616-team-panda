@@ -16,7 +16,7 @@ class Job : CustomStringConvertible {
     let SOCcode : String
     let dataYear : String
     
-    var locationQuotient : [String : Int]
+    var locationQuotient : [String : Double]
     var jobDescription : String
     var minEduReq : String
     var howToBecome : String

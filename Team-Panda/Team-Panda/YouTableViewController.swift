@@ -67,19 +67,15 @@ class YouTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        SwiftSpinner.show("Loading Details", animated: true)
+        
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
         jobDetail.job = store.jobsResultsArray[indexPath.row]
         
-//        let selectedCode = store.jobsResultsArray[indexPath.row].SOCcode
-        
-//        store.getLocationQuotientforSOCCodeWithCompletion(selectedCode) { (lqDictionaryByState) in
-//            print(lqDictionaryByState)
-//            print("Completed.")
-//        }
-        
         self.navigationController?.showViewController(jobDetail, sender: "")
-
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        SwiftSpinner.hide()
     }
     
     private func getSavedJobChoices(completion : () -> ()) {

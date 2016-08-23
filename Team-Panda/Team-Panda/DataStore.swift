@@ -16,9 +16,11 @@ class DataStore {
     var careerNameCellText: String!
     var careerResultsArray: [String] = []
     var jobsResultsArray : [Job] = []
-    //var favoritesArray : [Job] = []
+    var jobDiscoverData : [[Job]] = []
     
     var tpUser : TPUser?
+    
+    lazy var sectionHeaders : [String] = ["110000", "130000", "150000", "170000", "190000", "210000", "230000", "250000", "270000", "290000", "310000", "330000", "350000", "370000", "390000", "410000", "430000", "450000", "470000", "490000", "510000", "530000"]
     
     private init() { }
     
@@ -95,6 +97,24 @@ class DataStore {
                 }
             }
             completion(lqByState)
+        }
+    }
+    
+    func getJobDiscoverArray() {
+        
+        for section in sectionHeaders {
+            
+            var jobArray : [Job] = []
+            
+            let occupations = allSOCCodes[section]!
+            
+            for (socCode, occupation) in occupations {
+                
+                let job = Job(withSOCCode: socCode, occupation: occupation)
+                jobArray.append(job)
+            }
+            
+            self.jobDiscoverData.append(jobArray)
         }
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 import SwiftFontName
 import SwiftSpinner
 import Firebase
+import Font_Awesome_Swift
 
 class Constants {
     
@@ -76,6 +77,15 @@ class Constants {
     }
 }
 
+extension UIColor {
+    
+    class func systemBlue() -> UIColor {
+        return UIColor(colorLiteralRed: 14.0/255, green: 122.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+    }
+
+    
+}
+
 extension UIFont {
     class func pandaFontBold(withSize size : CGFloat) -> UIFont {
         return UIFont(name: FontName.HelveticaNeueBold, size: size)!
@@ -91,6 +101,8 @@ extension UIFont {
 }
 
 let checkMarkImage = UIImage(named: "checkmark")!
+let faveStar = UIImage(icon: FAType.FAStar, size: CGSizeMake(25.0, 25.0))
+
 
 let databaseRefURL = "https://career-options.firebaseio.com/"
 let solveProblemArray = ["Human Body", "Environment", "Transportation", "Architecture", "Teaching"]
