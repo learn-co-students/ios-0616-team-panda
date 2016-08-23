@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Discover-->
+        <!--Discover View Controller-->
         <scene sceneID="hYl-ZS-W72">
             <objects>
-                <viewController id="p9K-HN-wSz" customClass="DiscoverViewController" sceneMemberID="viewController">
+                <viewController id="p9K-HN-wSz" customClass="DiscoverViewController" customModule="Team_Panda" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HYL-z0-O5Q"/>
                         <viewControllerLayoutGuide type="bottom" id="uBJ-7w-c1q"/>
@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Discover" image="search-1" id="3As-xW-NbH"/>
+                    <navigationItem key="navigationItem" id="sf1-bb-gDK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkd-R1-Cho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2045" y="572"/>
+            <point key="canvasLocation" x="2857" y="572"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="tFr-8f-tV4">
@@ -142,7 +142,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="x3Q-Ht-dGM" kind="relationship" relationship="viewControllers" id="1B9-cX-9G9"/>
-                        <segue destination="p9K-HN-wSz" kind="relationship" relationship="viewControllers" id="OKv-Pg-5X8"/>
+                        <segue destination="cyg-mC-rfh" kind="relationship" relationship="viewControllers" id="OKv-Pg-5X8"/>
                         <segue destination="Inj-NC-nHY" kind="relationship" relationship="viewControllers" id="e3Z-qz-7iF"/>
                         <segue destination="yit-N1-gPD" kind="relationship" relationship="viewControllers" id="Z3m-aR-oCJ"/>
                     </connections>
@@ -169,6 +169,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prN-7Y-vlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1353" y="-171"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="nwh-A6-O5r">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cyg-mC-rfh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Discover" image="search-1" id="3As-xW-NbH"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IqI-Pc-zmO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="p9K-HN-wSz" kind="relationship" relationship="rootViewController" id="1dm-rL-pWA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHx-7E-hq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2045" y="572"/>
         </scene>
     </scenes>
     <resources>

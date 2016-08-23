@@ -52,6 +52,21 @@ class DataStore {
         }
     }
     
+    func getSingleOccupationWithCompletion(params : [String : AnyObject], completion: (Job) -> ()) {
+        
+        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults) in
+            
+            guard
+                let resultsValue = careerResults["Results"] as? NSDictionary,
+                let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                    return
+            }
+        
+            completion(Job(withDictionary: seriesValue.first!))
+        }
+        
+    }
+    
     func getLocationQuotientforSOCCodeWithCompletion(SOCcode : String, completion : ([String : Double]) -> ()) {
         
         var lqByState : [String : Double] = [:]

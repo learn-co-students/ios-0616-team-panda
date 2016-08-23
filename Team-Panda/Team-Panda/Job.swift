@@ -62,6 +62,12 @@ class Job : CustomStringConvertible {
         self.howToBecome = ""
     }
     
+    convenience init(withSOCCode socCode : String, occupation : String) {
+        let seriesID = "OEUN0000000000000" + socCode
+        let dictionary : [String : AnyObject] = ["catalog": ["occupation" : occupation, "series_id" : seriesID]]
+        self.init(withDictionary: dictionary)
+    }
+    
     var description: String {
         return "Occupation: \(self.occupation)\n"
         + "Annual Mean Salary: \(self.annualMeanSalary)\n"

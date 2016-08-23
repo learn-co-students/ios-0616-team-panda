@@ -77,21 +77,14 @@ class UserProfileViewController: UIViewController {
         self.view.addSubview(password)
         self.view.addSubview(saveChangesButton)
         self.view.addSubview(updateYourInfo)
-        //self.view.addSubview(userAvatarImage)
-        //self.view.addSubview(resetPasswordButton)
+        self.view.addSubview(resetPasswordButton)
         
-        self.password.translatesAutoresizingMaskIntoConstraints=false
-        self.email.translatesAutoresizingMaskIntoConstraints=false
-        self.cancelButton.translatesAutoresizingMaskIntoConstraints=false
-        self.saveChangesButton.translatesAutoresizingMaskIntoConstraints=false
+        self.password.translatesAutoresizingMaskIntoConstraints = false
+        self.email.translatesAutoresizingMaskIntoConstraints = false
+        self.cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        self.saveChangesButton.translatesAutoresizingMaskIntoConstraints = false
         self.updateYourInfo.translatesAutoresizingMaskIntoConstraints = false
-        //self.userAvatarImage.translatesAutoresizingMaskIntoConstraints = false
-        //self.resetPasswordButton.translatesAutoresizingMaskIntoConstraints=false
-        
-//        self.userAvatarImage.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active=true
-//        self.userAvatarImage.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-//        self.userAvatarImage.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant: self.view.bounds.height/18).active = true
-        
+        self.resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         
         self.updateYourInfo.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
         self.updateYourInfo.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
@@ -105,12 +98,13 @@ class UserProfileViewController: UIViewController {
         self.password.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.05).active=true
         self.password.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active=true
         self.password.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active=true
+        self.password.hidden = true
         
         self.email.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active=true
         self.email.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.05).active=true
-        self.email.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active=true
-        self.email.bottomAnchor.constraintEqualToAnchor(self.password.topAnchor).active=true
-
+        self.email.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.email.bottomAnchor.constraintEqualToAnchor(self.password.topAnchor).active = true
+        
         self.saveChangesButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
         self.saveChangesButton.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant: self.view.bounds.height/6).active = true
         self.saveChangesButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
@@ -120,6 +114,35 @@ class UserProfileViewController: UIViewController {
         self.cancelButton.centerYAnchor.constraintEqualToAnchor(self.view.bottomAnchor, constant: -self.view.bounds.height/6).active = true
         self.cancelButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
         self.cancelButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
+        
+        self.resetPasswordButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.5).active = true
+        self.resetPasswordButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.resetPasswordButton.topAnchor.constraintEqualToAnchor(self.email.bottomAnchor, constant: 25.0).active = true
+        self.resetPasswordButton.bottomAnchor.constraintEqualToAnchor(self.saveChangesButton.topAnchor, constant: -25.0).active = true
+        self.resetPasswordButton.addTarget(self, action: #selector(resetPasswordTapped), forControlEvents: .TouchUpInside)
+    }
+    
+    func resetPasswordTapped() {
+        
+        if let email = DataStore.store.tpUser?.email {
+            
+            FIRAuth.auth()?.sendPasswordResetWithEmail(email, completion: { (error) in
+                if let error = error {
+                    let errorAlert = Constants.displayAlertWithTryAgain("Something Went Wrong!", message: error.localizedDescription)
+                    self.presentViewController(errorAlert, animated: true, completion: nil)
+                }
+                else {
+                    let alert = Constants.displayAlertWith("Email sent!", message: "Please check your email to reset your password.", actionLabel: "Okay", style: .Default, actionHandler: {
+                        
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        
+                    })
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            })
+        }
+        
     }
     
     func styleUserProfileViews() {
@@ -130,7 +153,9 @@ class UserProfileViewController: UIViewController {
 //        self.userAvatarImage.backgroundColor = UIColor.flatOrangeColor()
         
         //Styling for Update Your Info UILabel
-        self.updateYourInfo.text = "Update your email and password"
+        self.updateYourInfo.text = "Update your email or reset your password"
+        self.updateYourInfo.numberOfLines = 2
+        self.updateYourInfo.textAlignment = .Center
         self.updateYourInfo.textColor = FlatBlue().darkenByPercentage(0.2)
         self.updateYourInfo.font = UIFont.pandaFontMedium(withSize: 20)
         
@@ -168,5 +193,14 @@ class UserProfileViewController: UIViewController {
         self.cancelButton.buttonColor = FlatBlue()
         self.cancelButton.shadowColor = FlatBlue().darkenByPercentage(0.2)
         
+        self.resetPasswordButton.setTitle("Reset Password", forState: .Normal)
+        self.resetPasswordButton.titleLabel?.textAlignment = .Center
+        self.resetPasswordButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 16.0)
+        self.resetPasswordButton.shadowHeight = 5
+        self.resetPasswordButton.buttonPressDepth = 0.65
+        self.resetPasswordButton.cornerRadius = 5
+        self.resetPasswordButton.titleLabel?.textColor = FlatWhite()
+        self.resetPasswordButton.buttonColor = FlatMint()
+        self.resetPasswordButton.shadowColor = FlatMint().darkenByPercentage(0.2)
     }
 }

@@ -50,7 +50,7 @@ class Constants {
         
         let logInAction = UIAlertAction(title: "Log In", style: .Default) { (action) in
             
-            SwiftSpinner.show("Logging in")
+            SwiftSpinner.show("Authenticating")
             
             FIRAuth.auth()?.signInWithEmail(alertController.textFields![0].text!, password: alertController.textFields![1].text!, completion: { (user, error) in
                 
