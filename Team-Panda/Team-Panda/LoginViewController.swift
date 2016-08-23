@@ -27,19 +27,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
         self.showTabBarViewForUser()
     }
     
-    @IBAction func loginButtonTapped(sender: UIButton!) {
-        if !self.emptyTextFields() {
-            self.loginCurrentUser()
-        } else {
-            self.blankEmailPasswordAlert()
-        }
-    }
-    
-    @IBAction func signupButtonTapped(sender: UIButton!) {
-        self.createNewUser()
+    func dismissKeyboard() {
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
     }
     
     func showTabBarViewForUser() {
@@ -113,6 +108,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.signupButton.buttonPressDepth = 0.65
         self.signupButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
         
+    }
+    
+    @IBAction func loginButtonTapped(sender: UIButton!) {
+        if !self.emptyTextFields() {
+            self.loginCurrentUser()
+        } else {
+            self.blankEmailPasswordAlert()
+        }
+    }
+    
+    @IBAction func signupButtonTapped(sender: UIButton!) {
+        self.createNewUser()
     }
     
     func viewsConstraints() {
