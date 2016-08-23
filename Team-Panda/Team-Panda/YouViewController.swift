@@ -30,6 +30,11 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
+    }
+    
     func settingUpTableViewAndNavBar() {
         
         self.youTableView.delegate = self

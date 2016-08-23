@@ -41,6 +41,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.usaColorMapView.backgroundColor = UIColor.clearColor()
         
+        self.navigationController?.navigationBar.topItem?.title = "Back"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "✭", style: .Plain, target: self, action: #selector(self.saveToFavorites))
         
         store.getLocationQuotientforSOCCodeWithCompletion(job!.SOCcode) { (lqDictionaryByState) in
