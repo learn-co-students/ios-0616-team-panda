@@ -108,7 +108,7 @@ class TPUser {
             pandaUser.wouldYouRatherAnswer = wouldYouRather
             pandaUser.interestsAnswer = interests
             pandaUser.socCodes = codes
-            pandaUser.favoritesArray = favoritesArray
+            pandaUser.favoritesArray = checkAndRemoveEmptyStringFromFirebaseArray(favoritesArray)
             
             return pandaUser
         }
@@ -116,6 +116,21 @@ class TPUser {
             print("Couldn't create user from dictionary")
             return nil
         }
+    }
+    
+    class func checkAndRemoveEmptyStringFromFirebaseArray(array: [String]) -> [String] {
+        
+        var favoritesArray2 = array
+        for code in favoritesArray2 {
+            if code == "" {
+                let indexOfCode = favoritesArray2.indexOf(code)
+                
+                if let index = indexOfCode {
+                favoritesArray2.removeAtIndex(index)
+                }
+            }
+        }
+        return favoritesArray2
     }
     
     class func getUserFromFirebase(uid : String, completion: (TPUser?)->()) {

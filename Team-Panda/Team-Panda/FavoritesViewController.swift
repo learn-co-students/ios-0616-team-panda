@@ -26,23 +26,14 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         self.favoritesTableView.reloadData()
         self.favoritesTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "basicCell")
        
+        print("Favorites Array: \(store.tpUser?.favoritesArray)")
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        self.checkAndRemoveEmptyArrayFromFirebaseArray()
         self.favoritesTableView.reloadData()
     }
-    
-    func checkAndRemoveEmptyArrayFromFirebaseArray() {
-        if store.tpUser!.favoritesArray[0] == "" {
-            store.tpUser!.favoritesArray.removeAtIndex(0)
-            store.tpUser?.updateDatabase()
-        }
-        print("Favorites Array is: \(store.tpUser!.favoritesArray)")
-    }
 
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.tpUser!.favoritesArray.count
     }
@@ -92,8 +83,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         if editingStyle == .Delete {
             let favoriteToDelete = self.store.tpUser?.favoritesArray.removeAtIndex(indexPath.row)
             self.favoritesTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            self.favoritesTableView.reloadData()
             store.tpUser?.updateDatabase()
+            self.favoritesTableView.reloadData()
+            
         } else if editingStyle == .Insert {
         }
     }
