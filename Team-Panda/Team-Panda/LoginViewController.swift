@@ -27,8 +27,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
         self.showTabBarViewForUser()
     }
     
@@ -68,6 +66,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.passwordTextField.delegate = self
         self.passwordTextField.secureTextEntry = true
         self.passwordTextField.layer.cornerRadius = 5
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
         
         self.emailTextField.placeholder = "E-Mail"
         self.passwordTextField.placeholder = "Password"
