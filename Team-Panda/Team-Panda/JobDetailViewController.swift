@@ -40,7 +40,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         setTextForUILabels()
         
         self.usaColorMapView.backgroundColor = UIColor.clearColor()
-        
+        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "✭", style: .Plain, target: self, action: #selector(self.saveToFavorites))
         
         store.getLocationQuotientforSOCCodeWithCompletion(job!.SOCcode) { (lqDictionaryByState) in
@@ -58,7 +59,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             store.tpUser!.updateDatabase()
         }
     }
-    
     
     func createViews() {
         
@@ -147,6 +147,19 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.width.equalTo(self.view.snp_width).multipliedBy(0.9)
             make.height.equalTo(self.view.snp_width)
         }
+
+        self.howToBecomeOneDescription.snp_makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(self.howToBecomeOneLabel.snp_bottomMargin).offset(10)
+            make.bottom.equalTo(self.scrollView.snp_bottom)
+            make.width.equalTo(self.view).multipliedBy(0.9)
+        }
+        
+        self.howToBecomeOneView.snp_makeConstraints { (make) in
+            make.top.equalTo(usaColorMapView.snp_bottomMargin).offset(10)
+            make.width.equalTo(self.view.snp_width)
+            make.bottom.equalTo(self.scrollView.snp_bottom)
+        }
         
         self.howToBecomeOneLabel.snp_makeConstraints { (make) in
             make.top.equalTo(self.howToBecomeOneView.snp_topMargin).offset(20)
@@ -154,21 +167,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.width.equalTo(self.view).multipliedBy(0.9)
         }
         
-        self.howToBecomeOneDescription.snp_makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(self.howToBecomeOneLabel.snp_bottomMargin).offset(10)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-        }
-        
-        self.howToBecomeOneView.snp_makeConstraints { (make) in
-            make.top.equalTo(usaColorMapView.snp_bottomMargin).offset(10)
-            make.width.equalTo(self.view.snp_width)
-            make.height.equalTo(self.howToBecomeOneDescription.snp_height)
-        }
-        
         self.howToBecomeOneDescription.editable = false
         self.howToBecomeOneDescription.selectable = false
-        self.howToBecomeOneDescription.sizeToFit()
         self.howToBecomeOneDescription.scrollEnabled = false
         
         scrollView.snp_makeConstraints { (make) in
@@ -178,8 +178,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.bottom.equalTo(self.bottomLayoutGuide)
         }
         
-        scrollView.contentSize = CGSizeMake(view.bounds.width, (view.bounds.height * 1.2) + (self.careerDescriptionLabel.frame.height + self.usaColorMapView.frame.height + self.howToBecomeOneDescription.frame.height))
-        
+        howToBecomeOneDescription.sizeToFit()
     }
     
     func setLocationQuotientMap(dictionary: [String : Double]) {
@@ -281,6 +280,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         let jobDictionary = JSONParser().sortingOccupationBySOCCode((self.job?.dashSOCcode)!)
         
+        
         if let jobOccupation = job?.occupation {
             self.careerHeaderLabel.text = jobOccupation.uppercaseString
         }
@@ -291,12 +291,35 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.howToBecomeOneLabel.text = "How to Become One".uppercaseString
         
         self.careerDescriptionLabel.text = jobDictionary[JSONParser.occupationDescription]?.stringValue
+        
+        if jobDictionary[JSONParser.occupationEdu]?.stringValue == "" {
+            self.minEduReqsDescriptionLabel.text = "Varies"
+        } else {
         self.minEduReqsDescriptionLabel.text = jobDictionary[JSONParser.occupationEdu]?.stringValue
+        }
+
+        
         if let jobSalary = job?.annualMeanSalary {
-           self.salaryDescriptionLabel.text = "$\(jobSalary)"
+           self.salaryDescriptionLabel.text = "$\(addCommaToSalary(jobSalary))"
         }
         self.howToBecomeOneDescription.text = jobDictionary[JSONParser.occupationBecomeOne]?.stringValue
 
+    }
+    
+    func addCommaToSalary(SalaryString: String) -> String {
+        
+        let numberFormatter1 = NSNumberFormatter()
+        numberFormatter1.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        let number: NSNumber = numberFormatter1.numberFromString(SalaryString)!
+        
+        let unitedStatesLocale = NSLocale(localeIdentifier: "en_US")
+        var numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        
+        numberFormatter.locale = unitedStatesLocale
+        
+        return numberFormatter.stringFromNumber(number)!
+        
     }
     
     @IBAction func showMinEduReqsAlert() {
