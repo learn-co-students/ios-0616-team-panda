@@ -39,6 +39,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         setStylingForViews()
         setTextForUILabels()
         
+        self.usaColorMapView.backgroundColor = UIColor.clearColor()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "✭", style: .Plain, target: self, action: #selector(self.saveToFavorites))
         
         store.getLocationQuotientforSOCCodeWithCompletion(job!.SOCcode) { (lqDictionaryByState) in
@@ -49,10 +51,12 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func saveToFavorites() {
-        
-        store.tpUser?.favoritesArray.append((self.job?.SOCcode)!)
-        store.tpUser?.updateDatabase()
-        print("Added this job!")
+        if (store.tpUser?.favoritesArray)!.contains((self.job?.SOCcode)!) {
+           print("Already saved!")
+        } else {
+            store.tpUser!.favoritesArray.append((self.job?.SOCcode)!)
+            store.tpUser!.updateDatabase()
+        }
     }
     
     
@@ -184,11 +188,13 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
         self.usaColorMapView.performUpdates {
             
+            self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forState: DistrictOfColumbia)
+            
             for (state, locationQuotient) in dictionary {
 
                 switch locationQuotient {
                     
-                case 0.20..<0.40 :
+                case 0..<0.40 :
                     self.usaColorMapView.setColor(UIColor.flatWatermelonColorDark(), forStateByName: state)
                     
                 case 0.4..<0.8 :
@@ -200,7 +206,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                 case 1.25..<2.50 :
                     self.usaColorMapView.setColor(UIColor.flatMaroonColor(), forStateByName: state)
                     
-                case 2.50..<3.50 :
+                case 2.50..<10.0 :
                     self.usaColorMapView.setColor(UIColor.flatBrownColor(), forStateByName: state)
                     
                 default:
@@ -258,7 +264,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(JobDetailViewController.locationQuotientButtonAlert))
         self.locationQuotientLabel.addGestureRecognizer(gestureRecognizer)
-        
+    
         self.howToBecomeOneView.backgroundColor = UIColor.flatPlumColor()
         
         self.howToBecomeOneLabel.textAlignment = .Center
