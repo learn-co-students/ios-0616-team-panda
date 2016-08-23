@@ -16,7 +16,6 @@ target 'Team-Panda' do
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-  pod "Former"
   pod 'SWXMLHash'
   pod 'USStatesColorMap'
   pod "SwiftSpinner"

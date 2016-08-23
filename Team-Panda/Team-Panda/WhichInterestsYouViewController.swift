@@ -9,7 +9,7 @@
 import Foundation
 import ChameleonFramework
 import SwiftyButton
-import Former
+//import Former
 
 enum WhichInterestsStyle : String {
     case SolveProblem = "Solve Problem"
@@ -164,7 +164,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         
         let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
         
-        if let youVC = tabBarVC.childViewControllers.first as? YouTableViewController {
+        if let youVC = tabBarVC.childViewControllers.first as? YouViewController {
             youVC.params = params
         }
         

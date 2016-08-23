@@ -60,7 +60,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
         cell1.textLabel?.adjustsFontSizeToFitWidth = false
         //}
-        cell1.backgroundColor = UIColor.flatYellowColorDark()
+        cell1.backgroundColor = UIColor.flatYellowColor()
 
         return cell1
     }
@@ -76,35 +76,25 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         return socJobName
     }
     
-    //shows Job Detail View Controller for selected job at indexpath
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
-//        
-//        //jobDetail.job! = store.tpUser?.favoritesArray[indexPath.row]
-//        
-//        self.navigationController?.showViewController(jobDetail, sender: "")
-//        
-//    }
-    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
-//        
-//        let job = self.jobData[indexPath][indexPath.row]
-//        
-//        SwiftSpinner.show("Getting data for\n\(job.occupation)")
-//        
-//        let socCode = Int(job.SOCcode)!
-//        
-//        let params = DataSeries.createSeriesIDsFromSOC([socCode], withDataType: DataSeries.annualMeanWage)
-//        
-//        DataStore.store.getSingleOccupationWithCompletion(params) { (job) in
-//            jobDetail.job = job
-//            self.navigationController?.showViewController(jobDetail, sender: "")
-//            SwiftSpinner.hide()
-//        }
-//    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
+        
+        let jobCode = store.tpUser!.favoritesArray[indexPath.row]
+        //let job = store.jobDiscoverData[indexPath.section][indexPath.row]
+        
+        SwiftSpinner.show("Loading Details")
+        
+        let socCode = Int(jobCode)!
+        
+        let params = DataSeries.createSeriesIDsFromSOC([socCode], withDataType: DataSeries.annualMeanWage)
+        
+        DataStore.store.getSingleOccupationWithCompletion(params) { (job) in
+            jobDetail.job = job
+            self.navigationController?.showViewController(jobDetail, sender: "")
+            self.favoritesTableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
+    }
     
     //Allows editing
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -119,7 +109,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             store.tpUser?.updateDatabase()
             self.favoritesTableView.reloadData()
             
-        } else if editingStyle == .Insert {
+        }
+        else if editingStyle == .Insert {
         }
     }
     
@@ -133,7 +124,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             make.width.equalTo(self.view.snp_width)
         }
         
-        self.favoritesTableView.backgroundColor = UIColor.flatYellowColorDark()
+        self.favoritesTableView.backgroundColor = UIColor.flatYellowColor()
     }
     
 }

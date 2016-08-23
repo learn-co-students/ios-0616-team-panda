@@ -51,7 +51,6 @@ class Job : CustomStringConvertible {
             self.annualMeanSalary = measurementData[0]["value"] as? String ?? ""
             
         } else {
-            print("Couldn't parse measurement data from input dictionary")
             self.dataYear = ""
             self.annualMeanSalary = ""
         }

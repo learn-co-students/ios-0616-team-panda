@@ -39,7 +39,6 @@ PODS:
     - FirebaseAnalytics (~> 3.2)
   - FirebaseInstanceID (1.0.8)
   - Font-Awesome-Swift (1.4.8)
-  - Former (1.3.0)
   - Google/Core (3.0.3):
     - FirebaseAnalytics (~> 3.2)
   - Google/SignIn (3.0.3):
@@ -85,7 +84,6 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Font-Awesome-Swift (~> 1.4.8)
-  - Former
   - Google/SignIn
   - SnapKit
   - SwiftFontName (~> 2.0.0)
@@ -107,7 +105,6 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   Font-Awesome-Swift: 354c9440b0e4d692e31171c84091f3510e8f9468
-  Former: 7380ef3b9bdb3bf43d9f0fe99e369987d3068705
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
   GoogleAppUtilities: f1730f91f67767b453c289577040dd3f425ffdc7
   GoogleAuthUtilities: d7a19615cd7627688afcf181737f1011ee8b5a23
@@ -126,6 +123,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 89929225cad9c70ff96dcce54a19ddb2b1a18a69
   USStatesColorMap: 701dbd4f4590359918854049eb890eb6ac8b01ed
 
-PODFILE CHECKSUM: 6a1d35b40a0ae4e6ed7882563834404f36822646
+PODFILE CHECKSUM: 4b2321c1f1de951c99336c3e556cf9ebbbf19314
 
 COCOAPODS: 1.0.1
