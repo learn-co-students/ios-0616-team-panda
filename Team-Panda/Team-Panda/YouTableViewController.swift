@@ -13,6 +13,8 @@ import SwiftSpinner
 
 class YouTableViewController: UITableViewController {
     
+    
+    
     let store = DataStore.store
     var params : [String : AnyObject] = [:]
     
@@ -33,7 +35,7 @@ class YouTableViewController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.opaque = false
-//        self.navigationController?.navigationBar.alpha = 0.5
+        self.navigationController?.navigationBar.alpha = 0.5
         self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"
 
         

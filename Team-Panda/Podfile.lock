@@ -38,7 +38,6 @@ PODS:
   - FirebaseDatabase (3.0.2):
     - FirebaseAnalytics (~> 3.2)
   - FirebaseInstanceID (1.0.8)
-  - Former (1.3.0)
   - Google/Core (3.0.3):
     - FirebaseAnalytics (~> 3.2)
   - Google/SignIn (3.0.3):
@@ -73,7 +72,7 @@ PODS:
   - SwiftyButton/CustomContent (0.4.0):
     - PureLayout (~> 3.0)
   - SwiftyJSON (2.3.2)
-  - SWXMLHash (2.5.0)
+  - SWXMLHash (2.5.1)
   - USStatesColorMap (1.0.1)
 
 DEPENDENCIES:
@@ -83,7 +82,6 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Auth
   - Firebase/Database
-  - Former
   - Google/SignIn
   - SnapKit
   - SwiftFontName (~> 2.0.0)
@@ -104,7 +102,6 @@ SPEC CHECKSUMS:
   FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
   FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Former: 7380ef3b9bdb3bf43d9f0fe99e369987d3068705
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
   GoogleAppUtilities: f1730f91f67767b453c289577040dd3f425ffdc7
   GoogleAuthUtilities: d7a19615cd7627688afcf181737f1011ee8b5a23
@@ -120,9 +117,9 @@ SPEC CHECKSUMS:
   SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
   SwiftyButton: fffcc0d82b2b5f9ec1681f20ee9c67bed0d5c73b
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  SWXMLHash: 04158642e0c90c52274db7914032edd41bed9a41
+  SWXMLHash: 89929225cad9c70ff96dcce54a19ddb2b1a18a69
   USStatesColorMap: 701dbd4f4590359918854049eb890eb6ac8b01ed
 
-PODFILE CHECKSUM: 563fc0780bc212f0d7dea8a13f8ee87f40f4ec72
+PODFILE CHECKSUM: 2c68da36590a929130e3e6846b418c4634653d8d
 
 COCOAPODS: 1.0.1
