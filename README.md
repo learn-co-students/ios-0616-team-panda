@@ -2,7 +2,7 @@
 
 
 #Introduction
-Discover career options and learn about the steps needed to become each one. 
+Discover a new career and learn about the steps needed to become one. 
 
 
 
