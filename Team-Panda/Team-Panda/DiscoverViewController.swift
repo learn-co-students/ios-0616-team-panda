@@ -10,7 +10,7 @@ import UIKit
 import SwiftSpinner
 
 class DiscoverViewController: UIViewController {
-
+    
     lazy var tableView : UITableView = UITableView()
     lazy var detail : Bool = false
     
@@ -27,7 +27,7 @@ class DiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         store.getJobDiscoverArray()
         
         self.tableView.delegate = self
@@ -35,21 +35,22 @@ class DiscoverViewController: UIViewController {
         self.tableView.backgroundColor = UIColor.flatForestGreenColor()
         self.tableView.registerClass(DiscoverTableViewCell.self, forCellReuseIdentifier: "discoverCell")
         
-        self.navigationController?.navigationBar.topItem?.title = "Discover"
+        
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.opaque = false
+        self.navigationController?.navigationBar.topItem?.title = "Discover"
         // Do any additional setup after loading the view.
         self.createViews()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func createViews() {
-    
+        
         self.view.addSubview(self.tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor).active = true
@@ -57,7 +58,7 @@ class DiscoverViewController: UIViewController {
         self.tableView.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
         self.tableView.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
     }
-
+    
 }
 
 extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
@@ -65,7 +66,7 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("discoverCell", forIndexPath: indexPath) as! DiscoverTableViewCell
-
+        
         let jobSection =  store.jobDiscoverData[indexPath.section]
         let occupationTitle = jobSection[indexPath.row].occupation
         
@@ -80,7 +81,7 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return store.jobDiscoverData.count
+        return store.sectionHeaders.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -99,10 +100,19 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
         
         let params = DataSeries.createSeriesIDsFromSOC([socCode], withDataType: DataSeries.annualMeanWage)
         
-        DataStore.store.getSingleOccupationWithCompletion(params) { (job) in
-            jobDetail.job = job
-            self.navigationController?.showViewController(jobDetail, sender: "")
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        DataStore.store.getSingleOccupationWithCompletion(params) { (job, error) in
+            
+            if let error = error {
+                
+                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            } else {
+                
+                jobDetail.job = job
+                self.navigationController?.showViewController(jobDetail, sender: "")
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            }
         }
     }
 }

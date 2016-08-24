@@ -32,6 +32,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     var howToBecomeOneLabel = UILabel()
     var howToBecomeOneDescription = UITextView()
     var howToBecomeOneView = UIView()
+    var activityIndicator: UIActivityIndicatorView!
+    var lqMapWarningLabel = UILabel()
     
     var tempArray = [String]()
     
@@ -46,21 +48,36 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.usaColorMapView.backgroundColor = UIColor.clearColor()
         
         self.setupNavBar()
-    
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         setTextForUILabels()
-
+        
         if let job = self.job {
             
             if job.locationQuotient.isEmpty {
                 
-                store.getLocationQuotientforSOCCodeWithCompletion(job.SOCcode) { (lqDictionaryByState) in
-                    self.setLocationQuotientMap(lqDictionaryByState)
-                    job.locationQuotient = lqDictionaryByState
-                    print(lqDictionaryByState)
-                    print("Completed.")
+                self.activityIndicator.startAnimating()
+                
+                store.getLocationQuotientforSOCCodeWithCompletion(job.SOCcode) { (lqDictionaryByState, error) in
+
+                    if let lqDictionaryByState = lqDictionaryByState {
+                        
+                        self.setLocationQuotientMap(lqDictionaryByState)
+                        job.locationQuotient = lqDictionaryByState
+                        print("Completed.")
+                        self.activityIndicator.stopAnimating()
+                        
+                    } else if let error = error {
+                        
+                       let alert =  Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: UIAlertActionStyle.Cancel, actionHandler: {})
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                    }
+                    // print(lqDictionaryByState)
+                    
+                    
                 }
             }
             else {
@@ -73,7 +90,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     func setupNavBar() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: faveStar, style: .Plain, target: self, action: #selector(saveToFavorites))
-
+        
         if favoritedJob().0 == true {
             navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellowColor()
         }
@@ -140,8 +157,13 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.howToBecomeOneView.addSubview(howToBecomeOneDescription)
         
         self.view.addSubview(scrollView)
+        
+        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         self.usaColorMapView = USStatesColorMap(frame: CGRectMake(0, 0, self.scrollView.frame.width - 20, self.scrollView.frame.width - 20))
+        self.activityIndicator.frame = CGRectMake(0, 0, self.usaColorMapView.frame.width, self.usaColorMapView.frame.height)
+        
         scrollView.addSubview(self.usaColorMapView)
+        self.usaColorMapView.addSubview(self.activityIndicator)
         self.scrollView.bringSubviewToFront(locationQuotientLabel)
         
         self.careerHeaderLabel.snp_makeConstraints { (make) in
@@ -188,7 +210,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.width.equalTo(self.view).multipliedBy(0.9)
             make.top.equalTo(self.salaryHeaderLabel.snp_bottom).offset(10)
         }
-
+        
         self.locationQuotientLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view).multipliedBy(0.9)
@@ -201,7 +223,20 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.width.equalTo(self.view.snp_width).multipliedBy(0.9)
             make.height.equalTo(self.view.snp_width)
         }
-
+        
+        self.scrollView.addSubview(self.lqMapWarningLabel)
+        self.lqMapWarningLabel.snp_makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(self.usaColorMapView.snp_bottom).offset(-40)
+            make.width.equalTo(self.view.snp_width).multipliedBy(0.9)
+            make.height.equalTo(self.locationQuotientLabel)
+        }
+        
+        //self.lqMapWarningLabel.backgroundColor = UIColor.redColor()
+        self.lqMapWarningLabel.font = UIFont.pandaFontLight(withSize: 14)
+        self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."
+        self.lqMapWarningLabel.textAlignment = NSTextAlignment.Center
+        
         self.howToBecomeOneDescription.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.top.equalTo(self.howToBecomeOneLabel.snp_bottomMargin).offset(10)
@@ -237,14 +272,15 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func setLocationQuotientMap(dictionary: [String : Double]) {
         
-//        self.usaColorMapView.backgroundColor = UIColor.clearColor()
-//        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
+        
+        //        self.usaColorMapView.backgroundColor = UIColor.clearColor()
+        //        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
         self.usaColorMapView.performUpdates {
             
             self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forState: DistrictOfColumbia)
             
             for (state, locationQuotient) in dictionary {
-
+                
                 switch locationQuotient {
                     
                 case 0..<0.40 :
@@ -268,6 +304,10 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
+        
+        
+        
+        
     }
     
     func setStylingForViews() {
@@ -317,7 +357,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(JobDetailViewController.locationQuotientButtonAlert))
         self.locationQuotientLabel.addGestureRecognizer(gestureRecognizer)
-    
+        
         self.howToBecomeOneView.backgroundColor = UIColor.flatPlumColor()
         
         self.howToBecomeOneLabel.textAlignment = .Center
@@ -350,14 +390,14 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         if jobDictionary[JSONParser.occupationEdu]?.stringValue == "" {
             self.minEduReqsDescriptionLabel.text = "Varies"
         } else {
-        self.minEduReqsDescriptionLabel.text = jobDictionary[JSONParser.occupationEdu]?.stringValue
+            self.minEduReqsDescriptionLabel.text = jobDictionary[JSONParser.occupationEdu]?.stringValue
         }
         
         if let jobSalary = job?.annualMeanSalary {
-           self.salaryDescriptionLabel.text = "$\(addCommaToSalary(jobSalary))"
+            self.salaryDescriptionLabel.text = "$\(addCommaToSalary(jobSalary))"
         }
         self.howToBecomeOneDescription.text = jobDictionary[JSONParser.occupationBecomeOne]?.stringValue
-
+        
     }
     
     func addCommaToSalary(SalaryString: String) -> String {

@@ -24,10 +24,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     var facebookLoginButton = FBSDKLoginButton()
     var ref: FIRDatabaseReference!
     let store = DataStore.store
+    let webViewBG = UIWebView()
+    let careerSparkLabel = UILabel()
+    var careerSparkHeadlineLabel = UILabel()
+    var filterView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showTabBarViewForUser()
+        
     }
     
     func dismissKeyboard() {
@@ -36,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func showTabBarViewForUser() {
-        print("showTabBarViewForUser called.")
+
         if let currentPanda = FIRAuth.auth()?.currentUser {
             TPUser.getUserFromFirebase(currentPanda.uid, completion: { (pandaUser) in
                 if let pandaUser = pandaUser {
@@ -44,15 +49,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
                     self.presentViewController(tabBarVC, animated: true, completion: {
-                        print("Panda Logged! Loaded Tab Bar VC")
                     })
                 } else {
-                    print("Couldn't unwrap panda user from store. Asking them to re-login.")
                     self.displayLoginView()
                 }
             })
         } else { // no user
-            print("Showing login / signup buttons. No Panda")
             self.displayLoginView()
         }
     }
@@ -62,10 +64,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.emailTextField = UITextField()
         self.emailTextField.delegate = self
         self.emailTextField.layer.cornerRadius = 5
+        self.emailTextField.alpha = 0.8
         self.passwordTextField = UITextField()
         self.passwordTextField.delegate = self
         self.passwordTextField.secureTextEntry = true
         self.passwordTextField.layer.cornerRadius = 5
+        self.passwordTextField.alpha = 0.8
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
         
@@ -84,6 +88,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.facebookLoginButtonSetup()
         self.googleLoginButtonSetup()
         
+        self.view.addSubview(filterView)
         self.view.addSubview(self.emailTextField)
         self.view.addSubview(self.passwordTextField)
         self.view.addSubview(self.loginButton)
@@ -91,6 +96,56 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.view.addSubview(self.orLabel)
         
         self.viewsConstraints()
+        
+        let filePath = NSBundle.mainBundle().pathForResource("sparkTop2", ofType: "gif")
+        let gif = NSData(contentsOfFile: filePath!)
+        
+        self.view.addSubview(webViewBG)
+        self.webViewBG.translatesAutoresizingMaskIntoConstraints = false
+        self.webViewBG.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor).active = true
+        self.webViewBG.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor).active = true
+        self.webViewBG.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.webViewBG.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
+        webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
+        webViewBG.userInteractionEnabled = false;
+//        self.webViewBG.backgroundColor = UIColor.yellowColor()
+//        self.webViewBG.scalesPageToFit = true
+        
+        self.view.addSubview(careerSparkLabel)
+        self.view.addSubview(careerSparkHeadlineLabel)
+        
+        
+        self.filterView.translatesAutoresizingMaskIntoConstraints = false
+        self.filterView.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor).active = true
+        self.filterView.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor).active = true
+        self.filterView.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.filterView.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
+        self.filterView.backgroundColor = UIColor.flatOrangeColor()
+        
+        self.filterView.alpha = 0.1
+        
+        self.careerSparkLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.careerSparkLabel.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.careerSparkLabel.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
+        self.careerSparkLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
+        self.careerSparkLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.25).active = true
+        
+        self.careerSparkHeadlineLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.careerSparkHeadlineLabel.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.careerSparkHeadlineLabel.topAnchor.constraintEqualToAnchor(self.careerSparkLabel.bottomAnchor).active = true
+        self.careerSparkHeadlineLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
+        self.careerSparkHeadlineLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.08).active = true
+        
+        careerSparkLabel.text = "CareerSpark"
+        careerSparkLabel.textColor = UIColor.flatWhiteColor()
+        careerSparkLabel.font = UIFont.pandaFontMedium(withSize: 40)
+        careerSparkLabel.textAlignment = NSTextAlignment.Center
+
+        careerSparkHeadlineLabel.text = "Discover your new career."
+        careerSparkHeadlineLabel.textColor = UIColor.flatMintColor()
+        careerSparkHeadlineLabel.font = UIFont.pandaFontMedium(withSize: 20)
+        careerSparkHeadlineLabel.textAlignment = NSTextAlignment.Center
+        self.view.sendSubviewToBack(webViewBG)
         
         self.view.backgroundColor = FlatBlueDark()
         self.emailTextField.backgroundColor = FlatWhite()
@@ -130,14 +185,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.emailTextField.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view).multipliedBy(0.75)
-            make.height.equalTo(self.view).multipliedBy(0.1)
-            make.centerY.equalTo(self.view).offset(-self.view.bounds.height*0.09)
+            make.height.equalTo(self.view).multipliedBy(0.0935)
+            make.centerY.equalTo(self.view).offset(-self.view.bounds.height*0.1)
         }
         
         self.passwordTextField.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view).multipliedBy(0.75)
-            make.height.equalTo(self.view).multipliedBy(0.1)
+            make.height.equalTo(self.view).multipliedBy(0.0935)
             make.centerY.equalTo(self.view)
         }
         
@@ -172,12 +227,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func blankEmailPasswordAlert() {
-        let noTextAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid email address & password", preferredStyle: .Alert)
-        let noTextAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
-            
-        })
-        noTextAlertController.addAction(noTextAction)
-        self.presentViewController(noTextAlertController, animated: true, completion: nil)
+        
+        let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: "Please enter a valid email address & password")
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func loginCurrentUser() {
@@ -185,7 +237,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         guard
             let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else {
-                print("There's no text in username / password fields!")
                 return
         }
         
@@ -200,7 +251,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     self.showTabBarViewForUser()
                 })
             } else {
-                print("Couldn't get user.")
                 return
             }
         })
