@@ -6,4 +6,4 @@ Discover career options and learn about the steps needed to become each one.
 
 
 
-<p align="center"> By Team Panda 🐼</p>
+<p align="center"> 🐼 Team Panda 🐼</p>
