@@ -1,4 +1,4 @@
-![alt tag](https://cloud.githubusercontent.com/assets/17285859/17948467/f9acd6c6-6a1e-11e6-809e-8658b2c860cb.png)
+![alt tag](https://cloud.githubusercontent.com/assets/17285859/17949069/bcda5efa-6a21-11e6-98ea-ea218101f7e4.png)
 
 
 #Introduction
