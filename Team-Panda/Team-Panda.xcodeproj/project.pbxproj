@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B41B5091D639A7000A0D0B3 /* stately.ttf */; };
 		1BA426301D6D27C4007733A9 /* croppedSpark.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BA4262F1D6D27C4007733A9 /* croppedSpark.gif */; };
+		1BA426361D6D325F007733A9 /* tightSpark.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BA426351D6D325F007733A9 /* tightSpark.gif */; };
+		1BA426381D6DEA59007733A9 /* sparkTop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BA426371D6DEA59007733A9 /* sparkTop.gif */; };
+		1BA4263A1D6DEADA007733A9 /* sparkTop2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BA426391D6DEADA007733A9 /* sparkTop2.gif */; };
+		1BA4263C1D6DF1F0007733A9 /* sparkler3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BA4263B1D6DF1F0007733A9 /* sparkler3.gif */; };
 		1BCB69321D5A28BE00160B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */; };
 		1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */; };
 		1BCB69381D5BCAEB00160B5A /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */; };
@@ -70,6 +74,10 @@
 		0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.release.xcconfig"; sourceTree = "<group>"; };
 		1B41B5091D639A7000A0D0B3 /* stately.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = stately.ttf; sourceTree = "<group>"; };
 		1BA4262F1D6D27C4007733A9 /* croppedSpark.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = croppedSpark.gif; sourceTree = "<group>"; };
+		1BA426351D6D325F007733A9 /* tightSpark.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = tightSpark.gif; sourceTree = "<group>"; };
+		1BA426371D6DEA59007733A9 /* sparkTop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sparkTop.gif; sourceTree = "<group>"; };
+		1BA426391D6DEADA007733A9 /* sparkTop2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sparkTop2.gif; sourceTree = "<group>"; };
+		1BA4263B1D6DF1F0007733A9 /* sparkler3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sparkler3.gif; sourceTree = "<group>"; };
 		1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
@@ -181,7 +189,11 @@
 				7BC289231D5CF3640066440B /* Models */,
 				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
 				1BA4262F1D6D27C4007733A9 /* croppedSpark.gif */,
+				1BA4263B1D6DF1F0007733A9 /* sparkler3.gif */,
+				1BA426371D6DEA59007733A9 /* sparkTop.gif */,
 				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
+				1BA426351D6D325F007733A9 /* tightSpark.gif */,
+				1BA426391D6DEADA007733A9 /* sparkTop2.gif */,
 				1B41B5091D639A7000A0D0B3 /* stately.ttf */,
 				6E57F4931D664FC100DF362D /* Occupation-Dictionary2.json */,
 				6E58FB0C1D54125E00C12B50 /* Info.plist */,
@@ -421,13 +433,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA426381D6DEA59007733A9 /* sparkTop.gif in Resources */,
 				6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */,
 				1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */,
 				6E57F4941D664FC100DF362D /* Occupation-Dictionary2.json in Resources */,
+				1BA426361D6D325F007733A9 /* tightSpark.gif in Resources */,
 				1BA426301D6D27C4007733A9 /* croppedSpark.gif in Resources */,
 				6E62A0F01D59426600D71011 /* GoogleService-Info.plist in Resources */,
 				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,
 				6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */,
+				1BA4263C1D6DF1F0007733A9 /* sparkler3.gif in Resources */,
+				1BA4263A1D6DEADA007733A9 /* sparkTop2.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
