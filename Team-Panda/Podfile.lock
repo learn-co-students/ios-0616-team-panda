@@ -13,16 +13,16 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.14.0):
     - FBSDKCoreKit
-  - Firebase (3.4.0):
-    - Firebase/Core (= 3.4.0)
-  - Firebase/Analytics (3.4.0):
+  - Firebase (3.5.0):
+    - Firebase/Core (= 3.5.0)
+  - Firebase/Analytics (3.5.0):
     - FirebaseAnalytics (~> 3.3)
-  - Firebase/Auth (3.4.0):
+  - Firebase/Auth (3.5.0):
     - Firebase/Analytics
     - FirebaseAuth (= 3.0.4)
-  - Firebase/Core (3.4.0):
+  - Firebase/Core (3.5.0):
     - Firebase/Analytics
-  - Firebase/Database (3.4.0):
+  - Firebase/Database (3.5.0):
     - Firebase/Analytics
     - FirebaseDatabase (= 3.0.2)
   - FirebaseAnalytics (3.3.0):
@@ -99,7 +99,7 @@ SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
   FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
-  Firebase: 754562547af419cc2f4b15247fee419081924bc2
+  Firebase: cc82f4cc1979b54b1b85a02c1326e15a4afd38c2
   FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
   FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
   FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7

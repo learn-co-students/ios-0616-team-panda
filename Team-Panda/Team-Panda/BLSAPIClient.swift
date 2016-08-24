@@ -15,8 +15,9 @@ class BLSAPIClient {
     class func getMultipleOccupationsWithCompletion(params: [String: AnyObject], completion: (NSDictionary?, NSError?) -> ()) {
         
         Alamofire.request(.POST, Secrets.apiURL, parameters: params, encoding: .JSON, headers: headers).responseJSON { (blsResponse) in
-
+            
             if let error = blsResponse.result.error {
+                print("There was an error pulling multiple occupations from the API: \(error.localizedDescription)")
                 completion(nil, error)
             }
             
@@ -33,8 +34,10 @@ class BLSAPIClient {
         
         Alamofire.request(.POST, Secrets.apiURL, parameters: params, encoding: .JSON, headers: headers).responseJSON { (blsLQresponse) in
             if let error = blsLQresponse.result.error {
+                print("There was an error pulling the Location Quotient from the API: \(error.localizedDescription)")
                 completion(nil, error)
             }
+            
             if let json = blsLQresponse.result.value {
                 guard let lqResults = json as? NSDictionary else {
                     return

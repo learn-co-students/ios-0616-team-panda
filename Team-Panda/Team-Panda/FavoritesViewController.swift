@@ -14,11 +14,8 @@ import SwiftSpinner
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let store = DataStore.store
-    
-    var favoritesTableView : UITableView = UITableView()
+    var favoritesTableView = UITableView()
     var favCell = "favCell"
-    
-    //
     lazy var jobData : [[Job]] = []
     
     override func viewDidLoad() {
@@ -29,18 +26,18 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         createTableViewConstraints()
         self.favoritesTableView.reloadData()
         self.favoritesTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "basicCell")
-       
-        self.navigationController?.navigationBar.topItem?.title = "Favorites"
+        
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.opaque = false
-       // print("Favorites Array: \(store.tpUser?.favoritesArray)")
+        // print("Favorites Array: \(store.tpUser?.favoritesArray)")
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.favoritesTableView.reloadData()
+        self.navigationController?.navigationBar.topItem?.title = "Favorites"
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let favorites = store.tpUser!.favoritesArray
@@ -61,7 +58,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell1.textLabel?.adjustsFontSizeToFitWidth = false
         //}
         cell1.backgroundColor = UIColor.flatYellowColor()
-
+        
         return cell1
     }
     

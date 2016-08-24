@@ -29,11 +29,6 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
-    }
-    
     func settingUpTableViewAndNavBar() {
         
         self.youTableView.delegate = self
@@ -51,11 +46,10 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             make.centerY.equalTo(self.view)
         }
         
-        self.navigationController?.navigationBar.topItem?.title = "Your Career Results"
+        self.navigationController?.navigationBar.topItem?.title = "Career Results"
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.opaque = false
-        self.navigationController?.navigationBar.backItem?.leftBarButtonItem?.title = "Results"
         
     }
     
@@ -85,7 +79,7 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         jobDetail.job = store.jobsResultsArray[indexPath.row]
         
         self.navigationController?.showViewController(jobDetail, sender: "")
-
+        
         self.youTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

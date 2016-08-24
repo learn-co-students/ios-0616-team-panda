@@ -6,20 +6,16 @@
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
-import Foundation
 import SwiftyJSON
 
 class DataStore {
     
     static let store = DataStore()
-    
     var careerNameCellText: String!
     var careerResultsArray: [String] = []
     var jobsResultsArray : [Job] = []
     var jobDiscoverData : [[Job]] = []
-    
     var tpUser : TPUser?
-    
     lazy var sectionHeaders : [String] = ["110000", "130000", "150000", "170000", "190000", "210000", "230000", "250000", "270000", "290000", "310000", "330000", "350000", "370000", "390000", "410000", "430000", "450000", "470000", "490000", "510000", "530000"]
     
     private init() { }
@@ -31,27 +27,30 @@ class DataStore {
         
         BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
             
-            if let careerResults = careerResults {
+            if let error = error {
+                
+                Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                
+            } else if let careerResults = careerResults {
+                
                 guard
                     let resultsValue = careerResults["Results"] as? NSDictionary,
                     let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                        print("There was a problem getting the seriesValue from the DataStore.")
                         return
                 }
                 
-                
                 for seriesID in seriesValue {
-                    let job = Job(withDictionary: seriesID)
                     
+                    let job = Job(withDictionary: seriesID)
                     guard
                         let specificCareerDictionary = seriesID["catalog"] as? NSDictionary,
                         let careerName = specificCareerDictionary["occupation"] as? String else {
                             return
                     }
                     self.careerResultsArray.append(careerName)
-                    
                     self.jobsResultsArray.append(job)
                 }
-                
                 completion()
             }
         }
@@ -61,17 +60,20 @@ class DataStore {
         
         BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
             
-            if let careerResults = careerResults {
+            if let error = error {
+                
+                Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                
+            } else if let careerResults = careerResults {
+                
                 guard
                     let resultsValue = careerResults["Results"] as? NSDictionary,
                     let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
                         return
                 }
-                
                 completion(Job(withDictionary: seriesValue.first!))
             }
         }
-        
     }
     
     func getLocationQuotientforSOCCodeWithCompletion(SOCcode : String, completion : ([String : Double]) -> ()) {
@@ -82,7 +84,11 @@ class DataStore {
         
         BLSAPIClient.getLocationQuotientforJobWithCompletion(stateParams) { (lqResults, error) in
             
-            if let lqResults = lqResults {
+            if let error = error {
+                
+            Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                
+            } else if let lqResults = lqResults {
                 guard
                     let resultsValue = lqResults["Results"] as? NSDictionary,
                     let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
@@ -112,7 +118,6 @@ class DataStore {
         for section in sectionHeaders {
             
             var jobArray : [Job] = []
-            
             let occupations = allSOCCodes[section]!
             
             for (socCode, occupation) in occupations {
