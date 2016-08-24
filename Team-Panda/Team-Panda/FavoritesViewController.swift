@@ -18,8 +18,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     var favoritesTableView : UITableView = UITableView()
     var favCell = "favCell"
     
-    //
-    lazy var jobData : [[Job]] = []
+    //lazy var jobData : [[Job]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +48,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let cell1 = UITableViewCell(style: .Default, reuseIdentifier: "basicCell")
         
-        //if store.tpUser!.favoritesArray[indexPath.row] != "" {
         cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
         cell1.textLabel?.adjustsFontSizeToFitWidth = false
-        //}
         cell1.backgroundColor = UIColor.flatYellowColorDark()
 
         return cell1
@@ -68,43 +65,11 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         return socJobName
     }
-    
-    //shows Job Detail View Controller for selected job at indexpath
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
-//        
-//        //jobDetail.job! = store.tpUser?.favoritesArray[indexPath.row]
-//        
-//        self.navigationController?.showViewController(jobDetail, sender: "")
-//        
-//    }
-    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
-//        
-//        let job = self.jobData[indexPath][indexPath.row]
-//        
-//        SwiftSpinner.show("Getting data for\n\(job.occupation)")
-//        
-//        let socCode = Int(job.SOCcode)!
-//        
-//        let params = DataSeries.createSeriesIDsFromSOC([socCode], withDataType: DataSeries.annualMeanWage)
-//        
-//        DataStore.store.getSingleOccupationWithCompletion(params) { (job) in
-//            jobDetail.job = job
-//            self.navigationController?.showViewController(jobDetail, sender: "")
-//            SwiftSpinner.hide()
-//        }
-//    }
-    
-    //Allows editing
+
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
-    //Remove Jobs from saved job TableView
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let favoriteToDelete = self.store.tpUser?.favoritesArray.removeAtIndex(indexPath.row)
@@ -116,7 +81,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    //Creates constraints for tableView in ViewController
     func createTableViewConstraints() {
         self.view.addSubview(self.favoritesTableView)
         self.favoritesTableView.snp_makeConstraints { (make) in
@@ -125,9 +89,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             make.height.equalTo(self.view.snp_height)
             make.width.equalTo(self.view.snp_width)
         }
-        
         self.favoritesTableView.backgroundColor = UIColor.flatYellowColorDark()
     }
-    
 }
 

@@ -10,7 +10,6 @@ import ChameleonFramework
 import SnapKit
 import SwiftFontName
 import USStatesColorMap
-import SwiftyButton
 import CoreText
 
 class JobDetailViewController: UIViewController, UIScrollViewDelegate {
@@ -182,7 +181,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func setLocationQuotientMap(dictionary: [String : Double]) {
         
-        self.usaColorMapView.backgroundColor = UIColor.clearColor()
+        //self.usaColorMapView.backgroundColor = UIColor.clearColor()
         self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
         self.usaColorMapView.performUpdates {
             

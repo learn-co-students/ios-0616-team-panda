@@ -80,14 +80,7 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
         jobDetail.job = store.jobsResultsArray[indexPath.row]
-        
-        //        let selectedCode = store.jobsResultsArray[indexPath.row].SOCcode
-        
-        //        store.getLocationQuotientforSOCCodeWithCompletion(selectedCode) { (lqDictionaryByState) in
-        //            print(lqDictionaryByState)
-        //            print("Completed.")
-        //        }
-        
+
         self.navigationController?.showViewController(jobDetail, sender: "")
         
     }
