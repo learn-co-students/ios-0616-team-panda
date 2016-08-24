@@ -37,6 +37,8 @@ class DataStore {
                     let resultsValue = careerResults["Results"] as? NSDictionary,
                     let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
                         print("There was a problem getting the seriesValue from the DataStore.")
+                        let error = NSError(domain: "Connection Failed", code: 9000, userInfo: nil)
+                        completion(error)
                         return
                 }
                 

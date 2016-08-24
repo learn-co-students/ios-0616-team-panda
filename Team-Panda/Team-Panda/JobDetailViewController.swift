@@ -61,7 +61,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                 self.activityIndicator.startAnimating()
                 
                 store.getLocationQuotientforSOCCodeWithCompletion(job.SOCcode) { (lqDictionaryByState, error) in
-
+                    
                     if let lqDictionaryByState = lqDictionaryByState {
                         
                         self.setLocationQuotientMap(lqDictionaryByState)
@@ -72,13 +72,15 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
 
                     } else if let error = error {
                         
-                       let alert =  Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: UIAlertActionStyle.Cancel, actionHandler: {})
+                        let alert =  Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: UIAlertActionStyle.Cancel, actionHandler: {})
                         self.presentViewController(alert, animated: true, completion: nil)
                         
                     }
-                    
+          
                     self.activityIndicator.stopAnimating()
+
                 }
+                
             }
             else {
                 self.setLocationQuotientMap(job.locationQuotient)
@@ -152,6 +154,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(salaryDescriptionLabel)
         scrollView.addSubview(locationQuotientLabel)
         scrollView.addSubview(howToBecomeOneView)
+        scrollView.addSubview(self.lqMapWarningLabel)
         
         self.howToBecomeOneView.addSubview(howToBecomeOneLabel)
         self.howToBecomeOneView.addSubview(howToBecomeOneDescription)
@@ -224,19 +227,12 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.height.equalTo(self.view.snp_width)
         }
         
-        self.scrollView.addSubview(self.lqMapWarningLabel)
         self.lqMapWarningLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.top.equalTo(self.usaColorMapView.snp_bottom).offset(-40)
             make.width.equalTo(self.view.snp_width).multipliedBy(0.9)
             make.height.equalTo(self.locationQuotientLabel)
         }
-        
-        //self.lqMapWarningLabel.backgroundColor = UIColor.redColor()
-//        self.lqMapWarningLabel.font = UIFont.pandaFontLight(withSize: 14)
-//        self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."
-//        self.lqMapWarningLabel.textAlignment = NSTextAlignment.Center
-////        self.lqMapWarningLabel.hidden = false
         
         self.howToBecomeOneDescription.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
@@ -276,6 +272,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         //        self.usaColorMapView.backgroundColor = UIColor.clearColor()
         //        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
+        
+        
         self.usaColorMapView.performUpdates {
             
             self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forState: DistrictOfColumbia)
@@ -355,6 +353,11 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(JobDetailViewController.locationQuotientButtonAlert))
         self.locationQuotientLabel.addGestureRecognizer(gestureRecognizer)
+        
+        self.lqMapWarningLabel.font = UIFont.pandaFontLight(withSize: 14)
+        self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."
+        self.lqMapWarningLabel.textAlignment = NSTextAlignment.Center
+        self.lqMapWarningLabel.hidden = false
         
         self.howToBecomeOneView.backgroundColor = UIColor.flatPlumColor()
         
