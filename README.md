@@ -4,6 +4,5 @@
 #Introduction
 Discover a new career and learn about the steps needed to become one. 
 
-https://cloud.githubusercontent.com/assets/17285859/17949171/280d7fd6-6a22-11e6-8ca2-caa22f5b91a0.png
 
 <p align="center"> 🐼 Team Panda 🐼</p>
