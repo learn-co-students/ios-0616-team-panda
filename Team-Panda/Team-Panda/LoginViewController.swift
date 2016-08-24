@@ -183,17 +183,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         }
         
         FIRAuth.auth()?.signInWithEmail(userEmail, password: userPassword, completion: { (user, error) in
+            
             if let error = error {
                 // Alert user there was a problem logging in
                 let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
                 self.presentViewController(alert, animated: true, completion: nil)
+                
             } else if let user = user {
+                
                 TPUser.getUserFromFirebase(user.uid, completion: { (pandaUser) in
                     self.store.tpUser = pandaUser
                     self.showTabBarViewForUser()
+                    
                 })
-            } else {
-                return
             }
         })
     }
@@ -204,9 +206,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         let userPassword = self.passwordTextField!.text!
         
         FIRAuth.auth()?.createUserWithEmail(userEmail, password: userPassword, completion: { (user, error) in
-            if error != nil {
+            if let error = error {
                 // Don't create user
-                let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: (error?.localizedDescription)!)
+                let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: (error.localizedDescription))
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)

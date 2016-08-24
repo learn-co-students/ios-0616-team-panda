@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
         // Setting up Firebase
         FIRApp.configure()
         // Setting up Google sign-in
@@ -57,8 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                         if error != nil {
                             // Alert user there was an issue
                             print("There was an issue with creating a new Google user in the Firebase database: \(error?.localizedDescription)")
-                            
-                            
                             
                         }
 
