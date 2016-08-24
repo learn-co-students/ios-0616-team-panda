@@ -9,7 +9,6 @@
     import UIKit
     import FBSDKLoginKit
     import Firebase
-    import ReachabilitySwift
     
     @UIApplicationMain
     class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
