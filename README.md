@@ -2,8 +2,8 @@
 
 
 #Introduction
-Use this app to discover career options. Save careers and learn about the steps needed to become each one. Written in Swift.
+Discover career options and learn about the steps needed to become each one. 
 
 
 
-🐼 Team Panda 🐼
+<p align="center"> By Team Panda 🐼</p>
