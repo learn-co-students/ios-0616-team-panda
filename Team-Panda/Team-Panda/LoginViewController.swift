@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import FBSDKLoginKit
+import SwiftFontName
 import Firebase
 import SwiftyButton
 import ChameleonFramework
@@ -108,8 +109,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.webViewBG.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
         webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
         webViewBG.userInteractionEnabled = false;
-//        self.webViewBG.backgroundColor = UIColor.yellowColor()
-//        self.webViewBG.scalesPageToFit = true
         
         self.view.addSubview(careerSparkLabel)
         self.view.addSubview(careerSparkHeadlineLabel)
@@ -120,9 +119,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.filterView.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor).active = true
         self.filterView.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
         self.filterView.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
-        self.filterView.backgroundColor = UIColor.flatOrangeColor()
-        
-        self.filterView.alpha = 0.1
+        self.filterView.backgroundColor = UIColor.flatBlackColor()
+        self.view.sendSubviewToBack(filterView)
+        self.filterView.alpha = 0.2
         
         self.careerSparkLabel.translatesAutoresizingMaskIntoConstraints = false
         self.careerSparkLabel.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
@@ -137,12 +136,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.careerSparkHeadlineLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.08).active = true
         
         careerSparkLabel.text = "CareerSpark"
-        careerSparkLabel.textColor = UIColor.flatWhiteColor()
-        careerSparkLabel.font = UIFont.pandaFontMedium(withSize: 40)
+        careerSparkLabel.textColor = UIColor.whiteColor()
+        careerSparkLabel.font = UIFont(name: FontName.TrebuchetMSBold, size: 44)
         careerSparkLabel.textAlignment = NSTextAlignment.Center
 
         careerSparkHeadlineLabel.text = "Discover your new career."
-        careerSparkHeadlineLabel.textColor = UIColor.flatMintColor()
+        careerSparkHeadlineLabel.textColor = UIColor.whiteColor()
         careerSparkHeadlineLabel.font = UIFont.pandaFontMedium(withSize: 20)
         careerSparkHeadlineLabel.textAlignment = NSTextAlignment.Center
         self.view.sendSubviewToBack(webViewBG)
