@@ -19,6 +19,7 @@ target 'Team-Panda' do
   pod 'SWXMLHash'
   pod 'USStatesColorMap'
   pod "SwiftSpinner"
+  pod 'Font-Awesome-Swift', '~> 1.4.8'
 
   target 'Team-PandaTests' do
     inherit! :search_paths

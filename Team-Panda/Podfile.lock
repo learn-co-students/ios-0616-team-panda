@@ -13,19 +13,19 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.14.0):
     - FBSDKCoreKit
-  - Firebase (3.4.0):
-    - Firebase/Core (= 3.4.0)
-  - Firebase/Analytics (3.4.0):
-    - FirebaseAnalytics (~> 3.3)
-  - Firebase/Auth (3.4.0):
+  - Firebase (3.5.1):
+    - Firebase/Core (= 3.5.1)
+  - Firebase/Analytics (3.5.1):
+    - FirebaseAnalytics (~> 3.3.1)
+  - Firebase/Auth (3.5.1):
     - Firebase/Analytics
     - FirebaseAuth (= 3.0.4)
-  - Firebase/Core (3.4.0):
+  - Firebase/Core (3.5.1):
     - Firebase/Analytics
-  - Firebase/Database (3.4.0):
+  - Firebase/Database (3.5.1):
     - Firebase/Analytics
     - FirebaseDatabase (= 3.0.2)
-  - FirebaseAnalytics (3.3.0):
+  - FirebaseAnalytics (3.3.1):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
@@ -38,6 +38,7 @@ PODS:
   - FirebaseDatabase (3.0.2):
     - FirebaseAnalytics (~> 3.2)
   - FirebaseInstanceID (1.0.8)
+  - Font-Awesome-Swift (1.4.8)
   - Google/Core (3.0.3):
     - FirebaseAnalytics (~> 3.2)
   - Google/SignIn (3.0.3):
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Auth
   - Firebase/Database
+  - Font-Awesome-Swift (~> 1.4.8)
   - Google/SignIn
   - SnapKit
   - SwiftFontName (~> 2.0.0)
@@ -97,11 +99,12 @@ SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
   FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
-  Firebase: 754562547af419cc2f4b15247fee419081924bc2
-  FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
+  Firebase: 9b3edeffaf60d56e377dc5281e91c4ba935a5ad9
+  FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
   FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  Font-Awesome-Swift: 354c9440b0e4d692e31171c84091f3510e8f9468
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
   GoogleAppUtilities: f1730f91f67767b453c289577040dd3f425ffdc7
   GoogleAuthUtilities: d7a19615cd7627688afcf181737f1011ee8b5a23
@@ -120,6 +123,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 89929225cad9c70ff96dcce54a19ddb2b1a18a69
   USStatesColorMap: 701dbd4f4590359918854049eb890eb6ac8b01ed
 
-PODFILE CHECKSUM: 2c68da36590a929130e3e6846b418c4634653d8d
+PODFILE CHECKSUM: 4b2321c1f1de951c99336c3e556cf9ebbbf19314
 
 COCOAPODS: 1.0.1

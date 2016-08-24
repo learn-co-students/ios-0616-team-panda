@@ -50,8 +50,8 @@ class TPUser {
             if let error = error {
                 print("Error error error: \(error.localizedDescription)")
             } else {
-                print("This is the database reference description: \(dbRef.description())")
-                print("This is the new user's Dictionary: \(self.dictionary)")
+              //  print("This is the database reference description: \(dbRef.description())")
+                //print("This is the new user's Dictionary: \(self.dictionary)")
             }
         }
         

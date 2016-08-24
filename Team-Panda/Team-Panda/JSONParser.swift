@@ -7,6 +7,7 @@
 //
 
 import SwiftyJSON
+import SwiftSpinner
 
 class JSONParser {
     
@@ -38,7 +39,7 @@ class JSONParser {
     }
     
     func sortingOccupationBySOCCode(socCode: String) -> [String: JSON] {
-        
+
         self.parsingJSON()
         var occupationData: [String: JSON] = [:]
         
@@ -49,7 +50,6 @@ class JSONParser {
             if occupationDict.keys.first == socCode {
                 if let occupationDatabase = occupationDict[socCode] {
                     occupationData = occupationDatabase.dictionaryValue
-                    print("These are the educational requirements: \(occupationData[JSONParser.occupationEdu]?.stringValue)")
                 } else {
                     print("There was an issue pulling the data for the Occupation by SOC Code in the JSON Parser.")
                 }

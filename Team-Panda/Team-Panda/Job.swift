@@ -16,7 +16,7 @@ class Job : CustomStringConvertible {
     let SOCcode : String
     let dataYear : String
     
-    var locationQuotient : [String : Int]
+    var locationQuotient : [String : Double]
     var jobDescription : String
     var minEduReq : String
     var howToBecome : String
@@ -51,7 +51,6 @@ class Job : CustomStringConvertible {
             self.annualMeanSalary = measurementData[0]["value"] as? String ?? ""
             
         } else {
-            print("Couldn't parse measurement data from input dictionary")
             self.dataYear = ""
             self.annualMeanSalary = ""
         }

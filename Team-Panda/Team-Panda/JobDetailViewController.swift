@@ -11,6 +11,9 @@ import SnapKit
 import SwiftFontName
 import USStatesColorMap
 import CoreText
+import Font_Awesome_Swift
+import SwiftSpinner
+import SwiftyJSON
 
 class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
@@ -32,29 +35,82 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     var tempArray = [String]()
     
+    var jobDictionary : [String : JSON] = [:]
+    var hasParsedJSON : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createViews()
         setStylingForViews()
-        setTextForUILabels()
         
         self.usaColorMapView.backgroundColor = UIColor.clearColor()
-        self.navigationController?.navigationBar.topItem?.title = "Back"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "✭", style: .Plain, target: self, action: #selector(self.saveToFavorites))
         
-        store.getLocationQuotientforSOCCodeWithCompletion(job!.SOCcode) { (lqDictionaryByState) in
-            self.setLocationQuotientMap(lqDictionaryByState)
-            print(lqDictionaryByState)
-            print("Completed.")
+        self.setupNavBar()
+    
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        setTextForUILabels()
+
+        if let job = self.job {
+            
+            if job.locationQuotient.isEmpty {
+                
+                store.getLocationQuotientforSOCCodeWithCompletion(job.SOCcode) { (lqDictionaryByState) in
+                    self.setLocationQuotientMap(lqDictionaryByState)
+                    job.locationQuotient = lqDictionaryByState
+                    print(lqDictionaryByState)
+                    print("Completed.")
+                }
+            }
+            else {
+                self.setLocationQuotientMap(job.locationQuotient)
+            }
+        }
+        SwiftSpinner.hide()
+    }
+    
+    func setupNavBar() {
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: faveStar, style: .Plain, target: self, action: #selector(saveToFavorites))
+
+        if favoritedJob().0 == true {
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellowColor()
+        }
+        else {
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue()
         }
     }
     
     func saveToFavorites() {
-        if (store.tpUser?.favoritesArray)!.contains((self.job?.SOCcode)!) {
-           print("Already saved!")
+        
+        let favoriteInfo = favoritedJob()
+        
+        if favoriteInfo.0 == true {
+            
+            print("Already saved! Removing from favorites")
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue()
+            store.tpUser!.favoritesArray.removeAtIndex(favoriteInfo.1!)
+            
+            
         } else {
+            print("Saving to favorites!")
             store.tpUser!.favoritesArray.append((self.job?.SOCcode)!)
-            store.tpUser!.updateDatabase()
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellowColor()
+        }
+        
+        store.tpUser!.updateDatabase()
+    }
+    
+    func favoritedJob() -> (Bool, Int?) {
+        
+        if store.tpUser!.favoritesArray.contains((self.job?.SOCcode)!) {
+            
+            let index = store.tpUser!.favoritesArray.indexOf(self.job!.SOCcode)
+            return (true, index)
+        }
+        else {
+            return (false, nil)
         }
     }
     
@@ -181,8 +237,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func setLocationQuotientMap(dictionary: [String : Double]) {
         
-        //self.usaColorMapView.backgroundColor = UIColor.clearColor()
-        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
+//        self.usaColorMapView.backgroundColor = UIColor.clearColor()
+//        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
         self.usaColorMapView.performUpdates {
             
             self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forState: DistrictOfColumbia)
@@ -275,8 +331,10 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setTextForUILabels() {
-        
-        let jobDictionary = JSONParser().sortingOccupationBySOCCode((self.job?.dashSOCcode)!)
+        if self.hasParsedJSON == false {
+            jobDictionary = JSONParser().sortingOccupationBySOCCode((self.job?.dashSOCcode)!)
+            self.hasParsedJSON = true
+        }
         
         if let jobOccupation = job?.occupation {
             self.careerHeaderLabel.text = jobOccupation.uppercaseString

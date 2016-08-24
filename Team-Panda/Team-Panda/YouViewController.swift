@@ -39,6 +39,7 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.youTableView.delegate = self
         self.youTableView.dataSource = self
         self.youTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.reuseIdentifier)
+        self.youTableView.backgroundColor = FlatMint()
         self.youTableView.accessibilityLabel = "tableView"
         self.youTableView.accessibilityIdentifier = "tableView"
         
@@ -69,7 +70,7 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         cell.textLabel?.text = job.occupation
         cell.textLabel?.font = UIFont.pandaFontLight(withSize: 16)
-        cell.backgroundColor = UIColor.flatMintColor()
+        cell.backgroundColor = FlatMint()
         cell.textLabel?.adjustsFontSizeToFitWidth = false
         
         return cell
@@ -77,12 +78,15 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
+        SwiftSpinner.show("Loading Details", animated: true)
+        
+        let jobDetail = JobDetailViewController()
         
         jobDetail.job = store.jobsResultsArray[indexPath.row]
-
-        self.navigationController?.showViewController(jobDetail, sender: "")
         
+        self.navigationController?.showViewController(jobDetail, sender: "")
+
+        self.youTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     private func getSavedJobChoices(completion : () -> ()) {
