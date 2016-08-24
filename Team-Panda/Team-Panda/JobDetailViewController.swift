@@ -47,13 +47,13 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.usaColorMapView.backgroundColor = UIColor.clearColor()
         
-        self.setupNavBar()
+//        self.setupNavBar()
         
     }
     
     override func viewDidAppear(animated: Bool) {
         setTextForUILabels()
-        
+        self.setupNavBar()
         if let job = self.job {
             
             if job.locationQuotient.isEmpty {
@@ -67,17 +67,17 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                         self.setLocationQuotientMap(lqDictionaryByState)
                         job.locationQuotient = lqDictionaryByState
                         print("Completed.")
-                        self.activityIndicator.stopAnimating()
-                        
+//                        self.activityIndicator.stopAnimating()
+                        self.lqMapWarningLabel.hidden = true
+
                     } else if let error = error {
                         
                        let alert =  Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: UIAlertActionStyle.Cancel, actionHandler: {})
                         self.presentViewController(alert, animated: true, completion: nil)
                         
                     }
-                    // print(lqDictionaryByState)
                     
-                    
+                    self.activityIndicator.stopAnimating()
                 }
             }
             else {
@@ -233,9 +233,10 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         //self.lqMapWarningLabel.backgroundColor = UIColor.redColor()
-        self.lqMapWarningLabel.font = UIFont.pandaFontLight(withSize: 14)
-        self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."
-        self.lqMapWarningLabel.textAlignment = NSTextAlignment.Center
+//        self.lqMapWarningLabel.font = UIFont.pandaFontLight(withSize: 14)
+//        self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."
+//        self.lqMapWarningLabel.textAlignment = NSTextAlignment.Center
+////        self.lqMapWarningLabel.hidden = false
         
         self.howToBecomeOneDescription.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
@@ -304,10 +305,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
-        
-        
-        
-        
     }
     
     func setStylingForViews() {
@@ -337,6 +334,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.minEduReqsDescriptionLabel.textAlignment = .Center
         self.minEduReqsDescriptionLabel.font = UIFont.pandaFontLight(withSize: 20)
         self.minEduReqsDescriptionLabel.textColor = UIColor.flatTealColor().lightenByPercentage(0.2)
+        self.minEduReqsDescriptionLabel.adjustsFontSizeToFitWidth = true
         
         self.salaryHeaderLabel.textAlignment = .Center
         self.salaryHeaderLabel.font = UIFont.pandaFontBold(withSize: 18)
@@ -368,6 +366,10 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.howToBecomeOneDescription.textColor = UIColor.flatWhiteColor()
         self.howToBecomeOneDescription.backgroundColor = UIColor.flatPlumColor()
         
+        self.lqMapWarningLabel.font = UIFont.pandaFontLight(withSize: 14)
+        self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."
+        self.lqMapWarningLabel.textAlignment = NSTextAlignment.Center
+        self.lqMapWarningLabel.adjustsFontSizeToFitWidth = true
     }
     
     func setTextForUILabels() {
