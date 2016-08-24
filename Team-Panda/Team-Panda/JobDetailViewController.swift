@@ -75,10 +75,10 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                         self.presentViewController(alert, animated: true, completion: nil)
                         
                     }
+                    self.lqMapWarningLabel.hidden = true
                     // print(lqDictionaryByState)
-                    
-                    
                 }
+                
             }
             else {
                 self.setLocationQuotientMap(job.locationQuotient)
@@ -271,6 +271,8 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         //        self.usaColorMapView.backgroundColor = UIColor.clearColor()
         //        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
+        
+        
         self.usaColorMapView.performUpdates {
             
             self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forState: DistrictOfColumbia)
@@ -353,7 +355,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.lqMapWarningLabel.font = UIFont.pandaFontLight(withSize: 14)
         self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."
         self.lqMapWarningLabel.textAlignment = NSTextAlignment.Center
-        self.lqMapWarningLabel.hidden = true
+        self.lqMapWarningLabel.hidden = false
         
         self.howToBecomeOneView.backgroundColor = UIColor.flatPlumColor()
         

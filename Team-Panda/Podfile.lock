@@ -65,6 +65,7 @@ PODS:
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
   - PureLayout (3.0.2)
+  - ReachabilitySwift (2.3.3)
   - SnapKit (0.22.0)
   - SwiftFontName (2.0.0)
   - SwiftSpinner (0.9.5)
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Font-Awesome-Swift (~> 1.4.8)
   - Google/SignIn
+  - ReachabilitySwift
   - SnapKit
   - SwiftFontName (~> 2.0.0)
   - SwiftSpinner
@@ -115,6 +117,7 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
   SwiftFontName: 7c3fdb6fc334cd4a8f2953c450a7b40c8d1400e4
   SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
@@ -123,6 +126,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 89929225cad9c70ff96dcce54a19ddb2b1a18a69
   USStatesColorMap: 701dbd4f4590359918854049eb890eb6ac8b01ed
 
-PODFILE CHECKSUM: 4b2321c1f1de951c99336c3e556cf9ebbbf19314
+PODFILE CHECKSUM: 09e5c2f8bd36d74886fa71bfd7d496e7a27415ed
 
 COCOAPODS: 1.0.1

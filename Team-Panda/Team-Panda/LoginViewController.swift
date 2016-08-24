@@ -166,6 +166,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     @IBAction func loginButtonTapped(sender: UIButton!) {
+        
         if !self.emptyTextFields() {
             self.loginCurrentUser()
         } else {
