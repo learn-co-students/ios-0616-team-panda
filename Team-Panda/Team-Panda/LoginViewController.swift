@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func showTabBarViewForUser() {
-        print("showTabBarViewForUser called.")
+
         if let currentPanda = FIRAuth.auth()?.currentUser {
             TPUser.getUserFromFirebase(currentPanda.uid, completion: { (pandaUser) in
                 if let pandaUser = pandaUser {
@@ -49,15 +49,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
                     self.presentViewController(tabBarVC, animated: true, completion: {
-                        print("Panda Logged! Loaded Tab Bar VC")
                     })
                 } else {
-                    print("Couldn't unwrap panda user from store. Asking them to re-login.")
                     self.displayLoginView()
                 }
             })
         } else { // no user
-            print("Showing login / signup buttons. No Panda")
             self.displayLoginView()
         }
     }
@@ -230,12 +227,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func blankEmailPasswordAlert() {
-        let noTextAlertController = UIAlertController(title: "Uh oh...", message: "Please enter a valid email address & password", preferredStyle: .Alert)
-        let noTextAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: { (action) in
-            
-        })
-        noTextAlertController.addAction(noTextAction)
-        self.presentViewController(noTextAlertController, animated: true, completion: nil)
+        
+        let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: "Please enter a valid email address & password")
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func loginCurrentUser() {
@@ -243,7 +237,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         guard
             let userEmail = self.emailTextField.text,
             let userPassword = self.passwordTextField.text else {
-                print("There's no text in username / password fields!")
                 return
         }
         
@@ -258,7 +251,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     self.showTabBarViewForUser()
                 })
             } else {
-                print("Couldn't get user.")
                 return
             }
         })

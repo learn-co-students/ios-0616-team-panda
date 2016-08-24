@@ -14,11 +14,10 @@ import SwiftSpinner
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let store = DataStore.store
-    
-    var favoritesTableView : UITableView = UITableView()
+    var favoritesTableView = UITableView()
     var favCell = "favCell"
-    
-    //lazy var jobData : [[Job]] = []
+
+    lazy var jobData : [[Job]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +27,17 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         createTableViewConstraints()
         self.favoritesTableView.reloadData()
         self.favoritesTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "basicCell")
-       
-        self.navigationController?.navigationBar.topItem?.title = "Favorites"
+        
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.opaque = false
-       // print("Favorites Array: \(store.tpUser?.favoritesArray)")
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.favoritesTableView.reloadData()
+        self.navigationController?.navigationBar.topItem?.title = "Favorites"
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let favorites = store.tpUser!.favoritesArray
@@ -56,10 +54,11 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell1 = UITableViewCell(style: .Default, reuseIdentifier: "basicCell")
         
         cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
+        cell1.textLabel?.font = UIFont.pandaFontLight(withSize: 16)
         cell1.textLabel?.adjustsFontSizeToFitWidth = false
         //}
         cell1.backgroundColor = UIColor.flatYellowColor()
-
+        
         return cell1
     }
     
@@ -87,18 +86,39 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let params = DataSeries.createSeriesIDsFromSOC([socCode], withDataType: DataSeries.annualMeanWage)
         
-        DataStore.store.getSingleOccupationWithCompletion(params) { (job) in
-            jobDetail.job = job
-            self.navigationController?.showViewController(jobDetail, sender: "")
-            self.favoritesTableView.deselectRowAtIndexPath(indexPath, animated: false)
+        DataStore.store.getSingleOccupationWithCompletion(params) { (job, error) in
+            
+            if let error = error {
+                
+                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                
+                jobDetail.job = job
+                self.navigationController?.showViewController(jobDetail, sender: "")
+                self.favoritesTableView.deselectRowAtIndexPath(indexPath, animated: false)
+            }
         }
     }
     
-    //Allows editing
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
+    @IBAction func editButtonTapped(sender: UIBarButtonItem) {
+        
+        if self.favoritesTableView.editing {
+            self.favoritesTableView.setEditing(false, animated: true)
+        } else {
+            self.favoritesTableView.setEditing(true, animated: true)
+        }
+    }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
+    }
+    
+    //Remove Jobs from saved job TableView
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let favoriteToDelete = self.store.tpUser?.favoritesArray.removeAtIndex(indexPath.row)
@@ -113,6 +133,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func createTableViewConstraints() {
         self.view.addSubview(self.favoritesTableView)
+        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(self.editButtonTapped))
+        self.navigationItem.rightBarButtonItem = editButton
         self.favoritesTableView.snp_makeConstraints { (make) in
             make.center.equalTo(self.view.snp_center)
             make.bottom.equalTo(self.view.snp_bottom)
