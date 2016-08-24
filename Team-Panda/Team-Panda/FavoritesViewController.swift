@@ -16,6 +16,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     let store = DataStore.store
     var favoritesTableView = UITableView()
     var favCell = "favCell"
+
     lazy var jobData : [[Job]] = []
     
     override func viewDidLoad() {
@@ -29,7 +30,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.opaque = false
-        // print("Favorites Array: \(store.tpUser?.favoritesArray)")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,7 +53,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let cell1 = UITableViewCell(style: .Default, reuseIdentifier: "basicCell")
         
-        //if store.tpUser!.favoritesArray[indexPath.row] != "" {
         cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
         cell1.textLabel?.font = UIFont.pandaFontLight(withSize: 16)
         cell1.textLabel?.adjustsFontSizeToFitWidth = false
@@ -102,11 +101,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    //Allows editing
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    
     
     @IBAction func editButtonTapped(sender: UIBarButtonItem) {
         
@@ -134,7 +131,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    //Creates constraints for tableView in ViewController
     func createTableViewConstraints() {
         self.view.addSubview(self.favoritesTableView)
         let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(self.editButtonTapped))
@@ -148,6 +144,5 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         self.favoritesTableView.backgroundColor = UIColor.flatYellowColor()
     }
-    
 }
 
