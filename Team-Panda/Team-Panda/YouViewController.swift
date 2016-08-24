@@ -97,6 +97,7 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 
                 let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
                 self.presentViewController(alert, animated: true, completion: nil)
+                completion()
                 
             } else {
               
