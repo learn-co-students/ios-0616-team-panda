@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPandaLoad" translatesAutoresizingMaskIntoConstraints="NO" id="nkv-rx-IhK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TrebPandaLoad" translatesAutoresizingMaskIntoConstraints="NO" id="nkv-rx-IhK">
                                 <rect key="frame" x="75" y="135" width="450" height="120"/>
                             </imageView>
                         </subviews>
@@ -39,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NonPandaLoad" width="293" height="99"/>
+        <image name="TrebPandaLoad" width="300" height="97"/>
     </resources>
 </document>
