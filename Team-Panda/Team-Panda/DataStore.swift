@@ -20,7 +20,7 @@ class DataStore {
     
     private init() { }
     
-    func getMultipleOccupationsWithCompletion(params : [String : AnyObject], completion: () -> ()) {
+    func getMultipleOccupationsWithCompletion(params : [String : AnyObject], completion: (NSError?) -> ()) {
         
         self.careerResultsArray.removeAll()
         self.jobsResultsArray.removeAll()
@@ -29,7 +29,7 @@ class DataStore {
             
             if let error = error {
                 
-                Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                completion(error)
                 
             } else if let careerResults = careerResults {
                 
@@ -51,18 +51,18 @@ class DataStore {
                     self.careerResultsArray.append(careerName)
                     self.jobsResultsArray.append(job)
                 }
-                completion()
+                completion(nil)
             }
         }
     }
     
-    func getSingleOccupationWithCompletion(params : [String : AnyObject], completion: (Job) -> ()) {
+    func getSingleOccupationWithCompletion(params : [String : AnyObject], completion: (Job?, NSError?) -> ()) {
         
         BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
             
             if let error = error {
                 
-                Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                completion(nil, error)
                 
             } else if let careerResults = careerResults {
                 
@@ -71,12 +71,12 @@ class DataStore {
                     let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
                         return
                 }
-                completion(Job(withDictionary: seriesValue.first!))
+                completion(Job(withDictionary: seriesValue.first!), nil)
             }
         }
     }
     
-    func getLocationQuotientforSOCCodeWithCompletion(SOCcode : String, completion : ([String : Double]) -> ()) {
+    func getLocationQuotientforSOCCodeWithCompletion(SOCcode : String, completion : ([String : Double]?, NSError?) -> ()) {
         
         var lqByState : [String : Double] = [:]
         
@@ -86,7 +86,7 @@ class DataStore {
             
             if let error = error {
                 
-            Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                completion(nil, error)
                 
             } else if let lqResults = lqResults {
                 guard
@@ -108,7 +108,7 @@ class DataStore {
                         lqByState.updateValue(locQuotientFloat, forKey: stateName)
                     }
                 }
-                completion(lqByState)
+                completion(lqByState, nil)
             }
         }
     }

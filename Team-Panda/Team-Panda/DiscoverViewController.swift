@@ -81,7 +81,7 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return store.jobDiscoverData.count
+        return store.sectionHeaders.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -100,10 +100,19 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
         
         let params = DataSeries.createSeriesIDsFromSOC([socCode], withDataType: DataSeries.annualMeanWage)
         
-        DataStore.store.getSingleOccupationWithCompletion(params) { (job) in
-            jobDetail.job = job
-            self.navigationController?.showViewController(jobDetail, sender: "")
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        DataStore.store.getSingleOccupationWithCompletion(params) { (job, error) in
+            
+            if let error = error {
+                
+                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            } else {
+                
+                jobDetail.job = job
+                self.navigationController?.showViewController(jobDetail, sender: "")
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            }
         }
     }
 }

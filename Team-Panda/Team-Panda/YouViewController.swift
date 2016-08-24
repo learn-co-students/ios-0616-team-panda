@@ -91,11 +91,19 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             print("Current user is nil when loading You from auto login.")
         }
         
-        self.store.getMultipleOccupationsWithCompletion(self.params) {
+        self.store.getMultipleOccupationsWithCompletion(self.params) { error in
             
-            print("Finished API call. Updating table view.")
-            self.youTableView.reloadData()
-            completion()
+            if let error = error {
+                
+                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            } else {
+              
+                print("Finished API call. Updating table view.")
+                self.youTableView.reloadData()
+                completion()
+            }
         }
     }
 }

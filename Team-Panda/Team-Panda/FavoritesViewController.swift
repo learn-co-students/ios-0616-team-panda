@@ -55,6 +55,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //if store.tpUser!.favoritesArray[indexPath.row] != "" {
         cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
+        cell1.textLabel?.font = UIFont.pandaFontLight(withSize: 16)
         cell1.textLabel?.adjustsFontSizeToFitWidth = false
         //}
         cell1.backgroundColor = UIColor.flatYellowColor()
@@ -86,16 +87,38 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let params = DataSeries.createSeriesIDsFromSOC([socCode], withDataType: DataSeries.annualMeanWage)
         
-        DataStore.store.getSingleOccupationWithCompletion(params) { (job) in
-            jobDetail.job = job
-            self.navigationController?.showViewController(jobDetail, sender: "")
-            self.favoritesTableView.deselectRowAtIndexPath(indexPath, animated: false)
+        DataStore.store.getSingleOccupationWithCompletion(params) { (job, error) in
+            
+            if let error = error {
+                
+                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                
+                jobDetail.job = job
+                self.navigationController?.showViewController(jobDetail, sender: "")
+                self.favoritesTableView.deselectRowAtIndexPath(indexPath, animated: false)
+            }
         }
     }
     
     //Allows editing
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
+    }
+    
+    
+    @IBAction func editButtonTapped(sender: UIBarButtonItem) {
+        
+        if self.favoritesTableView.editing {
+            self.favoritesTableView.setEditing(false, animated: true)
+        } else {
+            self.favoritesTableView.setEditing(true, animated: true)
+        }
+    }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
     }
     
     //Remove Jobs from saved job TableView
@@ -114,6 +137,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     //Creates constraints for tableView in ViewController
     func createTableViewConstraints() {
         self.view.addSubview(self.favoritesTableView)
+        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(self.editButtonTapped))
+        self.navigationItem.rightBarButtonItem = editButton
         self.favoritesTableView.snp_makeConstraints { (make) in
             make.center.equalTo(self.view.snp_center)
             make.bottom.equalTo(self.view.snp_bottom)

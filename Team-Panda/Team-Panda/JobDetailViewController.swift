@@ -33,6 +33,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     var howToBecomeOneDescription = UITextView()
     var howToBecomeOneView = UIView()
     var activityIndicator: UIActivityIndicatorView!
+    var lqMapWarningLabel = UILabel()
     
     var tempArray = [String]()
     
@@ -59,13 +60,24 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                 
                 self.activityIndicator.startAnimating()
                 
-                store.getLocationQuotientforSOCCodeWithCompletion(job.SOCcode) { (lqDictionaryByState) in
+                store.getLocationQuotientforSOCCodeWithCompletion(job.SOCcode) { (lqDictionaryByState, error) in
+
+                    if let lqDictionaryByState = lqDictionaryByState {
+                        
+                        self.setLocationQuotientMap(lqDictionaryByState)
+                        job.locationQuotient = lqDictionaryByState
+                        print("Completed.")
+                        self.activityIndicator.stopAnimating()
+                        
+                    } else if let error = error {
+                        
+                       let alert =  Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: UIAlertActionStyle.Cancel, actionHandler: {})
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                    }
+                    // print(lqDictionaryByState)
                     
-                    self.setLocationQuotientMap(lqDictionaryByState)
-                    job.locationQuotient = lqDictionaryByState
-                    print(lqDictionaryByState)
-                    print("Completed.")
-                    self.activityIndicator.stopAnimating()
+                    
                 }
             }
             else {
@@ -212,12 +224,18 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.height.equalTo(self.view.snp_width)
         }
         
-        //        self.activityIndicator.snp_makeConstraints { (make) in
-        //            make.centerX.equalTo(self.view)
-        //            make.top.equalTo(self.locationQuotientLabel.snp_bottom).offset(-70)
-        //            make.width.equalTo(self.view.snp_width).multipliedBy(0.9)
-        //            make.height.equalTo(self.view.snp_width)
-        //        }
+        self.scrollView.addSubview(self.lqMapWarningLabel)
+        self.lqMapWarningLabel.snp_makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(self.usaColorMapView.snp_bottom).offset(-40)
+            make.width.equalTo(self.view.snp_width).multipliedBy(0.9)
+            make.height.equalTo(self.locationQuotientLabel)
+        }
+        
+        //self.lqMapWarningLabel.backgroundColor = UIColor.redColor()
+        self.lqMapWarningLabel.font = UIFont.pandaFontLight(withSize: 14)
+        self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."
+        self.lqMapWarningLabel.textAlignment = NSTextAlignment.Center
         
         self.howToBecomeOneDescription.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.view)
@@ -253,7 +271,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setLocationQuotientMap(dictionary: [String : Double]) {
-    
+        
         
         //        self.usaColorMapView.backgroundColor = UIColor.clearColor()
         //        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
