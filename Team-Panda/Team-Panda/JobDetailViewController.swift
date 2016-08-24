@@ -253,6 +253,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setLocationQuotientMap(dictionary: [String : Double]) {
+    
         
         //        self.usaColorMapView.backgroundColor = UIColor.clearColor()
         //        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
@@ -285,6 +286,10 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
+        
+        
+        
+        
     }
     
     func setStylingForViews() {
