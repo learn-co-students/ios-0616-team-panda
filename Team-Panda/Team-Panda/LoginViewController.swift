@@ -185,7 +185,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             make.centerX.equalTo(self.view)
             make.width.equalTo(self.view).multipliedBy(0.75)
             make.height.equalTo(self.view).multipliedBy(0.0935)
-            make.centerY.equalTo(self.view).offset(-self.view.bounds.height*0.09)
+            make.centerY.equalTo(self.view).offset(-self.view.bounds.height*0.1)
         }
         
         self.passwordTextField.snp_makeConstraints { (make) in
