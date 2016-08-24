@@ -70,17 +70,9 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
 //                        self.activityIndicator.stopAnimating()
                         self.lqMapWarningLabel.hidden = true
 
-                    } else if let error = error {
-                        
-                        let alert =  Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: UIAlertActionStyle.Cancel, actionHandler: {})
-                        self.presentViewController(alert, animated: true, completion: nil)
-                        
                     }
-          
                     self.activityIndicator.stopAnimating()
-
                 }
-                
             }
             else {
                 self.setLocationQuotientMap(job.locationQuotient)

@@ -94,6 +94,8 @@ class DataStore {
                 guard
                     let resultsValue = lqResults["Results"] as? NSDictionary,
                     let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                        let error = NSError(domain: "Network Error", code: 9000, userInfo: nil)
+                        completion(nil, error)
                         return
                 }
                 
@@ -104,7 +106,11 @@ class DataStore {
                         let stateName = stateSeriesInfo["area"] as? String,
                         let stateData = state["data"] as? [[String : AnyObject]],
                         let lqValue = stateData[0]["value"] as? String
-                        else { return }
+                        else {
+                            let error = NSError(domain: "No Location Quotient", code: 9999, userInfo: nil)
+                            completion(nil, error)
+                            return
+                        }
                     
                     if let locQuotientFloat = Double(lqValue) {
                         lqByState.updateValue(locQuotientFloat, forKey: stateName)

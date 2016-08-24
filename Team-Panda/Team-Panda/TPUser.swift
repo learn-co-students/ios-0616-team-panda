@@ -93,14 +93,14 @@ class TPUser {
         let wouldYouRatherAnswer = dictionary["would you rather"] as? String
         let interests = dictionary["interests"] as? [String]
         let codes = dictionary["soc codes"] as? [Int]
-        let favoritesArray = dictionary["favorites"] as? [String]
+        let favoritesArray = dictionary["favorites"] as? [String] ?? [""]
         
         if  let email = email,
             let tellUs = tellUsAnswer,
             let wouldYouRather = wouldYouRatherAnswer,
             let interests = interests,
-            let codes = codes,
-            let favoritesArray = favoritesArray
+            let codes = codes
+      //      let favoritesArray = favoritesArray
         {
             
             let pandaUser = TPUser(withEmail: email, uid: uid)

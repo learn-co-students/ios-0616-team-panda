@@ -139,6 +139,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         careerSparkLabel.textColor = UIColor.whiteColor()
         careerSparkLabel.font = UIFont(name: FontName.TrebuchetMSBold, size: 44)
         careerSparkLabel.textAlignment = NSTextAlignment.Center
+        careerSparkLabel.adjustsFontSizeToFitWidth = true
 
         careerSparkHeadlineLabel.text = "Discover your new career."
         careerSparkHeadlineLabel.textColor = UIColor.whiteColor()
