@@ -10,6 +10,7 @@ With CareerSpark, we help you with selecting a Career path based on your interes
            * Nested bullet
             * Sub-nested bullet etc
           * Bullet list item 2
+          
 -Based on a set of easy to answer questions, CareerSpark will suggest occupations that may be of interest of you.
 -You can learn more about minimum education requirements & how to become one for your occupation of interest.
 -See location quotient data across USA to get an idea of the job growth projections for that particular occupation.
