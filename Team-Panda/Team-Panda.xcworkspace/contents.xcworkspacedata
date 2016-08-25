@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Team-Panda.xcodeproj">
+      location = "group:/Users/nyctechtalentpipeline/Development/code/Swift/ios-0616-team-panda/Team-Panda/Team-Panda.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
