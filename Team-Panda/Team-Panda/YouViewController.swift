@@ -100,7 +100,7 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 completion()
                 
             } else {
-              
+                
                 print("Finished API call. Updating table view.")
                 self.youTableView.reloadData()
                 completion()

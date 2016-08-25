@@ -82,7 +82,7 @@ let majorSOCcodes : [String : String] = [
 
 let allSOCCodesUnfiltered : [String : [String : String]] =
     ["110000":
-            ["111011" : "Chief Executive",
+        ["111011" : "Chief Executive",
             "111021" : "General and Operations Manage",
             "111031" : "Legislator",
             "112011" : "Advertising and Promotions Manage",
@@ -114,7 +114,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "119199" : "Managers, All Other"],
      
      "130000":
-            ["131011" : "Agents and Business Managers of Artists, Performers, and Athletes",
+        ["131011" : "Agents and Business Managers of Artists, Performers, and Athletes",
             "131021" : "Buyers and Purchasing Agents, Farm Products",
             "131022" : "Wholesale and Retail Buyers, Except Farm Products",
             "131023" : "Purchasing Agents, Except Wholesale, Retail, and Farm Products ",
@@ -143,7 +143,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "132082" : "Tax Preparers",
             "132099" : "Financial Specialists, All Other"],
      "150000" :
-            ["151111" : "Computer and Information Research Scientists ",
+        ["151111" : "Computer and Information Research Scientists ",
             "151121" : "Computer Systems Analysts",
             "151122" : "Information Security Analysts",
             "151132" : "Software Developers, Applications",
@@ -161,7 +161,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "152091" : "Mathematical Technicians ",
             "152099" : "Mathematical Science Occupations, All Other"],
      "170000" :
-            ["171011" : "Architects, Except Landscape and Naval ",
+        ["171011" : "Architects, Except Landscape and Naval ",
             "171012" : "Landscape Architects ",
             "171021" : "Cartographers and Photogrammetrists",
             "171022" : "Surveyors",
@@ -194,7 +194,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "173029" : "Engineering Technicians, Except Drafters, All Other",
             "173031" : "Surveying and Mapping Technicians"],
      "190000" :
-            ["191011" : "Animal Scientists",
+        ["191011" : "Animal Scientists",
             "191012" : "Food Scientists and Technologists",
             "191021" : "Biochemists and Biophysicists",
             "191022" : "Microbiologists",
@@ -232,7 +232,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "194093" : "Forest and Conservation Technicians",
             "194099" : "Life, Physical, and Social Science Technicians, All Other"],
      "210000" :
-            ["211011" : "Substance Abuse and Behavioral Disorder Counselors",
+        ["211011" : "Substance Abuse and Behavioral Disorder Counselors",
             "211012" : "Educational, Guidance, School, and Vocational Counselors",
             "211013" : "Marriage and Family Therapists",
             "211014" : "Mental Health Counselors",
@@ -249,7 +249,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "212021" : "Directors, Religious Activities and Educatio",
             "212099" : "Religious Workers, All Other"],
      "230000" :
-            ["231012" : "Judicial Law Clerks",
+        ["231012" : "Judicial Law Clerks",
             "231021" : "Administrative Law Judges, Adjudicators, and Hearing Officers",
             "231022" : "Arbitrators, Mediators, and Conciliators",
             "231023" : "Judges, Magistrate Judges, and Magistrates",
@@ -257,7 +257,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "232091" : "Court Reporters",
             "232099" : "Legal Support Workers, All Other"],
      "250000" :
-            ["251011" : "Business Teachers, Postsecondary ",
+        ["251011" : "Business Teachers, Postsecondary ",
             "251021" : "Computer Science Teachers, Postsecondary ",
             "251022" : "Mathematical Science Teachers, Postsecondary ",
             "251031" : "Architecture Teachers, Postsecondary ",
@@ -316,7 +316,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "259041" : "Teacher Assistants ",
             "259099" : "Education, Training, and Library Workers, All Other"],
      "270000" :
-            ["271011" : "Art Directors",
+        ["271011" : "Art Directors",
             "271012" : "Craft Artists",
             "271013" : "Fine Artists, Including Painters, Sculptors, and Illustrators",
             "271014" : "Multimedia Artists and Animators ",
@@ -354,7 +354,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "274032" : "Film and Video Editors ",
             "274099" : "Media and Communication Equipment Workers, All Other"],
      "290000" :
-            ["291011" : "Chiropractors",
+        ["291011" : "Chiropractors",
             "291022" : "Oral and Maxillofacial Surgeons",
             "291023" : "Orthodontists",
             "291024" : "Prosthodontists",
@@ -410,7 +410,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "299092" : "Genetic Counselors ",
             "299099" : "Healthcare Practitioners and Technical Workers, All Other"],
      "310000" :
-            ["311011" : "Home Health Aides",
+        ["311011" : "Home Health Aides",
             "311013" : "Psychiatric Aides",
             "311014" : "Nursing Assistants ",
             "311015" : "Orderlies",
@@ -427,7 +427,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "319097" : "Phlebotomists",
             "319099" : "Healthcare Support Workers, All Other"],
      "330000" :
-            ["331011" : "First-Line Supervisors of Correctional Officers",
+        ["331011" : "First-Line Supervisors of Correctional Officers",
             "331012" : "First-Line Supervisors of Police and Detectives",
             "331021" : "First-Line Supervisors of Fire Fighting and Prevention Workers ",
             "332011" : "Firefighters ",
@@ -447,7 +447,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "339093" : "Transportation Security Screeners",
             "339099" : "Protective Service Workers, All Other"],
      "350000" :
-            ["351011" : "Chefs and Head Cooks",
+        ["351011" : "Chefs and Head Cooks",
             "352011" : "Cooks, Fast Food",
             "352012" : "Cooks, Institution and Cafeteria",
             "352013" : "Cooks, Private Household",
@@ -464,7 +464,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "359021" : "Dishwashers",
             "359099" : "Food Preparation and Serving Related Workers, All Other"],
      "370000" :
-            ["371011" : "First-Line Supervisors of Housekeeping and Janitorial Workers",
+        ["371011" : "First-Line Supervisors of Housekeeping and Janitorial Workers",
             "371012" : "First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers",
             "372011" : "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
             "372012" : "Maids and Housekeeping Cleaners",
@@ -474,7 +474,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "373013" : "Tree Trimmers and Pruners",
             "373019" : "Grounds Maintenance Workers, All Other"],
      "390000" :
-            ["391012" : "Slot Supervisors ",
+        ["391012" : "Slot Supervisors ",
             "391021" : "First-Line Supervisors of Personal Service Workers ",
             "392011" : "Animal Trainers",
             "392021" : "Nonfarm Animal Caretakers",
@@ -504,7 +504,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "399041" : "Residential Advisors ",
             "399099" : "Personal Care and Service Workers, All Other"],
      "410000" :
-            ["411011" : "First-Line Supervisors of Retail Sales Workers",
+        ["411011" : "First-Line Supervisors of Retail Sales Workers",
             "411012" : "First-Line Supervisors of Non-Retail Sales Workers",
             "412011" : "Cashiers",
             "412012" : "Gaming Change Persons and Booth Cashiers ",
@@ -526,7 +526,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "419091" : "Door-to-Door Sales Workers, News and Street Vendors, and Related Workers ",
             "419099" : "Sales and Related Workers, All Other"],
      "430000" :
-            ["431011" : "First-Line Supervisors of Office and Administrative Support Workers",
+        ["431011" : "First-Line Supervisors of Office and Administrative Support Workers",
             "432011" : "Switchboard Operators, Including Answering Service ",
             "432021" : "Telephone Operators",
             "432099" : "Communications Equipment Operators, All Other",
@@ -591,7 +591,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "454023" : "Log Graders and Scalers",
             "454029" : "Logging Workers, All Other"],
      "470000" :
-            ["471011" : "First-Line Supervisors of Construction Trades and Extraction Workers",
+        ["471011" : "First-Line Supervisors of Construction Trades and Extraction Workers",
             "472011" : "Boilermakers ",
             "472021" : "Brickmasons and Blockmasons",
             "472031" : "Carpenters ",
@@ -646,7 +646,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "475081" : "Helpers--Extraction Workers",
             "475099" : "Extraction Workers, All Other"],
      "490000" :
-            ["491011" : "First-Line Supervisors of Mechanics, Installers, and Repairers ",
+        ["491011" : "First-Line Supervisors of Mechanics, Installers, and Repairers ",
             "492011" : "Computer, Automated Teller, and Office Machine Repairers ",
             "492021" : "Radio, Cellular, and Tower Equipment Installers and Repairers",
             "492022" : "Telecommunications Equipment Installers and Repairers, Except Line Installers",
@@ -693,7 +693,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "499098" : "Helpers--Installation, Maintenance, and Repair Workers ",
             "499099" : "Installation, Maintenance, and Repair Workers, All Other "],
      "510000" :
-            ["511011" : "First-Line Supervisors of Production and Operating Workers",
+        ["511011" : "First-Line Supervisors of Production and Operating Workers",
             "512021" : "Coil Winders, Tapers, and Finisher",
             "512022" : "Electrical and Electronic Equipment Assemblers",
             "512023" : "Electromechanical Equipment Assemblers",
@@ -789,7 +789,7 @@ let allSOCCodesUnfiltered : [String : [String : String]] =
             "519198" : "Helpers--Production Workers ",
             "519199" : "Production Workers, All Other "],
      "530000" :
-            ["531011" : "Aircraft Cargo Handling Supervisors",
+        ["531011" : "Aircraft Cargo Handling Supervisors",
             "531021" : "First-Line Supervisors of Helpers, Laborers, and Material Movers, Hand ",
             "531031" : "First-Line Supervisors of Transportation and Material-Moving Machine and Vehicle Operators ",
             "532011" : "Airline Pilots, Copilots, and Flight Engineers ",
@@ -890,87 +890,67 @@ let stateCodes : [String : String] =
      "5500000" : "Wisconsin",
      "5600000" : "Wyoming"]
 
+
 let jobsDictionary : [WhichInterestsStyle : AnyObject] =
     
-    [WhichInterestsStyle.SolveProblem :
-        // [19-3011, 19-3031, 19-3032, 19-3039, 31-2011, 31-2012, 31-2020, 31-9000, 31-9099, 35-0000, 53-3010]
-        ["Human Body": [319091, 353041, 359011, 359099, 352015, 352012, 352014, 353021, 351011, 352021, 353022, 352019, 319094, 352011, 319092, 319011, 353011, 352013, 359031],
-            
-            // [19-3000, 19-3099, 37-3000, 37-3019, 45-0000, 45-4029, 51-0000, 51-9199]
-            "Environment" : [512092, 514081, 454021, 519083, 513091, 519082, 193092, 519081, 512031, 514021, 514032, 512099, 514122, 513099, 452091, 514071, 513011, 512091, 514051, 454023, 514035, 512093, 193093, 512021, 514061, 514191, 514022, 373011, 514193, 514111, 452021, 454011, 514072, 193011, 512011, 193091, 514052, 514034, 519071, 513021, 513092, 373013, 513093, 514011, 514012, 514023, 452092, 454022, 514041, 373012, 452099, 514062, 512022, 452093, 514031, 514033, 512041, 512023],
-            
-            
-            // [53-0000, 53-7199]
-            "Transportation" : [537011, 537064, 533022, 537063, 537051, 537081, 533033, 532031, 533021, 537061, 537021, 537033, 537032, 537062, 532012, 537041, 537031, 533032, 532011, 532021, 533031],
-            
-            
-            // [17-0000, 17-3031, 27-4000, 27-4090, 47-00000, 47-5099, 49-0000, 49-9099, 51-0000, 51-9199]
-            "Architecture" : [474041, 173026, 512092, 473014, 172031, 172121, 514081, 474011, 493011, 519083, 472131, 513091, 473011, 173023, 499051, 472051, 519082, 274012, 493042, 173027, 499071, 493021, 172011, 519081, 512031, 514021, 514032, 512099, 514122, 473015, 172071, 513099, 173013, 514071, 472221, 274014, 472061, 513011, 472011, 499052, 173024, 512091, 472121, 472132, 514051, 172041, 514035, 171021, 472071, 472111, 512093, 493023, 512021, 171012, 492095, 492096, 472021, 514061, 514191, 492093, 492091, 514022, 493043, 472053, 492092, 514193, 514111, 473019, 472171, 493041, 472022, 172111, 474091, 514072, 499062, 274031, 499043, 173022, 172051, 474021, 512011, 472044, 473016, 274032, 514052, 472031, 472072, 472073, 493031, 499044, 514034, 519071, 499021, 172021, 513021, 513092, 499041, 513093, 493022, 473013, 473012, 514011, 472082, 514012, 472042, 514023, 173012, 173011, 492094, 514041, 172061, 514062, 472041, 512022, 171011, 173025, 514031, 514033, 172081, 172072, 173021, 172112, 172141, 512041, 274011, 472043, 172131, 512023, 173019, 472081],
-            
-            // [15-0000, 15-2099, 19-3000, 19-3099, 25-1000, 25-9099, 27-1020, 27-4030, 35-0000, 35-2019]
-            "Teaching" : [254012, 151143, 251194, 193092, 259031, 151152, 252032, 151131, 253011, 254011, 252031, 151151, 151121, 193093, 152011, 252012, 254031, 193011, 151122, 254013, 193091, 151111, 252021, 254021, 252022, 252023, 152021, 151141]],
+    [WhichInterestsStyle.SolveProblem: [
+        
+        "Human Body" : [319091, 353041, 359011, 359099, 352015, 352012, 352014, 353021, 351011, 352021, 353022, 352019, 319094, 352011, 319092, 319011, 353011, 352013, 359031],
+        
+        "Environment" : [512092, 514081, 454021, 519083, 513091, 519082, 193092, 519081, 512031, 514021, 514032, 512099, 514122, 513099, 452091, 514071, 513011, 512091, 514051, 454023, 514035, 512093, 193093, 512021, 514061, 514191, 514022, 373011, 514193, 514111, 452021, 454011, 514072, 193011, 512011, 193091, 514052, 514034, 519071, 513021, 513092, 373013, 513093, 514011, 514012, 514023, 452092, 454022, 514041, 373012, 452099, 514062, 512022, 452093, 514031, 514033, 512041, 512023],
+        
+        "Transportation" : [537011, 537064, 533022, 537063, 537051, 537081, 533033, 532031, 533021, 537061, 537021, 537033, 537032, 537062, 532012, 537041, 537031, 533032, 532011, 532021, 533031],
+        
+        "Architecture" : [474041, 173026, 512092, 473014, 172031, 172121, 514081, 474011, 493011, 519083, 472131, 513091, 473011, 173023, 499051, 472051, 519082, 274012, 493042, 173027, 499071, 493021, 172011, 519081, 512031, 514021, 514032, 512099, 514122, 473015, 172071, 513099, 173013, 514071, 472221, 274014, 472061, 513011, 472011, 499052, 173024, 512091, 472121, 472132, 514051, 172041, 514035, 171021, 472071, 472111, 512093, 493023, 512021, 171012, 492095, 492096, 472021, 514061, 514191, 492093, 492091, 514022, 493043, 472053, 492092, 514193, 514111, 473019, 472171, 493041, 472022, 172111, 474091, 514072, 499062, 274031, 499043, 173022, 172051, 474021, 512011, 472044, 473016, 274032, 514052, 472031, 472072, 472073, 493031, 499044, 514034, 519071, 499021, 172021, 513021, 513092, 499041, 513093, 493022, 473013, 473012, 514011, 472082, 514012, 472042, 514023, 173012, 173011, 492094, 514041, 172061, 514062, 472041, 512022, 171011, 173025, 514031, 514033, 172081, 172072, 173021, 172112, 172141, 512041, 274011, 472043, 172131, 512023, 173019, 472081],
+        
+        "Teaching" : [254012, 151143, 251194, 193092, 259031, 151152, 252032, 151131, 253011, 254011, 252031, 151151, 151121, 193093, 152011, 252012, 254031, 193011, 151122, 254013, 193091, 151111, 252021, 254021, 252022, 252023, 152021, 151141]],
+     
+     WhichInterestsStyle.UnderstandProblem: [
+        
+        "Human Body" : [194021, 193092, 131022, 194091, 194092, 132021, 131023, 131131, 131021, 194031, 193093, 131075, 194011, 131081, 193011, 193091, 132061, 131032, 132053, 131051, 132031, 131031, 131141, 131161, 132051, 131071, 131111, 194041, 132072, 131121, 132011],
+        
+        "Environment" : [173026, 194021, 172031, 172121, 454021, 173023, 193092, 173027, 172011, 194091, 172071, 194092, 173013, 173024, 454023, 194031, 172041, 171021, 193093, 171012, 194011, 172111, 193011, 173022, 172051, 193091, 172021, 173012, 454022, 173011, 172061, 171011, 173025, 194041, 172081, 172072, 173021, 172112, 454029, 172141, 172131, 173019],
+        
+        "Transportation" : [533022, 533033, 532031, 533021, 533032, 532021, 533031],
+        
+        "Architecture" : [474041, 173026, 473014, 172031, 172121, 474011, 493011, 472131, 473011, 173023, 499051, 472051, 493042, 173027, 499071, 493021, 172011, 473015, 172071, 173013, 472221, 472061, 472011, 499052, 173024, 472121, 472132, 172041, 171021, 472071, 472111, 493023, 171012, 492095, 492096, 472021, 492093, 492091, 493043, 472053, 492092, 473019, 472171, 493041, 472022, 172111, 474091, 499062, 499043, 173022, 172051, 474021, 472044, 473016, 472031, 472072, 472073, 493031, 499044, 499021, 172021, 499041, 493022, 473013, 473012, 472082, 472042, 173012, 173011, 492094, 172061, 472041, 171011, 173025, 172081, 172072, 173021, 172112, 172141, 472043, 172131, 173019, 472081],
+        
+        "Teaching" : [194021, 151143, 193092, 151152, 271013, 151131, 194091, 194092, 271019, 151151, 151121, 194031, 193093, 271024, 271025, 152011, 194011, 271022, 271023, 193011, 151122, 193091, 151111, 271011, 271021, 271012, 152021, 151141, 194041]],
+     
+     WhichInterestsStyle.IdeaExpressed: [
+        
+        "History & Society" : [273041, 273012, 273011, 273091],
+        
+        "Art" : [271013, 271019, 271011, 271012],
+        
+        "Sports" : [272031, 272022, 272011, 272032, 272021],
+        
+        "Teaching" : [252032, 252031, 252012, 252021, 252022, 252023],
+        
+        "Health" : [211091, 211094, 211014, 211013]],
      
      
-     WhichInterestsStyle.UnderstandProblem :
-        // [13-0000, 13-2099, 19-3000, 19-409, 31-9090]
-        ["Human Body": [194021, 193092, 131022, 194091, 194092, 132021, 131023, 131131, 131021, 194031, 193093, 131075, 194011, 131081, 193011, 193091, 132061, 131032, 132053, 131051, 132031, 131031, 131141, 131161, 132051, 131071, 131111, 194041, 132072, 131121, 132011],
-            
-            // [17-0000, 17-3031, 19-3000, 19-4099, 25-1040, 25-1069, 25-1080, 25-1082, 45-4011, 45-4021, 45-4029]
-            "Environment" : [173026, 194021, 172031, 172121, 454021, 173023, 193092, 173027, 172011, 194091, 172071, 194092, 173013, 173024, 454023, 194031, 172041, 171021, 193093, 171012, 194011, 172111, 193011, 173022, 172051, 193091, 172021, 173012, 454022, 173011, 172061, 171011, 173025, 194041, 172081, 172072, 173021, 172112, 454029, 172141, 172131, 173019],
-            
-            // [53-2020, 53-4020]
-            "Transportation" : [533022, 533033, 532031, 533021, 533032, 532021, 533031],
-            
-            // [17-0000, 17-3031, 47-0000, 47-5099, 49-0000, 49-9099]
-            "Architecture" : [474041, 173026, 473014, 172031, 172121, 474011, 493011, 472131, 473011, 173023, 499051, 472051, 493042, 173027, 499071, 493021, 172011, 473015, 172071, 173013, 472221, 472061, 472011, 499052, 173024, 472121, 472132, 172041, 171021, 472071, 472111, 493023, 171012, 492095, 492096, 472021, 492093, 492091, 493043, 472053, 492092, 473019, 472171, 493041, 472022, 172111, 474091, 499062, 499043, 173022, 172051, 474021, 472044, 473016, 472031, 472072, 472073, 493031, 499044, 499021, 172021, 499041, 493022, 473013, 473012, 472082, 472042, 173012, 173011, 492094, 172061, 472041, 171011, 173025, 172081, 172072, 173021, 172112, 172141, 472043, 172131, 173019, 472081],
-            
-            // 15-0000-15-2099, 19-3000-19-4099, 25-1020-25-1032, 27-1000-27-1029
-            "Teaching" : [194021, 151143, 193092, 151152, 271013, 151131, 194091, 194092, 271019, 151151, 151121, 194031, 193093, 271024, 271025, 152011, 194011, 271022, 271023, 193011, 151122, 193091, 151111, 271011, 271021, 271012, 152021, 151141, 194041] ],
-     
-     
-     WhichInterestsStyle.IdeaExpressed :
-        // [27-3000]
-        ["History & Society" : [273041, 273012, 273011, 273091],
-            
-            // [27-1010, 27-4020]
-            "Art" : [271013, 271019, 271011, 271012],
-            
-            // [27-2000]
-            "Sports" : [272031, 272022, 272011, 272032, 272021],
-            
-            // [25-1060, 25-2000]
-            "Teaching" : [252032, 252031, 252012, 252021, 252022, 252023],
-            
-            // [21-0000]
-            "Health" : [211091, 211094, 211014, 211013] ],
-     
-     
-     WhichInterestsStyle.IdeasFormed :
-        // [23-0000, 33-0000]
-        ["Law" : [232091, 231022, 231023, 231011, 231021],
-            
-            // [19-3000, 27-3000]
-            "History & Society" : [273041, 193092, 273012, 273011, 193093, 273091, 193011, 193091],
-            
-            // [25-1060, 25-1190]
-            "Teaching" : [251194],
-            
-            // [21-0000, 29-1120, 31-1000]
-            "Health" : [319091, 211091, 291181, 211094, 311011, 211014, 291128, 319094, 319092, 319011, 211013],
-            
-            // [11-0000]
-            "Leadership" : [119071, 119032, 119161, 113011, 113111, 119111, 119013, 113121, 113051, 112021, 119021, 119081, 119041, 113021, 119061, 113031, 112011, 119051],
-            
-            "Finance" : [413031] ]
+     WhichInterestsStyle.IdeasFormed: [
+        
+        "Law" : [232091, 231022, 231023, 231011, 231021],
+        
+        "History & Society" : [273041, 193092, 273012, 273011, 193093, 273091, 193011, 193091],
+        
+        "Teaching" : [251194],
+        
+        "Health" : [319091, 211091, 291181, 211094, 311011, 211014, 291128, 319094, 319092, 319011, 211013],
+        
+        "Leadership" : [119071, 119032, 119161, 113011, 113111, 119111, 119013, 113121, 113051, 112021, 119021, 119081, 119041, 113021, 119061, 113031, 112011, 119051]]
+        
 ]
 
 let allSOCCodes : [String : [String : String]] =
     [   "370000":
-            ["373012": "Pesticide Handlers, Sprayers, and Applicators, Vegetation",
-                "373019": "Grounds Maintenance Workers, All Other",
-                "373013": "Tree Trimmers and Pruners",
-                "372011": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
-                "373011": "Landscaping and Groundskeeping Workers"],
+        ["373012": "Pesticide Handlers, Sprayers, and Applicators, Vegetation",
+            "373019": "Grounds Maintenance Workers, All Other",
+            "373013": "Tree Trimmers and Pruners",
+            "372011": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
+            "373011": "Landscaping and Groundskeeping Workers"],
         
         "330000":
             ["332011": "Firefighters ",
@@ -1262,81 +1242,158 @@ let allSOCCodes : [String : [String : String]] =
                 "173024": "Electro-Mechanical Technicians ",
                 "173013": "Mechanical Drafters",
                 "172072": "Electronics Engineers, Except Computer ",
-                "172081": "Environmental Engineers", 
-                "172011": "Aerospace Engineers", 
-                "172031": "Biomedical Engineers ", 
-                "173019": "Drafters, All Other", 
-                "171011": "Architects, Except Landscape and Naval ", 
-                "173011": "Architectural and Civil Drafters ", 
-                "171021": "Cartographers and Photogrammetrists", 
-                "173021": "Aerospace Engineering and Operations Technicians ", 
-                "173026": "Industrial Engineering Technicians ", 
-                "172131": "Materials Engineers", 
-                "172051": "Civil Engineers", 
-                "171012": "Landscape Architects ", 
-                "172141": "Mechanical Engineers "], 
+                "172081": "Environmental Engineers",
+                "172011": "Aerospace Engineers",
+                "172031": "Biomedical Engineers ",
+                "173019": "Drafters, All Other",
+                "171011": "Architects, Except Landscape and Naval ",
+                "173011": "Architectural and Civil Drafters ",
+                "171021": "Cartographers and Photogrammetrists",
+                "173021": "Aerospace Engineering and Operations Technicians ",
+                "173026": "Industrial Engineering Technicians ",
+                "172131": "Materials Engineers",
+                "172051": "Civil Engineers",
+                "171012": "Landscape Architects ",
+                "172141": "Mechanical Engineers "],
         
-        "150000": 
-            ["152021": "Mathematicians ", 
-                "151143": "Computer Network Architects", 
-                "151122": "Information Security Analysts", 
-                "151151": "Computer User Support Specialists", 
-                "151141": "Database Administrators", 
-                "151111": "Computer and Information Research Scientists ", 
-                "152011": "Actuaries", 
-                "151121": "Computer Systems Analysts"], 
+        "150000":
+            ["152021": "Mathematicians ",
+                "151143": "Computer Network Architects",
+                "151122": "Information Security Analysts",
+                "151151": "Computer User Support Specialists",
+                "151141": "Database Administrators",
+                "151111": "Computer and Information Research Scientists ",
+                "152011": "Actuaries",
+                "151121": "Computer Systems Analysts"],
         
-        "450000": 
-            ["452021": "Animal Breeders", 
-                "454023": "Log Graders and Scalers", 
-                "454011": "Forest and Conservation Workers", 
-                "452091": "Agricultural Equipment Operators", 
-                "452092": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse", 
-                "452099": "Agricultural Workers, All Other", 
-                "454022": "Logging Equipment Operators", 
-                "454029": "Logging Workers, All Other", 
-                "452093": "Farmworkers, Farm, Ranch, and Aquacultural Animals"], 
+        "450000":
+            ["452021": "Animal Breeders",
+                "454023": "Log Graders and Scalers",
+                "454011": "Forest and Conservation Workers",
+                "452091": "Agricultural Equipment Operators",
+                "452092": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+                "452099": "Agricultural Workers, All Other",
+                "454022": "Logging Equipment Operators",
+                "454029": "Logging Workers, All Other",
+                "452093": "Farmworkers, Farm, Ranch, and Aquacultural Animals"],
         
-        "510000": 
-            ["514034": "Lathe and Turning Machine Tool Setters, Operators, and Tenders, Metal and Plasti", 
-                "514081": "Multiple Machine Tool Setters, Operators, and Tenders, Metal and Plastic", 
-                "512021": "Coil Winders, Tapers, and Finisher", 
-                "513099": "Food Processing Workers, All Other", 
-                "512031": "Engine and Other Machine Assembler", 
-                "514191": "Heat Treating Equipment Setters, Operators, and Tenders, Metal and Plastic", 
-                "514022": "Forging Machine Setters, Operators, and Tenders, Metal and Plastic", 
-                "514122": "Welding, Soldering, and Brazing Machine Setters, Operators, and Tender", 
-                "519083": "Ophthalmic Laboratory Technicians ", 
-                "512022": "Electrical and Electronic Equipment Assemblers", 
-                "514032": "Drilling and Boring Machine Tool Setters, Operators, and Tenders, Metal and Plasti", 
-                "514051": "Metal-Refining Furnace Operators and Tenders", 
-                "513011": "Bakers", 
-                "512041": "Structural Metal Fabricators and Fitters", 
-                "519082": "Medical Appliance Technicians ", 
-                "513021": "Butchers and Meat Cutter", 
-                "514031": "Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic", 
-                "512099": "Assemblers and Fabricators, All Othe", 
-                "512092": "Team Assembler", 
-                "514041": "Machinists", 
-                "514111": "Tool and Die Maker", 
-                "519071": "Jewelers and Precious Stone and Metal Worker", 
-                "514071": "Foundry Mold and Coremaker", 
-                "514012": "Computer Numerically Controlled Machine Tool Programmers, Metal and Plasti", 
-                "514062": "Patternmakers, Metal and Plastic", 
-                "514033": "Grinding/Lapping/Polishing/Buffing Machine Tool Setters, Operators, and Tenders, Metal", 
-                "514061": "Model Makers, Metal and Plasti", 
-                "514011": "Computer-Controlled Machine Tool Operators, Metal and Plasti", 
-                "514072": "Molding, Coremaking, and Casting Machine Setters, Operators, and Tenders, Metal and Plasti", 
-                "512023": "Electromechanical Equipment Assemblers", 
-                "513093": "Food Cooking Machine Operators and Tenders", 
-                "514035": "Milling and Planing Machine Setters, Operators, and Tenders, Metal and Plastic", 
-                "512091": "Fiberglass Laminators and Fabricator", 
-                "514021": "Extruding and Drawing Machine Setters, Operators, and Tenders, Metal and Plastic", 
-                "514193": "Plating and Coating Machine Setters, Operators, and Tenders, Metal and Plastic", 
+        "510000":
+            ["514034": "Lathe and Turning Machine Tool Setters, Operators, and Tenders, Metal and Plasti",
+                "514081": "Multiple Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+                "512021": "Coil Winders, Tapers, and Finisher",
+                "513099": "Food Processing Workers, All Other",
+                "512031": "Engine and Other Machine Assembler",
+                "514191": "Heat Treating Equipment Setters, Operators, and Tenders, Metal and Plastic",
+                "514022": "Forging Machine Setters, Operators, and Tenders, Metal and Plastic",
+                "514122": "Welding, Soldering, and Brazing Machine Setters, Operators, and Tender",
+                "519083": "Ophthalmic Laboratory Technicians ",
+                "512022": "Electrical and Electronic Equipment Assemblers",
+                "514032": "Drilling and Boring Machine Tool Setters, Operators, and Tenders, Metal and Plasti",
+                "514051": "Metal-Refining Furnace Operators and Tenders",
+                "513011": "Bakers",
+                "512041": "Structural Metal Fabricators and Fitters",
+                "519082": "Medical Appliance Technicians ",
+                "513021": "Butchers and Meat Cutter",
+                "514031": "Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic",
+                "512099": "Assemblers and Fabricators, All Othe",
+                "512092": "Team Assembler",
+                "514041": "Machinists",
+                "514111": "Tool and Die Maker",
+                "519071": "Jewelers and Precious Stone and Metal Worker",
+                "514071": "Foundry Mold and Coremaker",
+                "514012": "Computer Numerically Controlled Machine Tool Programmers, Metal and Plasti",
+                "514062": "Patternmakers, Metal and Plastic",
+                "514033": "Grinding/Lapping/Polishing/Buffing Machine Tool Setters, Operators, and Tenders, Metal",
+                "514061": "Model Makers, Metal and Plasti",
+                "514011": "Computer-Controlled Machine Tool Operators, Metal and Plasti",
+                "514072": "Molding, Coremaking, and Casting Machine Setters, Operators, and Tenders, Metal and Plasti",
+                "512023": "Electromechanical Equipment Assemblers",
+                "513093": "Food Cooking Machine Operators and Tenders",
+                "514035": "Milling and Planing Machine Setters, Operators, and Tenders, Metal and Plastic",
+                "512091": "Fiberglass Laminators and Fabricator",
+                "514021": "Extruding and Drawing Machine Setters, Operators, and Tenders, Metal and Plastic",
+                "514193": "Plating and Coating Machine Setters, Operators, and Tenders, Metal and Plastic",
                 "513091": "Food and Tobacco Roasting, Baking, and Drying Machine Operators and Tender"]
 ]
 
 /*
  allSocCodes = ["191012", "474041", "173026", "254012", "512092", "372011", "292071", "537011", "194021", "392021", "319091", "473014", "119071", "353041", "434151", "172031", "172121", "514081", "151143", "434051", "273041", "433041", "474011", "493011", "519083", "472131", "272031", "513091", "393012", "413021", "232091", "473011", "173023", "499051", "472051", "519082", "291023", "193092", "434181", "274012", "493042", "259031", "434161", "173027", "231022", "192021", "359011", "359099", "499071", "119032", "493021", "172011", "271013", "533022", "131022", "512031", "352015", "113011", "514021", "252032", "373019", "273012", "191031", "514032", "512099", "413011", "272022", "514122", "194091", "433051", "434011", "434111", "172071", "395092", "394031", "537063", "537051", "513099", "393011", "537081", "211091", "292061", "132021", "173013", "291024", "533033", "231023", "452091", "291181", "514071", "113111", "472221", "435061", "271019", "332021", "291029", "532031", "439061", "131023", "131131", "513011", "254011", "399011", "472011", "499052", "434021", "119111", "533021", "252031", "433021", "131021", "173024", "332022", "512091", "472121", "151151", "472132", "151121", "192031", "352012", "514051", "454023", "194031", "172041", "514035", "333012", "272011", "171021", "472071", "352014", "472111", "493023", "333011", "273011", "193093", "512021", "353021", "192043", "131075", "171012", "292011", "412011", "492095", "492096", "472021", "514061", "514191", "399031", "191022", "537061", "192042", "211094", "537021", "492091", "271025", "514022", "119013", "435071", "152011", "435111", "194011", "373011", "493043", "192041", "472053", "292032", "271022", "492092", "131081", "434131", "514193", "514111", "292031", "473019", "272032", "493041", "452021", "271023", "113051", "112021", "395012", "299091", "454011", "252012", "311011", "474091", "537033", "514072", "499062", "274031", "211014", "291128", "537032", "273091", "254031", "499043", "193011", "173022", "172051", "351011", "191021", "434141", "474021", "151122", "472044", "254013", "473016", "274032", "193091", "352021", "472031", "537062", "472072", "119021", "472073", "493031", "132061", "151111", "499044", "131032", "514034", "132053", "271011", "519071", "252021", "499021", "513021", "332011", "373013", "434041", "499041", "131051", "513093", "353022", "132031", "271021", "291011", "473013", "473012", "191042", "514011", "472082", "514012", "472042", "252022", "532012", "395011", "173012", "434081", "352019", "131141", "119081", "131161", "452092", "435081", "454022", "319094", "537041", "537031", "434061", "173011", "492094", "434121", "514041", "373012", "172061", "452099", "514062", "352011", "472041", "392011", "252023", "271012", "132051", "292021", "131071", "512022", "152021", "452093", "171011", "231021", "131111", "292012", "514031", "514033", "439031", "439041", "151141", "194041", "113021", "172081", "172072", "532011", "173021", "119061", "391012", "113031", "291031", "299092", "132072", "172112", "454029", "319092", "191011", "112011", "291022", "319011", "119051", "172141", "211013", "434031", "512041", "132011", "353011", "433011", "274011", "352013", "472043", "172131", "512023", "173019", "533031", "191032", "472081", "433031", "292041"]
+ 
+ 
+ let OGjobsDictionary : [WhichInterestsStyle : AnyObject] =
+ 
+     [WhichInterestsStyle.SolveProblem :
+         // [19-3011, 19-3031, 19-3032, 19-3039, 31-2011, 31-2012, 31-2020, 31-9000, 31-9099, 35-0000, 53-3010]
+         ["Human Body": [319091, 353041, 359011, 359099, 352015, 352012, 352014, 353021, 351011, 352021, 353022, 352019, 319094, 352011, 319092, 319011, 353011, 352013, 359031],
+ 
+             // [19-3000, 19-3099, 37-3000, 37-3019, 45-0000, 45-4029, 51-0000, 51-9199]
+             "Environment" : [512092, 514081, 454021, 519083, 513091, 519082, 193092, 519081, 512031, 514021, 514032, 512099, 514122, 513099, 452091, 514071, 513011, 512091, 514051, 454023, 514035, 512093, 193093, 512021, 514061, 514191, 514022, 373011, 514193, 514111, 452021, 454011, 514072, 193011, 512011, 193091, 514052, 514034, 519071, 513021, 513092, 373013, 513093, 514011, 514012, 514023, 452092, 454022, 514041, 373012, 452099, 514062, 512022, 452093, 514031, 514033, 512041, 512023],
+ 
+             // [53-0000, 53-7199]
+             "Transportation" : [531011, 531021, 531031, 532011, 532012, 532021, 532022, 532031, 533011, 533021, 533022, 533031, 533032, 533033, 533041, 533099, 534011, 534012, 534013, 534021, 534031, 534041, 534099, 535011, 535021, 535022, 535031, 536011, 536021, 536031, 536041, 536051, 536061, 536099, 537011, 537021, 537031, 537032, 537033, 537041, 537051, 537061, 537062, 537063, 537064, 537071, 537072, 537073, 537081, 537111, 537121],
+ 
+ 
+             // [17-0000, 17-3031, 27-4000, 27-4090, 47-00000, 47-5099, 49-0000, 49-9099, 51-0000, 51-9199]
+             "Architecture" : [171011, 171012, 171021, 171022, 172011, 172021, 172031, 172041, 172051, 172061, 172071, 172072, 172081, 172111, 172112, 172121, 172131, 172141, 172151, 172161, 172171, 172199, 173011, 173012, 173013, 173019, 173021, 173022, 173023, 173024, 173025, 173026, 173027, 173029, 173031, 274011, 274012, 274013, 274014, 274021, 274031, 274032, 471011, 472011, 472021, 472022, 472031, 472041, 472042, 472043, 472044, 472051, 472053, 472061, 472071, 472072, 472073, 472081, 472082, 472111, 472121, 472131, 472132, 472141, 472142, 472151, 472152, 472161, 472171, 472181, 472211, 472221, 472231, 473011, 473012, 473013, 473014, 473015, 473016, 473019, 474011, 474021, 474031, 474041, 474051, 474061, 474071, 474091, 474099, 475011, 475012, 475013, 475021, 475031, 475041, 475042, 475049, 475051, 475061, 475071, 475081, 475099, 491011, 492011, 492021, 492022, 492091, 492092, 492093, 492094, 492095, 492096, 492097, 492098, 493011, 493021, 493022, 493023, 493031, 493041, 493042, 493043, 493051, 493052, 493053, 493091, 493092, 493093, 499011, 499012, 499021, 499031, 499041, 499043, 499044, 499045, 499051, 499052, 499061, 499062, 499063, 499064, 499069, 499071, 499081, 499091, 499092, 499093, 499094, 499095, 499096, 499097, 499098, 499099, 511011, 512011, 512021, 512022, 512023, 512031, 512041, 512091, 512092, 512093, 512099, 513011, 513021, 513022, 513023, 513091, 513092, 513093, 513099, 514011, 514012, 514021, 514022, 514023, 514031, 514032, 514033, 514034, 514035, 514041, 514051, 514052, 514061, 514062, 514071, 514072, 514081, 514111, 514121, 514122, 514191, 514192, 514193, 514194, 514199, 515111, 515112, 515113, 516011, 516021, 516031, 516041, 516042, 516051, 516052, 516061, 516062, 516063, 516064, 516091, 516092, 516093, 516099, 517011, 517021, 517031, 517032, 517041, 517042, 517099, 518011, 518012, 518013, 518021, 518031, 518091, 518092, 518093, 518099, 519011, 519012, 519021, 519022, 519023, 519031, 519032, 519041, 519051, 519061, 519071, 519081, 519082, 519083, 519111, 519121, 519122, 519123, 519141, 519151, 519191, 519192, 519193, 519194, 519195, 519196, 519197, 519198, 519199],
+ 
+             // [15-0000, 15-2099, 19-3000, 19-3099, 25-1000, 25-9099, 27-1020, 27-4030, 35-0000, 35-2019]
+             "Teaching" : [151111, 151121, 151122, 151131, 151132, 151133, 151134, 151141, 151142, 151143, 151151, 151152, 151199, 152011, 152021, 152031, 152041, 152091, 152099, 193011, 193022, 193031, 193032, 193039, 193041, 193051, 193091, 193092, 193093, 193094, 193099, 251011, 251021, 251022, 251031, 251032, 251041, 251042, 251043, 251051, 251052, 251053, 251054, 251061, 251062, 251063, 251064, 251065, 251066, 251067, 251069, 251071, 251072, 251081, 251082, 251111, 251112, 251113, 251121, 251122, 251123, 251124, 251125, 251126, 251191, 251192, 251193, 251194, 251199, 252011, 252012, 252021, 252022, 252023, 252031, 252032, 252051, 252052, 252053, 252054, 252059, 253011, 253021, 253097, 253098, 254011, 254012, 254013, 254021, 254031, 259011, 259021, 259031, 259041, 259099] ],
+ 
+ 
+      WhichInterestsStyle.UnderstandProblem :
+         // [13-0000, 13-2099, 19-3000, 19-409, 31-9090]
+         ["Human Body": [131011, 131021, 131022, 131023, 131031, 131032, 131041, 131051, 131071, 131074, 131075, 131081, 131111, 131121, 131131, 131141, 131151, 131161, 131199, 132011, 132021, 132031, 132041, 132051, 132052, 132053, 132061, 132071, 132072, 132081, 132082, 132099, 193011, 193022, 193031, 193032, 193039, 193041, 193051, 193091, 193092, 193093, 193094, 193099, 194011, 194021, 194031, 194041, 194051, 194061, 194091, 194092, 194093, 194099],
+ 
+             // [17-0000, 17-3031, 19-3000, 19-4099, 25-1040, 25-1069, 25-1080, 25-1082, 45-4011, 45-4021, 45-4029]
+             "Environment" : [171011, 171012, 171021, 171022, 172011, 172021, 172031, 172041, 172051, 172061, 172071, 172072, 172081, 172111, 172112, 172121, 172131, 172141, 172151, 172161, 172171, 172199, 173011, 173012, 173013, 173019, 173021, 173022, 173023, 173024, 173025, 173026, 173027, 173029, 173031, 193011, 193022, 193031, 193032, 193039, 193041, 193051, 193091, 193092, 193093, 193094, 193099, 194011, 194021, 194031, 194041, 194051, 194061, 194091, 194092, 194093, 194099, 251041, 251042, 251043, 251051, 251052, 251053, 251054, 251061, 251062, 251063, 251064, 251065, 251066, 251067, 251069, 251081, 251082, 454021, 454022, 454023, 454029],
+ 
+             // [53-2020, 53-4020]
+             "Transportation" : [532021, 532022, 532031, 533011, 533021, 533022, 533031, 533032, 533033, 533041, 533099, 534011, 534012, 534013],
+ 
+             // [17-0000, 17-3031, 47-0000, 47-5099, 49-0000, 49-9099]
+             "Architecture" : [171011, 171012, 171021, 171022, 172011, 172021, 172031, 172041, 172051, 172061, 172071, 172072, 172081, 172111, 172112, 172121, 172131, 172141, 172151, 172161, 172171, 172199, 173011, 173012, 173013, 173019, 173021, 173022, 173023, 173024, 173025, 173026, 173027, 173029, 173031, 471011, 472011, 472021, 472022, 472031, 472041, 472042, 472043, 472044, 472051, 472053, 472061, 472071, 472072, 472073, 472081, 472082, 472111, 472121, 472131, 472132, 472141, 472142, 472151, 472152, 472161, 472171, 472181, 472211, 472221, 472231, 473011, 473012, 473013, 473014, 473015, 473016, 473019, 474011, 474021, 474031, 474041, 474051, 474061, 474071, 474091, 474099, 475011, 475012, 475013, 475021, 475031, 475041, 475042, 475049, 475051, 475061, 475071, 475081, 475099, 491011, 492011, 492021, 492022, 492091, 492092, 492093, 492094, 492095, 492096, 492097, 492098, 493011, 493021, 493022, 493023, 493031, 493041, 493042, 493043, 493051, 493052, 493053, 493091, 493092, 493093, 499011, 499012, 499021, 499031, 499041, 499043, 499044, 499045, 499051, 499052, 499061, 499062, 499063, 499064, 499069, 499071, 499081, 499091, 499092, 499093, 499094, 499095, 499096, 499097, 499098, 499099],
+ 
+             // 15-0000-15-2099, 19-3000-19-4099, 25-1020-25-1032, 27-1000-27-1029
+             "Teaching" : [151111, 151121, 151122, 151131, 151132, 151133, 151134, 151141, 151142, 151143, 151151, 151152, 151199, 152011, 152021, 152031, 152041, 152091, 152099, 193011, 193022, 193031, 193032, 193039, 193041, 193051, 193091, 193092, 193093, 193094, 193099, 194011, 194021, 194031, 194041, 194051, 194061, 194091, 194092, 194093, 194099, 251021, 251022, 251031, 251032, 271011, 271012, 271013, 271014, 271019, 271021, 271022, 271023, 271024, 271025, 271026, 271027, 271029] ],
+ 
+ 
+      WhichInterestsStyle.IdeaExpressed :
+         // [27-3000]
+         ["History & Society" : [273011, 273012, 273021, 273022, 273031, 273041, 273042, 273043, 273091, 273099],
+ 
+             // [27-1010, 27-4020]
+             "Art" : [271011, 271012, 271013, 271014, 271019, 274021],
+ 
+             // [27-2000]
+             "Sports" : [272011, 272012, 272021, 272022, 272023, 272031, 272032, 272041, 272042, 272099],
+ 
+             // [25-1060, 25-2000]
+             "Teaching" : [251061, 251062, 251063, 251064, 251065, 251066, 251067, 251069, 252011, 252012, 252021, 252022, 252023, 252031, 252032, 252051, 252052, 252053, 252054, 252059],
+ 
+             // [21-0000]
+             "Health" : [211011, 211012, 211013, 211014, 211015, 211019, 211021, 211022, 211023, 211029, 211091, 211092, 211093, 211094, 211099] ],
+ 
+ 
+      WhichInterestsStyle.IdeasFormed :
+         // [23-0000, 33-0000]
+         ["Law" : [231011, 231012, 231021, 231022, 231023, 232011, 232091, 232093, 232099],
+ 
+             // [19-3000, 27-3000]
+             "History & Society" : [193011, 193022, 193031, 193032, 193039, 193041, 193051, 193091, 193092, 193093, 193094, 193099, 273011, 273012, 273021, 273022, 273031, 273041, 273042, 273043, 273091, 273099],
+ 
+             // [25-1060, 25-1190]
+             "Teaching" : [251061, 251062, 251063, 251064, 251065, 251066, 251067, 251069, 251191, 251192, 251193, 251194, 251199],
+ 
+             // [21-0000, 29-1120, 31-1000]
+             "Health" : [211011, 211012, 211013, 211014, 211015, 211019, 211021, 211022, 211023, 211029, 211091, 211092, 211093, 211094, 211099, 212011, 212021, 212099, 291122, 291123, 291124, 291125, 291126, 291127, 291128, 291129, 291131, 291141, 291151, 291161, 291171, 291181, 291199, 311011, 311013, 311014, 311015, 312011, 312012, 312021, 312022, 319011, 319091, 319092, 319093, 319094, 319095, 319096, 319097, 319099],
+ 
+             // [11-0000]
+             "Leadership" : [111011, 111021, 111031, 112011, 112021, 112022, 112031, 113011, 113021, 113031, 113051, 113061, 113071, 113111, 113121, 113131, 119013, 119021, 119031, 119032, 119033, 119039, 119041, 119051, 119061, 119071, 119081, 119111, 119121, 119131, 119141, 119151, 119161, 119199],
+             
+             "Finance" : [413031] ]
+         
+ ]
+
+ 
  */
 

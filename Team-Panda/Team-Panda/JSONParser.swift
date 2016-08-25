@@ -86,6 +86,7 @@ class JSONParser {
             }
             i += 1
         }
+        
         return matchingCodes
     }
 }
