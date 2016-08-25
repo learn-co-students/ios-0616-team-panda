@@ -12,6 +12,6 @@ With CareerSpark, we help you with selecting a Career path based on your interes
 * See location quotient data across USA to get an idea of the job growth projections for that particular occupation.
 * Save careers to a personal favorites list so you can compare.
 * Discover all of the occupations in our database if you would like to explore outside of your personal recommendations.
-* CareerSpark was developed in partnership with the White House's Opportunity Project & Beareau of Labor Statistics (BLS).
+* CareerSpark was developed in partnership with the White House's [Opportunity Project](http://opportunity.census.gov/) & Beareau of Labor Statistics (BLS).
 
 <p align="center"> 🐼 Team Panda 🐼</p>
