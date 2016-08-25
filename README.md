@@ -2,7 +2,17 @@
 
 
 #Introduction
-Discover a new career and learn about the steps needed to become one. 
+CareerSpark helps you discover a career path based on your interests. Our mission is to assist high school students in discovering options they may not have been aware existed, however, our application is just as useful for anyone looking for a career change!
 
+#Features
+
+* Based on a set of easy to answer questions, CareerSpark will suggest occupations that may be of interest of you.
+* You can learn more about minimum education requirements & how to become one for your occupation of interest.
+* See location quotient data across USA to get an idea of the job growth projections for a particular occupation.
+* Save careers to a personal favorites list so you can compare.
+* Discover all of the occupations in our database if you would like to explore outside of your personal recommendations.
+
+#Partnership
+CareerSpark was developed in partnership with the White House's [Opportunity Project](http://opportunity.census.gov/) and [Bureau of Labor Statistics (BLS)](http://www.bls.gov/home.htm).
 
 <p align="center"> 🐼 Team Panda 🐼</p>
