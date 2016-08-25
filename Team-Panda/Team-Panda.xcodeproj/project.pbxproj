@@ -705,7 +705,7 @@
 				PROVISIONING_PROFILE = "a40673a9-36dd-4ab4-9eaa-dcecce964d7d";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -746,7 +746,7 @@
 				PRODUCT_NAME = CareerSpark;
 				PROVISIONING_PROFILE = "a40673a9-36dd-4ab4-9eaa-dcecce964d7d";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -756,13 +756,13 @@
 			baseConfigurationReference = 2103E03BCEF96F99773FC7BE /* Pods-Team-Panda.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lloyal1@gmail.com (KKH8BPWL6N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lloyal1@gmail.com (KKH8BPWL6N)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = "Team-Panda/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-panda";
 				PRODUCT_NAME = CareerSpark;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a40673a9-36dd-4ab4-9eaa-dcecce964d7d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
@@ -774,13 +774,13 @@
 			baseConfigurationReference = 28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lloyal1@gmail.com (KKH8BPWL6N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lloyal1@gmail.com (KKH8BPWL6N)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = "Team-Panda/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-panda";
 				PRODUCT_NAME = CareerSpark;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a40673a9-36dd-4ab4-9eaa-dcecce964d7d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
