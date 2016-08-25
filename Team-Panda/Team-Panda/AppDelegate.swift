@@ -18,11 +18,6 @@
         func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
             // Setting up Firebase
             FIRApp.configure()
-            
-//           if FIRAuthErrorNameKey == String(FIRAuthErrorCode.ErrorCodeNetworkError) {
-//             fatalError("There's no connection to the Internet when attempting to login current user from ")
-//            }
-//            
             // Setting up Google sign-in
             GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
             GIDSignIn.sharedInstance().delegate = self
