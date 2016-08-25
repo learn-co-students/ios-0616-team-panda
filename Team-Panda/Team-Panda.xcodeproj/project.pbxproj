@@ -31,6 +31,7 @@
 		6E69D1551D6CA297006E1AB8 /* YouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E69D1541D6CA297006E1AB8 /* YouViewController.swift */; };
 		6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */; };
 		6E9E600C1D62720E008AE46F /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9E600B1D62720E008AE46F /* XMLParser.swift */; };
+		7B03EAB61D6F4ADF003B6B84 /* OldCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B03EAB51D6F4ADF003B6B84 /* OldCodes.swift */; };
 		7B06D71C1D6B481C007D6FE6 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B06D71B1D6B481C007D6FE6 /* DiscoverViewController.swift */; };
 		7B06D71E1D6B5149007D6FE6 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B06D71D1D6B5149007D6FE6 /* DiscoverTableViewCell.swift */; };
 		7B1DD7DD1D5A79400048A75C /* InterestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */; };
@@ -104,6 +105,7 @@
 		6EE4CAD11D577C3D0092784D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		6EE4CAD21D577C3D0092784D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		6EE4CAD31D577C3D0092784D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Downloads/FacebookSDKs-iOS-4.14.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		7B03EAB51D6F4ADF003B6B84 /* OldCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldCodes.swift; sourceTree = "<group>"; };
 		7B06D71B1D6B481C007D6FE6 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		7B06D71D1D6B5149007D6FE6 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestsTableViewCell.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */,
 				7B416BD01D635631003894DE /* Job.swift */,
 				7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */,
+				7B03EAB51D6F4ADF003B6B84 /* OldCodes.swift */,
 				6E57F4871D6606C000DF362D /* JSONParser.swift */,
 				7B3CAAB21D64F348006322ED /* LocationQuotient.swift */,
 				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
@@ -581,6 +584,7 @@
 				7B3CAAB31D64F348006322ED /* LocationQuotient.swift in Sources */,
 				1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */,
 				7B416BD11D635631003894DE /* Job.swift in Sources */,
+				7B03EAB61D6F4ADF003B6B84 /* OldCodes.swift in Sources */,
 				6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */,
 				7B5930E31D5A87D5009D9EBA /* Secrets.swift in Sources */,
 				7B06D71C1D6B481C007D6FE6 /* DiscoverViewController.swift in Sources */,
