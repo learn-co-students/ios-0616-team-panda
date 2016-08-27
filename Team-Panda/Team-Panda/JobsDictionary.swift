@@ -165,7 +165,7 @@ let jobsDictionary : [WhichInterestsStyle : AnyObject] =
         
         "Art" : [271013, 271019, 271011, 271012],
         
-        "Sports" : [272031, 272022, 272011, 272032, 272021],
+        "Sports" : [272022, 272032, 272021],
         
         "Teaching" : [252032, 252031, 252012, 252021, 252022, 252023],
         
@@ -323,10 +323,8 @@ let allSOCCodes : [String : [String : String]] =
                 "271023" : "Floral Designers",
                 "271024" : "Graphic Designers",
                 "271025" : "Interior Designers",
-                "272011" : "Actors",
                 "272021" : "Athletes and Sports Competitors",
                 "272022" : "Coaches and Scouts",
-                "272031" : "Dancers",
                 "272032" : "Choreographers",
                 "273011" : "Radio and Television Announcers",
                 "273012" : "Public Address System and Other Announcers",
