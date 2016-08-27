@@ -56,7 +56,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
         cell1.textLabel?.font = UIFont.pandaFontLight(withSize: 16)
         cell1.textLabel?.adjustsFontSizeToFitWidth = false
-        //}
         cell1.backgroundColor = UIColor.flatYellowColor()
         
         return cell1
@@ -78,7 +77,6 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
         let jobCode = store.tpUser!.favoritesArray[indexPath.row]
-        //let job = store.jobDiscoverData[indexPath.section][indexPath.row]
         
         SwiftSpinner.show("Loading Details")
         
@@ -118,14 +116,12 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         return UITableViewCellEditingStyle.Delete
     }
     
-    //Remove Jobs from saved job TableView
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let favoriteToDelete = self.store.tpUser?.favoritesArray.removeAtIndex(indexPath.row)
             self.favoritesTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             store.tpUser?.updateDatabase()
             self.favoritesTableView.reloadData()
-            
         }
         else if editingStyle == .Insert {
         }
