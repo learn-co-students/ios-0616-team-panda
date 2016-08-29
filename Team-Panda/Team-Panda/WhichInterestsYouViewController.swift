@@ -138,10 +138,24 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         return false
     }
     
-    /*********
-        BUG: SUBMIT TAPPED ACTION DOESN'T ALWAYS CALL FUNCTION.
-    **********/
     func submitTapped(sender: AnyObject) {
+        var numChecked = 0
+        var i = 0
+        while i < self.interestsArray.count {
+            if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? InterestsTableViewCell  {
+                if cell.isChecked {
+                    numChecked += 1
+                }
+            }
+            i += 1
+        }
+        
+        if numChecked == 0 {
+            
+            let alert = Constants.displayAlertWithTryAgain("Oops!", message: "Please select at least one interest!")
+            self.showViewController(alert, sender: "Try Again")
+            return
+        }
         
         print("Submit tapped in Interests!")
         
