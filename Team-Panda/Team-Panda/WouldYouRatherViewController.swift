@@ -73,7 +73,6 @@ class WouldYouRatherViewController : UIViewController {
         
     }
     
-    
     /* 
      *  Sets up all the UI buttons and labels with formatting and constraints
      */

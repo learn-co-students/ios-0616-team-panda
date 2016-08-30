@@ -38,7 +38,4 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.frame = view.frame
         mapView.delegate = self
     }
-    
-    
-    
 }

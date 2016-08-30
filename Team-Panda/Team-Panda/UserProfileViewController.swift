@@ -17,9 +17,6 @@ class UserProfileViewController: UIViewController {
     var email = UITextField()
     var password = UITextField()
     var updateYourInfo = UILabel()
-    //var userAvatarImage = UIImageView()
-    
-    
     var saveChangesButton = SwiftyButton()
     var cancelButton = SwiftyButton()
     var resetPasswordButton = SwiftyButton()
@@ -38,25 +35,14 @@ class UserProfileViewController: UIViewController {
                 
                 self.presentViewController(alert, animated: true, completion: nil)
                 
-            }
-            else { // successs
-//                
-//                alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action) in
-//                    
-//                    self.dismissViewControllerAnimated(true) { }
-//                    
-//                }))
+            } else {
                 
                 self.presentViewController(alert, animated: true, completion: {
                     
                     self.styleUserProfileViews()
                     
                 })
-                
-//                self.dismissViewControllerAnimated(true) { print("Dismissed User Profile View VC") }
-//                self.dismissViewControllerAnimated(true) { print("Second call to save.") }
             }
-            
         })
     }
 
@@ -142,15 +128,11 @@ class UserProfileViewController: UIViewController {
                 }
             })
         }
-        
     }
     
     func styleUserProfileViews() {
         
         self.view.backgroundColor = FlatWhite()
-        
-//        self.userAvatarImage.layer.cornerRadius = 50
-//        self.userAvatarImage.backgroundColor = UIColor.flatOrangeColor()
         
         //Styling for Update Your Info UILabel
         self.updateYourInfo.text = "Update your email or reset your password"

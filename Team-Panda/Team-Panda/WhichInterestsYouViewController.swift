@@ -40,7 +40,7 @@ class WhichInterestsYouViewController : UIViewController {
         else if uiStyle == .IdeaExpressed { return ideaExpressedArray }
         else if uiStyle == .IdeasFormed { return ideaFormedArray }
         else { return ["Try again"] }
-
+        
     }
     
     init(withUIStyle uiStyle : WhichInterestsStyle) {
@@ -55,7 +55,7 @@ class WhichInterestsYouViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.tableView = UITableView()
         
         self.tableView.delegate = self
@@ -97,7 +97,6 @@ class WhichInterestsYouViewController : UIViewController {
     
 }
 
-
 /*
  *  TableView and Cell Delegate Functions
  */
@@ -106,8 +105,8 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.row == self.interestsArray.count { // add submit button
-        
-           let cell = self.tableView.dequeueReusableCellWithIdentifier(submitIdentifier, forIndexPath: indexPath) as! SubmitTableViewCell
+            
+            let cell = self.tableView.dequeueReusableCellWithIdentifier(submitIdentifier, forIndexPath: indexPath) as! SubmitTableViewCell
             
             cell.delegate = self
             return cell
@@ -232,7 +231,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         print("Tell us think or make: \(currentPanda.tellUsAnswer)")
         print("Would you rather style: \(currentPanda.wouldYouRatherAnswer)")
         print("Interests Answer: \(currentPanda.interestsAnswer)")
-
+        
     }
     
     func getNewJobs(forUser currentPanda : TPUser) -> [[Int]] {
@@ -244,7 +243,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
             for interest in currentPanda.interestsAnswer {
                 
                 if let interestCodeArray = interestsStyle[interest] {
-                
+                    
                     interestsCodes.append(interestCodeArray)
                 }
             }
@@ -279,11 +278,9 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
                         i += 1
                     }
                 }
-                
-//                print("The chosen indices for the codes array \(interests) are \(chosenIndexes)")
+                //                print("The chosen indices for the codes array \(interests) are \(chosenIndexes)")
             }
         }
-        
         return codes
     }
 }

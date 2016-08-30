@@ -16,7 +16,7 @@ class DataSeries {
                                                  "catalog"           : true,
                                                  "calculations"      : true,
                                                  "annualaverage"     : true,
-                                                 "registrationKey"   : Secrets.randomKey ]
+                                                 "registrationKey"   : Secrets.apiKey ]
     
     static let jobSeriesID = "OEUN0000000000000"
     static let lqSeriesID = "OEUS"

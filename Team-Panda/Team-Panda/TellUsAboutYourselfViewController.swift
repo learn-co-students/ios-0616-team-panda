@@ -33,7 +33,7 @@ class TellUsAboutYourselfViewController : UIViewController {
         if let signUpVC = self.parentViewController as? SignUpPageViewController {
             
             if sender == self.makingButton {
-            
+                
                 signUpVC.nextViewController(.Make)
             }
             else { // thinking button called function
@@ -61,7 +61,6 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.titleTextLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
         self.titleTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.25).active = true
         
-        
         self.curiousityTextLabel = UILabel()
         
         self.curiousityTextLabel.text = "Are you more curious about..."
@@ -78,7 +77,6 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.curiousityTextLabel.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
         self.curiousityTextLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
         self.curiousityTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.25).active = true
-        
         
         self.makingButton = SwiftyButton()
         
@@ -100,7 +98,6 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.makingButton.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant: self.view.bounds.height/6).active = true
         self.makingButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
         self.makingButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
-        
         
         self.thinkingButton = SwiftyButton()
         

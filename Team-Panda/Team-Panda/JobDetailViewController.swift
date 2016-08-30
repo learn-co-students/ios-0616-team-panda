@@ -47,8 +47,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.usaColorMapView.backgroundColor = UIColor.clearColor()
         
-//        self.setupNavBar()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -67,7 +65,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                         self.setLocationQuotientMap(lqDictionaryByState)
                         job.locationQuotient = lqDictionaryByState
                         print("Completed.")
-//                        self.activityIndicator.stopAnimating()
                         self.lqMapWarningLabel.hidden = true
 
                     }
@@ -404,7 +401,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         let number: NSNumber = numberFormatter1.numberFromString(SalaryString)!
         
         let unitedStatesLocale = NSLocale(localeIdentifier: "en_US")
-        var numberFormatter = NSNumberFormatter()
+        let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         
         numberFormatter.locale = unitedStatesLocale

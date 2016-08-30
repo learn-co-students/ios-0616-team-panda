@@ -50,7 +50,7 @@ class TPUser {
             if let error = error {
                 print("Error error error: \(error.localizedDescription)")
             } else {
-              //  print("This is the database reference description: \(dbRef.description())")
+                //  print("This is the database reference description: \(dbRef.description())")
                 //print("This is the new user's Dictionary: \(self.dictionary)")
             }
         }
@@ -100,7 +100,6 @@ class TPUser {
             let wouldYouRather = wouldYouRatherAnswer,
             let interests = interests,
             let codes = codes
-      //      let favoritesArray = favoritesArray
         {
             
             let pandaUser = TPUser(withEmail: email, uid: uid)
@@ -126,7 +125,7 @@ class TPUser {
                 let indexOfCode = favoritesArray2.indexOf(code)
                 
                 if let index = indexOfCode {
-                favoritesArray2.removeAtIndex(index)
+                    favoritesArray2.removeAtIndex(index)
                 }
             }
         }
@@ -145,24 +144,11 @@ class TPUser {
                 
             }
             
-            }) { (error) in
-                
-                print("Error in getting snapshot for UID \(uid)")
-                print(error.localizedDescription)
-                completion(nil)
+        }) { (error) in
+            
+            print("Error in getting snapshot for UID \(uid)")
+            print(error.localizedDescription)
+            completion(nil)
         }
-        
-//        ref.child("users/\(uid)").observeSingleEventOfType(.Value, withBlock: { (userSnapshot) in
-//            
-//            if let userSnapshot = userSnapshot.value as? [String : AnyObject] {
-//                
-//                completion(TPUser.userFromDictionary(userSnapshot, uid: uid))
-//                
-//            } else {
-//                print("This is the user snapshot: \(userSnapshot)")
-//            }
-//            
-//        })
-        
     }
 }

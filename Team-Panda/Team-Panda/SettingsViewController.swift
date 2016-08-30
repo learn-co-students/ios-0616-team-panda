@@ -77,7 +77,6 @@ class SettingsViewController: UIViewController {
         self.updateProfileButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
         self.updateProfileButton.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant: -self.view.bounds.height*1/4.0).active = true
         
-        
         self.refreshQuestionsButton = SwiftyButton()
         self.refreshQuestionsButton.setTitleColor(FlatSkyBlueDark(), forState: .Normal)
         self.refreshQuestionsButton.setTitle("Refresh Questionaire", forState: .Normal)
