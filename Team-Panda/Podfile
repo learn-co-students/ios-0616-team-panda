@@ -5,7 +5,6 @@ target 'Team-Panda' do
   use_frameworks!
 
   # Pods for Team-Panda
-  pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'SnapKit'
   pod 'ChameleonFramework/Swift'

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
-import Alamofire
+//import Alamofire
 
 class BLSAPIClient {
     
@@ -61,7 +61,6 @@ class BLSAPIClient {
                 }
             }
         }
-        
         task.resume()
     }
     
@@ -116,7 +115,6 @@ class BLSAPIClient {
                 }
             }
         }
-        
         task.resume()
     }
     
