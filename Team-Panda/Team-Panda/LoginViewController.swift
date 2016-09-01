@@ -99,8 +99,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         self.continueWithoutLoginButton.setTitle("Continue without logging in.", forState: .Normal)
         self.continueWithoutLoginButton.titleLabel?.textColor = UIColor.whiteColor()
-        self.continueWithoutLoginButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 12.0)
+        self.continueWithoutLoginButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 13.0)
         self.continueWithoutLoginButton.reversesTitleShadowWhenHighlighted = true
+        self.continueWithoutLoginButton.setTitleColor(FlatMint(), forState: .Highlighted)
         self.continueWithoutLoginButton.addTarget(self, action: #selector(signInAsGenericUserTapped), forControlEvents: .TouchUpInside)
         
         self.view.addSubview(filterView)
@@ -233,7 +234,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         self.continueWithoutLoginButton.translatesAutoresizingMaskIntoConstraints = false
         self.continueWithoutLoginButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-        self.continueWithoutLoginButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor).active = true
+        self.continueWithoutLoginButton.widthAnchor.constraintEqualToAnchor(self.loginButton.widthAnchor).active = true
         self.continueWithoutLoginButton.topAnchor.constraintEqualToAnchor(self.passwordTextField.bottomAnchor).active = true
         self.continueWithoutLoginButton.bottomAnchor.constraintEqualToAnchor(self.loginButton.topAnchor).active = true
     }
