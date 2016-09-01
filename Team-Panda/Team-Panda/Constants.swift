@@ -75,6 +75,24 @@ class Constants {
         return alertController
         
     }
+    
+    class func displayAlertWithContinueAndCancel(title : String, message : String, continueHandler : ()->(), cancelHandler : ()->()) -> UIAlertController{
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        let continueAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+            continueHandler()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            cancelHandler()
+        }
+        
+        alertController.addAction(continueAction)
+        alertController.addAction(cancelAction)
+        
+        return alertController
+    }
 }
 
 extension UIColor {

@@ -134,21 +134,26 @@ class TPUser {
     
     class func getUserFromFirebase(uid : String, completion: (TPUser?)->()) {
         
-        let ref = FIRDatabase.database().referenceFromURL(databaseRefURL)
-        
-        ref.child("users/\(uid)").observeSingleEventOfType(.Value, withBlock: { (userSnapshot) in
+        if uid == Secrets.genericUserUID {
+            completion(TPUser(withEmail: Secrets.genericUserEmail, uid: Secrets.genericUserUID))
+        }
+        else {
+            let ref = FIRDatabase.database().referenceFromURL(databaseRefURL)
             
-            if let userSnapshot = userSnapshot.value as? [String : AnyObject] {
+            ref.child("users/\(uid)").observeSingleEventOfType(.Value, withBlock: { (userSnapshot) in
                 
-                completion(TPUser.userFromDictionary(userSnapshot, uid: uid))
+                if let userSnapshot = userSnapshot.value as? [String : AnyObject] {
+                    
+                    completion(TPUser.userFromDictionary(userSnapshot, uid: uid))
+                    
+                }
                 
+            }) { (error) in
+                
+                print("Error in getting snapshot for UID \(uid)")
+                print(error.localizedDescription)
+                completion(nil)
             }
-            
-        }) { (error) in
-            
-            print("Error in getting snapshot for UID \(uid)")
-            print(error.localizedDescription)
-            completion(nil)
         }
     }
 }

@@ -30,6 +30,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     var careerSparkHeadlineLabel = UILabel()
     var filterView = UIView()
     
+    lazy var continueWithoutLoginButton : UIButton = UIButton(type: .Custom)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showTabBarViewForUser()
@@ -42,19 +44,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func showTabBarViewForUser() {
-
+        
         if let currentPanda = FIRAuth.auth()?.currentUser {
-            TPUser.getUserFromFirebase(currentPanda.uid, completion: { (pandaUser) in
-                if let pandaUser = pandaUser {
-                    self.store.tpUser = pandaUser
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
-                    self.presentViewController(tabBarVC, animated: true, completion: {
-                    })
-                } else {
-                    self.displayLoginView()
-                }
-            })
+            
+            if currentPanda.uid == Secrets.genericUserUID {
+                self.displayLoginView()
+            }
+            else {
+                TPUser.getUserFromFirebase(currentPanda.uid, completion: { (pandaUser) in
+                    if let pandaUser = pandaUser {
+                        self.store.tpUser = pandaUser
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
+                        self.presentViewController(tabBarVC, animated: true, completion: {
+                        })
+                    } else {
+                        self.displayLoginView()
+                    }
+                })
+            }
         } else { // no user
             self.displayLoginView()
         }
@@ -89,12 +97,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.facebookLoginButtonSetup()
         self.googleLoginButtonSetup()
         
+        self.continueWithoutLoginButton.setTitle("Continue without logging in.", forState: .Normal)
+        self.continueWithoutLoginButton.titleLabel?.textColor = UIColor.whiteColor()
+        self.continueWithoutLoginButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 12.0)
+        self.continueWithoutLoginButton.reversesTitleShadowWhenHighlighted = true
+        self.continueWithoutLoginButton.addTarget(self, action: #selector(signInAsGenericUserTapped), forControlEvents: .TouchUpInside)
+        
         self.view.addSubview(filterView)
         self.view.addSubview(self.emailTextField)
         self.view.addSubview(self.passwordTextField)
         self.view.addSubview(self.loginButton)
         self.view.addSubview(self.signupButton)
         self.view.addSubview(self.orLabel)
+        self.view.addSubview(self.continueWithoutLoginButton)
         
         self.viewsConstraints()
         
@@ -216,6 +231,40 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.signupButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier:  0.75).active = true
         self.signupButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier:  0.125).active = true
         
+        self.continueWithoutLoginButton.translatesAutoresizingMaskIntoConstraints = false
+        self.continueWithoutLoginButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
+        self.continueWithoutLoginButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor).active = true
+        self.continueWithoutLoginButton.topAnchor.constraintEqualToAnchor(self.passwordTextField.bottomAnchor).active = true
+        self.continueWithoutLoginButton.bottomAnchor.constraintEqualToAnchor(self.loginButton.topAnchor).active = true
+    }
+    
+    func signInAsGenericUserTapped() {
+        
+        let alert = Constants.displayAlertWithContinueAndCancel("Heads Up!", message: "Without logging in, you won't be able to save your answers to the survey or favorite any jobs. Would you like to continue?", continueHandler: { 
+            // continueHandler
+            
+            FIRAuth.auth()?.signInWithEmail(Secrets.genericUserEmail, password: Secrets.genericUserPassword, completion: { (user, error) in
+                
+                if let error = error {
+                    // Alert user there was a problem logging in
+                    let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                } else if let user = user {
+                    
+                    TPUser.getUserFromFirebase(user.uid, completion: { (pandaUser) in
+                        self.store.tpUser = pandaUser
+                        self.presentViewController(SignUpPageViewController(), animated: true, completion: nil)                        
+                    })
+                }
+            })
+            
+            
+        }) {
+            return
+        }
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func emptyTextFields() -> Bool {

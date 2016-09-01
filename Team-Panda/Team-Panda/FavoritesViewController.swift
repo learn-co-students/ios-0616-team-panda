@@ -36,6 +36,12 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewWillAppear(true)
         self.favoritesTableView.reloadData()
         self.navigationController?.navigationBar.topItem?.title = "Favorites"
+        
+        if store.tpUser!.uid == Secrets.genericUserUID {
+            let alert = Constants.displayAlertWith("Oops!", message: "Viewing favorited jobs is only for logged in users. Go to Settings > Log Out and sign up to unlock full access to CareerSpark. It's free!", actionLabel: "Got it!", style: .Default, actionHandler: { })
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

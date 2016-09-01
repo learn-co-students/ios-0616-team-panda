@@ -14,6 +14,7 @@ import CoreText
 import Font_Awesome_Swift
 import SwiftSpinner
 import SwiftyJSON
+import FirebaseAuth
 
 class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
@@ -92,22 +93,29 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func saveToFavorites() {
         
-        let favoriteInfo = favoritedJob()
-        
-        if favoriteInfo.0 == true {
+        if store.tpUser!.uid == Secrets.genericUserUID {
+            let alert = Constants.displayAlertWith("Oops!", message: "Saving jobs to favorites is only for logged in users. Go to Settings > Log Out and sign up to unlock full access to CareerSpark. It's free!", actionLabel: "Got it!", style: .Default, actionHandler: { })
             
-            print("Already saved! Removing from favorites")
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue()
-            store.tpUser!.favoritesArray.removeAtIndex(favoriteInfo.1!)
-            
-            
-        } else {
-            print("Saving to favorites!")
-            store.tpUser!.favoritesArray.append((self.job?.SOCcode)!)
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellowColor()
+            self.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        store.tpUser!.updateDatabase()
+        else {
+            let favoriteInfo = favoritedJob()
+            
+            if favoriteInfo.0 == true {
+                
+                print("Already saved! Removing from favorites")
+                navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue()
+                store.tpUser!.favoritesArray.removeAtIndex(favoriteInfo.1!)
+                
+                
+            } else {
+                print("Saving to favorites!")
+                store.tpUser!.favoritesArray.append((self.job?.SOCcode)!)
+                navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellowColor()
+            }
+            
+            store.tpUser!.updateDatabase()
+        }
     }
     
     func favoritedJob() -> (Bool, Int?) {

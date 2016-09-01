@@ -18,6 +18,8 @@ class SettingsViewController: UIViewController {
     var refreshQuestionsButton  : SwiftyButton!
     var logOutButton            : SwiftyButton!
     
+    let store = DataStore.store
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.flatSkyBlueColor()
@@ -26,7 +28,15 @@ class SettingsViewController: UIViewController {
     
     func updateProfileTapped(sender : AnyObject) {
         print("Update Profile Info Tapped")
-        self.presentViewController(UserProfileViewController(), animated: true, completion: nil)
+        
+        if store.tpUser?.uid == Secrets.genericUserUID {
+            let alert = Constants.displayAlertWith("Oops!", message: "Only logged in users can update their profile info. Go to Settings > Log Out and sign up to unlock full access to CareerSpark. It's free!", actionLabel: "Got it!", style: .Default, actionHandler: { })
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else {
+            self.presentViewController(UserProfileViewController(), animated: true, completion: nil)
+        }
     }
     
     func refreshQuestionaireTapped(sender : AnyObject) {
