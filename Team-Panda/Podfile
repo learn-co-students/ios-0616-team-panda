@@ -5,29 +5,19 @@ target 'Team-Panda' do
   use_frameworks!
 
   # Pods for Team-Panda
-  pod 'SwiftyJSON'
-  pod 'SnapKit'
+  pod 'Alamofire', '~> 4.0'
   pod 'ChameleonFramework/Swift'
   pod 'SwiftFontName', '~> 2.0.0'
+  pod 'SwiftyJSON'
+  pod 'SnapKit'
   pod 'SwiftyButton'
   pod 'FBSDKLoginKit'
   pod 'Google/SignIn'
-  pod 'Firebase'
+  pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'SWXMLHash'
-  pod 'USStatesColorMap'
-  pod "SwiftSpinner"
-  pod 'Font-Awesome-Swift', '~> 1.4.8'
-
-  target 'Team-PandaTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'Team-PandaUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  pod 'SwiftSpinner'
+  pod 'Font-Awesome-Swift', '~> 1.5.3'
 
 end

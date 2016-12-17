@@ -15,14 +15,14 @@ import SwiftyButton
  */
 class InterestsTableViewCell : UITableViewCell {
     
-    var button : SwiftyButton
+    var button : PressableButton
     var checkedImageView : UIImageView
     
     var isChecked : Bool = false
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
-        self.button = SwiftyButton()
+        self.button = PressableButton()
         self.checkedImageView = UIImageView(image: checkMarkImage)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -31,7 +31,7 @@ class InterestsTableViewCell : UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         
-        self.button = SwiftyButton()
+        self.button = PressableButton()
         self.checkedImageView = UIImageView(image: checkMarkImage)
         super.init(coder: aDecoder)
         
@@ -40,8 +40,8 @@ class InterestsTableViewCell : UITableViewCell {
     
     func setupViews() {
     
-        self.button.buttonColor = FlatRed()
-        self.button.shadowColor = FlatRedDark()
+        self.button.colors = .init(button: FlatRed(), shadow: FlatRedDark())
+        
         
         self.button.titleLabel?.textColor = FlatWhite()
         self.button.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
@@ -50,37 +50,37 @@ class InterestsTableViewCell : UITableViewCell {
         
         self.button.translatesAutoresizingMaskIntoConstraints = false
         
-        self.button.heightAnchor.constraintEqualToAnchor(self.contentView.heightAnchor, multiplier: 0.8).active = true
-        self.button.widthAnchor.constraintEqualToAnchor(self.contentView.widthAnchor, multiplier: 0.6).active = true
-        self.button.centerYAnchor.constraintEqualToAnchor(self.contentView.centerYAnchor).active = true
-        self.button.centerXAnchor.constraintEqualToAnchor(self.contentView.centerXAnchor).active = true
-        self.button.addTarget(self, action: #selector(didPressButton(_:)), forControlEvents: .TouchUpInside)
+        self.button.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: 0.8).isActive = true
+        self.button.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.6).isActive = true
+        self.button.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        self.button.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+        self.button.addTarget(self, action: #selector(didPressButton(_:)), for: .touchUpInside)
         
         
         self.contentView.addSubview(self.checkedImageView)
         
         self.checkedImageView.translatesAutoresizingMaskIntoConstraints = false
-        self.checkedImageView.heightAnchor.constraintEqualToAnchor(self.contentView.heightAnchor, multiplier: 0.5).active = true
-        self.checkedImageView.centerYAnchor.constraintEqualToAnchor(self.contentView.centerYAnchor).active = true
-        self.checkedImageView.widthAnchor.constraintEqualToAnchor(self.checkedImageView.heightAnchor).active = true
+        self.checkedImageView.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: 0.5).isActive = true
+        self.checkedImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        self.checkedImageView.widthAnchor.constraint(equalTo: self.checkedImageView.heightAnchor).isActive = true
         
         let offset = 0.125/4*self.contentView.bounds.width
         
-        self.checkedImageView.leftAnchor.constraintEqualToAnchor(self.contentView.leftAnchor, constant: offset).active = true
+        self.checkedImageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: offset).isActive = true
         
-        self.checkedImageView.hidden = true
+        self.checkedImageView.isHidden = true
     }
     
-    func didPressButton(sender : SwiftyButton) {
+    func didPressButton(_ sender : PressableButton) {
         
-        self.checkedImageView.hidden = self.isChecked ? true : false
+        self.checkedImageView.isHidden = self.isChecked ? true : false
         self.isChecked = !self.isChecked
     }
 
 }
 
 protocol SubmitTableViewCellDelegate {
-    func submitTapped(sender : AnyObject)
+    func submitTapped(_ sender : AnyObject)
 }
 
 /*
@@ -88,12 +88,12 @@ protocol SubmitTableViewCellDelegate {
  */
 class SubmitTableViewCell : UITableViewCell {
     
-    var button : SwiftyButton
+    var button : PressableButton
     var delegate : SubmitTableViewCellDelegate?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
-        self.button = SwiftyButton()
+        self.button = PressableButton()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.setupViews()
@@ -101,7 +101,7 @@ class SubmitTableViewCell : UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         
-        self.button = SwiftyButton()
+        self.button = PressableButton()
         super.init(coder: aDecoder)
         
         self.setupViews()
@@ -112,25 +112,23 @@ class SubmitTableViewCell : UITableViewCell {
         self.button.titleLabel?.textColor = FlatWhite()
         self.button.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
         
-        self.button.buttonColor = FlatBlue()
-        self.button.shadowColor = FlatBlueDark()
+        self.button.colors = .init(button: FlatBlue(), shadow: FlatBlueDark())
+        self.button.setTitle("Submit", for: .normal)
         
-        self.button.setTitle("Submit", forState: .Normal)
-
         
         self.contentView.addSubview(self.button)
         
         self.button.translatesAutoresizingMaskIntoConstraints = false
         
-        self.button.widthAnchor.constraintEqualToAnchor(self.contentView.widthAnchor, multiplier: 0.6).active = true
-        self.button.heightAnchor.constraintEqualToAnchor(self.contentView.heightAnchor, multiplier: 0.8).active = true
-        self.button.centerYAnchor.constraintEqualToAnchor(self.contentView.centerYAnchor).active = true
-        self.button.centerXAnchor.constraintEqualToAnchor(self.contentView.centerXAnchor).active = true
+        self.button.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.6).isActive = true
+        self.button.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: 0.8).isActive = true
+        self.button.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        self.button.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
         
-        self.button.addTarget(self, action: #selector(submitButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        self.button.addTarget(self, action: #selector(submitButtonTapped(_:)), for: .touchUpInside)
     }
     
-    func submitButtonTapped(sender : SwiftyButton) {
+    func submitButtonTapped(_ sender : PressableButton) {
         if let delegate = self.delegate {
             delegate.submitTapped(sender)
         }

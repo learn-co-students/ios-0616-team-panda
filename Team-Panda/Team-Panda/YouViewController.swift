@@ -16,7 +16,7 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var youTableView = UITableView()
     let reuseIdentifier = "youCell"
     let store = DataStore.store
-    var params : [String : AnyObject] = [:]
+    var params : [String : Any] = [:]
     lazy var statusBarView : UIView = UIView()
     
     override func viewDidLoad() {
@@ -33,13 +33,13 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.youTableView.delegate = self
         self.youTableView.dataSource = self
-        self.youTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.reuseIdentifier)
+        self.youTableView.register(UITableViewCell.self, forCellReuseIdentifier: self.reuseIdentifier)
         self.youTableView.backgroundColor = FlatMint()
         self.youTableView.accessibilityLabel = "tableView"
         self.youTableView.accessibilityIdentifier = "tableView"
         
         self.view.addSubview(self.youTableView)
-        self.youTableView.snp_makeConstraints { (make) in
+        self.youTableView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view)
             make.height.equalTo(self.view)
             make.centerX.equalTo(self.view)
@@ -49,17 +49,17 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.navigationController?.navigationBar.topItem?.title = "Career Results"
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
         self.navigationController?.hidesBarsOnSwipe = false
-        self.navigationController?.navigationBar.opaque = false
+        self.navigationController?.navigationBar.isOpaque = false
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.jobsResultsArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.youTableView.dequeueReusableCellWithIdentifier(self.reuseIdentifier, forIndexPath: indexPath)
+        let cell = self.youTableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier, for: indexPath)
         let job = store.jobsResultsArray[indexPath.row]
         
         cell.textLabel?.text = job.occupation
@@ -70,7 +70,7 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         SwiftSpinner.show("Loading Details", animated: true)
         
@@ -78,12 +78,12 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         jobDetail.job = store.jobsResultsArray[indexPath.row]
         
-        self.navigationController?.showViewController(jobDetail, sender: "")
+        self.navigationController?.show(jobDetail, sender: "")
         
-        self.youTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.youTableView.deselectRow(at: indexPath, animated: true)
     }
     
-    private func getSavedJobChoices(completion : () -> ()) {
+    fileprivate func getSavedJobChoices(_ completion : @escaping () -> ()) {
         
         if let currentPanda = store.tpUser {
             self.params = DataSeries.createSeriesIDsFromSOC(currentPanda.socCodes, withDataType: DataSeries.annualMeanWage)
@@ -95,8 +95,8 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             if let error = error {
                 
-                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .cancel, actionHandler: {})
+                self.present(alert, animated: true, completion: nil)
                 completion()
                 
             } else {

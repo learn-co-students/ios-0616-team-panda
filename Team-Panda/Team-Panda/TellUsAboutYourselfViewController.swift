@@ -16,8 +16,8 @@ class TellUsAboutYourselfViewController : UIViewController {
     
     var titleTextLabel : UILabel!
     var curiousityTextLabel : UILabel!
-    var makingButton : SwiftyButton!
-    var thinkingButton : SwiftyButton!
+    var makingButton : PressableButton!
+    var thinkingButton : PressableButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +26,11 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.createViews()
     }
     
-    override func shouldAutorotate() -> Bool { return false }
+    override var shouldAutorotate : Bool { return false }
     
-    func buttonTapped(sender : SwiftyButton) {
+    func buttonTapped(_ sender : PressableButton) {
         
-        if let signUpVC = self.parentViewController as? SignUpPageViewController {
+        if let signUpVC = self.parent as? SignUpPageViewController {
             
             if sender == self.makingButton {
                 
@@ -42,7 +42,7 @@ class TellUsAboutYourselfViewController : UIViewController {
         }
     }
     
-    private func createViews() {
+    fileprivate func createViews() {
         
         self.titleTextLabel = UILabel()
         
@@ -51,15 +51,15 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.titleTextLabel.adjustsFontSizeToFitWidth = true
         self.titleTextLabel.numberOfLines = 2
         self.titleTextLabel.textColor = FlatWhite()
-        self.titleTextLabel.textAlignment = .Center
+        self.titleTextLabel.textAlignment = .center
         
         self.view.addSubview(titleTextLabel)
         
         self.titleTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.titleTextLabel.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-        self.titleTextLabel.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
-        self.titleTextLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
-        self.titleTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.25).active = true
+        self.titleTextLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.titleTextLabel.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.titleTextLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75).isActive = true
+        self.titleTextLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.25).isActive = true
         
         self.curiousityTextLabel = UILabel()
         
@@ -68,58 +68,55 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.curiousityTextLabel.numberOfLines = 1
         self.curiousityTextLabel.adjustsFontSizeToFitWidth = true
         self.curiousityTextLabel.textColor = FlatWhite()
-        self.curiousityTextLabel.textAlignment = .Center
+        self.curiousityTextLabel.textAlignment = .center
         
         self.view.addSubview(self.curiousityTextLabel)
         
         self.curiousityTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.curiousityTextLabel.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-        self.curiousityTextLabel.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
-        self.curiousityTextLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
-        self.curiousityTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.25).active = true
+        self.curiousityTextLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.curiousityTextLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.curiousityTextLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75).isActive = true
+        self.curiousityTextLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.25).isActive = true
         
-        self.makingButton = SwiftyButton()
+        self.makingButton = PressableButton()
         
-        self.makingButton.setTitle("How things are made", forState: .Normal)
+        self.makingButton.setTitle("How things are made", for: .normal)
         self.makingButton.titleLabel?.textColor = FlatWhite()
         self.makingButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
-        self.makingButton.buttonColor = FlatMint()
-        self.makingButton.highlightedColor = FlatMintDark()
-        self.makingButton.shadowColor = FlatMintDark()
+        self.makingButton.colors = .init(button: FlatMint(), shadow: FlatMintDark())
+
         self.makingButton.shadowHeight = 5
-        self.makingButton.buttonPressDepth = 0.65
+        self.makingButton.depth = 0.65
         self.makingButton.cornerRadius = 5
         
-        self.makingButton.addTarget(self, action: #selector(buttonTapped(_:)), forControlEvents: .TouchUpInside)
+        self.makingButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         self.view.addSubview(self.makingButton)
         
         self.makingButton.translatesAutoresizingMaskIntoConstraints = false
-        self.makingButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-        self.makingButton.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor, constant: self.view.bounds.height/6).active = true
-        self.makingButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
-        self.makingButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
+        self.makingButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.makingButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: self.view.bounds.height/6).isActive = true
+        self.makingButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75).isActive = true
+        self.makingButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.125).isActive = true
         
-        self.thinkingButton = SwiftyButton()
+        self.thinkingButton = PressableButton()
         
-        self.thinkingButton.setTitle("How people think", forState: .Normal)
+        self.thinkingButton.setTitle("How people think", for: .normal)
         self.thinkingButton.titleLabel?.textColor = FlatWhite()
         self.thinkingButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
-        self.thinkingButton.buttonColor = FlatMintDark().darkenByPercentage(0.1)
-        self.thinkingButton.highlightedColor = FlatMintDark().darkenByPercentage(0.2)
-        self.thinkingButton.shadowColor = FlatMintDark().darkenByPercentage(0.2)
+        self.thinkingButton.colors = .init(button: FlatMintDark().darken(byPercentage: 0.1), shadow: FlatMintDark().darken(byPercentage: 0.2))
         self.thinkingButton.shadowHeight = 5
-        self.thinkingButton.buttonPressDepth = 0.65
+        self.thinkingButton.depth = 0.65
         self.thinkingButton.cornerRadius = 5
         
-        self.thinkingButton.addTarget(self, action: #selector(buttonTapped(_:)), forControlEvents: .TouchUpInside)
+        self.thinkingButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         self.view.addSubview(self.thinkingButton)
         
         self.thinkingButton.translatesAutoresizingMaskIntoConstraints = false
         
         self.thinkingButton.translatesAutoresizingMaskIntoConstraints = false
-        self.thinkingButton.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-        self.thinkingButton.centerYAnchor.constraintEqualToAnchor(self.view.bottomAnchor, constant: -self.view.bounds.height/6).active = true
-        self.thinkingButton.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
-        self.thinkingButton.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.125).active = true
+        self.thinkingButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.thinkingButton.centerYAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -self.view.bounds.height/6).isActive = true
+        self.thinkingButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75).isActive = true
+        self.thinkingButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.125).isActive = true
     }
 }

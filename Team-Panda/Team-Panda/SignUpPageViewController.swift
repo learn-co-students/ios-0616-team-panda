@@ -13,9 +13,9 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
     
     var viewsArray : [UIViewController]!
     
-    override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : AnyObject]?) {
+    override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]?) {
         
-        super.init(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: options)
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: options)
         
     }
     
@@ -30,18 +30,18 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
         self.accessibilityLabel = "Sign Up PVC"
         self.viewsArray = self.createInitialViewController()
         
-        self.setViewControllers([viewsArray[0]], direction: .Forward, animated: true) { (completed) in
+        self.setViewControllers([viewsArray[0]], direction: .forward, animated: true) { (completed) in
             print(self.viewControllers?.first?.accessibilityLabel)
         }
         
     }
     
     // Transitions to next view controller based on the button that was tapped
-    func nextViewController(style : WouldYouRatherStyle) {
+    func nextViewController(_ style : WouldYouRatherStyle) {
         
         let nextVC = WouldYouRatherViewController(withUIStyle: style)
         
-        self.setViewControllers([nextVC], direction: .Forward, animated: true, completion: { (completed) in
+        self.setViewControllers([nextVC], direction: .forward, animated: true, completion: { (completed) in
             
             if style == .Make { print("Transitioned to Making View Controller") }
             else { print("Transitioned to Thinking View Controller") }
@@ -49,15 +49,15 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
 
     }
     
-    func nextViewController(style : WhichInterestsStyle) {
+    func nextViewController(_ style : WhichInterestsStyle) {
         let nextVC = WhichInterestsYouViewController(withUIStyle: style)
         
-        self.setViewControllers([nextVC], direction: .Forward, animated: true) { (completed) in
+        self.setViewControllers([nextVC], direction: .forward, animated: true) { (completed) in
             print("Third VC")
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool { return true }
+    override var prefersStatusBarHidden : Bool { return true }
     
     
     /*
@@ -72,11 +72,11 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
         return [tellUsVC]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         guard let currentVC = self.viewControllers?.first else { return nil }
         
-        guard let index = self.viewsArray.indexOf(currentVC) else { return nil }
+        guard let index = self.viewsArray.index(of: currentVC) else { return nil }
         
         if index == 0 {
             return nil
@@ -86,11 +86,11 @@ class SignUpPageViewController: UIPageViewController, UIPageViewControllerDelega
         
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let currentVC = self.viewControllers?.first else { return nil }
         
-        guard let index = self.viewsArray.indexOf(currentVC) else { return nil }
+        guard let index = self.viewsArray.index(of: currentVC) else { return nil }
         
         if index == self.viewsArray.count - 1 {
             return nil

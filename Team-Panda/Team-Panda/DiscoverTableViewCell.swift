@@ -26,7 +26,7 @@ class DiscoverTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -38,18 +38,18 @@ class DiscoverTableViewCell: UITableViewCell {
         self.contentView.addSubview(self.title)
         self.title.translatesAutoresizingMaskIntoConstraints = false
         
-        self.title.leadingAnchor.constraintEqualToAnchor(self.contentView.leadingAnchor, constant:20.0).active = true
-        self.title.centerYAnchor.constraintEqualToAnchor(self.contentView.centerYAnchor).active = true
-        self.title.widthAnchor.constraintEqualToAnchor(self.contentView.widthAnchor, multiplier:0.75).active = true
+        self.title.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant:20.0).isActive = true
+        self.title.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        self.title.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier:0.75).isActive = true
 
     }
     
-    func setProperties(title : String) {
+    func setProperties(_ title : String) {
         
         self.title.text = title
-        self.title.textColor = UIColor.whiteColor()
+        self.title.textColor = UIColor.white
         self.title.font = UIFont.pandaFontLight(withSize: 16.0)
-        self.title.textAlignment = .Left
+        self.title.textAlignment = .left
     }
 
 }

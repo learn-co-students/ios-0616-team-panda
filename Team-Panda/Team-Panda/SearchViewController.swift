@@ -15,7 +15,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(searchBar)
-        searchBar.frame = CGRectMake(0, 50, 320, 135);
+        searchBar.frame = CGRect(x: 0, y: 50, width: 320, height: 135);
         searchBar.center = self.view.center
     }
 }

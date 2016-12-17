@@ -61,10 +61,10 @@ class ComparingCodes {
         
     }
     
-    func dashCode(code: Int) -> String {
+    func dashCode(_ code: Int) -> String {
         
         var codeString = String(code)
-        codeString.insert("-", atIndex: codeString.startIndex.advancedBy(2))
+        codeString.insert("-", at: codeString.characters.index(codeString.startIndex, offsetBy: 2))
         
         return codeString
         

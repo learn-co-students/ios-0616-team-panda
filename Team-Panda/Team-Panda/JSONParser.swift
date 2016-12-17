@@ -20,9 +20,9 @@ class JSONParser {
     
     func parsingJSON() {
         
-        if let path = NSBundle.mainBundle().pathForResource("Occupation-Dictionary2", ofType: "json") {
+        if let path = Bundle.main.path(forResource: "Occupation-Dictionary2", ofType: "json") {
             do {
-                let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
                 self.occupationJSON = JSON(data: data)
                 
                 if self.occupationJSON != JSON.null {
@@ -38,7 +38,7 @@ class JSONParser {
         }
     }
     
-    func sortingOccupationBySOCCode(socCode: String) -> [String: JSON] {
+    func sortingOccupationBySOCCode(_ socCode: String) -> [String: JSON] {
 
         self.parsingJSON()
         var occupationData: [String: JSON] = [:]
@@ -59,10 +59,10 @@ class JSONParser {
         return occupationData
     }
     
-    func dashCode(code: Int) -> String {
+    func dashCode(_ code: Int) -> String {
         
         var codeString = String(code)
-        codeString.insert("-", atIndex: codeString.startIndex.advancedBy(2))
+        codeString.insert("-", at: codeString.characters.index(codeString.startIndex, offsetBy: 2))
         
         return codeString
         

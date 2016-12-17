@@ -10,7 +10,7 @@ import Foundation
 
 class DataSeries {
     
-    static var params : [String : AnyObject] = [ "seriesid"          : [""],
+    static var params : [String : Any] = [ "seriesid"          : [""],
                                                  "startyear"         : "2015",
                                                  "endyear"           : "2015",
                                                  "catalog"           : true,
@@ -29,7 +29,7 @@ class DataSeries {
     // 04	Annual mean wage
     // 17	Location Quotient
     
-    class func createSeriesIDsFromSOC(codes : [Int], withDataType type : String) -> [String : AnyObject] {
+    class func createSeriesIDsFromSOC(_ codes : [Int], withDataType type : String) -> [String : Any] {
         
         // ie: OEUN000000000000013201104
         var seriesIDs : [String] = []
@@ -37,11 +37,11 @@ class DataSeries {
             seriesIDs.append(jobSeriesID + "\(code)" + type)
         }
         
-        params["seriesid"] = seriesIDs
+        params["seriesid"] = seriesIDs as Any?
         return params
     }
     
-    class func createStateSeriesIDsWith(SOCcode: String, withDataType type : String) -> [String : AnyObject] {
+    class func createStateSeriesIDsWith(_ SOCcode: String, withDataType type : String) -> [String : Any] {
         
         var seriesIDs : [String] = []
         
@@ -49,7 +49,7 @@ class DataSeries {
             seriesIDs.append(lqSeriesID + "\(code)000000\(SOCcode)" + type)
         }
         
-        params["seriesid"] = seriesIDs
+        params["seriesid"] = seriesIDs as Any?
         return params
     }
     
@@ -133,7 +133,7 @@ let stateCodes : [String : String] =
      "5600000" : "Wyoming"]
 
 
-let jobsDictionary : [WhichInterestsStyle : AnyObject] =
+let jobsDictionary : [WhichInterestsStyle : Any] =
     
     [WhichInterestsStyle.SolveProblem: [
         

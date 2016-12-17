@@ -1,155 +1,147 @@
-//
-//  BLSAPIClient.swift
-//  Team-Panda
-//
-//  Created by Lloyd W. Sykes on 8/11/16.
-//  Copyright © 2016 Flatiron School. All rights reserved.
-//
-
-//import Alamofire
-
-class BLSAPIClient {
+ //
+ //  BLSAPIClient.swift
+ //  Team-Panda
+ //
+ //  Created by Lloyd W. Sykes on 8/11/16.
+ //  Copyright © 2016 Flatiron School. All rights reserved.
+ //
+ 
+ import Alamofire
+ 
+ struct BLSAPIClient {
     
     static let headers = [ "Content-Type" : "application/json" ]
     
-    class func getMultipleOccupationsWithCompletion(params: [String: AnyObject], completion: (NSDictionary?, NSError?) -> ()) {
-        
-        guard let url = NSURL(string: Secrets.apiURL) else {
-            fatalError("There was an issue unwrapping the NSURL")
-        }
-        
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        var err: NSError?
-        
-        do {
-            
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: []) as NSData
-            
-        } catch {
-            
-            if let err = err as NSError? {
-                print("There's been an error adding the parameters to the request: \(err.localizedDescription)")
-            }
-        }
-        
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
-            if let data = data {
-                do {
-                    
-                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary
-                    
-                    if let json = json {
-                        
-                        NSOperationQueue.mainQueue().addOperationWithBlock({
-                            completion(json, nil)
-                        })
-                    }
-                    
-                } catch {
-                    print("There was a problem getting the JSON in dataTaskWithRequest")
-                }
-            } else {
-                if let error = error {
-                    
-                    print("There's been an error trying to get the JSON: \(error.localizedDescription)")
-                    completion(nil, error)
-                }
-            }
-        }
-        task.resume()
-    }
-    
-    class func getLocationQuotientforJobWithCompletion(params: [String : AnyObject], completion: (NSDictionary?, NSError?)->()) {
-        
-        guard let url = NSURL(string: Secrets.apiURL) else {
-            fatalError("There was an issue unwrapping the NSURL")
-        }
-        
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        var err: NSError?
-        
-        do {
-            
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: []) as NSData
-            
-        } catch {
-            
-            if let err = err as NSError? {
-                print("There's been an error adding the parameters to the request: \(err.localizedDescription)")
-            }
-        }
-        
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
-            if let data = data {
-                do {
-                    
-                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary
-                    
-                    if let json = json {
-                        
-                        NSOperationQueue.mainQueue().addOperationWithBlock({
-                            completion(json, nil)
-                        })
-                    }
-                    
-                } catch {
-                    print("There was a problem getting the JSON in dataTaskWithRequest")
-                }
-                
-            } else {
-                
-                if let error = error {
-                    
-                    print("There's been an error trying to get the JSON: \(error.localizedDescription)")
-                    completion(nil, error)
-                }
-            }
-        }
-        task.resume()
-    }
-    
-    //        class func getMultipleOccupationsWithCompletion(params: [String: AnyObject], completion: (NSDictionary?, NSError?) -> ()) {
+    //    class func getMultipleOccupationsWithCompletion(_ params: [String: AnyObject], completion: @escaping (NSDictionary?, NSError?) -> ()) {
     //
-    //            Alamofire.request(.POST, Secrets.apiURL, parameters: params, encoding: .JSON, headers: headers).responseJSON { (blsResponse) in
+    //        guard let url = URL(string: Secrets.apiURL) else {
+    //            fatalError("There was an issue unwrapping the NSURL")
+    //        }
     //
-    //                if let error = blsResponse.result.error {
-    //                    print("There was an error pulling multiple occupations from the API: \(error.localizedDescription)")
-    //                    completion(nil, error)
-    //                }
+    //        let request = NSMutableURLRequest(url: url)
+    //        request.httpMethod = "POST"
+    //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     //
-    //                if let json = blsResponse.result.value {
-    //                    if let careerResults = json as? NSDictionary {
-    //                        completion(careerResults, nil)
-    //                    }
+    //        var err: NSError?
     //
-    //                }
+    //        do {
+    //
+    //            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: []) as Data
+    //
+    //        } catch {
+    //
+    //            if let err = err as NSError? {
+    //                print("There's been an error adding the parameters to the request: \(err.localizedDescription)")
     //            }
     //        }
     //
-    //        class func getLocationQuotientforJobWithCompletion(params: [String : AnyObject], completion: (NSDictionary?, NSError?)->()) {
+    //        let session = URLSession.shared
+    //        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
     //
-    //            Alamofire.request(.POST, Secrets.apiURL, parameters: params, encoding: .JSON, headers: headers).responseJSON { (blsLQresponse) in
-    //                if let error = blsLQresponse.result.error {
-    //                    print("There was an error pulling the Location Quotient from the API: \(error.localizedDescription)")
+    //            if let data = data {
+    //                do {
+    //
+    //                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary
+    //
+    //                    if let json = json {
+    //
+    //                        OperationQueue.main.addOperation({
+    //                            completion(json, nil)
+    //                        })
+    //                    }
+    //
+    //                } catch {
+    //                    print("There was a problem getting the JSON in dataTaskWithRequest")
+    //                }
+    //            } else {
+    //                if let error = error {
+    //
+    //                    print("There's been an error trying to get the JSON: \(error.localizedDescription)")
     //                    completion(nil, error)
     //                }
+    //            }
+    //        })
+    //        task.resume()
+    //    }
     //
-    //                if let json = blsLQresponse.result.value {
-    //                    if let lqResults = json as? NSDictionary  {
+    //    class func getLocationQuotientforJobWithCompletion(_ params: [String : AnyObject], completion: @escaping (NSDictionary?, NSError?)->()) {
     //
-    //                        completion(lqResults, nil)
-    //                    }
-    //                }
+    //        guard let url = URL(string: Secrets.apiURL) else {
+    //            fatalError("There was an issue unwrapping the NSURL")
+    //        }
+    //
+    //        let request = NSMutableURLRequest(url: url)
+    //        request.httpMethod = "POST"
+    //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    //
+    //        var err: NSError?
+    //
+    //        do {
+    //
+    //            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: []) as Data
+    //
+    //        } catch {
+    //
+    //            if let err = err as NSError? {
+    //                print("There's been an error adding the parameters to the request: \(err.localizedDescription)")
     //            }
     //        }
-}
+    //
+    //        let session = URLSession.shared
+    //        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+    //
+    //            if let data = data {
+    //                do {
+    //
+    //                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary
+    //
+    //                    if let json = json {
+    //
+    //                        OperationQueue.main.addOperation({
+    //                            completion(json, nil)
+    //                        })
+    //                    }
+    //
+    //                } catch {
+    //                    print("There was a problem getting the JSON in dataTaskWithRequest")
+    //                }
+    //
+    //            } else {
+    //
+    //                if let error = error {
+    //
+    //                    print("There's been an error trying to get the JSON: \(error.localizedDescription)")
+    //                    completion(nil, error)
+    //                }
+    //            }
+    //        })
+    //        task.resume()
+    //    }
+    
+    static func getMultipleOccupationsWithCompletion(params: [String: Any], completion: @escaping (NSDictionary?, Error?) -> ()) {
+        
+        Alamofire.request(Secrets.apiURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            if let error = response.result.error {
+                completion(nil, error)
+            } else if let json = response.result.value as? NSDictionary {
+                completion(json, nil)
+            }
+        }
+        
+        
+    }
+    
+    static func getLocationQuotientforJobWithCompletion(params: [String : Any], completion: @escaping (NSDictionary?, Error?)->()) {
+        
+        Alamofire.request(Secrets.apiURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            
+            if let error = response.result.error {
+                completion(nil, error)
+            } else if let json = response.result.value as? NSDictionary {
+                completion(json, nil)
+            }
+        }
+        
+    }
+    
+ }

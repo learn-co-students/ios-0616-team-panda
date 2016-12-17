@@ -24,19 +24,19 @@ class Job : CustomStringConvertible {
     var dashSOCcode : String {
         
         var dashCode = self.SOCcode
-        dashCode.insert("-", atIndex: dashCode.startIndex.advancedBy(2))
+        dashCode.insert("-", at: dashCode.characters.index(dashCode.startIndex, offsetBy: 2))
         return dashCode
     
     }
     
-    init(withDictionary dictionary : [String : AnyObject]) {
+    init(withDictionary dictionary : [String : Any]) {
         
         if let catalogData = dictionary["catalog"] as? [String : String] {
             
             self.occupation = Job.trim(catalogData["occupation"] ?? "")
             self.seriesID = catalogData["series_id"] ?? ""
-            let firstSOCCodeParse = self.seriesID.stringByReplacingOccurrencesOfString("OEUN0000000000000", withString: "")
-            self.SOCcode = firstSOCCodeParse.substringToIndex(firstSOCCodeParse.startIndex.advancedBy(6))
+            let firstSOCCodeParse = self.seriesID.replacingOccurrences(of: "OEUN0000000000000", with: "")
+            self.SOCcode = firstSOCCodeParse.substring(to: firstSOCCodeParse.characters.index(firstSOCCodeParse.startIndex, offsetBy: 6))
             
         } else {
             print("Couldn't parse catalog data from input dictionary")
@@ -45,7 +45,7 @@ class Job : CustomStringConvertible {
             self.SOCcode = ""
         }
         
-        if let measurementData = dictionary["data"] as? [[String : AnyObject]] {
+        if let measurementData = dictionary["data"] as? [[String : Any]] {
             
             self.dataYear = measurementData[0]["year"] as? String ?? ""
             self.annualMeanSalary = measurementData[0]["value"] as? String ?? ""
@@ -63,7 +63,7 @@ class Job : CustomStringConvertible {
     
     convenience init(withSOCCode socCode : String, occupation : String) {
         let seriesID = "OEUN0000000000000" + socCode
-        let dictionary : [String : AnyObject] = ["catalog": ["occupation" : occupation, "series_id" : seriesID]]
+        let dictionary : [String : Any] = ["catalog": ["occupation" : occupation, "series_id" : seriesID]]
         self.init(withDictionary: dictionary)
     }
     
@@ -77,15 +77,15 @@ class Job : CustomStringConvertible {
         + "Location Quotient Dictionary: \(self.locationQuotient)\n"
     }
     
-    func updateLocationQuotient(withDictionary dictionary : [String : AnyObject]) {
+    func updateLocationQuotient(withDictionary dictionary : [String : Any]) {
         
         
         
     }
     
-    class func trim(title : String) -> String {
+    class func trim(_ title : String) -> String {
         
-        return title.componentsSeparatedByString(", ")[0]
+        return title.components(separatedBy: ", ")[0]
         
     }
 }

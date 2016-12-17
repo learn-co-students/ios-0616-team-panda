@@ -25,8 +25,8 @@ class WhichInterestsYouViewController : UIViewController {
     let uiStyle : WhichInterestsStyle
     
     var titleTextLabel : UILabel!
-    var topButton : SwiftyButton!
-    var bottomButton : SwiftyButton!
+    var topButton : PressableButton!
+    var bottomButton : PressableButton!
     
     var tableView : UITableView!
     let interestsIdentifier = "interestsCell"
@@ -61,8 +61,8 @@ class WhichInterestsYouViewController : UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.tableView.registerClass(InterestsTableViewCell.self, forCellReuseIdentifier: interestsIdentifier)
-        self.tableView.registerClass(SubmitTableViewCell.self, forCellReuseIdentifier: submitIdentifier)
+        self.tableView.register(InterestsTableViewCell.self, forCellReuseIdentifier: interestsIdentifier)
+        self.tableView.register(SubmitTableViewCell.self, forCellReuseIdentifier: submitIdentifier)
         
         self.view.backgroundColor = FlatRed()
         self.createViews()
@@ -77,22 +77,22 @@ class WhichInterestsYouViewController : UIViewController {
         self.titleTextLabel.adjustsFontSizeToFitWidth = true
         self.titleTextLabel.numberOfLines = 2
         self.titleTextLabel.textColor = FlatWhite()
-        self.titleTextLabel.textAlignment = .Center
+        self.titleTextLabel.textAlignment = .center
         
         self.view.addSubview(titleTextLabel)
         
         self.titleTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.titleTextLabel.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-        self.titleTextLabel.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
-        self.titleTextLabel.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor, multiplier: 0.75).active = true
-        self.titleTextLabel.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor, multiplier: 0.15).active = true
+        self.titleTextLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.titleTextLabel.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.titleTextLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75).isActive = true
+        self.titleTextLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.15).isActive = true
         
         self.view.addSubview(self.tableView)
         
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.topAnchor.constraintEqualToAnchor(self.titleTextLabel.bottomAnchor).active = true
-        self.tableView.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor).active = true
-        self.tableView.bottomAnchor.constraintEqualToAnchor(self.view.bottomAnchor).active = true
+        self.tableView.topAnchor.constraint(equalTo: self.titleTextLabel.bottomAnchor).isActive = true
+        self.tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
 }
@@ -102,46 +102,45 @@ class WhichInterestsYouViewController : UIViewController {
  */
 extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewDataSource, SubmitTableViewCellDelegate {
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == self.interestsArray.count { // add submit button
             
-            let cell = self.tableView.dequeueReusableCellWithIdentifier(submitIdentifier, forIndexPath: indexPath) as! SubmitTableViewCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: submitIdentifier, for: indexPath) as! SubmitTableViewCell
             
             cell.delegate = self
             return cell
         }
         else {
             
-            let cell = self.tableView.dequeueReusableCellWithIdentifier(interestsIdentifier, forIndexPath: indexPath) as! InterestsTableViewCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: interestsIdentifier, for: indexPath) as! InterestsTableViewCell
             
-            cell.button.buttonColor = FlatRed()
-            cell.button.shadowColor = FlatRedDark()
+            cell.button.colors = .init(button: FlatRed(), shadow: FlatRedDark())
             
             cell.button.titleLabel?.textColor = FlatWhite()
             cell.button.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
-            cell.button.setTitle(self.interestsArray[indexPath.row], forState: .Normal)
+            cell.button.setTitle(self.interestsArray[indexPath.row], for: .normal)
             return cell
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.interestsArray.count + 1
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.tableView.bounds.size.height / CGFloat(self.interestsArray.count + 1)
     }
     
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
-    func submitTapped(sender: AnyObject) {
+    func submitTapped(_ sender: AnyObject) {
         var numChecked = 0
         var i = 0
         while i < self.interestsArray.count {
-            if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? InterestsTableViewCell  {
+            if let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? InterestsTableViewCell  {
                 if cell.isChecked {
                     numChecked += 1
                 }
@@ -152,13 +151,13 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         if numChecked == 0 {
             
             let alert = Constants.displayAlertWithTryAgain("Oops!", message: "Please select at least one interest!")
-            self.showViewController(alert, sender: "Try Again")
+            self.show(alert, sender: "Try Again")
             return
         }
         
         print("Submit tapped in Interests!")
         
-        var params : [String : AnyObject] = [:]
+        var params : [String : Any] = [:]
         
         if let currentPanda = DataStore.store.tpUser {
             
@@ -175,13 +174,13 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let tabBarVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController")
+        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarController")
         
         if let youVC = tabBarVC.childViewControllers.first as? YouViewController {
             youVC.params = params
         }
         
-        self.showViewController(tabBarVC, sender: sender)
+        self.show(tabBarVC, sender: sender)
         
     }
     
@@ -191,7 +190,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         
         var i = 0
         while i < self.interestsArray.count {
-            if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? InterestsTableViewCell  {
+            if let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? InterestsTableViewCell  {
                 if cell.isChecked {
                     currentPanda.interestsAnswer.append(self.interestsArray[i])
                 }
@@ -252,7 +251,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         return interestsCodes
     }
     
-    func parseSOCCodes(interestsCodes : [[Int]]) -> [Int] {
+    func parseSOCCodes(_ interestsCodes : [[Int]]) -> [Int] {
         
         let numberOfCodesPerInterest = self.maxCodes/interestsCodes.count
         
@@ -261,7 +260,7 @@ extension WhichInterestsYouViewController : UITableViewDelegate, UITableViewData
         for interests in interestsCodes {
             
             if interests.count <= numberOfCodesPerInterest {
-                codes.appendContentsOf(interests)
+                codes.append(contentsOf: interests)
             }
             else {
                 var i = 0

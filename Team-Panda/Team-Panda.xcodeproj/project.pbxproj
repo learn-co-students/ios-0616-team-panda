@@ -12,7 +12,6 @@
 		1BCB69321D5A28BE00160B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */; };
 		1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */; };
 		1BCB69381D5BCAEB00160B5A /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */; };
-		32D9D74CF88456BF2D6B6D55 /* Pods_Team_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */; };
 		47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6E0B558D1D678795006BE41A /* ComparingCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B558C1D678795006BE41A /* ComparingCodes.swift */; };
 		6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */; };
@@ -23,8 +22,6 @@
 		6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB041D54125E00C12B50 /* Main.storyboard */; };
 		6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB071D54125E00C12B50 /* Assets.xcassets */; };
 		6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E58FB091D54125E00C12B50 /* LaunchScreen.storyboard */; };
-		6E58FB161D54125E00C12B50 /* Team_PandaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB151D54125E00C12B50 /* Team_PandaTests.swift */; };
-		6E58FB211D54125E00C12B50 /* Team_PandaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB201D54125E00C12B50 /* Team_PandaUITests.swift */; };
 		6E5EE80C1D54EEE0002671D6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */; };
 		6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */; };
 		6E69D1551D6CA297006E1AB8 /* YouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E69D1541D6CA297006E1AB8 /* YouViewController.swift */; };
@@ -46,35 +43,14 @@
 		7B90EBB91D592DFB00EE475A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B90EBB81D592DFB00EE475A /* Constants.swift */; };
 		7BC6A0081D5B99B000BFD0D3 /* TPUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */; };
 		7BC6A00A1D5BABBF00BFD0D3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6A0091D5BABBF00BFD0D3 /* DataStore.swift */; };
-		7C53B52CD0879530CFD1A48B /* Pods_Team_PandaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		6E58FB121D54125E00C12B50 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E58FAF51D54125E00C12B50 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6E58FAFC1D54125E00C12B50;
-			remoteInfo = "Team-Panda";
-		};
-		6E58FB1D1D54125E00C12B50 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E58FAF51D54125E00C12B50 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6E58FAFC1D54125E00C12B50;
-			remoteInfo = "Team-Panda";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_PandaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.release.xcconfig"; sourceTree = "<group>"; };
 		1B41B5091D639A7000A0D0B3 /* stately.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = stately.ttf; sourceTree = "<group>"; };
 		1BA426391D6DEADA007733A9 /* sparkTop2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sparkTop2.gif; sourceTree = "<group>"; };
 		1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		1BCB69371D5BCAEB00160B5A /* JobDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
-		203FBBCB38E8EDF5550BEE4A /* Pods-Team-PandaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2103E03BCEF96F99773FC7BE /* Pods-Team-Panda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.debug.xcconfig"; sourceTree = "<group>"; };
 		28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-Panda.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda.release.xcconfig"; sourceTree = "<group>"; };
 		59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_Panda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,12 +65,6 @@
 		6E58FB071D54125E00C12B50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E58FB0A1D54125E00C12B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E58FB0C1D54125E00C12B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E58FB111D54125E00C12B50 /* Team-PandaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Team-PandaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E58FB151D54125E00C12B50 /* Team_PandaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team_PandaTests.swift; sourceTree = "<group>"; };
-		6E58FB171D54125E00C12B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E58FB1C1D54125E00C12B50 /* Team-PandaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Team-PandaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E58FB201D54125E00C12B50 /* Team_PandaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team_PandaUITests.swift; sourceTree = "<group>"; };
-		6E58FB221D54125E00C12B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E5EE80B1D54EEE0002671D6 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6E69D1541D6CA297006E1AB8 /* YouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouViewController.swift; sourceTree = "<group>"; };
@@ -120,9 +90,6 @@
 		7B90EBB81D592DFB00EE475A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPUser.swift; sourceTree = "<group>"; };
 		7BC6A0091D5BABBF00BFD0D3 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_PandaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B240344A2319D1380871730E /* Pods-Team-PandaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaUITests/Pods-Team-PandaUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		BF83AE6FE11D78D52A3B8046 /* Pods-Team-PandaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Team-PandaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Team-PandaUITests/Pods-Team-PandaUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,22 +101,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6E58FB0E1D54125E00C12B50 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7C53B52CD0879530CFD1A48B /* Pods_Team_PandaTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E58FB191D54125E00C12B50 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				32D9D74CF88456BF2D6B6D55 /* Pods_Team_PandaUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -157,8 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				6E58FAFF1D54125E00C12B50 /* Team-Panda */,
-				6E58FB141D54125E00C12B50 /* Team-PandaTests */,
-				6E58FB1F1D54125E00C12B50 /* Team-PandaUITests */,
 				6E58FAFE1D54125E00C12B50 /* Products */,
 				97C8EAEA84023D13C90D80D3 /* Pods */,
 				AD6054B430980E2973EA8543 /* Frameworks */,
@@ -169,8 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				6E58FAFD1D54125E00C12B50 /* CareerSpark.app */,
-				6E58FB111D54125E00C12B50 /* Team-PandaTests.xctest */,
-				6E58FB1C1D54125E00C12B50 /* Team-PandaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,24 +137,6 @@
 				6EDE5EE01D6F64880069B16A /* GoogleService-Info.plist */,
 			);
 			path = "Team-Panda";
-			sourceTree = "<group>";
-		};
-		6E58FB141D54125E00C12B50 /* Team-PandaTests */ = {
-			isa = PBXGroup;
-			children = (
-				6E58FB151D54125E00C12B50 /* Team_PandaTests.swift */,
-				6E58FB171D54125E00C12B50 /* Info.plist */,
-			);
-			path = "Team-PandaTests";
-			sourceTree = "<group>";
-		};
-		6E58FB1F1D54125E00C12B50 /* Team-PandaUITests */ = {
-			isa = PBXGroup;
-			children = (
-				6E58FB201D54125E00C12B50 /* Team_PandaUITests.swift */,
-				6E58FB221D54125E00C12B50 /* Info.plist */,
-			);
-			path = "Team-PandaUITests";
 			sourceTree = "<group>";
 		};
 		7BADA28E1D5D2BAD00D7A9F3 /* Settings */ = {
@@ -290,10 +219,6 @@
 			children = (
 				2103E03BCEF96F99773FC7BE /* Pods-Team-Panda.debug.xcconfig */,
 				28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */,
-				203FBBCB38E8EDF5550BEE4A /* Pods-Team-PandaTests.debug.xcconfig */,
-				0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */,
-				B240344A2319D1380871730E /* Pods-Team-PandaUITests.debug.xcconfig */,
-				BF83AE6FE11D78D52A3B8046 /* Pods-Team-PandaUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -305,8 +230,6 @@
 				6EE4CAD21D577C3D0092784D /* FBSDKLoginKit.framework */,
 				6EE4CAD31D577C3D0092784D /* FBSDKShareKit.framework */,
 				59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */,
-				0590949CBB6531296AB9A313 /* Pods_Team_PandaTests.framework */,
-				8D472DF7033BC74C8D1BAA03 /* Pods_Team_PandaUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -334,47 +257,6 @@
 			productReference = 6E58FAFD1D54125E00C12B50 /* CareerSpark.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6E58FB101D54125E00C12B50 /* Team-PandaTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6E58FB281D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-PandaTests" */;
-			buildPhases = (
-				847B16ADD55BD87D2FD41CB0 /* [CP] Check Pods Manifest.lock */,
-				6E58FB0D1D54125E00C12B50 /* Sources */,
-				6E58FB0E1D54125E00C12B50 /* Frameworks */,
-				6E58FB0F1D54125E00C12B50 /* Resources */,
-				4801C32E0C20C2418FFA2CE8 /* [CP] Embed Pods Frameworks */,
-				119EAAC7763666E73AB1554A /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6E58FB131D54125E00C12B50 /* PBXTargetDependency */,
-			);
-			name = "Team-PandaTests";
-			productName = "Team-PandaTests";
-			productReference = 6E58FB111D54125E00C12B50 /* Team-PandaTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		6E58FB1B1D54125E00C12B50 /* Team-PandaUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6E58FB2B1D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-PandaUITests" */;
-			buildPhases = (
-				62D2A039A53BC724B41B3855 /* [CP] Check Pods Manifest.lock */,
-				6E58FB181D54125E00C12B50 /* Sources */,
-				6E58FB191D54125E00C12B50 /* Frameworks */,
-				6E58FB1A1D54125E00C12B50 /* Resources */,
-				DFF17414EFC2715E3AB354CF /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6E58FB1E1D54125E00C12B50 /* PBXTargetDependency */,
-			);
-			name = "Team-PandaUITests";
-			productName = "Team-PandaUITests";
-			productReference = 6E58FB1C1D54125E00C12B50 /* Team-PandaUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -382,20 +264,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Flatiron School";
 				TargetAttributes = {
 					6E58FAFC1D54125E00C12B50 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = KXY9EDFTF5;
-					};
-					6E58FB101D54125E00C12B50 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 6E58FAFC1D54125E00C12B50;
-					};
-					6E58FB1B1D54125E00C12B50 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 6E58FAFC1D54125E00C12B50;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -413,8 +288,6 @@
 			projectRoot = "";
 			targets = (
 				6E58FAFC1D54125E00C12B50 /* Team-Panda */,
-				6E58FB101D54125E00C12B50 /* Team-PandaTests */,
-				6E58FB1B1D54125E00C12B50 /* Team-PandaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -434,53 +307,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6E58FB0F1D54125E00C12B50 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E58FB1A1D54125E00C12B50 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		119EAAC7763666E73AB1554A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4801C32E0C20C2418FFA2CE8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-PandaTests/Pods-Team-PandaTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		59C1794E5889C4FC54E4111B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -494,21 +323,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		62D2A039A53BC724B41B3855 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7C361CD390836583F3D158DB /* [CP] Copy Pods Resources */ = {
@@ -526,21 +340,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		847B16ADD55BD87D2FD41CB0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		90675D1DD7CD33060B3DC066 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,22 +352,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		DFF17414EFC2715E3AB354CF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Team-PandaUITests/Pods-Team-PandaUITests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -609,36 +393,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6E58FB0D1D54125E00C12B50 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6E58FB161D54125E00C12B50 /* Team_PandaTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E58FB181D54125E00C12B50 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6E58FB211D54125E00C12B50 /* Team_PandaUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		6E58FB131D54125E00C12B50 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6E58FAFC1D54125E00C12B50 /* Team-Panda */;
-			targetProxy = 6E58FB121D54125E00C12B50 /* PBXContainerItemProxy */;
-		};
-		6E58FB1E1D54125E00C12B50 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6E58FAFC1D54125E00C12B50 /* Team-Panda */;
-			targetProxy = 6E58FB1D1D54125E00C12B50 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6E58FB041D54125E00C12B50 /* Main.storyboard */ = {
@@ -674,8 +429,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
@@ -723,8 +480,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
@@ -746,6 +505,7 @@
 				PRODUCT_NAME = CareerSpark;
 				PROVISIONING_PROFILE = "a40673a9-36dd-4ab4-9eaa-dcecce964d7d";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -755,6 +515,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2103E03BCEF96F99773FC7BE /* Pods-Team-Panda.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
@@ -764,6 +525,7 @@
 				PRODUCT_NAME = CareerSpark;
 				PROVISIONING_PROFILE = "a40673a9-36dd-4ab4-9eaa-dcecce964d7d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
@@ -773,6 +535,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 28CE1B12A6C959662A96E6F6 /* Pods-Team-Panda.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
@@ -782,58 +545,9 @@
 				PRODUCT_NAME = CareerSpark;
 				PROVISIONING_PROFILE = "a40673a9-36dd-4ab4-9eaa-dcecce964d7d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
-			};
-			name = Release;
-		};
-		6E58FB291D54125E00C12B50 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 203FBBCB38E8EDF5550BEE4A /* Pods-Team-PandaTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Team-PandaTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-PandaTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Team-Panda.app/Team-Panda";
-			};
-			name = Debug;
-		};
-		6E58FB2A1D54125E00C12B50 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0942DD031BA933CD4515BBCC /* Pods-Team-PandaTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Team-PandaTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-PandaTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Team-Panda.app/Team-Panda";
-			};
-			name = Release;
-		};
-		6E58FB2C1D54125E00C12B50 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B240344A2319D1380871730E /* Pods-Team-PandaUITests.debug.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = "Team-PandaUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-PandaUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Team-Panda";
-			};
-			name = Debug;
-		};
-		6E58FB2D1D54125E00C12B50 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF83AE6FE11D78D52A3B8046 /* Pods-Team-PandaUITests.release.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = "Team-PandaUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.com.Team-PandaUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Team-Panda";
 			};
 			name = Release;
 		};
@@ -854,24 +568,6 @@
 			buildConfigurations = (
 				6E58FB261D54125E00C12B50 /* Debug */,
 				6E58FB271D54125E00C12B50 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6E58FB281D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-PandaTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6E58FB291D54125E00C12B50 /* Debug */,
-				6E58FB2A1D54125E00C12B50 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6E58FB2B1D54125E00C12B50 /* Build configuration list for PBXNativeTarget "Team-PandaUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6E58FB2C1D54125E00C12B50 /* Debug */,
-				6E58FB2D1D54125E00C12B50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

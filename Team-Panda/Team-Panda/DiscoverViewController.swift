@@ -16,7 +16,7 @@ class DiscoverViewController: UIViewController {
     
     let store = DataStore.store
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, detail : Bool) {
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, detail : Bool) {
         super.init(nibName: nil, bundle: nil)
         self.detail = detail
     }
@@ -32,13 +32,13 @@ class DiscoverViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.backgroundColor = UIColor.flatForestGreenColor()
-        self.tableView.registerClass(DiscoverTableViewCell.self, forCellReuseIdentifier: "discoverCell")
+        self.tableView.backgroundColor = UIColor.flatForestGreen()
+        self.tableView.register(DiscoverTableViewCell.self, forCellReuseIdentifier: "discoverCell")
         
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
         self.navigationController?.hidesBarsOnSwipe = false
-        self.navigationController?.navigationBar.opaque = false
+        self.navigationController?.navigationBar.isOpaque = false
         self.navigationController?.navigationBar.topItem?.title = "Discover"
         // Do any additional setup after loading the view.
         self.createViews()
@@ -53,19 +53,19 @@ class DiscoverViewController: UIViewController {
         
         self.view.addSubview(self.tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.heightAnchor.constraintEqualToAnchor(self.view.heightAnchor).active = true
-        self.tableView.widthAnchor.constraintEqualToAnchor(self.view.widthAnchor).active = true
-        self.tableView.centerXAnchor.constraintEqualToAnchor(self.view.centerXAnchor).active = true
-        self.tableView.centerYAnchor.constraintEqualToAnchor(self.view.centerYAnchor).active = true
+        self.tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+        self.tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        self.tableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.tableView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
     
 }
 
 extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("discoverCell", forIndexPath: indexPath) as! DiscoverTableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "discoverCell", for: indexPath) as! DiscoverTableViewCell
         
         let jobSection =  store.jobDiscoverData[indexPath.section]
         let occupationTitle = jobSection[indexPath.row].occupation
@@ -76,19 +76,19 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.jobDiscoverData[section].count
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return store.sectionHeaders.count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return majorSOCcodes[store.sectionHeaders[section]]
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
@@ -104,14 +104,14 @@ extension DiscoverViewController : UITableViewDelegate, UITableViewDataSource {
             
             if let error = error {
                 
-                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .cancel, actionHandler: {})
+                self.present(alert, animated: true, completion: nil)
                 
             } else {
                 
                 jobDetail.job = job
-                self.navigationController?.showViewController(jobDetail, sender: "")
-                self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                self.navigationController?.show(jobDetail, sender: "")
+                self.tableView.deselectRow(at: indexPath, animated: false)
             }
         }
     }

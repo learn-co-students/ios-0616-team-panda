@@ -9,14 +9,14 @@
 import Foundation
 import SwiftFontName
 import SwiftSpinner
-import Firebase
+import FirebaseAuth
 import Font_Awesome_Swift
 
 class Constants {
     
-    class func displayAlertWith(title: String, message: String, actionLabel : String, style : UIAlertActionStyle, actionHandler: () -> ()) -> UIAlertController {
-       
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    class func displayAlertWith(_ title: String, message: String, actionLabel : String, style : UIAlertActionStyle, actionHandler: @escaping () -> ()) -> UIAlertController {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let action = UIAlertAction(title: actionLabel, style: style) { (action) in
             actionHandler()
@@ -28,46 +28,46 @@ class Constants {
         
     }
     
-    class func displayAlertWithTryAgain(title: String, message: String) -> UIAlertController {
+    class func displayAlertWithTryAgain(_ title: String, message: String) -> UIAlertController {
         
-        let userAlertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let newUserCancelAction = UIAlertAction(title: "Try Again", style: .Cancel, handler: nil)
+        let userAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let newUserCancelAction = UIAlertAction(title: "Try Again", style: .cancel, handler: nil)
         userAlertController.addAction(newUserCancelAction)
         return userAlertController
     }
     
-    class func displayAlertWithVerify(title : String, message : String) -> UIAlertController {
+    class func displayAlertWithVerify(_ title : String, message : String) -> UIAlertController {
         
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alertController.addTextFieldWithConfigurationHandler { (email) in
+        alertController.addTextField { (email) in
             email.placeholder = "Current Email Address"
         }
         
-        alertController.addTextFieldWithConfigurationHandler { (password) in
+        alertController.addTextField { (password) in
             password.placeholder = "Password"
-            password.secureTextEntry = true
+            password.isSecureTextEntry = true
         }
         
-        let logInAction = UIAlertAction(title: "Log In", style: .Default) { (action) in
+        let logInAction = UIAlertAction(title: "Log In", style: .default) { (action) in
             
             SwiftSpinner.show("Authenticating")
             
-            FIRAuth.auth()?.signInWithEmail(alertController.textFields![0].text!, password: alertController.textFields![1].text!, completion: { (user, error) in
+            FIRAuth.auth()?.signIn(withEmail: alertController.textFields![0].text!, password: alertController.textFields![1].text!, completion: { (user, error) in
                 
                 if let error = error {
-                    SwiftSpinner.showWithDuration(2.0, title: "Couldn't Log In", animated: false)
+                    SwiftSpinner.show(duration: 2.0, title: "Couldn't Log In")
                     print(error.localizedDescription)
                 }
                 else {
-                    SwiftSpinner.showWithDuration(2.0, title: "Logged In!\nPlease tap save again.", animated: false)
+                    SwiftSpinner.show(duration: 2.0, title: "Logged In!\nPlease tap save again.")
                     print("Succesfully logged in. Should update profile info.")
                 }
             })
             
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alertController.addAction(logInAction)
         alertController.addAction(cancelAction)
@@ -76,15 +76,15 @@ class Constants {
         
     }
     
-    class func displayAlertWithContinueAndCancel(title : String, message : String, continueHandler : ()->(), cancelHandler : ()->()) -> UIAlertController{
+    class func displayAlertWithContinueAndCancel(_ title : String, message : String, continueHandler : @escaping ()->(), cancelHandler : @escaping ()->()) -> UIAlertController{
         
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let continueAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+        let continueAction = UIAlertAction(title: "Continue", style: .default) { (action) in
             continueHandler()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             cancelHandler()
         }
         
@@ -100,7 +100,7 @@ extension UIColor {
     class func systemBlue() -> UIColor {
         return UIColor(colorLiteralRed: 14.0/255, green: 122.0/255.0, blue: 254.0/255.0, alpha: 1.0)
     }
-
+    
     
 }
 
@@ -119,7 +119,7 @@ extension UIFont {
 }
 
 let checkMarkImage = UIImage(named: "checkmark")!
-let faveStar = UIImage(icon: FAType.FAStar, size: CGSizeMake(25.0, 25.0))
+let faveStar = UIImage(icon: FAType.FAStar, size: CGSize(width: 25.0, height: 25.0))
 
 
 let databaseRefURL = "https://career-options.firebaseio.com/"

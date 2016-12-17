@@ -26,25 +26,25 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         self.favoritesTableView.dataSource = self
         createTableViewConstraints()
         self.favoritesTableView.reloadData()
-        self.favoritesTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "basicCell")
+        self.favoritesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "basicCell")
         
         self.navigationController?.hidesBarsOnSwipe = false
-        self.navigationController?.navigationBar.opaque = false
+        self.navigationController?.navigationBar.isOpaque = false
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.favoritesTableView.reloadData()
         self.navigationController?.navigationBar.topItem?.title = "Favorites"
         
         if store.tpUser!.uid == Secrets.genericUserUID {
-            let alert = Constants.displayAlertWith("Oops!", message: "Viewing favorited jobs is only for logged in users. Go to Settings > Log Out and sign up to unlock full access to CareerSpark. It's free!", actionLabel: "Got it!", style: .Default, actionHandler: { })
+            let alert = Constants.displayAlertWith("Oops!", message: "Viewing favorited jobs is only for logged in users. Go to Settings > Log Out and sign up to unlock full access to CareerSpark. It's free!", actionLabel: "Got it!", style: .default, actionHandler: { })
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let favorites = store.tpUser!.favoritesArray
         
@@ -55,21 +55,21 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         return store.tpUser!.favoritesArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell1 = UITableViewCell(style: .Default, reuseIdentifier: "basicCell")
+        let cell1 = UITableViewCell(style: .default, reuseIdentifier: "basicCell")
         
         cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
         cell1.textLabel?.font = UIFont.pandaFontLight(withSize: 16)
         cell1.textLabel?.adjustsFontSizeToFitWidth = false
-        cell1.backgroundColor = UIColor.flatYellowColor()
+        cell1.backgroundColor = UIColor.flatYellow()
         
         return cell1
     }
     
-    func getJobNameForSOCCode(SOCCode: String) -> String {
+    func getJobNameForSOCCode(_ SOCCode: String) -> String {
         
-        let prefix = SOCCode.substringToIndex(SOCCode.startIndex.advancedBy(2)) + "0000"
+        let prefix = SOCCode.substring(to: SOCCode.characters.index(SOCCode.startIndex, offsetBy: 2)) + "0000"
         var socJobName = String()
         
         if let unwrappedSocName = allSOCCodes[prefix]![SOCCode] {
@@ -78,7 +78,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         return socJobName
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
         
@@ -94,57 +94,57 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             
             if let error = error {
                 
-                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .Cancel, actionHandler: {})
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = Constants.displayAlertWith("Network Error", message: error.localizedDescription, actionLabel: "Try Again", style: .cancel, actionHandler: {})
+                self.present(alert, animated: true, completion: nil)
             } else {
                 
                 jobDetail.job = job
-                self.navigationController?.showViewController(jobDetail, sender: "")
-                self.favoritesTableView.deselectRowAtIndexPath(indexPath, animated: false)
+                self.navigationController?.show(jobDetail, sender: "")
+                self.favoritesTableView.deselectRow(at: indexPath, animated: false)
             }
         }
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    @IBAction func editButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         
-        if self.favoritesTableView.editing {
+        if self.favoritesTableView.isEditing {
             self.favoritesTableView.setEditing(false, animated: true)
         } else {
             self.favoritesTableView.setEditing(true, animated: true)
         }
     }
     
-    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.Delete
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.delete
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            let favoriteToDelete = self.store.tpUser?.favoritesArray.removeAtIndex(indexPath.row)
-            self.favoritesTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let _ = self.store.tpUser?.favoritesArray.remove(at: indexPath.row)
+            self.favoritesTableView.deleteRows(at: [indexPath], with: .fade)
             store.tpUser?.updateDatabase()
             self.favoritesTableView.reloadData()
         }
-        else if editingStyle == .Insert {
+        else if editingStyle == .insert {
         }
     }
     
     func createTableViewConstraints() {
         self.view.addSubview(self.favoritesTableView)
-        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(self.editButtonTapped))
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.editButtonTapped))
         self.navigationItem.rightBarButtonItem = editButton
-        self.favoritesTableView.snp_makeConstraints { (make) in
-            make.center.equalTo(self.view.snp_center)
-            make.bottom.equalTo(self.view.snp_bottom)
-            make.height.equalTo(self.view.snp_height)
-            make.width.equalTo(self.view.snp_width)
+        self.favoritesTableView.snp.makeConstraints { (make) in
+            make.center.equalTo(self.view.snp.center)
+            make.bottom.equalTo(self.view.snp.bottom)
+            make.height.equalTo(self.view.snp.height)
+            make.width.equalTo(self.view.snp.width)
         }
         
-        self.favoritesTableView.backgroundColor = UIColor.flatYellowColor()
+        self.favoritesTableView.backgroundColor = UIColor.flatYellow()
     }
 }
 

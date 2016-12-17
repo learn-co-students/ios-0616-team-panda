@@ -18,14 +18,14 @@ class DataStore {
     var tpUser : TPUser?
     lazy var sectionHeaders : [String] = ["110000", "130000", "150000", "170000", "190000", "210000", "230000", "250000", "270000", "290000", "310000", "350000", "370000", "450000", "470000", "490000", "510000", "530000"] // "330000", "390000", "410000", "430000"
     
-    private init() { }
+    fileprivate init() { }
     
-    func getMultipleOccupationsWithCompletion(params : [String : AnyObject], completion: (NSError?) -> ()) {
+    func getMultipleOccupationsWithCompletion(_ params : [String : Any], completion: @escaping (Error?) -> ()) {
         
         self.careerResultsArray.removeAll()
         self.jobsResultsArray.removeAll()
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
+        BLSAPIClient.getMultipleOccupationsWithCompletion(params: params) { (careerResults, error) in
             
             if let error = error {
                 
@@ -35,7 +35,7 @@ class DataStore {
                 
                 guard
                     let resultsValue = careerResults["Results"] as? NSDictionary,
-                    let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                    let seriesValue = resultsValue["series"] as? [[String : Any]] else {
                         print("There was a problem getting the seriesValue from the DataStore.")
                         let error = NSError(domain: "Connection Failed", code: 9000, userInfo: nil)
                         completion(error)
@@ -58,9 +58,9 @@ class DataStore {
         }
     }
     
-    func getSingleOccupationWithCompletion(params : [String : AnyObject], completion: (Job?, NSError?) -> ()) {
+    func getSingleOccupationWithCompletion(_ params : [String : Any], completion: @escaping (Job?, Error?) -> ()) {
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
+        BLSAPIClient.getMultipleOccupationsWithCompletion(params: params) { (careerResults, error) in
             
             if let error = error {
                 
@@ -70,7 +70,7 @@ class DataStore {
                 
                 guard
                     let resultsValue = careerResults["Results"] as? NSDictionary,
-                    let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                    let seriesValue = resultsValue["series"] as? [[String : Any]] else {
                         return
                 }
                 completion(Job(withDictionary: seriesValue.first!), nil)
@@ -78,13 +78,13 @@ class DataStore {
         }
     }
     
-    func getLocationQuotientforSOCCodeWithCompletion(SOCcode : String, completion : ([String : Double]?, NSError?) -> ()) {
+    func getLocationQuotientforSOCCodeWithCompletion(_ SOCcode : String, completion : @escaping ([String : Double]?, Error?) -> ()) {
         
         var lqByState : [String : Double] = [:]
         
         let stateParams = DataSeries.createStateSeriesIDsWith(SOCcode, withDataType: DataSeries.locationQuotient)
         
-        BLSAPIClient.getLocationQuotientforJobWithCompletion(stateParams) { (lqResults, error) in
+        BLSAPIClient.getLocationQuotientforJobWithCompletion(params: stateParams) { (lqResults, error) in
             
             if let error = error {
                 
@@ -93,7 +93,7 @@ class DataStore {
             } else if let lqResults = lqResults {
                 guard
                     let resultsValue = lqResults["Results"] as? NSDictionary,
-                    let seriesValue = resultsValue["series"] as? [[String : AnyObject]] else {
+                    let seriesValue = resultsValue["series"] as? [[String : Any]] else {
                         let error = NSError(domain: "Network Error", code: 9000, userInfo: nil)
                         completion(nil, error)
                         return
@@ -104,7 +104,7 @@ class DataStore {
                     guard
                         let stateSeriesInfo = state["catalog"] as? NSDictionary,
                         let stateName = stateSeriesInfo["area"] as? String,
-                        let stateData = state["data"] as? [[String : AnyObject]],
+                        let stateData = state["data"] as? [[String : Any]],
                         let lqValue = stateData[0]["value"] as? String
                         else {
                             let error = NSError(domain: "No Location Quotient", code: 9999, userInfo: nil)

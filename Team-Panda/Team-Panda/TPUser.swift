@@ -21,7 +21,7 @@ class TPUser {
     
     var socCodes : [Int]
     
-    var dictionary : [String : AnyObject] {
+    var dictionary : [String : Any] {
         return ["email"             : self.email,
                 "tell us"           : self.tellUsAnswer,
                 "would you rather"  : self.wouldYouRatherAnswer,
@@ -44,7 +44,7 @@ class TPUser {
     
     func updateDatabase() {
         
-        let ref = FIRDatabase.database().referenceFromURL(databaseRefURL)
+        let ref = FIRDatabase.database().reference(fromURL: databaseRefURL)
         
         ref.child("users/\(self.uid)").updateChildValues(self.dictionary) { (error, dbRef) in
             if let error = error {
@@ -58,7 +58,7 @@ class TPUser {
         DataStore.store.tpUser = self
     }
     
-    func updateUserProfile(withEmail newEmail : String, completion: (UIAlertController, String)->()) {
+    func updateUserProfile(withEmail newEmail : String, completion: @escaping (UIAlertController, String)->()) {
         
         guard let user = FIRAuth.auth()?.currentUser else {fatalError("Couldn't get current user.") }
         
@@ -76,7 +76,7 @@ class TPUser {
                 
             }
             else {
-                let alert = Constants.displayAlertWith("Success!", message: "Your email was saved as \(self.email)", actionLabel: "Done", style: .Default, actionHandler: { })
+                let alert = Constants.displayAlertWith("Success!", message: "Your email was saved as \(self.email)", actionLabel: "Done", style: .default, actionHandler: { })
                 
                 self.updateDatabase()
                 
@@ -85,7 +85,7 @@ class TPUser {
         }
     }
     
-    class func userFromDictionary(dictionary : [String : AnyObject], uid : String) -> TPUser? {
+    class func userFromDictionary(_ dictionary : [String : Any], uid : String) -> TPUser? {
         
         let email = dictionary["email"] as? String
         
@@ -117,32 +117,32 @@ class TPUser {
         }
     }
     
-    class func checkAndRemoveEmptyStringFromFirebaseArray(array: [String]) -> [String] {
+    class func checkAndRemoveEmptyStringFromFirebaseArray(_ array: [String]) -> [String] {
         
         var favoritesArray2 = array
         for code in favoritesArray2 {
             if code == "" {
-                let indexOfCode = favoritesArray2.indexOf(code)
+                let indexOfCode = favoritesArray2.index(of: code)
                 
                 if let index = indexOfCode {
-                    favoritesArray2.removeAtIndex(index)
+                    favoritesArray2.remove(at: index)
                 }
             }
         }
         return favoritesArray2
     }
     
-    class func getUserFromFirebase(uid : String, completion: (TPUser?)->()) {
+    class func getUserFromFirebase(_ uid : String, completion: @escaping (TPUser?)->()) {
         
         if uid == Secrets.genericUserUID {
             completion(TPUser(withEmail: Secrets.genericUserEmail, uid: Secrets.genericUserUID))
         }
         else {
-            let ref = FIRDatabase.database().referenceFromURL(databaseRefURL)
+            let ref = FIRDatabase.database().reference(fromURL: databaseRefURL)
             
-            ref.child("users/\(uid)").observeSingleEventOfType(.Value, withBlock: { (userSnapshot) in
+            ref.child("users/\(uid)").observeSingleEvent(of: .value, with: { (userSnapshot) in
                 
-                if let userSnapshot = userSnapshot.value as? [String : AnyObject] {
+                if let userSnapshot = userSnapshot.value as? [String : Any] {
                     
                     completion(TPUser.userFromDictionary(userSnapshot, uid: uid))
                     
