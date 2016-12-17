@@ -239,7 +239,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         self.howToBecomeOneView.snp.makeConstraints { (make) in
-//            make.top.equalTo(usaColorMapView.snp_bottomMargin).offset(10)
+//            make.top.equalTo(usaColorMapView.snp.bottom).offset(10)
             make.width.equalTo(self.view.snp.width)
             make.bottom.equalTo(self.scrollView.snp.bottom)
         }
@@ -255,7 +255,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.howToBecomeOneDescription.isScrollEnabled = false
         
         scrollView.snp.makeConstraints { (make) in
-//            make.top.equalTo(self.topLayoutGuide)
             make.top.equalTo(self.view.snp.top)
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -303,7 +302,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
 //            }
 //        }
 //    }
-    
+//    
     func setStylingForViews() {
         
         scrollView.backgroundColor = UIColor.flatWhite()

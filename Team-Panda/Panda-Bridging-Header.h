@@ -8,7 +8,6 @@
 
 #ifndef Panda_Bridging_Header_h
 #define Panda_Bridging_Header_h
-#import <GoogleSignIn/GoogleSignIn.h>
 //#import <USStatesColorMap/USStatesColorMap.h>
 
 #endif /* Panda_Bridging_Header_h */

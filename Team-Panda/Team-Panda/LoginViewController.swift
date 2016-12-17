@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import FBSDKLoginKit
 import SwiftFontName
 import FirebaseAuth
 import FirebaseDatabase
@@ -114,14 +113,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let filePath = Bundle.main.path(forResource: "sparkTop2", ofType: "gif")
         let gif = try? Data(contentsOf: URL(fileURLWithPath: filePath!))
         
-//        self.view.addSubview(webViewBG)
-//        self.webViewBG.translatesAutoresizingMaskIntoConstraints = false
-//        self.webViewBG.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
-//        self.webViewBG.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-//        self.webViewBG.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        self.webViewBG.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.view.addSubview(webViewBG)
+        self.webViewBG.translatesAutoresizingMaskIntoConstraints = false
+        self.webViewBG.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+        self.webViewBG.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        self.webViewBG.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.webViewBG.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
 //        webViewBG.load(gif!, mimeType: "image/gif", textEncodingName: String(), baseURL: URL())
-//        webViewBG.isUserInteractionEnabled = false
+        webViewBG.isUserInteractionEnabled = false
         
         self.view.addSubview(careerSparkLabel)
         self.view.addSubview(careerSparkHeadlineLabel)

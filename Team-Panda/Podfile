@@ -11,8 +11,6 @@ target 'Team-Panda' do
   pod 'SwiftyJSON'
   pod 'SnapKit'
   pod 'SwiftyButton'
-  pod 'FBSDKLoginKit'
-  pod 'Google/SignIn'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'

@@ -7,7 +7,6 @@
     //
     
     import UIKit
-    import FBSDKLoginKit
     import FirebaseAuth
     import Firebase
     
@@ -20,7 +19,7 @@
             // Setting up Firebase
             
             FIRApp.configure()
-        
+            
             return true
         }
         
