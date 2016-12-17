@@ -10,7 +10,7 @@ import Foundation
 
 class DataSeries {
     
-    static var params : [String : Any] = [ "seriesid"          : [""],
+    static var params : [String : Any] =        ["seriesid"          : [""],
                                                  "startyear"         : "2015",
                                                  "endyear"           : "2015",
                                                  "catalog"           : true,
