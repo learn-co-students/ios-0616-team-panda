@@ -8,35 +8,32 @@
 
 import Foundation
 import UIKit
+import CoreText
 
 let statesLetterString = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyI"
+var UpdatesBlock: Void? = nil
 
-private class USStatesColorMap {
+private class USStatesColorMap: UIView {
     
     var controlInitialized: Bool
     var updateMode: Bool
-    let statesFont: UIFont
-    var colors: [String: Any]
-    let statesNames: [String: Any]
-    let statesCodes: [String: String]
+    var statesFont: UIFont
+    var colors: [Any]
+    let statesNames: [String: USStates]
+    let statesCodes: [String: USStates]
     
     init() {
-        
-    }
+          }
     
     convenience init(with frame: CGRect) {
-        if self = super.init(with: frame) {
-            self.init()
-        }
-        return self
+        self.init()
     }
     
-    convenience init(with aDecoder: NSCoder) {
-        if self = super.init(with: aDecoder) {
-            self.init()
-        }
-        return self
+    convenience required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
+    
+
     
     func setColorForAllStates(color: UIColor) {
         colors.removeAll()
@@ -50,7 +47,6 @@ private class USStatesColorMap {
     }
     
     func setColor(forState state: USStates) {
-        assert(color != nil, "Color can't be nil")
         colors.replaceObject(at: state, with: color)
         
         if !updateMode {
@@ -59,16 +55,13 @@ private class USStatesColorMap {
     }
     
     func setColor(byCode stateCode: String) {
-        assert(color != nil, "Color can't be nil")
         colors.replaceObject(at: self.indexForStateCode(stateCode), with: color)
         if !updateMode {
-            self.setNeedsDipslay()
+            self.setNeedsDisplay()
         }
     }
     
     func setColor(byName stateName: String) {
-        
-        assert(color != nil, "Color can't be nil")
         colors.replaceObject(at: self.indexForStateName(stateName), with: color)
         if !updateMode {
             self.setNeedsDisplay()
@@ -76,15 +69,15 @@ private class USStatesColorMap {
     }
     
     func performUpdates(updatesBlock: UpdatesBlock) {
-        self.beginUpdates
+        self.beginUpdates()
         updatesBlock()
-        self.endUpdates
+        self.endUpdates()
     }
 }
 
-private class USStatesColorMap {
+extension USStatesColorMap {
     
-    init() {
+  convenience init() {
         var colors = [String : Any]
         
         for i in 0..<statesLetterString.characters.count {
@@ -147,58 +140,57 @@ private class USStatesColorMap {
                        "Wyoming"              : Wyoming         ,
                        "District of Columbia" : DistrictOfColumbia]
         
-        statesCodes = [
-            "AL": Alabama,
-            "AK": Alaska,
-            "AR": Arkansas,
-            "AZ": Arizona,
-            "CA": California,
-            "CO": Colorado,
-            "CT": Connecticut,
-            "DE": Delaware,
-            "FL": Florida,
-            "GA": Georgia,
-            "HI": Hawaii,
-            "ID": Idaho,
-            "IL": Illinois,
-            "IN": Indiana,
-            "IA": Iowa,
-            "KS": Kansas,
-            "KY": Kentucky,
-            "LA": Louisiana,
-            "ME": Maine,
-            "MD": Maryland,
-            "MA": Massachusetts,
-            "MI": Michigan,
-            "MN": Minnesota,
-            "MS": Mississippi,
-            "MO": Missouri,
-            "MT": Montana,
-            "NE": Nebraska,
-            "NV": Nevada,
-            "NH": NewHampshire,
-            "NJ": NewJersey,
-            "NM": NewMexico,
-            "NY": NewYork,
-            "NC": NorthCarolina,
-            "ND": NorthDakota,
-            "OH": Ohio,
-            "OK": Oklahoma,
-            "OR": Oregon,
-            "PA": Pennsylvania,
-            "RI": RhodeIsland,
-            "SC": SouthCarolina,
-            "SD": SouthDakota,
-            "TN": Tennessee,
-            "TX": Texas,
-            "UT": Utah,
-            "VA": Virginia,
-            "VT": Vermont,
-            "WA": Washington,
-            "WV": WestVirginia,
-            "WI": Wisconsin,
-            "WY": Wyoming,
-            "DC": DistrictOfColumbia
+        statesCodes = ["AL": Alabama        ,
+                       "AK": Alaska         ,
+                       "AR": Arkansas       ,
+                       "AZ": Arizona        ,
+                       "CA": California     ,
+                       "CO": Colorado       ,
+                       "CT": Connecticut    ,
+                       "DE": Delaware       ,
+                       "FL": Florida        ,
+                       "GA": Georgia        ,
+                       "HI": Hawaii         ,
+                       "ID": Idaho          ,
+                       "IL": Illinois       ,
+                       "IN": Indiana        ,
+                       "IA": Iowa           ,
+                       "KS": Kansas         ,
+                       "KY": Kentucky       ,
+                       "LA": Louisiana      ,
+                       "ME": Maine          ,
+                       "MD": Maryland       ,
+                       "MA": Massachusetts  ,
+                       "MI": Michigan       ,
+                       "MN": Minnesota      ,
+                       "MS": Mississippi    ,
+                       "MO": Missouri       ,
+                       "MT": Montana        ,
+                       "NE": Nebraska       ,
+                       "NV": Nevada         ,
+                       "NH": NewHampshire   ,
+                       "NJ": NewJersey      ,
+                       "NM": NewMexico      ,
+                       "NY": NewYork        ,
+                       "NC": NorthCarolina  ,
+                       "ND": NorthDakota    ,
+                       "OH": Ohio           ,
+                       "OK": Oklahoma       ,
+                       "OR": Oregon         ,
+                       "PA": Pennsylvania   ,
+                       "RI": RhodeIsland    ,
+                       "SC": SouthCarolina  ,
+                       "SD": SouthDakota    ,
+                       "TN": Tennessee      ,
+                       "TX": Texas          ,
+                       "UT": Utah           ,
+                       "VA": Virginia       ,
+                       "VT": Vermont        ,
+                       "WA": Washington     ,
+                       "WV": WestVirginia   ,
+                       "WI": Wisconsin      ,
+                       "WY": Wyoming        ,
+                       "DC": DistrictOfColumbia
         ]
         
         controlInitialized = true
@@ -206,35 +198,70 @@ private class USStatesColorMap {
     }
     
     func isStatelyFontRegistered() -> Bool {
-        
+        for font in UIFont.fontNames(forFamilyName: "Stately") {
+            if font == "font3933" {
+                return true
+            }
+        }
+        return false
     }
     
     func registerStatelyFont() {
         
+        let fontDataProvider: CGDataProvider = CGDataProvider(filename: NSUTF8StringEncoding(Bundle.main.path(forResource: "stately", ofType: "ttf")))
+        
+        let statelyFontRef: CGFont = CGFont(fontDataProvider)
+        CGDataProviderReleaseDataCallback(fontDataProvider)
+        
+        let error: CFError? = nil
+        CTFontManagerRegisterGraphicsFont(statelyFontRef, &error)
+        
+        CGDataProviderReleaseDataCallback(statelyFontRef)
+        
+        if error != nil {
+            let err = error as! Error
+            print("There was an error registerStatelyFont: \(err.localizedDescription)")
+        }
+        
     }
     
     func getStatelyFont() -> UIFont {
-        
+        return UIFont(name: "font3933", size: self.bounds.size.width)!
     }
     
     func index(for stateCode: String) -> Int {
+        let stateCodeUpper = stateCode.uppercased()
+        let stateIndex = statesCodes[stateCodeUpper]
         
+        return Int(stateIndex)!
     }
     
     func index(for stateName: String) -> Int {
+        let stateIndex = statesNames[stateName]
         
+        return Int(stateIndex)!
     }
     
     func beginUpdates() {
-        
+        updateMode = true
     }
     
     func endUpdates() {
-        
+        updateMode = false
+        self.setNeedsDisplay()
     }
     
     func drawRect(rect: CGRect) {
-    
+        super.draw(rect)
+        statesFont = getStatelyFont()
+        
+        if controlInitialized {
+            let context: CGContext = UIGraphicsGetCurrentContext()!
+            for i in 0..<statesLetterString.characters.count {
+                CGContext( CGColor(colorSpace: context as! CGColorSpace, components: colors[i] as! UnsafePointer<CGFloat>))
+                (statesLetterString.substring(with: NSMakeRange(i, 1)).draw(atPoint: CGPointZero, withFont: statesFont))
+            }
+        }
     }
- }
+}
 

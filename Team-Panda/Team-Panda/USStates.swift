@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum USStates {
-    case Alabama
+enum USStates: Int {
+    case Alabama = 0
     case Alaska
     case Arkansas
     case Arizona
