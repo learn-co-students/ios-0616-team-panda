@@ -67,7 +67,7 @@ private class USStatesColorMap {
     }
     
     func setColor(byName stateName: String) {
-    
+        
         assert(color != nil, "Color can't be nil")
         colors.replaceObject(at: self.indexForStateName(stateName), with: color)
         if !updateMode {
@@ -146,6 +146,95 @@ private class USStatesColorMap {
                        "Wisconsin"            : Wisconsin       ,
                        "Wyoming"              : Wyoming         ,
                        "District of Columbia" : DistrictOfColumbia]
+        
+        statesCodes = [
+            "AL": Alabama,
+            "AK": Alaska,
+            "AR": Arkansas,
+            "AZ": Arizona,
+            "CA": California,
+            "CO": Colorado,
+            "CT": Connecticut,
+            "DE": Delaware,
+            "FL": Florida,
+            "GA": Georgia,
+            "HI": Hawaii,
+            "ID": Idaho,
+            "IL": Illinois,
+            "IN": Indiana,
+            "IA": Iowa,
+            "KS": Kansas,
+            "KY": Kentucky,
+            "LA": Louisiana,
+            "ME": Maine,
+            "MD": Maryland,
+            "MA": Massachusetts,
+            "MI": Michigan,
+            "MN": Minnesota,
+            "MS": Mississippi,
+            "MO": Missouri,
+            "MT": Montana,
+            "NE": Nebraska,
+            "NV": Nevada,
+            "NH": NewHampshire,
+            "NJ": NewJersey,
+            "NM": NewMexico,
+            "NY": NewYork,
+            "NC": NorthCarolina,
+            "ND": NorthDakota,
+            "OH": Ohio,
+            "OK": Oklahoma,
+            "OR": Oregon,
+            "PA": Pennsylvania,
+            "RI": RhodeIsland,
+            "SC": SouthCarolina,
+            "SD": SouthDakota,
+            "TN": Tennessee,
+            "TX": Texas,
+            "UT": Utah,
+            "VA": Virginia,
+            "VT": Vermont,
+            "WA": Washington,
+            "WV": WestVirginia,
+            "WI": Wisconsin,
+            "WY": Wyoming,
+            "DC": DistrictOfColumbia
+        ]
+        
+        controlInitialized = true
+        self.setNeedsDisplay()
     }
-}
+    
+    func isStatelyFontRegistered() -> Bool {
+        
+    }
+    
+    func registerStatelyFont() {
+        
+    }
+    
+    func getStatelyFont() -> UIFont {
+        
+    }
+    
+    func index(for stateCode: String) -> Int {
+        
+    }
+    
+    func index(for stateName: String) -> Int {
+        
+    }
+    
+    func beginUpdates() {
+        
+    }
+    
+    func endUpdates() {
+        
+    }
+    
+    func drawRect(rect: CGRect) {
+    
+    }
+ }
 
