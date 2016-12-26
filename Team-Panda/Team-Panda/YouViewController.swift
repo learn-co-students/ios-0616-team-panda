@@ -91,7 +91,7 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             print("Current user is nil when loading You from auto login.")
         }
         
-        self.store.getMultipleOccupationsWithCompletion(self.params) { error in
+        self.store.getMultipleOccupationsWithCompletion(self.params) { job, error in
             
             if let error = error {
                 

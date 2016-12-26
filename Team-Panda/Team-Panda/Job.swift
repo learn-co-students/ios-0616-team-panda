@@ -15,7 +15,6 @@ class Job : CustomStringConvertible {
     let annualMeanSalary : String
     let SOCcode : String
     let dataYear : String
-    
     var locationQuotient : [String : Double]
     var jobDescription : String
     var minEduReq : String

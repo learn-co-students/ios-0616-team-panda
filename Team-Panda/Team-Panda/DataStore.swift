@@ -20,16 +20,16 @@ class DataStore {
     
     fileprivate init() { }
     
-    func getMultipleOccupationsWithCompletion(_ params : [String : Any], completion: @escaping (Error?) -> ()) {
+    func getMultipleOccupationsWithCompletion(_ params : [String : Any], completion: @escaping (Job?, Error?) -> ()) {
         
         self.careerResultsArray.removeAll()
         self.jobsResultsArray.removeAll()
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion(params: params) { (careerResults, error) in
+        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
             
             if let error = error {
                 
-                completion(error)
+                completion(nil, error)
                 
             } else if let careerResults = careerResults {
                 
@@ -38,7 +38,7 @@ class DataStore {
                     let seriesValue = resultsValue["series"] as? [[String : Any]] else {
                         print("There was a problem getting the seriesValue from the DataStore.")
                         let error = NSError(domain: "Connection Failed", code: 9000, userInfo: nil)
-                        completion(error)
+                        completion(nil, error)
                         return
                 }
                 
@@ -52,15 +52,15 @@ class DataStore {
                     }
                     self.careerResultsArray.append(careerName)
                     self.jobsResultsArray.append(job)
+                    completion(job, nil)
                 }
-                completion(nil)
             }
         }
     }
     
     func getSingleOccupationWithCompletion(_ params : [String : Any], completion: @escaping (Job?, Error?) -> ()) {
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion(params: params) { (careerResults, error) in
+        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
             
             if let error = error {
                 
@@ -84,7 +84,7 @@ class DataStore {
         
         let stateParams = DataSeries.createStateSeriesIDsWith(SOCcode, withDataType: DataSeries.locationQuotient)
         
-        BLSAPIClient.getLocationQuotientforJobWithCompletion(params: stateParams) { (lqResults, error) in
+        BLSAPIClient.getLocationQuotientforJobWithCompletion(stateParams) { (lqResults, error) in
             
             if let error = error {
                 
