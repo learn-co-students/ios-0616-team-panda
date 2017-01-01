@@ -279,20 +279,31 @@ NSString const *statesLettersString = @"ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmno
 }
 
 - (void)drawRect:(CGRect)rect {
+    
 	[super drawRect:rect];
 	
 	if (_statesFont == nil) {
 		_statesFont = [self getStatelyFont];
 	}
 	
+    NSDictionary *attrsDictionary =
+    
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     _statesFont, NSFontAttributeName,
+     [NSNumber numberWithFloat:1.0], NSBaselineOffsetAttributeName, nil];
+    
 	if (_controlInitialized) {
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		for (int i = 0; i < statesLettersString.length; i++) {
 			CGContextSetFillColorWithColor(context, [_colors[i] CGColor]);
             
-//            [[statesLettersString substringWithRange:NSMakeRange(i, 1)] drawAtPoint:CGPointZero withAttributes:_statesFont];
             
-			[[statesLettersString substringWithRange:NSMakeRange(i, 1)] drawAtPoint:CGPointZero withFont:_statesFont];
+            
+            
+            [[statesLettersString substringWithRange:NSMakeRange(i, 1)] drawAtPoint:CGPointZero withAttributes:attrsDictionary];
+    
+            
+//			[[statesLettersString substringWithRange:NSMakeRange(i, 1)] drawAtPoint:CGPointZero withFont:_statesFont];
 		}
 	}
 }

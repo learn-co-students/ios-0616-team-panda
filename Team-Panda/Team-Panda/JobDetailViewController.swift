@@ -45,9 +45,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         createViews()
         setStylingForViews()
-        
-        self.usaColorMapView.backgroundColor = UIColor.clear
-        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -266,10 +264,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func setLocationQuotientMap(_ dictionary: [String : Double]) {
         
-        
-        //        self.usaColorMapView.backgroundColor = UIColor.clearColor()
         self.usaColorMapView.setColorForAllStates(UIColor.flatGray())
-        
         
         self.usaColorMapView.performUpdates {
             
@@ -370,6 +365,9 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."
         self.lqMapWarningLabel.textAlignment = NSTextAlignment.center
         self.lqMapWarningLabel.adjustsFontSizeToFitWidth = true
+        
+        self.usaColorMapView.backgroundColor = UIColor.clear
+
     }
     
     func setTextForUILabels() {
