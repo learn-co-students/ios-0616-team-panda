@@ -9,7 +9,6 @@ import UIKit
 import ChameleonFramework
 import SnapKit
 import SwiftFontName
-//import USStatesColorMap
 import CoreText
 import Font_Awesome_Swift
 import SwiftSpinner
