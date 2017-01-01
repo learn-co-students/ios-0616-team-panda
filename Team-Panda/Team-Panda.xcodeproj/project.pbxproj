@@ -14,8 +14,8 @@
 		47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6E0B558D1D678795006BE41A /* ComparingCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B558C1D678795006BE41A /* ComparingCodes.swift */; };
 		6E1BA0EE1D5D03D500BE697E /* BLSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */; };
+		6E1CA5451E198426005A8563 /* stately.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E1CA5441E198426005A8563 /* stately.ttf */; };
 		6E2AD2831D6740A30072FA68 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2AD2821D6740A30072FA68 /* FavoritesViewController.swift */; };
-		6E3688421E196D38002BE5CA /* stately.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E3688411E196D38002BE5CA /* stately.ttf */; };
 		6E57F4881D6606C000DF362D /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57F4871D6606C000DF362D /* JSONParser.swift */; };
 		6E57F4941D664FC100DF362D /* Occupation-Dictionary2.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E57F4931D664FC100DF362D /* Occupation-Dictionary2.json */; };
 		6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E58FB001D54125E00C12B50 /* AppDelegate.swift */; };
@@ -60,8 +60,8 @@
 		59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Team_Panda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E0B558C1D678795006BE41A /* ComparingCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparingCodes.swift; sourceTree = "<group>"; };
 		6E1BA0ED1D5D03D500BE697E /* BLSAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLSAPIClient.swift; sourceTree = "<group>"; };
+		6E1CA5441E198426005A8563 /* stately.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = stately.ttf; sourceTree = "<group>"; };
 		6E2AD2821D6740A30072FA68 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		6E3688411E196D38002BE5CA /* stately.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = stately.ttf; path = "Team-Panda/Assets.xcassets/stately.dataset/stately.ttf"; sourceTree = "<group>"; };
 		6E57F4871D6606C000DF362D /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		6E57F4931D664FC100DF362D /* Occupation-Dictionary2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Occupation-Dictionary2.json"; sourceTree = "<group>"; };
 		6E58FAFD1D54125E00C12B50 /* CareerSpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareerSpark.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +120,7 @@
 		6E58FAF41D54125E00C12B50 = {
 			isa = PBXGroup;
 			children = (
-				6E3688411E196D38002BE5CA /* stately.ttf */,
+				6E1CA5441E198426005A8563 /* stately.ttf */,
 				6E58FAFF1D54125E00C12B50 /* Team-Panda */,
 				6E58FAFE1D54125E00C12B50 /* Products */,
 				97C8EAEA84023D13C90D80D3 /* Pods */,
@@ -314,7 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3688421E196D38002BE5CA /* stately.ttf in Resources */,
+				6E1CA5451E198426005A8563 /* stately.ttf in Resources */,
 				6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */,
 				6E57F4941D664FC100DF362D /* Occupation-Dictionary2.json in Resources */,
 				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,
