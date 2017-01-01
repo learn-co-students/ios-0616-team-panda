@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B41B5091D639A7000A0D0B3 /* stately.ttf */; };
 		1BA4263A1D6DEADA007733A9 /* sparkTop2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BA426391D6DEADA007733A9 /* sparkTop2.gif */; };
 		1BCB69321D5A28BE00160B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */; };
 		1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */; };
@@ -27,8 +26,12 @@
 		6E69D1551D6CA297006E1AB8 /* YouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E69D1541D6CA297006E1AB8 /* YouViewController.swift */; };
 		6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */; };
 		6E9E600C1D62720E008AE46F /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9E600B1D62720E008AE46F /* XMLParser.swift */; };
+		6EBE28821E11F3C90092CE61 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBE28811E11F3C90092CE61 /* CoreText.framework */; };
+		6EBE28841E11F3DA0092CE61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBE28831E11F3DA0092CE61 /* CoreGraphics.framework */; };
+		6EBE28861E11F4320092CE61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBE28851E11F4320092CE61 /* Foundation.framework */; };
+		6EBE28881E11F4400092CE61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBE28871E11F4400092CE61 /* UIKit.framework */; };
+		6ED2DE0F1E19624100E492E8 /* USStatesColorMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED2DE0E1E19624100E492E8 /* USStatesColorMap.m */; };
 		6EDE5EE11D6F64880069B16A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EDE5EE01D6F64880069B16A /* GoogleService-Info.plist */; };
-		6EECEFEC1E1097330084FCEC /* USStatesColorMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EECEFEB1E1097330084FCEC /* USStatesColorMap.m */; };
 		7B03EAB61D6F4ADF003B6B84 /* OldCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B03EAB51D6F4ADF003B6B84 /* OldCodes.swift */; };
 		7B06D71C1D6B481C007D6FE6 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B06D71B1D6B481C007D6FE6 /* DiscoverViewController.swift */; };
 		7B06D71E1D6B5149007D6FE6 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B06D71D1D6B5149007D6FE6 /* DiscoverTableViewCell.swift */; };
@@ -47,7 +50,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B41B5091D639A7000A0D0B3 /* stately.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = stately.ttf; sourceTree = "<group>"; };
 		1BA426391D6DEADA007733A9 /* sparkTop2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sparkTop2.gif; sourceTree = "<group>"; };
 		1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -71,11 +73,15 @@
 		6E69D1541D6CA297006E1AB8 /* YouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouViewController.swift; sourceTree = "<group>"; };
 		6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6E9E600B1D62720E008AE46F /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
-		6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Panda-Bridging-Header.h"; path = "../Panda-Bridging-Header.h"; sourceTree = "<group>"; };
+		6EBE28811E11F3C90092CE61 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		6EBE28831E11F3DA0092CE61 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6EBE28851E11F4320092CE61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6EBE28871E11F4400092CE61 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6ED2DE0C1E19624000E492E8 /* Team-Panda-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Team-Panda-Bridging-Header.h"; sourceTree = "<group>"; };
+		6ED2DE0D1E19624100E492E8 /* USStatesColorMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USStatesColorMap.h; sourceTree = "<group>"; };
+		6ED2DE0E1E19624100E492E8 /* USStatesColorMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USStatesColorMap.m; sourceTree = "<group>"; };
+		6ED2DE101E19626700E492E8 /* USStatesColorMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USStatesColorMapHeader.h; sourceTree = "<group>"; };
 		6EDE5EE01D6F64880069B16A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		6EECEFEA1E1097200084FCEC /* USStatesColorMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USStatesColorMap.h; sourceTree = "<group>"; };
-		6EECEFEB1E1097330084FCEC /* USStatesColorMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USStatesColorMap.m; sourceTree = "<group>"; };
-		6EECEFED1E1097400084FCEC /* USStatesColorMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USStatesColorMapHeader.h; sourceTree = "<group>"; };
 		7B03EAB51D6F4ADF003B6B84 /* OldCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldCodes.swift; sourceTree = "<group>"; };
 		7B06D71B1D6B481C007D6FE6 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		7B06D71D1D6B5149007D6FE6 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
@@ -98,6 +104,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EBE28881E11F4400092CE61 /* UIKit.framework in Frameworks */,
+				6EBE28861E11F4320092CE61 /* Foundation.framework in Frameworks */,
+				6EBE28841E11F3DA0092CE61 /* CoreGraphics.framework in Frameworks */,
+				6EBE28821E11F3C90092CE61 /* CoreText.framework in Frameworks */,
 				47DF01FAFC8542ABBF0C3023 /* Pods_Team_Panda.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,11 +140,6 @@
 				7BC289241D5CF36B0066440B /* UI */,
 				7BC289231D5CF3640066440B /* Models */,
 				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
-				6EA860BA1D581B8D00DFD0F7 /* Panda-Bridging-Header.h */,
-				6EECEFED1E1097400084FCEC /* USStatesColorMapHeader.h */,
-				6EECEFEA1E1097200084FCEC /* USStatesColorMap.h */,
-				6EECEFEB1E1097330084FCEC /* USStatesColorMap.m */,
-				1B41B5091D639A7000A0D0B3 /* stately.ttf */,
 				1BA426391D6DEADA007733A9 /* sparkTop2.gif */,
 				6E57F4931D664FC100DF362D /* Occupation-Dictionary2.json */,
 				6E58FB0C1D54125E00C12B50 /* Info.plist */,
@@ -168,6 +173,10 @@
 				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
 				7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */,
 				6E9E600B1D62720E008AE46F /* XMLParser.swift */,
+				6ED2DE101E19626700E492E8 /* USStatesColorMapHeader.h */,
+				6ED2DE0D1E19624100E492E8 /* USStatesColorMap.h */,
+				6ED2DE0E1E19624100E492E8 /* USStatesColorMap.m */,
+				6ED2DE0C1E19624000E492E8 /* Team-Panda-Bridging-Header.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -230,6 +239,10 @@
 		AD6054B430980E2973EA8543 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EBE28871E11F4400092CE61 /* UIKit.framework */,
+				6EBE28851E11F4320092CE61 /* Foundation.framework */,
+				6EBE28831E11F3DA0092CE61 /* CoreGraphics.framework */,
+				6EBE28811E11F3C90092CE61 /* CoreText.framework */,
 				59390617F73B5B591C29E870 /* Pods_Team_Panda.framework */,
 			);
 			name = Frameworks;
@@ -299,7 +312,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E58FB0B1D54125E00C12B50 /* LaunchScreen.storyboard in Resources */,
-				1B41B50A1D639A7000A0D0B3 /* stately.ttf in Resources */,
 				6E57F4941D664FC100DF362D /* Occupation-Dictionary2.json in Resources */,
 				6E58FB081D54125E00C12B50 /* Assets.xcassets in Resources */,
 				6E58FB061D54125E00C12B50 /* Main.storyboard in Resources */,
@@ -386,7 +398,7 @@
 				6E9E600C1D62720E008AE46F /* XMLParser.swift in Sources */,
 				7BC6A0081D5B99B000BFD0D3 /* TPUser.swift in Sources */,
 				6E69D1551D6CA297006E1AB8 /* YouViewController.swift in Sources */,
-				6EECEFEC1E1097330084FCEC /* USStatesColorMap.m in Sources */,
+				6ED2DE0F1E19624100E492E8 /* USStatesColorMap.m in Sources */,
 				7B48980A1D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift in Sources */,
 				7B90EBB71D58D89C00EE475A /* WouldYouRatherViewController.swift in Sources */,
 				7B3CB3601D59400D00A11E7E /* SignUpPageViewController.swift in Sources */,
@@ -519,6 +531,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = "Team-Panda/Info.plist";
@@ -526,7 +539,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-panda";
 				PRODUCT_NAME = CareerSpark;
 				PROVISIONING_PROFILE = "a40673a9-36dd-4ab4-9eaa-dcecce964d7d";
-				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Team-Panda/Team-Panda-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
@@ -539,6 +553,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Flatiron School, Inc (KXY9EDFTF5)";
 				INFOPLIST_FILE = "Team-Panda/Info.plist";
@@ -546,7 +561,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-panda";
 				PRODUCT_NAME = CareerSpark;
 				PROVISIONING_PROFILE = "a40673a9-36dd-4ab4-9eaa-dcecce964d7d";
-				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Team-Panda/Team-Panda-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";

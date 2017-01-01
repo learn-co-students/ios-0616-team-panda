@@ -29,7 +29,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     var salaryDescriptionLabel = UILabel()
     var locationQuotientLabel = UILabel()
     var locationQuotientUnitedStatesMapUIImageView = UIImageView()
-//    var usaColorMapView: USStatesColorMap!
+    var usaColorMapView: USStatesColorMap!
     var howToBecomeOneLabel = UILabel()
     var howToBecomeOneDescription = UITextView()
     var howToBecomeOneView = UIView()
@@ -46,7 +46,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         createViews()
         setStylingForViews()
         
-//        self.usaColorMapView.backgroundColor = UIColor.clear
+        self.usaColorMapView.backgroundColor = UIColor.clear
         
     }
     
@@ -63,17 +63,17 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
                     
                     if let lqDictionaryByState = lqDictionaryByState {
                         
-//                        self.setLocationQuotientMap(lqDictionaryByState)
+                        self.setLocationQuotientMap(lqDictionaryByState)
                         job.locationQuotient = lqDictionaryByState
                         print("Completed.")
                         self.lqMapWarningLabel.isHidden = true
-
+                        
                     }
                     self.activityIndicator.stopAnimating()
                 }
             }
             else {
-//                self.setLocationQuotientMap(job.locationQuotient)
+                self.setLocationQuotientMap(job.locationQuotient)
             }
         }
         SwiftSpinner.hide()
@@ -159,11 +159,11 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(scrollView)
         
         self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-//        self.usaColorMapView = USStatesColorMap(frame: CGRect(x: 0, y: 0, width: self.scrollView.frame.width - 20, height: self.scrollView.frame.width - 20))
-//        self.activityIndicator.frame = CGRect(x: 0, y: 0, width: self.usaColorMapView.frame.width, height: self.usaColorMapView.frame.height)
+        self.usaColorMapView = USStatesColorMap(frame: CGRect(x: 0, y: 0, width: self.scrollView.frame.width - 20, height: self.scrollView.frame.width - 20))
+        self.activityIndicator.frame = CGRect(x: 0, y: 0, width: self.usaColorMapView.frame.width, height: self.usaColorMapView.frame.height)
         
-//        scrollView.addSubview(self.usaColorMapView)
-//        self.usaColorMapView.addSubview(self.activityIndicator)
+        scrollView.addSubview(self.usaColorMapView)
+        self.usaColorMapView.addSubview(self.activityIndicator)
         self.scrollView.bringSubview(toFront: locationQuotientLabel)
         
         self.careerHeaderLabel.snp.makeConstraints { (make) in
@@ -217,16 +217,16 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalTo(self.salaryDescriptionLabel.snp.bottom).offset(20)
         }
         
-//        self.usaColorMapView.snp.makeConstraints { (make) in
-//            make.centerX.equalTo(self.view)
-//            make.top.equalTo(self.locationQuotientLabel.snp.bottom).offset(-70)
-//            make.width.equalTo(self.view.snp.width).multipliedBy(0.9)
-//            make.height.equalTo(self.view.snp.width)
-//        }
+        self.usaColorMapView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(self.locationQuotientLabel.snp.bottom).offset(-70)
+            make.width.equalTo(self.view.snp.width).multipliedBy(0.9)
+            make.height.equalTo(self.view.snp.width)
+        }
         
         self.lqMapWarningLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
-//            make.top.equalTo(self.usaColorMapView.snp.bottom).offset(-40)
+            make.top.equalTo(self.usaColorMapView.snp.bottom).offset(-40)
             make.width.equalTo(self.view.snp.width).multipliedBy(0.9)
             make.height.equalTo(self.locationQuotientLabel)
         }
@@ -239,7 +239,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         self.howToBecomeOneView.snp.makeConstraints { (make) in
-//            make.top.equalTo(usaColorMapView.snp.bottom).offset(10)
+            make.top.equalTo(usaColorMapView.snp.bottom).offset(10)
             make.width.equalTo(self.view.snp.width)
             make.bottom.equalTo(self.scrollView.snp.bottom)
         }
@@ -258,51 +258,50 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalTo(self.view.snp.top)
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
-//            make.bottom.equalTo(self.bottomLayoutGuide)
             make.bottom.equalTo(self.view.snp.bottom)
         }
         
         howToBecomeOneDescription.sizeToFit()
     }
     
-//    func setLocationQuotientMap(_ dictionary: [String : Double]) {
-//        
-//        
-//        //        self.usaColorMapView.backgroundColor = UIColor.clearColor()
-//        //        self.usaColorMapView.setColorForAllStates(UIColor.flatGrayColor())
-//        
-//        
-//        self.usaColorMapView.performUpdates {
-//            
-//            self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forState: DistrictOfColumbia)
-//            
-//            for (state, locationQuotient) in dictionary {
-//                
-//                switch locationQuotient {
-//                    
-//                case 0..<0.40 :
-//                    self.usaColorMapView.setColor(UIColor.flatWatermelonColorDark(), forStateByName: state)
-//                    
-//                case 0.4..<0.8 :
-//                    self.usaColorMapView.setColor(UIColor.flatRed(), forStateByName: state)
-//                    
-//                case 0.8..<1.25 :
-//                    self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forStateByName: state)
-//                    
-//                case 1.25..<2.50 :
-//                    self.usaColorMapView.setColor(UIColor.flatMaroon(), forStateByName: state)
-//                    
-//                case 2.50..<10.0 :
-//                    self.usaColorMapView.setColor(UIColor.flatBrown(), forStateByName: state)
-//                    
-//                default:
-//                    self.usaColorMapView.setColor(UIColor.flatGray(), forStateByName: state)
-//                    print("No location quotient for \(state)")
-//                }
-//            }
-//        }
-//    }
-//    
+    func setLocationQuotientMap(_ dictionary: [String : Double]) {
+        
+        
+        //        self.usaColorMapView.backgroundColor = UIColor.clearColor()
+        self.usaColorMapView.setColorForAllStates(UIColor.flatGray())
+        
+        
+        self.usaColorMapView.performUpdates {
+            
+            self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forState: DistrictOfColumbia)
+            
+            for (state, locationQuotient) in dictionary {
+                
+                switch locationQuotient {
+                    
+                case 0..<0.40 :
+                    self.usaColorMapView.setColor(UIColor.flatWatermelonColorDark(), forStateByName: state)
+                    
+                case 0.4..<0.8 :
+                    self.usaColorMapView.setColor(UIColor.flatRed(), forStateByName: state)
+                    
+                case 0.8..<1.25 :
+                    self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forStateByName: state)
+                    
+                case 1.25..<2.50 :
+                    self.usaColorMapView.setColor(UIColor.flatMaroon(), forStateByName: state)
+                    
+                case 2.50..<10.0 :
+                    self.usaColorMapView.setColor(UIColor.flatBrown(), forStateByName: state)
+                    
+                default:
+                    self.usaColorMapView.setColor(UIColor.flatGray(), forStateByName: state)
+                    print("No location quotient for \(state)")
+                }
+            }
+        }
+    }
+    
     func setStylingForViews() {
         
         scrollView.backgroundColor = UIColor.flatWhite()
