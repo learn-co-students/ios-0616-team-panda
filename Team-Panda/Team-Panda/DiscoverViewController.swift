@@ -32,7 +32,7 @@ class DiscoverViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.backgroundColor = UIColor.flatForestGreen()
+        self.tableView.backgroundColor = UIColor.flatForestGreen
         self.tableView.register(DiscoverTableViewCell.self, forCellReuseIdentifier: "discoverCell")
         
         

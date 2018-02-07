@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 import SwiftFontName
 import FirebaseAuth
 import FirebaseDatabase
@@ -21,7 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     var loginButton = PressableButton()
     var signupButton = PressableButton()
     var orLabel = UILabel()
-    var ref: FIRDatabaseReference!
+    var ref: DatabaseReference!
     let store = DataStore.store
     let webViewBG = UIWebView()
     let careerSparkLabel = UILabel()
@@ -43,7 +42,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     
     func showTabBarViewForUser() {
         
-        if let currentPanda = FIRAuth.auth()?.currentUser {
+        if let currentPanda = Auth.auth().currentUser {
             
             if currentPanda.uid == Secrets.genericUserUID {
                 self.displayLoginView()
@@ -67,112 +66,111 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     }
     
     func displayLoginView() {
+        emailTextField = UITextField()
+        emailTextField.delegate = self
+        emailTextField.layer.cornerRadius = 5
+        emailTextField.alpha = 0.8
+        passwordTextField = UITextField()
+        passwordTextField.delegate = self
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.layer.cornerRadius = 5
+        passwordTextField.alpha = 0.8
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
-        self.emailTextField = UITextField()
-        self.emailTextField.delegate = self
-        self.emailTextField.layer.cornerRadius = 5
-        self.emailTextField.alpha = 0.8
-        self.passwordTextField = UITextField()
-        self.passwordTextField.delegate = self
-        self.passwordTextField.isSecureTextEntry = true
-        self.passwordTextField.layer.cornerRadius = 5
-        self.passwordTextField.alpha = 0.8
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        self.view.addGestureRecognizer(tap)
+        emailTextField.placeholder = "E-Mail"
+        passwordTextField.placeholder = "Password"
+        orLabel.text = "OR"
+        orLabel.textAlignment = NSTextAlignment.center
+        orLabel.isHidden = true
         
-        self.emailTextField.placeholder = "E-Mail"
-        self.passwordTextField.placeholder = "Password"
-        self.orLabel.text = "OR"
-        self.orLabel.textAlignment = NSTextAlignment.center
-        self.orLabel.isHidden = true
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.setTitleColor(.white, for: .normal)
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        signupButton.setTitle("Signup", for: .normal)
+        signupButton.setTitleColor(.white, for: .normal)
+        signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
         
-        self.loginButton.setTitle("Login", for: .normal)
-        self.loginButton.setTitleColor(.white, for: .normal)
-        self.loginButton.addTarget(self, action: #selector(self.loginButtonTapped), for: .touchUpInside)
-        self.signupButton.setTitle("Signup", for: .normal)
-        self.signupButton.setTitleColor(.white, for: .normal)
-        self.signupButton.addTarget(self, action: #selector(self.signupButtonTapped), for: .touchUpInside)
+        continueWithoutLoginButton.setTitle("Continue without logging in.", for: UIControlState())
+        continueWithoutLoginButton.titleLabel?.textColor = UIColor.white
+        continueWithoutLoginButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 13.0)
+        continueWithoutLoginButton.reversesTitleShadowWhenHighlighted = true
+        continueWithoutLoginButton.setTitleColor(FlatMint(), for: .highlighted)
+        continueWithoutLoginButton.addTarget(self, action: #selector(signInAsGenericUserTapped), for: .touchUpInside)
         
-        self.continueWithoutLoginButton.setTitle("Continue without logging in.", for: UIControlState())
-        self.continueWithoutLoginButton.titleLabel?.textColor = UIColor.white
-        self.continueWithoutLoginButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 13.0)
-        self.continueWithoutLoginButton.reversesTitleShadowWhenHighlighted = true
-        self.continueWithoutLoginButton.setTitleColor(FlatMint(), for: .highlighted)
-        self.continueWithoutLoginButton.addTarget(self, action: #selector(signInAsGenericUserTapped), for: .touchUpInside)
+        view.addSubview(filterView)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
+        view.addSubview(signupButton)
+        view.addSubview(orLabel)
+        view.addSubview(continueWithoutLoginButton)
         
-        self.view.addSubview(filterView)
-        self.view.addSubview(self.emailTextField)
-        self.view.addSubview(self.passwordTextField)
-        self.view.addSubview(self.loginButton)
-        self.view.addSubview(self.signupButton)
-        self.view.addSubview(self.orLabel)
-        self.view.addSubview(self.continueWithoutLoginButton)
-        
-        self.viewsConstraints()
+        viewsConstraints()
         
         let filePath = Bundle.main.path(forResource: "sparkTop2", ofType: "gif")
         let gif = try? Data(contentsOf: URL(fileURLWithPath: filePath!))
         
         
         
-        self.view.addSubview(webViewBG)
-        self.webViewBG.translatesAutoresizingMaskIntoConstraints = false
-        self.webViewBG.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
-        self.webViewBG.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        self.webViewBG.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.webViewBG.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        view.addSubview(webViewBG)
+        webViewBG.translatesAutoresizingMaskIntoConstraints = false
+        webViewBG.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        webViewBG.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        webViewBG.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        webViewBG.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         webViewBG.load(gif!, mimeType: "image/gif", textEncodingName: "", baseURL: URL(string: "google.com")!)
         //        webViewBG.load(gif!, mimeType: "image/gif", textEncodingName: String(), baseURL: URL())
         webViewBG.isUserInteractionEnabled = false
         
-        self.view.addSubview(careerSparkLabel)
-        self.view.addSubview(careerSparkHeadlineLabel)
+        view.addSubview(careerSparkLabel)
+        view.addSubview(careerSparkHeadlineLabel)
         
         
-        self.filterView.translatesAutoresizingMaskIntoConstraints = false
-        self.filterView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
-        self.filterView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        self.filterView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.filterView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        self.filterView.backgroundColor = UIColor.flatBlack()
-        self.view.sendSubview(toBack: filterView)
-        self.filterView.alpha = 0.2
+        filterView.translatesAutoresizingMaskIntoConstraints = false
+        filterView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        filterView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        filterView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        filterView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        filterView.backgroundColor = UIColor.flatBlack
+        view.sendSubview(toBack: filterView)
+        filterView.alpha = 0.2
         
-        self.careerSparkLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.careerSparkLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.careerSparkLabel.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.careerSparkLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75).isActive = true
-        self.careerSparkLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.25).isActive = true
+        careerSparkLabel.translatesAutoresizingMaskIntoConstraints = false
+        careerSparkLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        careerSparkLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        careerSparkLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
+        careerSparkLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25).isActive = true
         
-        self.careerSparkHeadlineLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.careerSparkHeadlineLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.careerSparkHeadlineLabel.topAnchor.constraint(equalTo: self.careerSparkLabel.bottomAnchor).isActive = true
-        self.careerSparkHeadlineLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75).isActive = true
-        self.careerSparkHeadlineLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.08).isActive = true
+        careerSparkHeadlineLabel.translatesAutoresizingMaskIntoConstraints = false
+        careerSparkHeadlineLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        careerSparkHeadlineLabel.topAnchor.constraint(equalTo: careerSparkLabel.bottomAnchor).isActive = true
+        careerSparkHeadlineLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
+        careerSparkHeadlineLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.08).isActive = true
         
         careerSparkLabel.text = "CareerSpark"
         careerSparkLabel.textColor = UIColor.white
         careerSparkLabel.font = UIFont(name: FontName.TrebuchetMSBold, size: 44)
         careerSparkLabel.textAlignment = NSTextAlignment.center
         careerSparkLabel.adjustsFontSizeToFitWidth = true
-
+        
         careerSparkHeadlineLabel.text = "Discover your new career."
         careerSparkHeadlineLabel.textColor = UIColor.white
         careerSparkHeadlineLabel.font = UIFont.pandaFontMedium(withSize: 20)
         careerSparkHeadlineLabel.textAlignment = NSTextAlignment.center
-        self.view.sendSubview(toBack: webViewBG)
+        view.sendSubview(toBack: webViewBG)
         
-        self.view.backgroundColor = FlatBlueDark()
-        self.emailTextField.backgroundColor = FlatWhite()
-        self.passwordTextField.backgroundColor = FlatWhite()
-        self.loginButton.colors = .init(button: FlatMintDark().darken(byPercentage: 0.1), shadow: FlatMintDark().darken(byPercentage: 0.2))
-        self.loginButton.shadowHeight = 5
-        self.loginButton.depth = 0.65
-        self.loginButton.titleLabel!.font = UIFont.pandaFontLight(withSize: 20)
-        self.signupButton.colors = .init(button: FlatMintDark().darken(byPercentage: 0.1), shadow: FlatMintDark().darken(byPercentage: 0.2))
-        self.signupButton.shadowHeight = 5
-        self.signupButton.depth = 0.65
-        self.signupButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
+        view.backgroundColor = FlatBlueDark()
+        emailTextField.backgroundColor = FlatWhite()
+        passwordTextField.backgroundColor = FlatWhite()
+        loginButton.colors = .init(button: FlatMintDark().darken(byPercentage: 0.1)!, shadow: FlatMintDark().darken(byPercentage: 0.2)!)
+        loginButton.shadowHeight = 5
+        loginButton.depth = 0.65
+        loginButton.titleLabel!.font = UIFont.pandaFontLight(withSize: 20)
+        signupButton.colors = .init(button: FlatMintDark().darken(byPercentage: 0.1)!, shadow: FlatMintDark().darken(byPercentage: 0.2)!)
+        signupButton.shadowHeight = 5
+        signupButton.depth = 0.65
+        signupButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
         
     }
     
@@ -190,53 +188,43 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     }
     
     func viewsConstraints() {
+        emailTextField.textAlignment = .center
+        passwordTextField.textAlignment = .center
         
-        self.emailTextField.textAlignment = NSTextAlignment.center
-        self.passwordTextField.textAlignment = NSTextAlignment.center
+        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        emailTextField.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.75).isActive = true
+        emailTextField.safeHeightAnchor.constraint(equalTo: view.safeHeightAnchor, multiplier: 0.0935).isActive = true
+        emailTextField.safeCenterYAnchor.constraint(equalTo: view.safeCenterYAnchor, constant: -view.bounds.height * 0.1).isActive = true
+
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        passwordTextField.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.75).isActive = true
+        passwordTextField.safeHeightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.0935).isActive = true
         
-        self.emailTextField.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.75)
-            make.height.equalTo(self.view).multipliedBy(0.0935)
-            make.centerY.equalTo(self.view).offset(-self.view.bounds.height*0.1)
-        }
+        orLabel.translatesAutoresizingMaskIntoConstraints = false
+        orLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, constant: 40).isActive = true
+        orLabel.safeHeightAnchor.constraint(equalTo: view.safeHeightAnchor, constant: 45).isActive = true
+        orLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        orLabel.safeCenterYAnchor.constraint(equalTo: view.safeCenterYAnchor, constant: 60).isActive = true
         
-        self.passwordTextField.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.75)
-            make.height.equalTo(self.view).multipliedBy(0.0935)
-            make.centerY.equalTo(self.view)
-        }
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        loginButton.safeCenterYAnchor.constraint(equalTo: view.safeCenterYAnchor, constant:  view.bounds.height/6).isActive = true
+        loginButton.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.75).isActive = true
+        loginButton.safeHeightAnchor.constraint(equalTo: view.safeHeightAnchor, multiplier: 0.125).isActive = true
         
-        self.orLabel.snp.makeConstraints { (make) in
-            make.width.equalTo(self.view.snp.width).offset(40)
-            make.height.equalTo(self.view
-                
-                
-                
-                
-                .snp.height).offset(45)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view).offset(60)
-        }
+        signupButton.translatesAutoresizingMaskIntoConstraints = false
+        signupButton.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        signupButton.safeCenterYAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -view.bounds.height/6).isActive = true
+        signupButton.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier:  0.75).isActive = true
+        signupButton.safeHeightAnchor.constraint(equalTo: view.safeHeightAnchor, multiplier:  0.125).isActive = true
         
-        self.loginButton.translatesAutoresizingMaskIntoConstraints = false
-        self.loginButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.loginButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant:  self.view.bounds.height/6).isActive = true
-        self.loginButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75).isActive = true
-        self.loginButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.125).isActive = true
-        
-        self.signupButton.translatesAutoresizingMaskIntoConstraints = false
-        self.signupButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.signupButton.centerYAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -self.view.bounds.height/6).isActive = true
-        self.signupButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier:  0.75).isActive = true
-        self.signupButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier:  0.125).isActive = true
-        
-        self.continueWithoutLoginButton.translatesAutoresizingMaskIntoConstraints = false
-        self.continueWithoutLoginButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.continueWithoutLoginButton.widthAnchor.constraint(equalTo: self.loginButton.widthAnchor).isActive = true
-        self.continueWithoutLoginButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor).isActive = true
-        self.continueWithoutLoginButton.bottomAnchor.constraint(equalTo: self.loginButton.topAnchor).isActive = true
+        continueWithoutLoginButton.translatesAutoresizingMaskIntoConstraints = false
+        continueWithoutLoginButton.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        continueWithoutLoginButton.safeWidthAnchor.constraint(equalTo: loginButton.safeWidthAnchor).isActive = true
+        continueWithoutLoginButton.safeTopAnchor.constraint(equalTo: passwordTextField.safeBottomAnchor).isActive = true
+        continueWithoutLoginButton.safeBottomAnchor.constraint(equalTo: loginButton.safeTopAnchor).isActive = true
     }
     
     func signInAsGenericUserTapped() {
@@ -244,7 +232,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let alert = Constants.displayAlertWithContinueAndCancel("Heads Up!", message: "Without logging in, you won't be able to save your answers to the survey or favorite any jobs. Would you like to continue?", continueHandler: { 
             // continueHandler
             
-            FIRAuth.auth()?.signIn(withEmail: Secrets.genericUserEmail, password: Secrets.genericUserPassword, completion: { (user, error) in
+            Auth.auth().signIn(withEmail: Secrets.genericUserEmail, password: Secrets.genericUserPassword, completion: { (user, error) in
                 
                 if let error = error {
                     // Alert user there was a problem logging in
@@ -291,7 +279,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                 return
         }
         
-        FIRAuth.auth()?.signIn(withEmail: userEmail, password: userPassword, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: userEmail, password: userPassword, completion: { (user, error) in
             
             if let error = error {
                 // Alert user there was a problem logging in
@@ -314,7 +302,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let userEmail = self.emailTextField!.text!
         let userPassword = self.passwordTextField!.text!
         
-        FIRAuth.auth()?.createUser(withEmail: userEmail, password: userPassword, completion: { (user, error) in
+        Auth.auth().createUser(withEmail: userEmail, password: userPassword, completion: { (user, error) in
             if let error = error {
                 // Don't create user
                 let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: (error.localizedDescription))

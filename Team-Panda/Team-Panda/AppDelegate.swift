@@ -8,7 +8,7 @@
     
     import UIKit
     import FirebaseAuth
-    import Firebase
+    import FirebaseCore
     
     @UIApplicationMain
     class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +18,7 @@
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
             // Setting up Firebase
             
-            FIRApp.configure()
+            FirebaseApp.configure()
             
             return true
         }

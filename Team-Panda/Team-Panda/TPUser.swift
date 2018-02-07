@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class TPUser {
     
@@ -44,7 +45,7 @@ class TPUser {
     
     func updateDatabase() {
         
-        let ref = FIRDatabase.database().reference(fromURL: databaseRefURL)
+        let ref = Database.database().reference(fromURL: databaseRefURL)
         
         ref.child("users/\(self.uid)").updateChildValues(self.dictionary) { (error, dbRef) in
             if let error = error {
@@ -60,12 +61,12 @@ class TPUser {
     
     func updateUserProfile(withEmail newEmail : String, completion: @escaping (UIAlertController, String)->()) {
         
-        guard let user = FIRAuth.auth()?.currentUser else {fatalError("Couldn't get current user.") }
+        guard let user = Auth.auth().currentUser else {fatalError("Couldn't get current user.") }
         
         DataStore.store.tpUser?.email = newEmail
         self.email = newEmail
         
-        user.updateEmail(self.email) { (error) in
+        user.updateEmail(to: self.email) { (error) in
             if let error = error {
                 
                 print(error.localizedDescription)
@@ -138,7 +139,7 @@ class TPUser {
             completion(TPUser(withEmail: Secrets.genericUserEmail, uid: Secrets.genericUserUID))
         }
         else {
-            let ref = FIRDatabase.database().reference(fromURL: databaseRefURL)
+            let ref = Database.database().reference(fromURL: databaseRefURL)
             
             ref.child("users/\(uid)").observeSingleEvent(of: .value, with: { (userSnapshot) in
                 

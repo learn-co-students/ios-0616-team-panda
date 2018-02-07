@@ -172,10 +172,10 @@ class WouldYouRatherViewController : UIViewController {
             
             self.topButton.colors = .init(button: FlatPowderBlue(), shadow: FlatPowderBlueDark())
             
-            self.topButton.titleLabel?.textColor = ContrastColorOf(backgroundColor: FlatPowderBlue(), returnFlat: true)
+            self.topButton.titleLabel?.textColor = ContrastColorOf(FlatPowderBlue(), returnFlat: true)
             
-            self.bottomButton.colors = .init(button: FlatPowderBlueDark(), shadow: FlatPowderBlueDark().darken(byPercentage: 0.2))
-            self.bottomButton.titleLabel?.textColor = ContrastColorOf(backgroundColor: FlatPowderBlueDark(), returnFlat: true)
+            self.bottomButton.colors = .init(button: FlatPowderBlueDark(), shadow: FlatPowderBlueDark().darken(byPercentage: 0.2)!)
+            self.bottomButton.titleLabel?.textColor = ContrastColorOf(FlatPowderBlueDark(), returnFlat: true)
             
         }
         else { // how people think
@@ -185,10 +185,10 @@ class WouldYouRatherViewController : UIViewController {
             self.bottomButton.setTitle("Understand how ideas \nare formed?", for: .normal)
             
             self.topButton.colors = .init(button: FlatBlue(), shadow: FlatBlueDark())
-            self.topButton.titleLabel?.textColor = ContrastColorOf(backgroundColor: FlatBlue(), returnFlat: true)
+            self.topButton.titleLabel?.textColor = ContrastColorOf(FlatBlue(), returnFlat: true)
             
-            self.bottomButton.colors = .init(button: FlatBlueDark(), shadow: FlatBlueDark().darken(byPercentage: 0.2))
-            self.bottomButton.titleLabel?.textColor = ContrastColorOf(backgroundColor: FlatBlueDark(), returnFlat: true)
+            self.bottomButton.colors = .init(button: FlatBlueDark(), shadow: FlatBlueDark().darken(byPercentage: 0.2)!)
+            self.bottomButton.titleLabel?.textColor = ContrastColorOf(FlatBlueDark(), returnFlat: true)
         }
     }
 }

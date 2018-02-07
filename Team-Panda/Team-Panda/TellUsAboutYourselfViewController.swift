@@ -103,7 +103,7 @@ class TellUsAboutYourselfViewController : UIViewController {
         self.thinkingButton.setTitle("How people think", for: .normal)
         self.thinkingButton.titleLabel?.textColor = FlatWhite()
         self.thinkingButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20.0)
-        self.thinkingButton.colors = .init(button: FlatMintDark().darken(byPercentage: 0.1), shadow: FlatMintDark().darken(byPercentage: 0.2))
+        self.thinkingButton.colors = .init(button: FlatMintDark().darken(byPercentage: 0.1)!, shadow: FlatMintDark().darken(byPercentage: 0.2)!)
         self.thinkingButton.shadowHeight = 5
         self.thinkingButton.depth = 0.65
         self.thinkingButton.cornerRadius = 5

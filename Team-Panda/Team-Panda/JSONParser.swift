@@ -23,7 +23,7 @@ class JSONParser {
         if let path = Bundle.main.path(forResource: "Occupation-Dictionary2", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
-                self.occupationJSON = JSON(data: data)
+                self.occupationJSON = try? JSON(data: data)
                 
                 if self.occupationJSON != JSON.null {
                     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B49077E202A72DB0041E0D6 /* AnchorHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49077D202A72DB0041E0D6 /* AnchorHelpers.swift */; };
 		1BA4263A1D6DEADA007733A9 /* sparkTop2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BA426391D6DEADA007733A9 /* sparkTop2.gif */; };
 		1BCB69321D5A28BE00160B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */; };
 		1BCB69361D5B6DD000160B5A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */; };
@@ -26,7 +27,6 @@
 		6E5EE80E1D54EF14002671D6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */; };
 		6E69D1551D6CA297006E1AB8 /* YouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E69D1541D6CA297006E1AB8 /* YouViewController.swift */; };
 		6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */; };
-		6E9E600C1D62720E008AE46F /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9E600B1D62720E008AE46F /* XMLParser.swift */; };
 		6EBE28821E11F3C90092CE61 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBE28811E11F3C90092CE61 /* CoreText.framework */; };
 		6EBE28841E11F3DA0092CE61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBE28831E11F3DA0092CE61 /* CoreGraphics.framework */; };
 		6EBE28861E11F4320092CE61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBE28851E11F4320092CE61 /* Foundation.framework */; };
@@ -51,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B49077D202A72DB0041E0D6 /* AnchorHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorHelpers.swift; sourceTree = "<group>"; };
 		1BA426391D6DEADA007733A9 /* sparkTop2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sparkTop2.gif; sourceTree = "<group>"; };
 		1BCB69311D5A28BE00160B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1BCB69351D5B6DD000160B5A /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		6E5EE80D1D54EF14002671D6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6E69D1541D6CA297006E1AB8 /* YouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouViewController.swift; sourceTree = "<group>"; };
 		6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		6E9E600B1D62720E008AE46F /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		6EBE28811E11F3C90092CE61 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		6EBE28831E11F3DA0092CE61 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6EBE28851E11F4320092CE61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -175,7 +175,6 @@
 				7B3CAAB21D64F348006322ED /* LocationQuotient.swift */,
 				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
 				7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */,
-				6E9E600B1D62720E008AE46F /* XMLParser.swift */,
 				6ED2DE101E19626700E492E8 /* USStatesColorMapHeader.h */,
 				6ED2DE0D1E19624100E492E8 /* USStatesColorMap.h */,
 				6ED2DE0E1E19624100E492E8 /* USStatesColorMap.m */,
@@ -187,6 +186,7 @@
 		7BC289241D5CF36B0066440B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0B49077D202A72DB0041E0D6 /* AnchorHelpers.swift */,
 				7BC289271D5CF3C00066440B /* Interface Builder */,
 				7BC289261D5CF3A30066440B /* Tab Bar */,
 				7BC289251D5CF3850066440B /* Login and Signup */,
@@ -334,9 +334,32 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Team-Panda/Pods-Team-Panda-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftFontName/SwiftFontName.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyButton/SwiftyButton.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftFontName.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -364,13 +387,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Team-Panda-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -398,9 +424,9 @@
 				6E73DECE1D558B0E003C7ADE /* LoginViewController.swift in Sources */,
 				1BCB69381D5BCAEB00160B5A /* JobDetailViewController.swift in Sources */,
 				6E58FB011D54125E00C12B50 /* AppDelegate.swift in Sources */,
+				0B49077E202A72DB0041E0D6 /* AnchorHelpers.swift in Sources */,
 				7B90EBB91D592DFB00EE475A /* Constants.swift in Sources */,
 				6E5EE80C1D54EEE0002671D6 /* MapViewController.swift in Sources */,
-				6E9E600C1D62720E008AE46F /* XMLParser.swift in Sources */,
 				7BC6A0081D5B99B000BFD0D3 /* TPUser.swift in Sources */,
 				6E69D1551D6CA297006E1AB8 /* YouViewController.swift in Sources */,
 				6ED2DE0F1E19624100E492E8 /* USStatesColorMap.m in Sources */,

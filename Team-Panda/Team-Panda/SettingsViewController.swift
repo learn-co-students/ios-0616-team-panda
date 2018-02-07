@@ -22,7 +22,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.flatSkyBlue()
+        self.view.backgroundColor = UIColor.flatSkyBlue
         setupButtons()
     }
     
@@ -51,7 +51,7 @@ class SettingsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (alertAction) in
             
             do{
-                try FIRAuth.auth()?.signOut()
+                try Auth.auth().signOut()
             }  catch {fatalError("Unable to log user out")}
             self.present(LoginViewController(), animated: true, completion: nil)
             

@@ -8,7 +8,6 @@
 
 import UIKit
 import ChameleonFramework
-import SnapKit
 import SwiftSpinner
 
 class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -39,13 +38,13 @@ class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.youTableView.accessibilityIdentifier = "tableView"
         
         self.view.addSubview(self.youTableView)
-        self.youTableView.snp.makeConstraints { (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
-        }
         
+        youTableView.translatesAutoresizingMaskIntoConstraints = false
+        youTableView.safeLeadingAnchor.constraint(equalTo: view.safeLeadingAnchor).isActive = true
+        youTableView.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor).isActive = true
+        youTableView.safeTopAnchor.constraint(equalTo: view.safeTopAnchor).isActive = true
+        youTableView.safeBottomAnchor.constraint(equalTo: view.safeBottomAnchor).isActive = true
+
         self.navigationController?.navigationBar.topItem?.title = "Career Results"
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
         self.navigationController?.hidesBarsOnSwipe = false

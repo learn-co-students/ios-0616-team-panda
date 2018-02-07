@@ -9,12 +9,10 @@ target 'Team-Panda' do
   pod 'ChameleonFramework/Swift'
   pod 'SwiftFontName', '~> 2.0.0'
   pod 'SwiftyJSON'
-  pod 'SnapKit'
   pod 'SwiftyButton'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-  pod 'SWXMLHash'
   pod 'SwiftSpinner'
   pod 'Font-Awesome-Swift', '~> 1.5.3'
 

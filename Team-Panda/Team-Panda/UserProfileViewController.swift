@@ -112,7 +112,7 @@ class UserProfileViewController: UIViewController {
         
         if let email = DataStore.store.tpUser?.email {
             
-            FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
+            Auth.auth().sendPasswordReset(withEmail: email, completion: { (error) in
                 if let error = error {
                     let errorAlert = Constants.displayAlertWithTryAgain("Something Went Wrong!", message: error.localizedDescription)
                     self.present(errorAlert, animated: true, completion: nil)
@@ -142,15 +142,15 @@ class UserProfileViewController: UIViewController {
         self.updateYourInfo.font = UIFont.pandaFontMedium(withSize: 20)
         
         //Set Styling for Email/Password UITextFields
-        self.password.backgroundColor = UIColor.flatGray().lighten(byPercentage: 0.2)
-        self.email.backgroundColor = UIColor.flatGray().lighten(byPercentage: 0.2)
+        self.password.backgroundColor = UIColor.flatGray.lighten(byPercentage: 0.2)
+        self.email.backgroundColor = UIColor.flatGray.lighten(byPercentage: 0.2)
         self.password.layer.cornerRadius = 5
         self.email.layer.cornerRadius = 5
         
         //Format Placeholder Text in Email/Password UITextFields
         self.password.placeholder = "Password"
         self.password.isSecureTextEntry = true
-        self.email.placeholder = FIRAuth.auth()!.currentUser!.email?.uppercased()
+        self.email.placeholder = Auth.auth().currentUser!.email?.uppercased()
         self.email.textAlignment = .center
         self.password.textAlignment = .center
         
@@ -162,7 +162,7 @@ class UserProfileViewController: UIViewController {
         self.saveChangesButton.depth = 0.65
         self.saveChangesButton.cornerRadius = 5
         self.saveChangesButton.titleLabel?.textColor = FlatWhite()
-        self.saveChangesButton.colors = .init(button: FlatBlue(), shadow: FlatBlue().darken(byPercentage: 0.2))
+        self.saveChangesButton.colors = .init(button: FlatBlue(), shadow: FlatBlue().darken(byPercentage: 0.2)!)
         
         self.cancelButton.titleLabel?.numberOfLines = 2
         self.cancelButton.titleLabel?.textAlignment = .center
@@ -171,7 +171,7 @@ class UserProfileViewController: UIViewController {
         self.cancelButton.depth = 0.65
         self.cancelButton.cornerRadius = 5
         self.cancelButton.titleLabel?.textColor = FlatWhite()
-        self.cancelButton.colors = .init(button: FlatBlue(), shadow: FlatBlue().darken(byPercentage: 0.2))
+        self.cancelButton.colors = .init(button: FlatBlue(), shadow: FlatBlue().darken(byPercentage: 0.2)!)
         
         self.resetPasswordButton.setTitle("Reset Password", for: .normal)
         self.resetPasswordButton.titleLabel?.textAlignment = .center
@@ -180,6 +180,6 @@ class UserProfileViewController: UIViewController {
         self.resetPasswordButton.depth = 0.65
         self.resetPasswordButton.cornerRadius = 5
         self.resetPasswordButton.titleLabel?.textColor = FlatWhite()
-        self.resetPasswordButton.colors = .init(button: FlatMint(), shadow: FlatMint().darken(byPercentage: 0.2))
+        self.resetPasswordButton.colors = .init(button: FlatMint(), shadow: FlatMint().darken(byPercentage: 0.2)!)
     }
 }

@@ -7,7 +7,6 @@
 
 import UIKit
 import ChameleonFramework
-import SnapKit
 import SwiftFontName
 import CoreText
 import Font_Awesome_Swift
@@ -81,7 +80,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: faveStar, style: .plain, target: self, action: #selector(saveToFavorites))
         
         if favoritedJob().0 == true {
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellow()
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellow
         }
         else {
             navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue()
@@ -108,7 +107,7 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
             } else {
                 print("Saving to favorites!")
                 store.tpUser!.favoritesArray.append((self.job?.SOCcode)!)
-                navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellow()
+                navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellow
             }
             
             store.tpUser!.updateDatabase()
@@ -128,11 +127,10 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func createViews() {
-        
         scrollView = UIScrollView(frame: view.bounds)
-        self.scrollView.delegate = self
-        self.edgesForExtendedLayout = UIRectEdge()
-        self.extendedLayoutIncludesOpaqueBars = false
+        scrollView.delegate = self
+        edgesForExtendedLayout = UIRectEdge()
+        extendedLayoutIncludesOpaqueBars = false
         
         scrollView.autoresizingMask = UIViewAutoresizing.flexibleHeight
         
@@ -148,148 +146,134 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(salaryDescriptionLabel)
         scrollView.addSubview(locationQuotientLabel)
         scrollView.addSubview(howToBecomeOneView)
-        scrollView.addSubview(self.lqMapWarningLabel)
+        scrollView.addSubview(lqMapWarningLabel)
         
-        self.howToBecomeOneView.addSubview(howToBecomeOneLabel)
-        self.howToBecomeOneView.addSubview(howToBecomeOneDescription)
+        howToBecomeOneView.addSubview(howToBecomeOneLabel)
+        howToBecomeOneView.addSubview(howToBecomeOneDescription)
         
-        self.view.addSubview(scrollView)
+        view.addSubview(scrollView)
         
-        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        self.usaColorMapView = USStatesColorMap(frame: CGRect(x: 0, y: 0, width: self.scrollView.frame.width - 20, height: self.scrollView.frame.width - 20))
-        self.activityIndicator.frame = CGRect(x: 0, y: 0, width: self.usaColorMapView.frame.width, height: self.usaColorMapView.frame.height)
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        usaColorMapView = USStatesColorMap(frame: CGRect(x: 0, y: 0, width: scrollView.frame.width - 20, height: scrollView.frame.width - 20))
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: usaColorMapView.frame.width, height: usaColorMapView.frame.height)
         
-        scrollView.addSubview(self.usaColorMapView)
-        self.usaColorMapView.addSubview(self.activityIndicator)
-        self.scrollView.bringSubview(toFront: locationQuotientLabel)
+        scrollView.addSubview(usaColorMapView)
+        usaColorMapView.addSubview(activityIndicator)
+        scrollView.bringSubview(toFront: locationQuotientLabel)
         
-        self.careerHeaderLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(self.scrollView)
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view).multipliedBy(0.2)
-        }
+        careerHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
+        careerHeaderLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        careerHeaderLabel.safeTopAnchor.constraint(equalTo: scrollView.safeTopAnchor).isActive = true
+        careerHeaderLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor).isActive = true
+        careerHeaderLabel.safeHeightAnchor.constraint(equalTo: view.safeHeightAnchor, multiplier: 0.2).isActive = true
         
-        self.careerHeaderLabel.sizeToFit()
-        self.careerHeaderLabel.adjustsFontSizeToFitWidth = true
+        careerHeaderLabel.sizeToFit()
+        careerHeaderLabel.adjustsFontSizeToFitWidth = true
         
-        self.careerDescriptionLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(self.careerHeaderLabel.snp.bottom).offset(self.careerHeaderLabel.frame.height * 6)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-        }
+        careerDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        careerDescriptionLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        careerDescriptionLabel.safeTopAnchor.constraint(equalTo: careerHeaderLabel.safeBottomAnchor, constant: careerHeaderLabel.frame.height * 6).isActive = true
+        careerDescriptionLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
         
-        self.careerDescriptionLabel.isEditable = false
-        self.careerDescriptionLabel.isSelectable = false
-        self.careerDescriptionLabel.sizeToFit()
-        self.careerDescriptionLabel.isScrollEnabled = false
+        careerDescriptionLabel.isEditable = false
+        careerDescriptionLabel.isSelectable = false
+        careerDescriptionLabel.sizeToFit()
+        careerDescriptionLabel.isScrollEnabled = false
         
-        self.minEduReqsHeaderLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-            make.top.equalTo(self.careerDescriptionLabel.snp.bottom).offset(30)
-        }
+        minEduReqsHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
+        minEduReqsHeaderLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        minEduReqsHeaderLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
+        minEduReqsHeaderLabel.safeTopAnchor.constraint(equalTo: careerDescriptionLabel.safeBottomAnchor, constant: 30).isActive = true
         
-        self.minEduReqsDescriptionLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-            make.top.equalTo(self.minEduReqsHeaderLabel.snp.bottom).offset(10)
-        }
+        minEduReqsDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        minEduReqsDescriptionLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        minEduReqsDescriptionLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
+        minEduReqsDescriptionLabel.safeTopAnchor.constraint(equalTo: minEduReqsHeaderLabel.safeBottomAnchor, constant: 10).isActive = true
         
-        self.salaryHeaderLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-            make.top.equalTo(self.minEduReqsDescriptionLabel.snp.bottom).offset(20)
-        }
+        salaryHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
+        salaryHeaderLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        salaryHeaderLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
+        salaryHeaderLabel.safeTopAnchor.constraint(equalTo: minEduReqsDescriptionLabel.safeBottomAnchor, constant: 20).isActive = true
         
-        self.salaryDescriptionLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-            make.top.equalTo(self.salaryHeaderLabel.snp.bottom).offset(10)
-        }
+        salaryDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        salaryDescriptionLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        salaryDescriptionLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
+        salaryDescriptionLabel.safeTopAnchor.constraint(equalTo: salaryHeaderLabel.safeBottomAnchor, constant: 10).isActive = true
         
-        self.locationQuotientLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-            make.top.equalTo(self.salaryDescriptionLabel.snp.bottom).offset(20)
-        }
+        locationQuotientLabel.translatesAutoresizingMaskIntoConstraints = false
+        locationQuotientLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        locationQuotientLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
+        locationQuotientLabel.safeTopAnchor.constraint(equalTo: salaryDescriptionLabel.safeBottomAnchor, constant: 20).isActive = true
         
-        self.usaColorMapView.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(self.locationQuotientLabel.snp.bottom).offset(-70)
-            make.width.equalTo(self.view.snp.width).multipliedBy(0.9)
-            make.height.equalTo(self.view.snp.width)
-        }
+        usaColorMapView.translatesAutoresizingMaskIntoConstraints = false
+        usaColorMapView.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        usaColorMapView.safeTopAnchor.constraint(equalTo: locationQuotientLabel.safeBottomAnchor, constant: -70).isActive = true
+        usaColorMapView.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
+        usaColorMapView.safeHeightAnchor.constraint(equalTo: view.safeWidthAnchor).isActive = true
         
-        self.lqMapWarningLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(self.usaColorMapView.snp.bottom).offset(-40)
-            make.width.equalTo(self.view.snp.width).multipliedBy(0.9)
-            make.height.equalTo(self.locationQuotientLabel)
-        }
+        lqMapWarningLabel.translatesAutoresizingMaskIntoConstraints = false
+        lqMapWarningLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        lqMapWarningLabel.safeTopAnchor.constraint(equalTo: usaColorMapView.safeBottomAnchor, constant: -40).isActive = true
+        lqMapWarningLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
+        lqMapWarningLabel.safeHeightAnchor.constraint(equalTo: locationQuotientLabel.safeHeightAnchor).isActive = true
         
-        self.howToBecomeOneDescription.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(self.howToBecomeOneLabel.snp.bottomMargin).offset(10)
-            make.bottom.equalTo(self.scrollView.snp.bottom)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-        }
+        howToBecomeOneDescription.translatesAutoresizingMaskIntoConstraints = false
+        howToBecomeOneDescription.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        howToBecomeOneDescription.safeTopAnchor.constraint(equalTo: howToBecomeOneLabel.safeBottomAnchor, constant: 10).isActive = true
+        howToBecomeOneDescription.safeBottomAnchor.constraint(equalTo: scrollView.safeBottomAnchor).isActive = true
+        howToBecomeOneDescription.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
         
-        self.howToBecomeOneView.snp.makeConstraints { (make) in
-            make.top.equalTo(usaColorMapView.snp.bottom).offset(10)
-            make.width.equalTo(self.view.snp.width)
-            make.bottom.equalTo(self.scrollView.snp.bottom)
-        }
+        howToBecomeOneView.translatesAutoresizingMaskIntoConstraints = false
+        howToBecomeOneView.safeTopAnchor.constraint(equalTo: usaColorMapView.safeBottomAnchor, constant: 10).isActive = true
+        howToBecomeOneView.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor).isActive = true
+        howToBecomeOneView.safeBottomAnchor.constraint(equalTo: scrollView.safeBottomAnchor).isActive = true
         
-        self.howToBecomeOneLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.howToBecomeOneView.snp.topMargin).offset(20)
-            make.centerX.equalTo(self.view)
-            make.width.equalTo(self.view).multipliedBy(0.9)
-        }
+        howToBecomeOneLabel.translatesAutoresizingMaskIntoConstraints = false
+        howToBecomeOneLabel.safeTopAnchor.constraint(equalTo: howToBecomeOneView.safeTopAnchor, constant: 20).isActive = true
+        howToBecomeOneLabel.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor).isActive = true
+        howToBecomeOneLabel.safeWidthAnchor.constraint(equalTo: view.safeWidthAnchor, multiplier: 0.9).isActive = true
         
-        self.howToBecomeOneDescription.isEditable = false
-        self.howToBecomeOneDescription.isSelectable = false
-        self.howToBecomeOneDescription.isScrollEnabled = false
+        howToBecomeOneDescription.isEditable = false
+        howToBecomeOneDescription.isSelectable = false
+        howToBecomeOneDescription.isScrollEnabled = false
         
-        scrollView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.snp.top)
-            make.left.equalTo(self.view)
-            make.right.equalTo(self.view)
-            make.bottom.equalTo(self.view.snp.bottom)
-        }
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.safeTopAnchor.constraint(equalTo: view.safeTopAnchor).isActive = true
+        scrollView.safeLeadingAnchor.constraint(equalTo: view.safeLeadingAnchor).isActive = true
+        scrollView.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor).isActive = true
+        scrollView.safeBottomAnchor.constraint(equalTo: view.safeBottomAnchor).isActive = true
         
         howToBecomeOneDescription.sizeToFit()
     }
     
     func setLocationQuotientMap(_ dictionary: [String : Double]) {
         
-        self.usaColorMapView.setColorForAllStates(UIColor.flatGray())
+        self.usaColorMapView.setColorForAllStates(UIColor.flatGray)
         
         self.usaColorMapView.performUpdates {
-            
-            self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forState: DistrictOfColumbia)
+            self.usaColorMapView.setColor(UIColor.flatRedDark, forState: DistrictOfColumbia)
             
             for (state, locationQuotient) in dictionary {
                 
                 switch locationQuotient {
                     
                 case 0..<0.40 :
-                    self.usaColorMapView.setColor(UIColor.flatWatermelonColorDark(), forStateByName: state)
+                    self.usaColorMapView.setColor(UIColor.flatWatermelonDark, forStateByName: state)
                     
                 case 0.4..<0.8 :
-                    self.usaColorMapView.setColor(UIColor.flatRed(), forStateByName: state)
+                    self.usaColorMapView.setColor(UIColor.flatRed, forStateByName: state)
                     
                 case 0.8..<1.25 :
-                    self.usaColorMapView.setColor(UIColor.flatRedColorDark(), forStateByName: state)
+                    self.usaColorMapView.setColor(UIColor.flatRedDark, forStateByName: state)
                     
                 case 1.25..<2.50 :
-                    self.usaColorMapView.setColor(UIColor.flatMaroon(), forStateByName: state)
+                    self.usaColorMapView.setColor(UIColor.flatMaroon, forStateByName: state)
                     
                 case 2.50..<10.0 :
-                    self.usaColorMapView.setColor(UIColor.flatBrown(), forStateByName: state)
+                    self.usaColorMapView.setColor(UIColor.flatBrown, forStateByName: state)
                     
                 default:
-                    self.usaColorMapView.setColor(UIColor.flatGray(), forStateByName: state)
+                    self.usaColorMapView.setColor(UIColor.flatGray, forStateByName: state)
                     print("No location quotient for \(state)")
                 }
             }
@@ -298,23 +282,23 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func setStylingForViews() {
         
-        scrollView.backgroundColor = UIColor.flatWhite()
+        scrollView.backgroundColor = UIColor.flatWhite
         
-        self.careerHeaderLabel.backgroundColor = UIColor.flatMintColorDark()
+        self.careerHeaderLabel.backgroundColor = UIColor.flatMintDark
         self.careerHeaderLabel.textAlignment = .center
         self.careerHeaderLabel.font = UIFont.pandaFontBold(withSize: 24.0)
-        self.careerHeaderLabel.textColor = UIColor.flatWhite()
+        self.careerHeaderLabel.textColor = UIColor.flatWhite
         self.careerHeaderLabel.layer.masksToBounds = true
         
         self.careerDescriptionLabel.font = UIFont.pandaFontMedium(withSize: 18.0)
-        self.careerDescriptionLabel.textColor = UIColor.flatMintColorDark()
-        self.careerDescriptionLabel.backgroundColor = UIColor.flatWhite()
+        self.careerDescriptionLabel.textColor = UIColor.flatMintDark
+        self.careerDescriptionLabel.backgroundColor = UIColor.flatWhite
         self.careerDescriptionLabel.layer.masksToBounds = true
         self.careerDescriptionLabel.layer.cornerRadius = 10
         
         self.minEduReqsHeaderLabel.textAlignment = .center
         self.minEduReqsHeaderLabel.font = UIFont.pandaFontBold(withSize: 18)
-        self.minEduReqsHeaderLabel.textColor = UIColor.flatBlueColorDark()
+        self.minEduReqsHeaderLabel.textColor = UIColor.flatBlueDark
         self.minEduReqsHeaderLabel.isUserInteractionEnabled = true
         
         let gestureRecognizerMinEdu = UITapGestureRecognizer(target: self, action: #selector(JobDetailViewController.showMinEduReqsAlert))
@@ -322,12 +306,12 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.minEduReqsDescriptionLabel.textAlignment = .center
         self.minEduReqsDescriptionLabel.font = UIFont.pandaFontLight(withSize: 20)
-        self.minEduReqsDescriptionLabel.textColor = UIColor.flatTeal().lighten(byPercentage: 0.2)
+        self.minEduReqsDescriptionLabel.textColor = UIColor.flatTeal.lighten(byPercentage: 0.2)
         self.minEduReqsDescriptionLabel.adjustsFontSizeToFitWidth = true
         
         self.salaryHeaderLabel.textAlignment = .center
         self.salaryHeaderLabel.font = UIFont.pandaFontBold(withSize: 18)
-        self.salaryHeaderLabel.textColor = UIColor.flatBlueColorDark()
+        self.salaryHeaderLabel.textColor = UIColor.flatBlueDark
         self.salaryHeaderLabel.isUserInteractionEnabled = true
         
         let gestureRecognizerSalary = UITapGestureRecognizer(target: self, action: #selector(JobDetailViewController.showSalaryAlert))
@@ -335,11 +319,11 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.salaryDescriptionLabel.textAlignment = .center
         self.salaryDescriptionLabel.font = UIFont.pandaFontLight(withSize: 20)
-        self.salaryDescriptionLabel.textColor = UIColor.flatTeal().lighten(byPercentage: 0.2)
+        self.salaryDescriptionLabel.textColor = UIColor.flatTeal.lighten(byPercentage: 0.2)
         
         self.locationQuotientLabel.textAlignment = .center
         self.locationQuotientLabel.font = UIFont.pandaFontBold(withSize: 18)
-        self.locationQuotientLabel.textColor = UIColor.flatBlueColorDark()
+        self.locationQuotientLabel.textColor = UIColor.flatBlueDark
         self.locationQuotientLabel.isUserInteractionEnabled = true
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(JobDetailViewController.locationQuotientButtonAlert))
@@ -350,15 +334,15 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.lqMapWarningLabel.textAlignment = NSTextAlignment.center
         self.lqMapWarningLabel.isHidden = false
         
-        self.howToBecomeOneView.backgroundColor = UIColor.flatPlum()
+        self.howToBecomeOneView.backgroundColor = UIColor.flatPlum
         
         self.howToBecomeOneLabel.textAlignment = .center
         self.howToBecomeOneLabel.font = UIFont.pandaFontBold(withSize: 24.0)
-        self.howToBecomeOneLabel.textColor = UIColor.flatWhite()
+        self.howToBecomeOneLabel.textColor = UIColor.flatWhite
         
         self.howToBecomeOneDescription.font = UIFont.pandaFontMedium(withSize: 18.0)
-        self.howToBecomeOneDescription.textColor = UIColor.flatWhite()
-        self.howToBecomeOneDescription.backgroundColor = UIColor.flatPlum()
+        self.howToBecomeOneDescription.textColor = UIColor.flatWhite
+        self.howToBecomeOneDescription.backgroundColor = UIColor.flatPlum
         
         self.lqMapWarningLabel.font = UIFont.pandaFontLight(withSize: 14)
         self.lqMapWarningLabel.text = "*Location Quotient data isn't available for all occupations."

@@ -53,7 +53,7 @@ class Constants {
             
             SwiftSpinner.show("Authenticating")
             
-            FIRAuth.auth()?.signIn(withEmail: alertController.textFields![0].text!, password: alertController.textFields![1].text!, completion: { (user, error) in
+            Auth.auth().signIn(withEmail: alertController.textFields![0].text!, password: alertController.textFields![1].text!, completion: { (user, error) in
                 
                 if let error = error {
                     SwiftSpinner.show(duration: 2.0, title: "Couldn't Log In")

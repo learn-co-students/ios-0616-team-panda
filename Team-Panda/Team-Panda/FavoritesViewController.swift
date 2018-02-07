@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import SnapKit
 import SwiftSpinner
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -62,7 +61,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
         cell1.textLabel?.font = UIFont.pandaFontLight(withSize: 16)
         cell1.textLabel?.adjustsFontSizeToFitWidth = false
-        cell1.backgroundColor = UIColor.flatYellow()
+        cell1.backgroundColor = UIColor.flatYellow
         
         return cell1
     }
@@ -137,14 +136,14 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         self.view.addSubview(self.favoritesTableView)
         let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.editButtonTapped))
         self.navigationItem.rightBarButtonItem = editButton
-        self.favoritesTableView.snp.makeConstraints { (make) in
-            make.center.equalTo(self.view.snp.center)
-            make.bottom.equalTo(self.view.snp.bottom)
-            make.height.equalTo(self.view.snp.height)
-            make.width.equalTo(self.view.snp.width)
-        }
         
-        self.favoritesTableView.backgroundColor = UIColor.flatYellow()
+        favoritesTableView.translatesAutoresizingMaskIntoConstraints = false
+        favoritesTableView.safeLeadingAnchor.constraint(equalTo: view.safeLeadingAnchor).isActive = true
+        favoritesTableView.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor).isActive = true
+        favoritesTableView.safeTopAnchor.constraint(equalTo: view.safeTopAnchor).isActive = true
+        favoritesTableView.safeBottomAnchor.constraint(equalTo: view.safeBottomAnchor).isActive = true
+
+        favoritesTableView.backgroundColor = UIColor.flatYellow
     }
 }
 

@@ -1,125 +1,88 @@
 PODS:
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
+  - Alamofire (4.6.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
-  - FBSDKCoreKit (4.15.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.15.0):
-    - FBSDKCoreKit
-  - Firebase (3.5.2):
-    - Firebase/Core (= 3.5.2)
-  - Firebase/Analytics (3.5.2):
-    - FirebaseAnalytics (~> 3.3)
-  - Firebase/Auth (3.5.2):
-    - Firebase/Analytics
-    - FirebaseAuth (= 3.0.4)
-  - Firebase/Core (3.5.2):
-    - Firebase/Analytics
-  - Firebase/Database (3.5.2):
-    - Firebase/Analytics
-    - FirebaseDatabase (= 3.0.2)
-  - FirebaseAnalytics (3.3.1):
-    - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.2)
-  - FirebaseAuth (3.0.4):
-    - FirebaseAnalytics (~> 3.2)
-    - GoogleNetworkingUtilities (~> 1.2)
-    - GoogleParsingUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.2)
-  - FirebaseDatabase (3.0.2):
-    - FirebaseAnalytics (~> 3.2)
-  - FirebaseInstanceID (1.0.8)
-  - Font-Awesome-Swift (1.4.8)
-  - Google/Core (3.0.3):
-    - FirebaseAnalytics (~> 3.2)
-  - Google/SignIn (3.0.3):
-    - Google/Core
-    - GoogleSignIn (~> 4.0)
-  - GoogleAppUtilities (1.1.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleAuthUtilities (2.0.1):
-    - GoogleNetworkingUtilities (~> 1.0)
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleInterchangeUtilities (1.2.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleNetworkingUtilities (1.2.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleParsingUtilities (1.1.1):
-    - GoogleNetworkingUtilities (~> 1.0)
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSignIn (4.0.0):
-    - GoogleAppUtilities (~> 1.1)
-    - GoogleAuthUtilities (~> 2.0)
-    - GoogleNetworkingUtilities (~> 1.2)
-    - GoogleUtilities (~> 1.3)
-  - GoogleSymbolUtilities (1.1.1)
-  - GoogleUtilities (1.3.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - PureLayout (3.0.2)
-  - SnapKit (0.22.0)
+  - Firebase/Auth (4.8.2):
+    - Firebase/Core
+    - FirebaseAuth (= 4.4.2)
+  - Firebase/Core (4.8.2):
+    - FirebaseAnalytics (= 4.0.9)
+    - FirebaseCore (= 4.0.14)
+  - Firebase/Database (4.8.2):
+    - Firebase/Core
+    - FirebaseDatabase (= 4.1.4)
+  - FirebaseAnalytics (4.0.9):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - nanopb (~> 0.3)
+  - FirebaseAuth (4.4.2):
+    - FirebaseAnalytics (~> 4.0)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseCore (4.0.14):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseDatabase (4.1.4):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - leveldb-library (~> 1.18)
+  - FirebaseInstanceID (2.0.8):
+    - FirebaseCore (~> 4.0)
+  - Font-Awesome-Swift (1.5.3)
+  - GoogleToolboxForMac/DebugUtils (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3):
+    - GoogleToolboxForMac/DebugUtils (= 2.1.3)
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
+  - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
+  - GTMSessionFetcher/Core (1.1.13)
+  - leveldb-library (1.20)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
   - SwiftFontName (2.0.0)
-  - SwiftSpinner (0.9.5)
-  - SwiftyButton (0.4.0):
-    - SwiftyButton/CustomContent (= 0.4.0)
-  - SwiftyButton/CustomContent (0.4.0):
-    - PureLayout (~> 3.0)
-  - SwiftyJSON (2.3.2)
-  - SWXMLHash (2.5.1)
-  - USStatesColorMap (1.0.1)
+  - SwiftSpinner (1.5.0)
+  - SwiftyButton (0.8.0)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - ChameleonFramework/Swift
-  - FBSDKLoginKit
-  - Firebase
   - Firebase/Auth
+  - Firebase/Core
   - Firebase/Database
-  - Font-Awesome-Swift (~> 1.4.8)
-  - Google/SignIn
-  - SnapKit
+  - Font-Awesome-Swift (~> 1.5.3)
   - SwiftFontName (~> 2.0.0)
   - SwiftSpinner
   - SwiftyButton
   - SwiftyJSON
-  - SWXMLHash
-  - USStatesColorMap
 
 SPEC CHECKSUMS:
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  FBSDKCoreKit: 6680cbd33a4243d80700f182d0af36b3fa7f3118
-  FBSDKLoginKit: 96d9b70b5784490f02ab86119e542a1f182017a8
-  Firebase: 94e63112efcad75226c0356a8f3032397b8547c9
-  FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
-  FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
-  FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
-  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Font-Awesome-Swift: 354c9440b0e4d692e31171c84091f3510e8f9468
-  Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
-  GoogleAppUtilities: f1730f91f67767b453c289577040dd3f425ffdc7
-  GoogleAuthUtilities: d7a19615cd7627688afcf181737f1011ee8b5a23
-  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
-  GoogleNetworkingUtilities: 3e83269048cfb498dc7ec83ab36813360965c74f
-  GoogleParsingUtilities: 30b3896f9ee167dc78747f013d3de157ced1cadf
-  GoogleSignIn: 09036ed61f8e75f1424100d63f7719480b2428c3
-  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
-  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
-  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
+  Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
+  FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
+  FirebaseAuth: bd2738c5c1e92b108ba5f7f7335908097a4e50bb
+  FirebaseCore: 2e0b98fb2d64ca8140136beff15772bdd14d2dd7
+  FirebaseDatabase: de4446507ccd3257fca37d16f40e1540324571fd
+  FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
+  Font-Awesome-Swift: 6615ee6b875d148f767ea60b5b4ff54e2ea3122e
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  GTMSessionFetcher: 5bb1eae636127de695590f50e7d248483eb891e6
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftFontName: 7c3fdb6fc334cd4a8f2953c450a7b40c8d1400e4
-  SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
-  SwiftyButton: fffcc0d82b2b5f9ec1681f20ee9c67bed0d5c73b
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  SWXMLHash: 89929225cad9c70ff96dcce54a19ddb2b1a18a69
-  USStatesColorMap: 701dbd4f4590359918854049eb890eb6ac8b01ed
+  SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
+  SwiftyButton: 093e3fe2becf3ae31c0f6c1c6987b79a93fb3ecb
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 323acb6c1e7e5b3289bd1dabff1d1c7ee88d7c14
+PODFILE CHECKSUM: 296ddbf0b3b1e34f44ca8ec76bf8b911e754fc09
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.4.0
