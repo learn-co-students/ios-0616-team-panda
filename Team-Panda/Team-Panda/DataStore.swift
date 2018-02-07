@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-class DataStore {
+final class DataStore {
     
     static let store = DataStore()
     var careerNameCellText: String!
@@ -30,7 +30,7 @@ class DataStore {
             if let error = error {
                 
                 completion(nil, error)
-                
+            
             } else if let careerResults = careerResults {
                 
                 guard

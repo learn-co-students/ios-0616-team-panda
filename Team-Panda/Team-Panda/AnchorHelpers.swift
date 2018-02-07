@@ -6,8 +6,6 @@
 //  Copyright © 2018 Flatiron School. All rights reserved.
 //
 
-import Foundation
-
 extension UIView {
     var safeLeadingAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11, *) {

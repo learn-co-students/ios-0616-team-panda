@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (4.6.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -53,7 +52,6 @@ PODS:
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0)
   - ChameleonFramework/Swift
   - Firebase/Auth
   - Firebase/Core
@@ -65,7 +63,6 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
   FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
@@ -83,6 +80,6 @@ SPEC CHECKSUMS:
   SwiftyButton: 093e3fe2becf3ae31c0f6c1c6987b79a93fb3ecb
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 296ddbf0b3b1e34f44ca8ec76bf8b911e754fc09
+PODFILE CHECKSUM: a34d3c98149cafd67f1d9af9cc6f56b29b6b9562
 
 COCOAPODS: 1.4.0
