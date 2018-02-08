@@ -12,9 +12,9 @@ import SwiftSpinner
 
 final class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let store = DataStore.store
-    var favoritesTableView = UITableView()
-    var favCell = "favCell"
+    private let store = DataStore.store
+    private var favoritesTableView = UITableView()
+    private var favCell = "favCell"
 
     lazy var jobData : [[Job]] = []
     
@@ -55,7 +55,6 @@ final class FavoritesViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell1 = UITableViewCell(style: .default, reuseIdentifier: "basicCell")
         
         cell1.textLabel?.text = getJobNameForSOCCode(store.tpUser!.favoritesArray[indexPath.row])
@@ -67,7 +66,6 @@ final class FavoritesViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     private func getJobNameForSOCCode(_ SOCCode: String) -> String {
-        
         let prefix = SOCCode.substring(to: SOCCode.index(SOCCode.startIndex, offsetBy: 2)) + "0000"
         var socJobName = String()
         
@@ -78,9 +76,7 @@ final class FavoritesViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let jobDetail = JobDetailViewController(nibName: nil, bundle: nil)
-        
+        let jobDetail = JobDetailViewController()
         let jobCode = store.tpUser!.favoritesArray[indexPath.row]
         
         SwiftSpinner.show("Loading Details")
