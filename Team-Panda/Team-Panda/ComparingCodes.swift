@@ -6,13 +6,11 @@
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
-import SwiftyJSON
+//import SwiftyJSON
 
-class ComparingCodes {
+final class ComparingCodes {
     
     func sortingOccupationBySOCCode() -> [String] {
-        
-        var codesFromJobsDictionary: [String] = []
         /*
          PUTTING ALL THE SOC CODES FROM THE JOBS DICTIONARY INTO ONE ARRAY
          */
@@ -47,26 +45,18 @@ class ComparingCodes {
         let formedHealth = whichInterestIdeaFormed!["Health"]?.map({ dashCode($0) })
         let formedLeadership = whichInterestIdeaFormed!["Leadership"]?.map({ dashCode($0) })
         let formedFinance = whichInterestIdeaFormed!["Finance"]?.map({ dashCode($0) })
-        
-        //        print("Formed History count: \(formedFinance?.count)")
-        //        codesFromJobsDictionary = formedFinance.flatMap{ $0 }!
-        //        print("Codes from jobs count: \(codesFromJobsDictionary.count)")
-        
+    
         let interestsArray =  [solveHuman, solveEnvironment, solveTranspo, solveArc, solveTeach, understandHuman, understandEnvironment, understandTranspo, understandArc, understandTeach, expressedHistory, expressedArt, expressedSports, expressedTeaching, expressedHealth, formedLaw, formedHistory, formedTeach, formedHealth, formedLeadership, formedFinance]
         let interests2 = interestsArray.flatMap { $0 }
-        codesFromJobsDictionary = interests2.flatMap { $0 }
+        var codesFromJobsDictionary = interests2.flatMap { $0 }
         codesFromJobsDictionary = Array(Set(codesFromJobsDictionary))
     
         return codesFromJobsDictionary
-        
     }
     
-    func dashCode(_ code: Int) -> String {
-        
+    private func dashCode(_ code: Int) -> String {
         var codeString = String(code)
-        codeString.insert("-", at: codeString.characters.index(codeString.startIndex, offsetBy: 2))
-        
+        codeString.insert("-", at: codeString.index(codeString.startIndex, offsetBy: 2))
         return codeString
-        
     }
 }

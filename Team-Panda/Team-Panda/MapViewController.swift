@@ -9,9 +9,9 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+final class MapViewController: UIViewController, MKMapViewDelegate {
 
-    let mapView = MKMapView()
+    private let mapView = MKMapView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,20 +20,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         setInitialLocation()
     }
     
-    let regionRadius: CLLocationDistance = 100000
+    private let regionRadius: CLLocationDistance = 100000
     
-    func centerMapOnLocation(_ location: CLLocation) {
+    private func centerMapOnLocation(_ location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    func setInitialLocation() {
+    private func setInitialLocation() {
         let initialLocation = CLLocation(latitude: 42.014988, longitude: -95.3602758)
         centerMapOnLocation(initialLocation)
     }
     
-    func createMapViews() {
+    private func createMapViews() {
         mapView.mapType = .standard
         mapView.frame = view.frame
         mapView.delegate = self

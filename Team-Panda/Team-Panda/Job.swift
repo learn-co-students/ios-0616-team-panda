@@ -44,7 +44,7 @@ class Job : CustomStringConvertible {
             self.SOCcode = ""
         }
         
-        if let measurementData = dictionary["data"] as? [[String : Any]] {
+        if let measurementData = dictionary["measure_data_type"] as? [[String : Any]] {
             
             self.dataYear = measurementData[0]["year"] as? String ?? ""
             self.annualMeanSalary = measurementData[0]["value"] as? String ?? ""

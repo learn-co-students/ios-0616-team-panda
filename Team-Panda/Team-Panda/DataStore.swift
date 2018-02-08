@@ -25,7 +25,7 @@ final class DataStore {
         self.careerResultsArray.removeAll()
         self.jobsResultsArray.removeAll()
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
+        BLSAPIClient.performRequest(with: params) { (careerResults, error) in
             
             if let error = error {
                 
@@ -60,7 +60,7 @@ final class DataStore {
     
     func getSingleOccupationWithCompletion(_ params : [String : Any], completion: @escaping (Job?, Error?) -> ()) {
         
-        BLSAPIClient.getMultipleOccupationsWithCompletion(params) { (careerResults, error) in
+        BLSAPIClient.performRequest(with: params) { (careerResults, error) in
             
             if let error = error {
                 
@@ -84,8 +84,8 @@ final class DataStore {
         
         let stateParams = DataSeries.createStateSeriesIDsWith(SOCcode, withDataType: DataSeries.locationQuotient)
         
-        BLSAPIClient.getLocationQuotientforJobWithCompletion(stateParams) { (lqResults, error) in
-            
+//        BLSAPIClient.getLocationQuotientforJobWithCompletion(stateParams) { (lqResults, error) in
+        BLSAPIClient.performRequest(with: stateParams) { (lqResults, error) in
             if let error = error {
                 
                 completion(nil, error)
@@ -104,8 +104,8 @@ final class DataStore {
                     guard
                         let stateSeriesInfo = state["catalog"] as? NSDictionary,
                         let stateName = stateSeriesInfo["area"] as? String,
-                        let stateData = state["data"] as? [[String : Any]],
-                        let lqValue = stateData[0]["value"] as? String
+                        let lqValue = state["measure_data_type"] as? String
+//                        let lqValue = stateData[0]["value"] as? String
                         else {
                             let error = NSError(domain: "No Location Quotient", code: 9999, userInfo: nil)
                             completion(nil, error)

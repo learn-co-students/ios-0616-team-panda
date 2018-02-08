@@ -10,7 +10,7 @@ import UIKit
 import ChameleonFramework
 import SwiftSpinner
 
-class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class YouViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var youTableView = UITableView()
     let reuseIdentifier = "youCell"

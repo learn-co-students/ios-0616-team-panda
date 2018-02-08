@@ -109,6 +109,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B47791E202BCE5D0099FDD5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
+				6EDE5EE01D6F64880069B16A /* GoogleService-Info.plist */,
+				6E58FB0C1D54125E00C12B50 /* Info.plist */,
+				6E57F4931D664FC100DF362D /* Occupation-Dictionary2.json */,
+				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
+				1BA426391D6DEADA007733A9 /* sparkTop2.gif */,
+				6ED2DE0C1E19624000E492E8 /* Team-Panda-Bridging-Header.h */,
+				6ED2DE101E19626700E492E8 /* USStatesColorMapHeader.h */,
+				6ED2DE0D1E19624100E492E8 /* USStatesColorMap.h */,
+				6ED2DE0E1E19624100E492E8 /* USStatesColorMap.m */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		6E58FAF41D54125E00C12B50 = {
 			isa = PBXGroup;
 			children = (
@@ -132,13 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				6E58FB001D54125E00C12B50 /* AppDelegate.swift */,
-				7BC289241D5CF36B0066440B /* UI */,
 				7BC289231D5CF3640066440B /* Models */,
-				6E58FB071D54125E00C12B50 /* Assets.xcassets */,
-				1BA426391D6DEADA007733A9 /* sparkTop2.gif */,
-				6E57F4931D664FC100DF362D /* Occupation-Dictionary2.json */,
-				6E58FB0C1D54125E00C12B50 /* Info.plist */,
-				6EDE5EE01D6F64880069B16A /* GoogleService-Info.plist */,
+				0B47791E202BCE5D0099FDD5 /* Resources */,
+				7BC289241D5CF36B0066440B /* UI */,
 			);
 			path = "Team-Panda";
 			sourceTree = "<group>";
@@ -159,17 +172,11 @@
 				6E0B558C1D678795006BE41A /* ComparingCodes.swift */,
 				7B90EBB81D592DFB00EE475A /* Constants.swift */,
 				7BC6A0091D5BABBF00BFD0D3 /* DataStore.swift */,
-				7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */,
 				7B416BD01D635631003894DE /* Job.swift */,
 				7B2AEC3E1D5E4E8F00FC1090 /* JobsDictionary.swift */,
 				7B03EAB51D6F4ADF003B6B84 /* OldCodes.swift */,
 				6E57F4871D6606C000DF362D /* JSONParser.swift */,
-				7B5930E21D5A87D5009D9EBA /* Secrets.swift */,
 				7BC6A0071D5B99AF00BFD0D3 /* TPUser.swift */,
-				6ED2DE101E19626700E492E8 /* USStatesColorMapHeader.h */,
-				6ED2DE0D1E19624100E492E8 /* USStatesColorMap.h */,
-				6ED2DE0E1E19624100E492E8 /* USStatesColorMap.m */,
-				6ED2DE0C1E19624000E492E8 /* Team-Panda-Bridging-Header.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -179,8 +186,8 @@
 			children = (
 				0B49077D202A72DB0041E0D6 /* AnchorHelpers.swift */,
 				7BC289271D5CF3C00066440B /* Interface Builder */,
-				7BC289261D5CF3A30066440B /* Tab Bar */,
 				7BC289251D5CF3850066440B /* Login and Signup */,
+				7BC289261D5CF3A30066440B /* Tab Bar */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -188,6 +195,7 @@
 		7BC289251D5CF3850066440B /* Login and Signup */ = {
 			isa = PBXGroup;
 			children = (
+				7B1DD7DC1D5A79400048A75C /* InterestsTableViewCell.swift */,
 				6E73DECD1D558B0E003C7ADE /* LoginViewController.swift */,
 				7B4898071D57EEF300406D81 /* SignUpPageViewController.swift */,
 				7B4898091D57F2BD00406D81 /* TellUsAboutYourselfViewController.swift */,

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import SwiftSpinner
 
-class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let store = DataStore.store
     var favoritesTableView = UITableView()
@@ -66,9 +66,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell1
     }
     
-    func getJobNameForSOCCode(_ SOCCode: String) -> String {
+    private func getJobNameForSOCCode(_ SOCCode: String) -> String {
         
-        let prefix = SOCCode.substring(to: SOCCode.characters.index(SOCCode.startIndex, offsetBy: 2)) + "0000"
+        let prefix = SOCCode.substring(to: SOCCode.index(SOCCode.startIndex, offsetBy: 2)) + "0000"
         var socJobName = String()
         
         if let unwrappedSocName = allSOCCodes[prefix]![SOCCode] {
@@ -132,7 +132,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    func createTableViewConstraints() {
+    private func createTableViewConstraints() {
         self.view.addSubview(self.favoritesTableView)
         let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.editButtonTapped))
         self.navigationItem.rightBarButtonItem = editButton

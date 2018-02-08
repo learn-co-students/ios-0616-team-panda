@@ -14,7 +14,7 @@ import SwiftSpinner
 import SwiftyJSON
 import FirebaseAuth
 
-class JobDetailViewController: UIViewController, UIScrollViewDelegate {
+final class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     
     var store = DataStore.store
     var job : Job?
@@ -43,7 +43,6 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         createViews()
         setStylingForViews()
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -377,26 +376,26 @@ class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         if let jobSalary = job?.annualMeanSalary {
-            self.salaryDescriptionLabel.text = "$\(addCommaToSalary(jobSalary))"
+            self.salaryDescriptionLabel.text = "$\(String(describing: addCommaToSalary(jobSalary)))"
         }
         self.howToBecomeOneDescription.text = jobDictionary[JSONParser.occupationBecomeOne]?.stringValue
-        
     }
     
-    func addCommaToSalary(_ SalaryString: String) -> String {
+    func addCommaToSalary(_ SalaryString: String) -> String? {
         
         let numberFormatter1 = NumberFormatter()
         numberFormatter1.numberStyle = NumberFormatter.Style.decimal
-        let number: NSNumber = numberFormatter1.number(from: SalaryString)!
         
-        let unitedStatesLocale = Locale(identifier: "en_US")
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        
-        numberFormatter.locale = unitedStatesLocale
-        
-        return numberFormatter.string(from: number)!
-        
+        if let number = numberFormatter1.number(from: SalaryString) {
+            let unitedStatesLocale = Locale(identifier: "en_US")
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            
+            numberFormatter.locale = unitedStatesLocale
+            
+            return numberFormatter.string(from: number)
+        }
+        return nil
     }
     
     @IBAction func showMinEduReqsAlert() {

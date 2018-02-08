@@ -13,59 +13,55 @@ import FirebaseDatabase
 import SwiftyButton
 import ChameleonFramework
 
-class LoginViewController: UIViewController, UITextFieldDelegate  {
+final class LoginViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    var loginButton = PressableButton()
-    var signupButton = PressableButton()
-    var orLabel = UILabel()
-    var ref: DatabaseReference!
-    let store = DataStore.store
-    let webViewBG = UIWebView()
-    let careerSparkLabel = UILabel()
-    var careerSparkHeadlineLabel = UILabel()
-    var filterView = UIView()
+    private let loginButton = PressableButton()
+    private let signupButton = PressableButton()
+    private let orLabel = UILabel()
+    private let store = DataStore.store
+    private let webViewBG = UIWebView()
+    private let careerSparkLabel = UILabel()
+    private let careerSparkHeadlineLabel = UILabel()
+    private let filterView = UIView()
     
     lazy var continueWithoutLoginButton : UIButton = UIButton(type: .custom)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showTabBarViewForUser()
-        
+        showTabBarViewForUser()
     }
     
-    func dismissKeyboard() {
-        self.emailTextField.resignFirstResponder()
-        self.passwordTextField.resignFirstResponder()
+    @objc private func dismissKeyboard() {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
     }
     
-    func showTabBarViewForUser() {
-        
+    private func showTabBarViewForUser() {
         if let currentPanda = Auth.auth().currentUser {
-            
             if currentPanda.uid == Secrets.genericUserUID {
-                self.displayLoginView()
+                displayLoginView()
             }
             else {
-                TPUser.getUserFromFirebase(currentPanda.uid, completion: { (pandaUser) in
+                TPUser.getUserFromFirebase(currentPanda.uid, completion: { [weak self] (pandaUser) in
                     if let pandaUser = pandaUser {
-                        self.store.tpUser = pandaUser
+                        self?.store.tpUser = pandaUser
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarController")
-                        self.present(tabBarVC, animated: true, completion: {
+                        self?.present(tabBarVC, animated: true, completion: {
                         })
                     } else {
-                        self.displayLoginView()
+                        self?.displayLoginView()
                     }
                 })
             }
         } else { // no user
-            self.displayLoginView()
+            displayLoginView()
         }
     }
     
-    func displayLoginView() {
+    private func displayLoginView() {
         emailTextField = UITextField()
         emailTextField.delegate = self
         emailTextField.layer.cornerRadius = 5
@@ -171,23 +167,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         signupButton.shadowHeight = 5
         signupButton.depth = 0.65
         signupButton.titleLabel?.font = UIFont.pandaFontLight(withSize: 20)
-        
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton!) {
-        
-        if !self.emptyTextFields() {
-            self.loginCurrentUser()
+        if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
+            loginCurrentUser()
         } else {
-            self.blankEmailPasswordAlert()
+            blankEmailPasswordAlert()
         }
     }
     
     @IBAction func signupButtonTapped(_ sender: UIButton!) {
-        self.createNewUser()
+        createNewUser()
     }
     
-    func viewsConstraints() {
+    private func viewsConstraints() {
         emailTextField.textAlignment = .center
         passwordTextField.textAlignment = .center
         
@@ -227,99 +221,72 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         continueWithoutLoginButton.safeBottomAnchor.constraint(equalTo: loginButton.safeTopAnchor).isActive = true
     }
     
-    func signInAsGenericUserTapped() {
-        
-        let alert = Constants.displayAlertWithContinueAndCancel("Heads Up!", message: "Without logging in, you won't be able to save your answers to the survey or favorite any jobs. Would you like to continue?", continueHandler: { 
-            // continueHandler
-            
-            Auth.auth().signIn(withEmail: Secrets.genericUserEmail, password: Secrets.genericUserPassword, completion: { (user, error) in
-                
+    @objc private func signInAsGenericUserTapped() {
+        let alert = Constants.displayAlertWithContinueAndCancel("Heads Up!", message: "Without logging in, you won't be able to save your answers to the survey or favorite any jobs. Would you like to continue?", continueHandler: {
+            Auth.auth().signIn(withEmail: Secrets.genericUserEmail, password: Secrets.genericUserPassword, completion: { [weak self] (user, error) in
                 if let error = error {
                     // Alert user there was a problem logging in
                     let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
-                    self.present(alert, animated: true, completion: nil)
+                    self?.present(alert, animated: true, completion: nil)
                     
                 } else if let user = user {
-                    
                     TPUser.getUserFromFirebase(user.uid, completion: { (pandaUser) in
-                        self.store.tpUser = pandaUser
-                        self.present(SignUpPageViewController(), animated: true, completion: nil)                        
+                        self?.store.tpUser = pandaUser
+                        self?.present(SignUpPageViewController(), animated: true, completion: nil)
                     })
                 }
             })
-            
-            
         }) {
             return
         }
-        
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
-    func emptyTextFields() -> Bool {
-        
-        if self.emailTextField.text!.isEmpty || self.passwordTextField.text!.isEmpty {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func blankEmailPasswordAlert() {
-        
+    private func blankEmailPasswordAlert() {
         let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: "Please enter a valid email address & password")
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
-    func loginCurrentUser() {
+    private func loginCurrentUser() {
+        guard let userEmail = emailTextField.text, let userPassword = passwordTextField.text else { return }
         
-        guard
-            let userEmail = self.emailTextField.text,
-            let userPassword = self.passwordTextField.text else {
-                return
-        }
-        
-        Auth.auth().signIn(withEmail: userEmail, password: userPassword, completion: { (user, error) in
-            
+        Auth.auth().signIn(withEmail: userEmail, password: userPassword, completion: { [weak self] (user, error) in
             if let error = error {
                 // Alert user there was a problem logging in
                 let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: error.localizedDescription)
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
                 
             } else if let user = user {
-                
-                TPUser.getUserFromFirebase(user.uid, completion: { (pandaUser) in
-                    self.store.tpUser = pandaUser
-                    self.showTabBarViewForUser()
-                    
+                TPUser.getUserFromFirebase(user.uid, completion: { [weak self] (pandaUser) in
+                    self?.store.tpUser = pandaUser
+                    self?.showTabBarViewForUser()
                 })
             }
         })
     }
     
-    func createNewUser() {
+    private func createNewUser() {
+        let userEmail = emailTextField!.text!
+        let userPassword = passwordTextField!.text!
         
-        let userEmail = self.emailTextField!.text!
-        let userPassword = self.passwordTextField!.text!
-        
-        Auth.auth().createUser(withEmail: userEmail, password: userPassword, completion: { (user, error) in
+        Auth.auth().createUser(withEmail: userEmail, password: userPassword, completion: { [weak self] (user, error) in
             if let error = error {
                 // Don't create user
                 let alert = Constants.displayAlertWithTryAgain("Uh oh...", message: (error.localizedDescription))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             } else {
-                self.present(SignUpPageViewController(), animated: true, completion: nil)
+                self?.present(SignUpPageViewController(), animated: true, completion: nil)
                 let pandaUser: TPUser = TPUser(withEmail: (user?.email)!, uid: (user?.uid)!)
                 pandaUser.updateDatabase()
-                self.store.tpUser = pandaUser
+                self?.store.tpUser = pandaUser
             }
         })
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Dismisses keyboard when user taps return in either Username or Password UITextFields
-        self.emailTextField.resignFirstResponder()
-        self.passwordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
         return true
     }
 }
