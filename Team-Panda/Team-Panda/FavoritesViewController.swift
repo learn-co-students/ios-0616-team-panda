@@ -37,6 +37,7 @@ final class FavoritesViewController: UIViewController, UITableViewDelegate, UITa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.favoritesTableView.reloadData()
+        tabBarController?.tabBar.tintColor = .flatYellow
         self.navigationController?.navigationBar.topItem?.title = "Favorites"
         
         if store.tpUser!.uid == Secrets.genericUserUID {

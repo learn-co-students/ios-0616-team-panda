@@ -77,9 +77,6 @@ final class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     func setupNavBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: faveStar, style: .plain, target: self, action: #selector(saveToFavorites))
         navigationItem.rightBarButtonItem?.tintColor = favoritedJob().0 == true ? UIColor.flatYellow : UIColor.systemBlue()
-        if #available(iOS 11, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
     }
     
     func saveToFavorites() {
@@ -110,7 +107,6 @@ final class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func favoritedJob() -> (Bool, Int?) {
-        
         if store.tpUser!.favoritesArray.contains((self.job?.SOCcode)!) {
             
             let index = store.tpUser!.favoritesArray.index(of: self.job!.SOCcode)
@@ -345,7 +341,6 @@ final class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.lqMapWarningLabel.adjustsFontSizeToFitWidth = true
         
         self.usaColorMapView.backgroundColor = UIColor.clear
-        
     }
     
     func setTextForUILabels() {
@@ -378,7 +373,6 @@ final class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func addCommaToSalary(_ SalaryString: String) -> String? {
-        
         let numberFormatter1 = NumberFormatter()
         numberFormatter1.numberStyle = NumberFormatter.Style.decimal
         

@@ -28,12 +28,17 @@ final class YouViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.tintColor = .flatMint
+    }
+    
     func settingUpTableViewAndNavBar() {
         
         self.youTableView.delegate = self
         self.youTableView.dataSource = self
         self.youTableView.register(UITableViewCell.self, forCellReuseIdentifier: self.reuseIdentifier)
-        self.youTableView.backgroundColor = FlatMint()
+        self.youTableView.backgroundColor = .flatMint
         self.youTableView.accessibilityLabel = "tableView"
         self.youTableView.accessibilityIdentifier = "tableView"
         
@@ -49,7 +54,7 @@ final class YouViewController: UIViewController, UITableViewDelegate, UITableVie
             navigationController?.navigationBar.prefersLargeTitles = true
         }
         navigationController?.navigationBar.topItem?.title = "Career Results"
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.pandaFontMedium(withSize: 18)]
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.navigationBar.isOpaque = false
     }

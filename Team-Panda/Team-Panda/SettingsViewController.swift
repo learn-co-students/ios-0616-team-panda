@@ -26,6 +26,11 @@ class SettingsViewController: UIViewController {
         setupButtons()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.tintColor = .flatSkyBlue
+    }
+    
     func updateProfileTapped(_ sender : Any) {
         print("Update Profile Info Tapped")
         
