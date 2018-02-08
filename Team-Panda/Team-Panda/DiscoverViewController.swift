@@ -40,7 +40,10 @@ class DiscoverViewController: UIViewController {
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.isOpaque = false
         self.navigationController?.navigationBar.topItem?.title = "Discover"
-        // Do any additional setup after loading the view.
+        if #available(iOS 11, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        
         self.createViews()
     }
     

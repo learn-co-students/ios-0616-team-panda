@@ -29,6 +29,9 @@ final class FavoritesViewController: UIViewController, UITableViewDelegate, UITa
         
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.isOpaque = false
+        if #available(iOS 11, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

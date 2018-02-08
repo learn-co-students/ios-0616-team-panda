@@ -45,11 +45,13 @@ final class YouViewController: UIViewController, UITableViewDelegate, UITableVie
         youTableView.safeTopAnchor.constraint(equalTo: view.safeTopAnchor).isActive = true
         youTableView.safeBottomAnchor.constraint(equalTo: view.safeBottomAnchor).isActive = true
 
-        self.navigationController?.navigationBar.topItem?.title = "Career Results"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
-        self.navigationController?.hidesBarsOnSwipe = false
-        self.navigationController?.navigationBar.isOpaque = false
-        
+        if #available(iOS 11, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        navigationController?.navigationBar.topItem?.title = "Career Results"
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.pandaFontMedium(withSize: 18)]
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController?.navigationBar.isOpaque = false
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

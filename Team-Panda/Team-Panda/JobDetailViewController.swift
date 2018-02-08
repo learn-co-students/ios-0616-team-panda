@@ -75,14 +75,10 @@ final class JobDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setupNavBar() {
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: faveStar, style: .plain, target: self, action: #selector(saveToFavorites))
-        
-        if favoritedJob().0 == true {
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.flatYellow
-        }
-        else {
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.systemBlue()
+        navigationItem.rightBarButtonItem?.tintColor = favoritedJob().0 == true ? UIColor.flatYellow : UIColor.systemBlue()
+        if #available(iOS 11, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
         }
     }
     
@@ -349,7 +345,7 @@ final class JobDetailViewController: UIViewController, UIScrollViewDelegate {
         self.lqMapWarningLabel.adjustsFontSizeToFitWidth = true
         
         self.usaColorMapView.backgroundColor = UIColor.clear
-
+        
     }
     
     func setTextForUILabels() {
